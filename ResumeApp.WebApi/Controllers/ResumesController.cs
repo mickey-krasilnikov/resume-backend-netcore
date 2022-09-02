@@ -10,35 +10,35 @@ namespace ResumeApp.WebApi.Controllers
 	[Route("api/[controller]")]
 	public class ResumesController : ControllerBase
 	{
+		private readonly IResumeService _resumeService;
 		private readonly ILogger<ResumesController> _logger;
 
 		public ResumesController(
 			IResumeService resumeService,
 			ILogger<ResumesController> logger)
 		{
+			_resumeService = resumeService;
 			_logger = logger;
 		}
 
 		[HttpGet]
-		[ProducesResponseType(StatusCodes.Status200OK, Type = typeof(List<Resume>))]
-		[ProducesResponseType(StatusCodes.Status404NotFound)]
+		[ProducesResponseType(StatusCodes.Status200OK, Type = typeof(List<FullResume>))]
 		[ProducesDefaultResponseType]
-		public ActionResult<IEnumerable<Resume>> Get()
+		public async Task<ActionResult<IEnumerable<ConciseResume>>> GetAsync()
 		{
-			return Ok(new Resume());
+			return Ok(await _resumeService.GetAllResumesAsync());
 		}
 
 		[HttpGet("{id}")]
-		[ProducesResponseType(StatusCodes.Status200OK, Type = typeof(Resume))]
+		[ProducesResponseType(StatusCodes.Status200OK, Type = typeof(FullResume))]
 		[ProducesResponseType(StatusCodes.Status404NotFound)]
 		[ProducesDefaultResponseType]
-		public ActionResult<Resume> GetById([FromRoute] string id)
+		public async Task<ActionResult<FullResume>> GetByIdAsync([FromRoute] string id)
 		{
-			var isParsed = Guid.TryParse(id, out var guidId);
-
-			return isParsed
-				? Ok(new Poco.Resume { ID = guidId })
-				: BadRequest();
+			var isExists = await _resumeService.CheckIfItemExistsAsync(id);
+			return isExists
+				? Ok(await _resumeService.GetResumeByIdAsync(id))
+				: NotFound();
 		}
 	}
 }

@@ -1,7 +1,4 @@
 ﻿namespace ResumeApp.DataAccess
 {
-	public class Class1
-	{
-
-	}
+	public interface IEntity { }
 }

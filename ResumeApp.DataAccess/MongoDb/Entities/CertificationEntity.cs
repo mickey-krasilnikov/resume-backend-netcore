@@ -1,6 +1,6 @@
-﻿namespace ResumeApp.Poco
+﻿namespace ResumeApp.DataAccess.MongoDb.Entities
 {
-	public class Certification
+	public class CertificationEntity
 	{
 		public string Name { get; set; }
 		public string Issuer { get; set; }

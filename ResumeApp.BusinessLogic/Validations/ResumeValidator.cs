@@ -1,8 +1,9 @@
 ﻿using FluentValidation;
+using ResumeApp.Poco;
 
 namespace ResumeApp.BusinessLogic.Validations
 {
-	public class ResumeValidator : AbstractValidator<Poco.Resume>
+	public class ResumeValidator : AbstractValidator<FullResume>
 	{
 		public ResumeValidator()
 		{

@@ -1,8 +1,8 @@
 ﻿namespace ResumeApp.Poco
 {
-	public class Resume
+	public class FullResume
 	{
-		public Guid ID { get; set; }
+		public string ID { get; set; }
 		public string FirstName { get; set; }
 		public string LastName { get; set; }
 		public string Title { get; set; }

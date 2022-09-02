@@ -1,23 +1,26 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>net6.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<AnalysisMode>All</AnalysisMode>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\ResumeApp.DataAccess\ResumeApp.DataAccess.csproj" />
-    <ProjectReference Include="..\ResumeApp.Poco\ResumeApp.Poco.csproj" />
-  </ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\ResumeApp.DataAccess\ResumeApp.DataAccess.csproj" />
+		<ProjectReference Include="..\ResumeApp.Poco\ResumeApp.Poco.csproj" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Mappers\" />
-  </ItemGroup>
+	<ItemGroup>
+		<Folder Include="Configs\" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <PackageReference Include="FluentValidation" Version="11.2.1" />
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="6.0.0" />
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="FluentValidation" Version="11.2.1" />
+		<PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="6.0.0" />
+		<PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="6.0.0" />
+		<PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="6.0.0" />
+	</ItemGroup>
 
 </Project>
