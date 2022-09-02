@@ -29,5 +29,20 @@ namespace ResumeApp.BusinessLogic.Services
 			var resume = await _resumeRepository.FindByIdAsync(id);
 			return resume.ToFullResumeDto();
 		}
+
+		public async Task CreateResumesAsync(FullResume fullResume)
+		{
+			await _resumeRepository.InsertOneAsync(fullResume.ToResumeEntity());
+		}
+
+		public async Task UpdateResumesAsync(FullResume fullResume)
+		{
+			await _resumeRepository.ReplaceOneAsync(fullResume.ToResumeEntity());
+		}
+
+		public async Task DeleteResumesAsync(string id)
+		{
+			await _resumeRepository.DeleteByIdAsync(id);
+		}
 	}
 }

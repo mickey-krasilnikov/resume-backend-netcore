@@ -1,4 +1,5 @@
-﻿using ResumeApp.DataAccess.MongoDb.Entities;
+﻿using MongoDB.Bson;
+using ResumeApp.DataAccess.MongoDb.Entities;
 using ResumeApp.Poco;
 
 namespace ResumeApp.BusinessLogic.Mappers
@@ -50,6 +51,27 @@ namespace ResumeApp.BusinessLogic.Mappers
 			};
 		}
 
+		internal static ResumeEntity ToResumeEntity(this FullResume dto)
+		{
+			if (dto == null) return null!;
+			var isParsed = ObjectId.TryParse(dto.ID, out var objectId);
+			if (!isParsed) return null!;
+
+			return new ResumeEntity
+			{
+				Id = objectId,
+				FirstName = dto.FirstName,
+				LastName = dto.LastName,
+				Title = dto.Title,
+				Contacts = dto.Contacts,
+				Summary = dto.Summary,
+				Skills = dto.Skills.ConvertAll(g => g.ToSkillGroupEntity()),
+				Experience = dto.Experience.ConvertAll(e => e.ToExperienceEntity()),
+				Certifications = dto.Certifications.ConvertAll(c => c.ToCertificationEntity()),
+				Education = dto.Education.ConvertAll(e => e.ToEducationEntity())
+			};
+		}
+
 		private static SkillGroup ToSkillGroupDto(this SkillGroupEntity entity)
 		{
 			if (entity == null) return null!;
@@ -59,6 +81,18 @@ namespace ResumeApp.BusinessLogic.Mappers
 				Name = entity.Name,
 				Skills = entity.Skills?.ConvertAll(s => s.ToSkillDto()),
 				SubGroups = entity.SubGroups?.ConvertAll(g => g.ToSkillGroupDto())
+			};
+		}
+
+		private static SkillGroupEntity ToSkillGroupEntity(this SkillGroup dto)
+		{
+			if (dto == null) return null!;
+
+			return new SkillGroupEntity
+			{
+				Name = dto.Name,
+				Skills = dto.Skills?.ConvertAll(s => s.ToSkillEntity()),
+				SubGroups = dto.SubGroups?.ConvertAll(g => g.ToSkillGroupEntity())
 			};
 		}
 
@@ -73,6 +107,17 @@ namespace ResumeApp.BusinessLogic.Mappers
 			};
 		}
 
+		private static SkillEntity ToSkillEntity(this Skill dto)
+		{
+			if (dto == null) return null!;
+
+			return new SkillEntity
+			{
+				Name = dto.Name,
+				AdditionalInfo = dto.AdditionalInfo
+			};
+		}
+
 		private static Experience ToExperienceDto(this ExperienceEntity entity)
 		{
 			return new Experience
@@ -82,6 +127,18 @@ namespace ResumeApp.BusinessLogic.Mappers
 				StartDate = entity.StartDate,
 				EndDate = entity.EndDate,
 				Projects = entity.Projects.ConvertAll(s => s.ToProjectDto())
+			};
+		}
+
+		private static ExperienceEntity ToExperienceEntity(this Experience dto)
+		{
+			return new ExperienceEntity
+			{
+				Title = dto.Title,
+				Company = dto.Company,
+				StartDate = dto.StartDate,
+				EndDate = dto.EndDate,
+				Projects = dto.Projects.ConvertAll(s => s.ToProjectEntity())
 			};
 		}
 
@@ -100,6 +157,21 @@ namespace ResumeApp.BusinessLogic.Mappers
 			};
 		}
 
+		private static ProjectEntity ToProjectEntity(this Project dto)
+		{
+			if (dto == null) return null!;
+
+			return new ProjectEntity
+			{
+				Client = dto.Client,
+				StartDate = dto.StartDate,
+				EndDate = dto.EndDate,
+				Envirnment = dto.Envirnment,
+				ProjectRole = dto.ProjectRole,
+				TaskPerformed = dto.TaskPerformed
+			};
+		}
+
 		private static Certification ToCertificationDto(this CertificationEntity entity)
 		{
 			if (entity == null) return null!;
@@ -111,6 +183,20 @@ namespace ResumeApp.BusinessLogic.Mappers
 				IssueDate = entity.IssueDate,
 				ExpirationDate = entity.ExpirationDate,
 				VerificationURL = entity.VerificationURL
+			};
+		}
+
+		private static CertificationEntity ToCertificationEntity(this Certification dto)
+		{
+			if (dto == null) return null!;
+
+			return new CertificationEntity
+			{
+				Name = dto.Name,
+				Issuer = dto.Issuer,
+				IssueDate = dto.IssueDate,
+				ExpirationDate = dto.ExpirationDate,
+				VerificationURL = dto.VerificationURL
 			};
 		}
 
@@ -126,6 +212,21 @@ namespace ResumeApp.BusinessLogic.Mappers
 				StartDate = entity.StartDate,
 				EndDate = entity.EndDate,
 				Url = entity.Url
+			};
+		}
+
+		private static EducationEntity ToEducationEntity(this Education dto)
+		{
+			if (dto == null) return null!;
+
+			return new EducationEntity
+			{
+				Name = dto.Name,
+				Degree = dto.Degree,
+				FieldOfStudy = dto.FieldOfStudy,
+				StartDate = dto.StartDate,
+				EndDate = dto.EndDate,
+				Url = dto.Url
 			};
 		}
 	}
