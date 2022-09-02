@@ -1,17 +1,19 @@
 using ResumeApp.BusinessLogic.Extensions;
+
 using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddResponseCaching();
+
 builder.Services
-	.AddControllers()
+	.AddControllers(setupAction => setupAction.ReturnHttpNotAcceptable = true)
 	.AddJsonOptions(o => o.JsonSerializerOptions.DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull);
 
-builder.Services.AddEndpointsApiExplorer();
-
-builder.Services.AddSwaggerGen();
-
-builder.Services.AddResumeServices(builder.Configuration);
+builder.Services
+	.AddEndpointsApiExplorer()
+	.AddSwaggerGen()
+	.AddResumeServices(builder.Configuration);
 
 var app = builder.Build();
 
@@ -22,9 +24,6 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
 app.UseAuthorization();
-
 app.MapControllers();
-
 app.Run();

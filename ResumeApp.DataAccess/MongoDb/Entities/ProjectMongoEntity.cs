@@ -1,6 +1,6 @@
 ﻿namespace ResumeApp.DataAccess.MongoDb.Entities
 {
-	public class ProjectEntity
+	public class ProjectMongoEntity
 	{
 		public string Client { get; set; }
 		public DateTime StartDate { get; set; }

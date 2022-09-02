@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Net.Http.Headers;
 using ResumeApp.BusinessLogic.Services;
 using ResumeApp.Poco;
 
@@ -21,18 +22,21 @@ namespace ResumeApp.WebApi.Controllers
 			_logger = logger;
 		}
 
+		[HttpOptions]
+		public IActionResult GetResumesOptions()
+		{
+			Response.Headers.Add(HeaderNames.Allow, $"{HttpMethods.Get},{HttpMethods.Options},{HttpMethods.Post}");
+			return Ok();
+		}
+
 		[HttpGet]
-		[ProducesResponseType(StatusCodes.Status200OK, Type = typeof(List<FullResume>))]
-		[ProducesDefaultResponseType]
-		public async Task<ActionResult<IEnumerable<ConciseResume>>> GetAllResumes()
+		[HttpHead]
+		public async Task<ActionResult<IEnumerable<ConciseResume>>> GetResumes()
 		{
 			return Ok(await _resumeService.GetAllResumesAsync());
 		}
 
 		[HttpGet("{id}")]
-		[ProducesResponseType(StatusCodes.Status200OK, Type = typeof(FullResume))]
-		[ProducesResponseType(StatusCodes.Status404NotFound)]
-		[ProducesDefaultResponseType]
 		public async Task<ActionResult<FullResume>> GetResumeById([FromRoute] string id)
 		{
 			var isExists = await _resumeService.CheckIfItemExistsAsync(id);
@@ -42,18 +46,14 @@ namespace ResumeApp.WebApi.Controllers
 		}
 
 		[HttpPost]
-		[ProducesResponseType(StatusCodes.Status201Created, Type = typeof(List<FullResume>))]
-		[ProducesDefaultResponseType]
-		public async Task<ActionResult<FullResume>> PostResume([FromBody] FullResume resume)
+		public async Task<ActionResult<FullResume>> CreateResume([FromBody] FullResume resume)
 		{
 			await _resumeService.CreateResumesAsync(resume);
-			return Created(new Uri($"/{resume.ID}"), null);
+			return CreatedAtAction(nameof(GetResumeById), resume.ID, null);
 		}
 
 		[HttpPut("{id}")]
-		[ProducesResponseType(StatusCodes.Status204NoContent, Type = typeof(List<FullResume>))]
-		[ProducesDefaultResponseType]
-		public async Task<ActionResult<FullResume>> PutResume([FromRoute] string id, [FromBody] FullResume resume)
+		public async Task<ActionResult<FullResume>> UpdateResume([FromRoute] string id, [FromBody] FullResume resume)
 		{
 			var isExists = await _resumeService.CheckIfItemExistsAsync(id);
 			if (!isExists) return NotFound();
@@ -63,8 +63,6 @@ namespace ResumeApp.WebApi.Controllers
 		}
 
 		[HttpDelete("{id}")]
-		[ProducesResponseType(StatusCodes.Status204NoContent, Type = typeof(List<FullResume>))]
-		[ProducesDefaultResponseType]
 		public async Task<ActionResult<FullResume>> DeleteResumeById([FromRoute] string id)
 		{
 			var isExists = await _resumeService.CheckIfItemExistsAsync(id);

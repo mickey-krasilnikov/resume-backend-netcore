@@ -7,9 +7,9 @@ namespace ResumeApp.BusinessLogic.Services
 {
 	public class ResumeService : IResumeService
 	{
-		private readonly IResumeRepository<ResumeEntity> _resumeRepository;
+		private readonly IResumeRepository<ResumeMongoEntity> _resumeRepository;
 
-		public ResumeService(IResumeRepository<ResumeEntity> resumeRepository)
+		public ResumeService(IResumeRepository<ResumeMongoEntity> resumeRepository)
 		{
 			_resumeRepository = resumeRepository;
 		}

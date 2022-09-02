@@ -108,6 +108,5 @@ namespace ResumeApp.DataAccess.MongoDb
 		private protected static FilterDefinition<TDocument> GetFilterById(ObjectId id) => Builders<TDocument>.Filter.Eq("_id", id);
 
 		private protected static FilterDefinition<TDocument> GetEmptyFilter() => Builders<TDocument>.Filter.Empty;
-
 	}
 }

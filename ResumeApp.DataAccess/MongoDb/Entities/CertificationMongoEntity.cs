@@ -1,6 +1,6 @@
 ﻿namespace ResumeApp.DataAccess.MongoDb.Entities
 {
-	public class CertificationEntity
+	public class CertificationMongoEntity
 	{
 		public string Name { get; set; }
 		public string Issuer { get; set; }
