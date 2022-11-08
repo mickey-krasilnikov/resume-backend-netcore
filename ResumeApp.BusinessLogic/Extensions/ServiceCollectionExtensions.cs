@@ -1,10 +1,6 @@
-﻿using FluentValidation;
-using Microsoft.Extensions.Configuration;
+﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using ResumeApp.BusinessLogic.Services;
-using ResumeApp.BusinessLogic.Validations;
-using ResumeApp.DataAccess.Extensions;
-using ResumeApp.Poco;
+using ResumeApp.DataAccess.Sql.Extensions;
 
 namespace ResumeApp.BusinessLogic.Extensions
 {
@@ -14,11 +10,11 @@ namespace ResumeApp.BusinessLogic.Extensions
 		{
 			if (config == null) throw new ArgumentNullException(nameof(config));
 
-			services.AddResumeMongoDb(config);
+			services.AddResumeSqlDb(config);
 
-			services.AddScoped<IResumeService, ResumeService>();
+			//services.AddScoped<IResumeService, ResumeService>();
 
-			services.AddScoped<IValidator<FullResume>, ResumeValidator>();
+			//services.AddScoped<IValidator<FullResume>, ResumeValidator>();
 
 			return services;
 		}

@@ -2,7 +2,7 @@
 
 	<PropertyGroup>
 		<TargetFramework>net6.0</TargetFramework>
-		<Nullable>enable</Nullable>
+		<Nullable>disable</Nullable>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<AnalysisMode>All</AnalysisMode>
 		<UserSecretsId>resume-app-web-api-7560c88f-57ca-492e-82c0-459cffa85cf4</UserSecretsId>
@@ -15,10 +15,15 @@
 	<ItemGroup>
 		<PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning" Version="5.0.0" />
 		<PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.0">
+			<PrivateAssets>all</PrivateAssets>
+			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+		</PackageReference>
 	</ItemGroup>
 
 	<ItemGroup>
 		<ProjectReference Include="..\ResumeApp.BusinessLogic\ResumeApp.BusinessLogic.csproj" />
+		<ProjectReference Include="..\ResumeApp.DataAccess.Sql\ResumeApp.DataAccess.Sql.csproj" />
 		<ProjectReference Include="..\ResumeApp.Poco\ResumeApp.Poco.csproj" />
 	</ItemGroup>
 
