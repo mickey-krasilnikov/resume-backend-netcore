@@ -8,6 +8,7 @@
 		<UserSecretsId>resume-app-web-api-7560c88f-57ca-492e-82c0-459cffa85cf4</UserSecretsId>
 	</PropertyGroup>
 
+	<PropertyGroup Condition=" '$(RunConfiguration)' == 'Resume.WebApi' " />
 	<ItemGroup>
 	  <None Include="..\.editorconfig" Link=".editorconfig" />
 	</ItemGroup>

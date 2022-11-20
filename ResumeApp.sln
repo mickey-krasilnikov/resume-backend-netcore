@@ -1,24 +1,24 @@
-﻿
+
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.2.32630.192
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ResumeApp.WebApi", "ResumeApp.WebApi\ResumeApp.WebApi.csproj", "{4F5D80DD-4B5E-4421-97C8-156E9512AAEE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ResumeApp.WebApi", "src\ResumeApp.WebApi\ResumeApp.WebApi.csproj", "{4F5D80DD-4B5E-4421-97C8-156E9512AAEE}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ResumeApp.BusinessLogic", "ResumeApp.BusinessLogic\ResumeApp.BusinessLogic.csproj", "{7E2862E3-03E2-4791-A196-BF1D215F01B7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ResumeApp.BusinessLogic", "src\ResumeApp.BusinessLogic\ResumeApp.BusinessLogic.csproj", "{7E2862E3-03E2-4791-A196-BF1D215F01B7}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ResumeApp.DataAccess.Abstractions", "ResumeApp.DataAccess.Abstractions\ResumeApp.DataAccess.Abstractions.csproj", "{F96B8653-8E3E-42ED-B359-3F04D6274183}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ResumeApp.DataAccess.Abstractions", "src\ResumeApp.DataAccess.Abstractions\ResumeApp.DataAccess.Abstractions.csproj", "{F96B8653-8E3E-42ED-B359-3F04D6274183}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ResumeApp.Poco", "ResumeApp.Poco\ResumeApp.Poco.csproj", "{48A40DAE-582F-4A28-A94B-1D77E5391CC1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ResumeApp.Poco", "src\ResumeApp.Poco\ResumeApp.Poco.csproj", "{48A40DAE-582F-4A28-A94B-1D77E5391CC1}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{123F1DC3-1A72-46EF-82A7-A831EBC5A7E4}"
 	ProjectSection(SolutionItems) = preProject
 		.editorconfig = .editorconfig
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ResumeApp.DataAccess.Mongo", "ResumeApp.DataAccess.Mongo\ResumeApp.DataAccess.Mongo.csproj", "{3664B8FE-7304-4D86-A9F9-9902B6AE6D19}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ResumeApp.DataAccess.Mongo", "src\ResumeApp.DataAccess.Mongo\ResumeApp.DataAccess.Mongo.csproj", "{3664B8FE-7304-4D86-A9F9-9902B6AE6D19}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ResumeApp.DataAccess.Sql", "ResumeApp.DataAccess.Sql\ResumeApp.DataAccess.Sql.csproj", "{E783BC26-EAF4-4EC0-99D4-EB2FD13A42A3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ResumeApp.DataAccess.Sql", "src\ResumeApp.DataAccess.Sql\ResumeApp.DataAccess.Sql.csproj", "{E783BC26-EAF4-4EC0-99D4-EB2FD13A42A3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
