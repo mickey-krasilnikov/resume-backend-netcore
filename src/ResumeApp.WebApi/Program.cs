@@ -1,8 +1,12 @@
 using ResumeApp.BusinessLogic.Extensions;
-
+using System.Reflection;
 using System.Text.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
+
+#if DEBUG
+builder.Configuration.AddUserSecrets(Assembly.GetExecutingAssembly());
+#endif
 
 builder.Services.AddResponseCaching();
 

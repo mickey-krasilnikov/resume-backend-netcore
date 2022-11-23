@@ -1,13 +1,14 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using ResumeApp.DataAccess.Abstractions.Entities;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ResumeApp.DataAccess.Sql.Entities
 {
-	public class CertificationSqlEntity
+	public class CertificationSqlEntity : ICertificationEntity
 	{
 		[Key]
 		[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-		public long Id { get; set; }
+		public Guid Id { get; set; }
 
 		public string Name { get; set; }
 
@@ -20,7 +21,7 @@ namespace ResumeApp.DataAccess.Sql.Entities
 		public Uri VerificationUrl { get; set; }
 
 
-		public long ResumeId { get; internal set; }
+		public Guid ResumeId { get; internal set; }
 
 		public ResumeSqlEntity Resume { get; set; }
 	}

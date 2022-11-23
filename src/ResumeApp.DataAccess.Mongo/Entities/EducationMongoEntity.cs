@@ -1,8 +1,10 @@
-﻿namespace ResumeApp.DataAccess.Mongo.Entities
+﻿using ResumeApp.DataAccess.Abstractions.Entities;
+
+namespace ResumeApp.DataAccess.Mongo.Entities
 {
-	public class EducationMongoEntity
+	public class EducationMongoEntity : IEducationEntity
 	{
-		public long Id { get; set; }
+		public Guid Id { get; set; }
 
 		public string Name { get; set; }
 

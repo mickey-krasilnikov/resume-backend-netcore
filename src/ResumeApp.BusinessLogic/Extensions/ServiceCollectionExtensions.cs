@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using ResumeApp.DataAccess.Mongo.Extensions;
 using ResumeApp.DataAccess.Sql.Extensions;
 
 namespace ResumeApp.BusinessLogic.Extensions
@@ -11,6 +12,8 @@ namespace ResumeApp.BusinessLogic.Extensions
 			if (config == null) throw new ArgumentNullException(nameof(config));
 
 			services.AddResumeSqlDb(config);
+
+			services.AddResumeMongoDb(config);
 
 			//services.AddScoped<IResumeService, ResumeService>();
 

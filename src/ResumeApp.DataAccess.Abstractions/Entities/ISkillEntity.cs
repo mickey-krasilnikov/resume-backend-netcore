@@ -2,8 +2,9 @@
 {
 	public interface ISkillEntity
 	{
-		public string Name { get; set; }
-		public string AdditionalInfo { get; set; }
-		public ICollection<ISkillEntity> Children { get; set; }
+		Guid Id { get; set; }
+		string Name { get; set; }
+		string AdditionalInfo { get; set; }
+		string SkillGroup { get; set; }
 	}
 }

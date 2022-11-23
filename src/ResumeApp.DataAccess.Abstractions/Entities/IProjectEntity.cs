@@ -2,11 +2,13 @@
 {
 	public interface IProjectEntity
 	{
-		public string Client { get; set; }
-		public DateOnly StartDate { get; set; }
-		public DateOnly EndDate { get; set; }
-		public string ProjectRoles { get; set; }
-		public string Envirnment { get; set; }
-		public string TaskPerformed { get; set; }
+		Guid Id { get; set; }
+		string Client { get; set; }
+		DateOnly StartDate { get; set; }
+		DateOnly? EndDate { get; set; }
+		bool IsCurrentProject { get; set; }
+		string ProjectRoles { get; set; }
+		string Environment { get; set; }
+		string TaskPerformed { get; set; }
 	}
 }

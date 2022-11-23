@@ -14,7 +14,7 @@ namespace ResumeApp.DataAccess.Mongo.Extensions
 
 			// MongoDB
 			services.AddSingleton(config.GetSection("MongoDb").Get<MongoDbConfig>());
-			services.AddScoped(typeof(IResumeRepository<>), typeof(MongoResumeRepository));
+			services.AddScoped(typeof(IRepository<>), typeof(MongoResumeRepository));
 
 			return services;
 		}

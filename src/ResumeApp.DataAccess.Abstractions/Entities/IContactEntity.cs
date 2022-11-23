@@ -2,8 +2,7 @@
 {
 	public interface IContactEntity
 	{
-		public string Key { get; set; }
-
-		public string Value { get; set; }
+		string Key { get; set; }
+		string Value { get; set; }
 	}
 }

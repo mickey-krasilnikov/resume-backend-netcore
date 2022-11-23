@@ -1,13 +1,14 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using ResumeApp.DataAccess.Abstractions.Entities;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ResumeApp.DataAccess.Sql.Entities
 {
-	public class ResumeSqlEntity
+	public class ResumeSqlEntity : IResumeEntity
 	{
 		[Key]
 		[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-		public long Id { get; set; }
+		public Guid Id { get; set; }
 
 		[Required]
 		public string FirstName { get; set; }
@@ -20,14 +21,14 @@ namespace ResumeApp.DataAccess.Sql.Entities
 
 		public string Summary { get; set; }
 
-		public ICollection<ContactSqlEntity> Contacts { get; set; } = new HashSet<ContactSqlEntity>();
+		public IEnumerable<IContactEntity> Contacts { get; set; } = new HashSet<ContactSqlEntity>();
 
-		public ICollection<SkillSqlEntity> Skills { get; set; } = new HashSet<SkillSqlEntity>();
+		public IEnumerable<ISkillEntity> Skills { get; set; } = new HashSet<SkillSqlEntity>();
 
-		public ICollection<ExperienceSqlEntity> Experience { get; set; } = new HashSet<ExperienceSqlEntity>();
+		public IEnumerable<IExperienceEntity> Experience { get; set; } = new HashSet<ExperienceSqlEntity>();
 
-		public ICollection<CertificationSqlEntity> Certifications { get; set; } = new HashSet<CertificationSqlEntity>();
+		public IEnumerable<ICertificationEntity> Certifications { get; set; } = new HashSet<CertificationSqlEntity>();
 
-		public ICollection<EducationSqlEntity> Education { get; set; } = new HashSet<EducationSqlEntity>();
+		public IEnumerable<IEducationEntity> Education { get; set; } = new HashSet<EducationSqlEntity>();
 	}
 }

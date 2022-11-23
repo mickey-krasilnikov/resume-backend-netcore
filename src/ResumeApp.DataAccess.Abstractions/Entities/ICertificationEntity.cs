@@ -2,14 +2,11 @@
 {
 	public interface ICertificationEntity
 	{
-		public string Name { get; set; }
-
-		public string Issuer { get; set; }
-
-		public DateOnly IssueDate { get; set; }
-
-		public DateOnly ExpirationDate { get; set; }
-
-		public Uri VerificationUrl { get; set; }
+		Guid Id { get; set; }
+		string Name { get; set; }
+		string Issuer { get; set; }
+		DateOnly IssueDate { get; set; }
+		DateOnly ExpirationDate { get; set; }
+		Uri VerificationUrl { get; set; }
 	}
 }

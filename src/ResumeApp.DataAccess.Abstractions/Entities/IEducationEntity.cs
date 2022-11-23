@@ -2,11 +2,12 @@
 {
 	public interface IEducationEntity
 	{
-		public string Name { get; set; }
-		public string Degree { get; set; }
-		public string FieldOfStudy { get; set; }
-		public DateOnly StartDate { get; set; }
-		public DateOnly EndDate { get; set; }
-		public Uri Url { get; set; }
+		Guid Id { get; set; }
+		string Name { get; set; }
+		string Degree { get; set; }
+		string FieldOfStudy { get; set; }
+		DateOnly StartDate { get; set; }
+		DateOnly EndDate { get; set; }
+		Uri Url { get; set; }
 	}
 }

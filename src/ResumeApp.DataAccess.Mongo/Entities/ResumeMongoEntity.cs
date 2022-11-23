@@ -1,12 +1,12 @@
 ﻿using MongoDB.Bson.Serialization.Attributes;
 using MongoDB.Bson.Serialization.IdGenerators;
-using ResumeApp.DataAccess.Abstractions;
+using ResumeApp.DataAccess.Abstractions.Entities;
 using ResumeApp.DataAccess.Mongo.Attributes;
 
 namespace ResumeApp.DataAccess.Mongo.Entities
 {
 	[BsonCollection("resumes")]
-	public class ResumeMongoEntity : IEntity
+	public class ResumeMongoEntity : IResumeEntity
 	{
 		[BsonId(IdGenerator = typeof(GuidGenerator))]
 		public Guid Id { get; set; }
@@ -19,14 +19,14 @@ namespace ResumeApp.DataAccess.Mongo.Entities
 
 		public string Summary { get; set; }
 
-		public ICollection<ContactMongoEntity> Contacts { get; set; } = new HashSet<ContactMongoEntity>();
+		public IEnumerable<IContactEntity> Contacts { get; set; } = new HashSet<ContactMongoEntity>();
 
-		public ICollection<SkillMongoEntity> Skills { get; set; } = new HashSet<SkillMongoEntity>();
+		public IEnumerable<ISkillEntity> Skills { get; set; } = new HashSet<SkillMongoEntity>();
 
-		public ICollection<ExperienceMongoEntity> Experience { get; set; } = new HashSet<ExperienceMongoEntity>();
+		public IEnumerable<IExperienceEntity> Experience { get; set; } = new HashSet<ExperienceMongoEntity>();
 
-		public ICollection<CertificationMongoEntity> Certifications { get; set; } = new HashSet<CertificationMongoEntity>();
+		public IEnumerable<ICertificationEntity> Certifications { get; set; } = new HashSet<CertificationMongoEntity>();
 
-		public ICollection<EducationMongoEntity> Education { get; set; } = new HashSet<EducationMongoEntity>();
+		public IEnumerable<IEducationEntity> Education { get; set; } = new HashSet<EducationMongoEntity>();
 	}
 }

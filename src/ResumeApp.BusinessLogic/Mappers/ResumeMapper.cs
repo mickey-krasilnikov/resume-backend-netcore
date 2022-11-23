@@ -1,74 +1,65 @@
-﻿//using ResumeApp.DataAccess.Abstractions.Entities;
-//using ResumeApp.Poco;
+﻿using ResumeApp.DataAccess.Abstractions.Entities;
+using ResumeApp.Poco;
 
-//namespace ResumeApp.BusinessLogic.Mappers
-//{
-//	internal static class ResumeMapper
-//	{
-//		internal static ConciseResume ToConsiseResumeDto(this IResumeEntity entity)
-//		{
-//			if (entity == null) return null!;
+namespace ResumeApp.BusinessLogic.Mappers
+{
+	internal static class ResumeMapper
+	{
+		internal static ShortResume ToShortResumeDto(this IResumeEntity entity)
+		{
+			if (entity == null) return null!;
 
-//			var langSkillGroups = entity.Skills.Find(s => s.Name == "Programming Languages");
-//			var langSkills = langSkillGroups == null
-//				? new List<string>()
-//				: langSkillGroups.Children.SelectMany(g => g.Children.Select(s => s.Name));
+			var yearsOfExperience = entity.Experience
+				.Select(e => (e.IsCurrentCompany ? DateOnly.FromDateTime(DateTime.Now) : e.EndDate.Value).DayNumber - e.StartDate.DayNumber)
+				.Aggregate((t1, t2) => t1 + t2) / 365.0;
 
-//			var yearsOfExperience = entity.Experience
-//				.Select(e => (e.EndDate == default ? DateTime.Now : e.EndDate) - e.StartDate)
-//				.Aggregate((t1, t2) => t1 + t2)
-//				.TotalDays / 365;
+			return new ShortResume
+			{
+				Id = entity.Id,
+				FirstName = entity.FirstName,
+				LastName = entity.LastName,
+				Title = entity.Title,
+				Contacts = entity.Contacts.ToDictionary(i => i.Key, i => i.Value),
+				YearsOfExperience = Math.Round(yearsOfExperience, 0, MidpointRounding.AwayFromZero)
+			};
+		}
 
-//			return new ConciseResume
-//			{
-//				ID = entity.Id.ToString(),
-//				FirstName = entity.FirstName,
-//				LastName = entity.LastName,
-//				Title = entity.Title,
-//				Contacts = entity.Contacts,
-//				MainSkills = langSkills.ToList(),
-//				YearsOfExperience = Math.Round(yearsOfExperience, 0, MidpointRounding.AwayFromZero)
-//			};
-//		}
+		internal static FullResume ToFullResumeDto(this IResumeEntity entity)
+		{
+			if (entity == null) return null!;
 
-//		internal static FullResume ToFullResumeDto(this IResumeEntity entity)
-//		{
-//			if (entity == null) return null!;
+			return new FullResume
+			{
+				Id = entity.Id,
+				FirstName = entity.FirstName,
+				LastName = entity.LastName,
+				Title = entity.Title,
+				Contacts = entity.Contacts.ToDictionary(i => i.Key, i => i.Value),
+				Summary = entity.Summary,
+				Skills = entity.Skills.Select(g => g.ToSkillDto()).ToList(),
+				Experience = entity.Experience.Select(e => e.ToExperienceDto()).ToList(),
+				Certifications = entity.Certifications.Select(c => c.ToCertificationDto()).ToList(),
+				Education = entity.Education.Select(e => e.ToEducationDto()).ToList()
+			};
+		}
 
-//			return new FullResume
-//			{
-//				ID = entity.Id.ToString(),
-//				FirstName = entity.FirstName,
-//				LastName = entity.LastName,
-//				Title = entity.Title,
-//				Contacts = entity.Contacts,
-//				Summary = entity.Summary,
-//				Skills = entity.Skills.ConvertAll(g => g.ToSkillDto()),
-//				Experience = entity.Experience.ConvertAll(e => e.ToExperienceDto()),
-//				Certifications = entity.Certifications.ConvertAll(c => c.ToCertificationDto()),
-//				Education = entity.Education.ConvertAll(e => e.ToEducationDto())
-//			};
-//		}
+		//internal static TEntity ToResumeEntity<TEntity>(this FullResume dto) where TEntity : class, IResumeEntity, new()
+		//{
+		//	if (dto == null) return null;
 
-//		internal static IResumeEntity ToResumeEntity(this FullResume dto)
-//		{
-//			if (dto == null) return null!;
-//			var isParsed = ObjectId.TryParse(dto.ID, out var objectId);
-//			if (!isParsed) return null!;
-
-//			return new IResumeEntity
-//			{
-//				Id = objectId,
-//				FirstName = dto.FirstName,
-//				LastName = dto.LastName,
-//				Title = dto.Title,
-//				Contacts = dto.Contacts,
-//				Summary = dto.Summary,
-//				Skills = dto.Skills.ConvertAll(g => g.ToSkillEntity()),
-//				Experience = dto.Experience.ConvertAll(e => e.ToExperienceEntity()),
-//				Certifications = dto.Certifications.ConvertAll(c => c.ToCertificationEntity()),
-//				Education = dto.Education.ConvertAll(e => e.ToEducationEntity())
-//			};
-//		}
-//	}
-//}
+		//	return new TEntity
+		//	{
+		//		Id = dto.Id,
+		//		FirstName = dto.FirstName,
+		//		LastName = dto.LastName,
+		//		Title = dto.Title,
+		//		Contacts = dto.Contacts,
+		//		Summary = dto.Summary,
+		//		Skills = dto.Skills.Select(g => g.ToSkillEntity()),
+		//		Experience = dto.Experience.Select(e => e.ToExperienceEntity()),
+		//		Certifications = dto.Certifications.Select(c => c.ToCertificationEntity()),
+		//		Education = dto.Education.Select(e => e.ToEducationEntity())
+		//	};
+		//}
+	}
+}

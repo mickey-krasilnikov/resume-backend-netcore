@@ -1,28 +1,31 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using ResumeApp.DataAccess.Abstractions.Entities;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ResumeApp.DataAccess.Sql.Entities
 {
-	public class ProjectSqlEntity
+	public class ProjectSqlEntity : IProjectEntity
 	{
 		[Key]
 		[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-		public long Id { get; set; }
+		public Guid Id { get; set; }
 
 		public string Client { get; set; }
 
 		public DateOnly StartDate { get; set; }
 
-		public DateOnly EndDate { get; set; }
+		public DateOnly? EndDate { get; set; }
+
+		public bool IsCurrentProject { get; set; }
 
 		public string ProjectRoles { get; set; }
 
-		public string Envirnment { get; set; }
+		public string Environment { get; set; }
 
 		public string TaskPerformed { get; set; }
 
 
-		public long ExperienceId { get; internal set; }
+		public Guid ExperienceId { get; internal set; }
 
 		public ExperienceSqlEntity Experience { get; set; }
 	}

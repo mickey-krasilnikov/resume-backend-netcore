@@ -8,12 +8,15 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\ResumeApp.DataAccess.Sql\ResumeApp.DataAccess.Sql.csproj" />
-		<ProjectReference Include="..\ResumeApp.Poco\ResumeApp.Poco.csproj" />
+	  <Compile Remove="Configs\**" />
+	  <EmbeddedResource Remove="Configs\**" />
+	  <None Remove="Configs\**" />
 	</ItemGroup>
 
 	<ItemGroup>
-		<Folder Include="Configs\" />
+		<ProjectReference Include="..\ResumeApp.DataAccess.Mongo\ResumeApp.DataAccess.Mongo.csproj" />
+		<ProjectReference Include="..\ResumeApp.DataAccess.Sql\ResumeApp.DataAccess.Sql.csproj" />
+		<ProjectReference Include="..\ResumeApp.Poco\ResumeApp.Poco.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>

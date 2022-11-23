@@ -14,7 +14,7 @@ namespace ResumeApp.DataAccess.Sql.Repositories
 			_context = context;
 		}
 
-		public async Task<bool> CheckIfItemExistsAsync(long id)
+		public async Task<bool> CheckIfItemExistsAsync(Guid id)
 		{
 			return await _context.Resumes.AnyAsync(r => r.Id == id);
 		}
@@ -35,7 +35,7 @@ namespace ResumeApp.DataAccess.Sql.Repositories
 				.ToListAsync();
 		}
 
-		public async Task<ResumeSqlEntity> FindByIdAsync(long id)
+		public async Task<ResumeSqlEntity> FindByIdAsync(Guid id)
 		{
 			return await _context.Resumes.FirstOrDefaultAsync(r => r.Id == id);
 		}
@@ -45,8 +45,7 @@ namespace ResumeApp.DataAccess.Sql.Repositories
 			return await _context.Resumes.FirstOrDefaultAsync(filterExpression);
 		}
 
-		public async Task<IReadOnlyList<TProjected>> ProjectAsync<TProjected>(
-			Expression<Func<ResumeSqlEntity, TProjected>> projectionExpression)
+		public async Task<IReadOnlyList<TProjected>> ProjectAsync<TProjected>(Expression<Func<ResumeSqlEntity, TProjected>> projectionExpression)
 		{
 			return await _context.Resumes.Select(projectionExpression).ToListAsync();
 		}
@@ -69,23 +68,21 @@ namespace ResumeApp.DataAccess.Sql.Repositories
 			await _context.SaveChangesAsync();
 		}
 
-		public async Task DeleteByIdAsync(long id)
+		public async Task DeleteByIdAsync(Guid id)
 		{
 			var resume = await _context.Resumes.FirstOrDefaultAsync(r => r.Id == id);
 			_context.Resumes.Remove(resume);
 			await _context.SaveChangesAsync();
 		}
 
-		public async Task DeleteManyAsync(
-			Expression<Func<ResumeSqlEntity, bool>> filterExpression)
+		public async Task DeleteManyAsync(Expression<Func<ResumeSqlEntity, bool>> filterExpression)
 		{
 			var resumes = await _context.Resumes.Where(filterExpression).ToListAsync();
 			_context.Resumes.RemoveRange(resumes);
 			await _context.SaveChangesAsync();
 		}
 
-		public async Task DeleteOneAsync(
-			Expression<Func<ResumeSqlEntity, bool>> filterExpression)
+		public async Task DeleteOneAsync(Expression<Func<ResumeSqlEntity, bool>> filterExpression)
 		{
 			var resume = await _context.Resumes.FirstOrDefaultAsync(filterExpression);
 			_context.Resumes.Remove(resume);

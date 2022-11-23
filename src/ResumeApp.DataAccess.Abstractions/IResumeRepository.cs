@@ -2,9 +2,9 @@
 
 namespace ResumeApp.DataAccess.Abstractions
 {
-	public interface IResumeRepository<TEntity> where TEntity : IEntity
+	public interface IRepository<TEntity>
 	{
-		Task<bool> CheckIfItemExistsAsync(string id);
+		Task<bool> CheckIfItemExistsAsync(Guid id);
 
 		Task<IReadOnlyList<TEntity>> FilterByAsync(Expression<Func<TEntity, bool>> filterExpression);
 
@@ -17,7 +17,7 @@ namespace ResumeApp.DataAccess.Abstractions
 
 		Task<TEntity> FindOneAsync(Expression<Func<TEntity, bool>> filterExpression);
 
-		Task<TEntity> FindByIdAsync(string id);
+		Task<TEntity> FindByIdAsync(Guid id);
 
 		Task InsertOneAsync(TEntity document);
 
@@ -27,7 +27,7 @@ namespace ResumeApp.DataAccess.Abstractions
 
 		Task DeleteOneAsync(Expression<Func<TEntity, bool>> filterExpression);
 
-		Task DeleteByIdAsync(string id);
+		Task DeleteByIdAsync(Guid id);
 
 		Task DeleteManyAsync(Expression<Func<TEntity, bool>> filterExpression);
 	}
