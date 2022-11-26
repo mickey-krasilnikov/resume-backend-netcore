@@ -1,4 +1,7 @@
 ﻿using ResumeApp.DataAccess.Abstractions.Entities;
+using ResumeApp.DataAccess.Abstractions.Enums;
+using ResumeApp.DataAccess.Mongo.Entities;
+using ResumeApp.DataAccess.Sql.Entities;
 using ResumeApp.Poco;
 
 namespace ResumeApp.BusinessLogic.Mappers
@@ -20,11 +23,34 @@ namespace ResumeApp.BusinessLogic.Mappers
 			};
 		}
 
-		internal static TEntity ToProjectEntity<TEntity>(this Project dto) where TEntity : class, IProjectEntity, new()
+		internal static IProjectEntity ToProjectEntity(this Project dto, SupportedDbType dbType)
+		{
+			return dbType switch
+			{
+				SupportedDbType.Mongo => dto.ToProjectMongoEntity(),
+				SupportedDbType.MsSql => dto.ToProjectSqlEntity(),
+				_ => throw new NotSupportedException($"{dbType} DB type is not supported"),
+			};
+		}
+
+		private static IProjectEntity ToProjectMongoEntity(this Project dto)
 		{
 			if (dto == null) return null;
+			return new ProjectMongoEntity
+			{
+				Client = dto.Client,
+				StartDate = dto.StartDate,
+				EndDate = dto.EndDate,
+				Environment = dto.Environment,
+				ProjectRoles = dto.ProjectRoles,
+				TaskPerformed = dto.TaskPerformed
+			};
+		}
 
-			return new TEntity
+		private static IProjectEntity ToProjectSqlEntity(this Project dto)
+		{
+			if (dto == null) return null;
+			return new ProjectSqlEntity
 			{
 				Client = dto.Client,
 				StartDate = dto.StartDate,

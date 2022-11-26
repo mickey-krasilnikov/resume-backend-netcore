@@ -1,7 +1,7 @@
 ﻿using MongoDB.Bson.Serialization.Conventions;
 using MongoDB.Driver;
+using ResumeApp.DataAccess.Abstractions.Options;
 using ResumeApp.DataAccess.Mongo.Attributes;
-using ResumeApp.DataAccess.Mongo.Configs;
 using ResumeApp.DataAccess.Mongo.Entities;
 using ResumeApp.DataAccess.Mongo.Exceptions;
 using System.Linq.Expressions;
@@ -11,14 +11,14 @@ namespace ResumeApp.DataAccess.Mongo.Repositories
 	{
 		private readonly IMongoCollection<ResumeMongoEntity> _collection;
 
-		public MongoResumeRepository(MongoDbConfig settings)
+		public MongoResumeRepository(DbConnectionConfig dbConnectionOptions)
 		{
-			if (settings is null) throw new ArgumentNullException(nameof(settings));
+			if (dbConnectionOptions is null) throw new ArgumentNullException(nameof(dbConnectionOptions));
 
 			var conventionPack = new ConventionPack { new CamelCaseElementNameConvention() };
 			ConventionRegistry.Register("camelCase", conventionPack, _ => true);
 
-			var database = new MongoClient(settings.ConnectionString).GetDatabase(settings.DatabaseName);
+			var database = new MongoClient(dbConnectionOptions.ConnectionString).GetDatabase(dbConnectionOptions.DbName);
 			_collection = database.GetCollection<ResumeMongoEntity>(GetCollectionName(typeof(ResumeMongoEntity)));
 		}
 
@@ -56,9 +56,9 @@ namespace ResumeApp.DataAccess.Mongo.Repositories
 			return await _collection.Find(GetFilterById(id)).SingleOrDefaultAsync();
 		}
 
-		public Task InsertOneAsync(ResumeMongoEntity document)
+		public async Task InsertOneAsync(ResumeMongoEntity entity)
 		{
-			return Task.Run(() => _collection.InsertOneAsync(document));
+			await _collection.InsertOneAsync(entity);
 		}
 
 		public async Task InsertManyAsync(ICollection<ResumeMongoEntity> documents)
@@ -66,10 +66,9 @@ namespace ResumeApp.DataAccess.Mongo.Repositories
 			await _collection.InsertManyAsync(documents);
 		}
 
-		public async Task ReplaceOneAsync(ResumeMongoEntity document)
+		public async Task ReplaceOneAsync(ResumeMongoEntity entity)
 		{
-			if (document is null) throw new ArgumentNullException(nameof(document));
-			await _collection.FindOneAndReplaceAsync(GetFilterById(document.Id), document);
+			await _collection.FindOneAndReplaceAsync(GetFilterById(entity.Id), entity);
 		}
 
 		public async Task DeleteOneAsync(Expression<Func<ResumeMongoEntity, bool>> filterExpression)

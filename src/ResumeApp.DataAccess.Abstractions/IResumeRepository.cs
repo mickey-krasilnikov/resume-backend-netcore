@@ -19,16 +19,17 @@ namespace ResumeApp.DataAccess.Abstractions
 
 		Task<TEntity> FindByIdAsync(Guid id);
 
-		Task InsertOneAsync(TEntity document);
+		Task InsertOneAsync(TEntity entity);
 
 		Task InsertManyAsync(ICollection<TEntity> documents);
 
-		Task ReplaceOneAsync(TEntity document);
+		Task ReplaceOneAsync(TEntity entity);
 
 		Task DeleteOneAsync(Expression<Func<TEntity, bool>> filterExpression);
 
 		Task DeleteByIdAsync(Guid id);
 
 		Task DeleteManyAsync(Expression<Func<TEntity, bool>> filterExpression);
+
 	}
 }

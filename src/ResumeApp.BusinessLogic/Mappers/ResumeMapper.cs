@@ -1,4 +1,7 @@
 ﻿using ResumeApp.DataAccess.Abstractions.Entities;
+using ResumeApp.DataAccess.Abstractions.Enums;
+using ResumeApp.DataAccess.Mongo.Entities;
+using ResumeApp.DataAccess.Sql.Entities;
 using ResumeApp.Poco;
 
 namespace ResumeApp.BusinessLogic.Mappers
@@ -43,23 +46,48 @@ namespace ResumeApp.BusinessLogic.Mappers
 			};
 		}
 
-		//internal static TEntity ToResumeEntity<TEntity>(this FullResume dto) where TEntity : class, IResumeEntity, new()
-		//{
-		//	if (dto == null) return null;
+		internal static IResumeEntity ToResumeEntity(this FullResume dto, SupportedDbType dbType)
+		{
+			return dbType switch
+			{
+				SupportedDbType.Mongo => dto.ToResumeMongoEntity(dbType),
+				SupportedDbType.MsSql => dto.ToResumeSqlEntity(dbType),
+				_ => throw new NotSupportedException($"{dbType} DB type is not supported"),
+			};
+		}
 
-		//	return new TEntity
-		//	{
-		//		Id = dto.Id,
-		//		FirstName = dto.FirstName,
-		//		LastName = dto.LastName,
-		//		Title = dto.Title,
-		//		Contacts = dto.Contacts,
-		//		Summary = dto.Summary,
-		//		Skills = dto.Skills.Select(g => g.ToSkillEntity()),
-		//		Experience = dto.Experience.Select(e => e.ToExperienceEntity()),
-		//		Certifications = dto.Certifications.Select(c => c.ToCertificationEntity()),
-		//		Education = dto.Education.Select(e => e.ToEducationEntity())
-		//	};
-		//}
+		private static IResumeEntity ToResumeMongoEntity(this FullResume dto, SupportedDbType dbType)
+		{
+			return new ResumeMongoEntity
+			{
+				Id = dto.Id,
+				FirstName = dto.FirstName,
+				LastName = dto.LastName,
+				Title = dto.Title,
+				Summary = dto.Summary,
+				Contacts = dto.Contacts.Select(i => new ContactMongoEntity { Key = i.Key, Value = i.Value }),
+				Skills = dto.Skills.Select(g => g.ToSkillEntity(dbType)),
+				Experience = dto.Experience.Select(e => e.ToExperienceEntity(dbType)),
+				Certifications = dto.Certifications.Select(c => c.ToCertificationEntity(dbType)),
+				Education = dto.Education.Select(e => e.ToEducationEntity(dbType))
+			};
+		}
+
+		internal static IResumeEntity ToResumeSqlEntity(this FullResume dto, SupportedDbType dbType)
+		{
+			return new ResumeSqlEntity
+			{
+				Id = dto.Id,
+				FirstName = dto.FirstName,
+				LastName = dto.LastName,
+				Title = dto.Title,
+				Summary = dto.Summary,
+				Contacts = dto.Contacts.Select(i => new ContactSqlEntity { Key = i.Key, Value = i.Value }),
+				Skills = dto.Skills.Select(g => g.ToSkillEntity(dbType)),
+				Experience = dto.Experience.Select(e => e.ToExperienceEntity(dbType)),
+				Certifications = dto.Certifications.Select(c => c.ToCertificationEntity(dbType)),
+				Education = dto.Education.Select(e => e.ToEducationEntity(dbType))
+			};
+		}
 	}
 }

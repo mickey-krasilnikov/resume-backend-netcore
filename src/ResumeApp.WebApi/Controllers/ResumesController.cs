@@ -46,24 +46,24 @@ namespace ResumeApp.WebApi.Controllers
 				: NotFound();
 		}
 
-		//[HttpPost]
-		//public async Task<ActionResult<FullResume>> CreateResume([FromBody] FullResume resume)
-		//{
-		//	if (resume == null) return BadRequest();
-		//	await _resumeService.CreateResumesAsync(resume);
-		//	return CreatedAtAction(nameof(GetResumeById), resume.Id, null);
-		//}
+		[HttpPost]
+		public async Task<ActionResult<FullResume>> CreateResume([FromBody] FullResume resume)
+		{
+			if (resume == null) return BadRequest();
+			await _resumeService.CreateResumesAsync(resume);
+			return CreatedAtAction(nameof(GetResumeById), resume.Id, null);
+		}
 
-		//[HttpPut("{id}")]
-		//public async Task<ActionResult<FullResume>> UpdateResume([FromRoute] string id, [FromBody] FullResume resume)
-		//{
-		//	if (!Guid.TryParse(id, out var resumeId)) return BadRequest();
-		//	var isExists = await _resumeService.CheckIfItemExistsAsync(resumeId);
-		//	if (!isExists) return NotFound();
+		[HttpPut("{id}")]
+		public async Task<ActionResult<FullResume>> UpdateResume([FromRoute] string id, [FromBody] FullResume resume)
+		{
+			if (!Guid.TryParse(id, out var resumeId)) return BadRequest();
+			var isExists = await _resumeService.CheckIfItemExistsAsync(resumeId);
+			if (!isExists) return NotFound();
 
-		//	await _resumeService.UpdateResumesAsync(resume);
-		//	return NoContent();
-		//}
+			await _resumeService.UpdateResumesAsync(resume);
+			return NoContent();
+		}
 
 		[HttpDelete("{id}")]
 		public async Task<ActionResult<FullResume>> DeleteResumeById([FromRoute] string id)

@@ -3,5 +3,5 @@ using ResumeApp.DataAccess.Mongo.Entities;
 
 namespace ResumeApp.DataAccess.Mongo.Repositories
 {
-	public interface IMongoResumeRepository : IRepository<ResumeMongoEntity> { }
+	public interface IMongoResumeRepository : IRepository<ResumeMongoEntity> {	}
 }

@@ -1,5 +1,7 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using ResumeApp.DataAccess.Abstractions.Enums;
+using ResumeApp.DataAccess.Abstractions.Options;
 using ResumeApp.DataAccess.Mongo.Extensions;
 using ResumeApp.DataAccess.Sql.Extensions;
 
@@ -11,13 +13,20 @@ namespace ResumeApp.BusinessLogic.Extensions
 		{
 			if (config == null) throw new ArgumentNullException(nameof(config));
 
-			services.AddResumeSqlDb(config);
+			var dbConnectionOptions = config.GetSection(DbConnectionConfig.DbConnection).Get<DbConnectionConfig>();
+			services.AddSingleton(dbConnectionOptions);
 
-			services.AddResumeMongoDb(config);
-
-			//services.AddScoped<IResumeService, ResumeService>();
-
-			//services.AddScoped<IValidator<FullResume>, ResumeValidator>();
+			switch (dbConnectionOptions.DbType)
+			{
+				case SupportedDbType.Mongo:
+					services.AddResumeMongoDb(dbConnectionOptions);
+					break;
+				case SupportedDbType.MsSql:
+					services.AddResumeSqlDb(dbConnectionOptions);
+					break;
+				default:
+					throw new NotSupportedException($"{dbConnectionOptions.DbType} DB type is not supported");
+			}
 
 			return services;
 		}

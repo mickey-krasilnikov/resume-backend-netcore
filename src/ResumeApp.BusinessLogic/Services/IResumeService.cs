@@ -10,9 +10,9 @@ namespace ResumeApp.BusinessLogic.Services
 
 		Task<FullResume> GetResumeByIdAsync(Guid id);
 
-		//Task CreateResumesAsync(FullResume fullResume);
+		Task CreateResumesAsync(FullResume fullResume);
 
-		//Task UpdateResumesAsync(FullResume fullResume);
+		Task UpdateResumesAsync(FullResume fullResume);
 
 		Task DeleteResumesAsync(Guid id);
 	}

@@ -50,21 +50,21 @@ namespace ResumeApp.DataAccess.Sql.Repositories
 			return await _context.Resumes.Select(projectionExpression).ToListAsync();
 		}
 
+		public async Task InsertOneAsync(ResumeSqlEntity entity)
+		{
+			_context.Resumes.Add(entity);
+			await _context.SaveChangesAsync();
+		}
+
 		public async Task InsertManyAsync(ICollection<ResumeSqlEntity> documents)
 		{
 			_context.Resumes.AddRange(documents);
 			await _context.SaveChangesAsync();
 		}
 
-		public async Task InsertOneAsync(ResumeSqlEntity document)
+		public async Task ReplaceOneAsync(ResumeSqlEntity entity)
 		{
-			_context.Resumes.Add(document);
-			await _context.SaveChangesAsync();
-		}
-
-		public async Task ReplaceOneAsync(ResumeSqlEntity document)
-		{
-			_context.Resumes.Update(document);
+			_context.Resumes.Update(entity);
 			await _context.SaveChangesAsync();
 		}
 
