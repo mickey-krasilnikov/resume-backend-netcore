@@ -1,8 +1,6 @@
-﻿using ResumeApp.DataAccess.Abstractions.Entities;
-
-namespace ResumeApp.DataAccess.Mongo.Entities
+﻿namespace ResumeApp.DataAccess.Mongo.Entities
 {
-	public class ProjectMongoEntity : IProjectEntity
+	public class ProjectMongoEntity
 	{
 		public Guid Id { get; set; }
 

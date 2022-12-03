@@ -1,10 +1,9 @@
-﻿using ResumeApp.DataAccess.Abstractions.Entities;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ResumeApp.DataAccess.Sql.Entities
 {
-	public class CertificationSqlEntity : ICertificationEntity
+	public class CertificationSqlEntity
 	{
 		[Key]
 		[DatabaseGenerated(DatabaseGeneratedOption.Identity)]

@@ -1,6 +1,4 @@
-﻿using ResumeApp.DataAccess.Abstractions.Entities;
-using ResumeApp.DataAccess.Abstractions.Enums;
-using ResumeApp.DataAccess.Mongo.Entities;
+﻿using ResumeApp.DataAccess.Mongo.Entities;
 using ResumeApp.DataAccess.Sql.Entities;
 using ResumeApp.Poco;
 
@@ -8,7 +6,7 @@ namespace ResumeApp.BusinessLogic.Mappers
 {
 	internal static class CertificationMapper
 	{
-		internal static Certification ToCertificationDto(this ICertificationEntity entity)
+		internal static Certification ToCertificationDto(this CertificationSqlEntity entity)
 		{
 			if (entity == null) return null;
 
@@ -22,17 +20,21 @@ namespace ResumeApp.BusinessLogic.Mappers
 			};
 		}
 
-		internal static ICertificationEntity ToCertificationEntity(this Certification dto, SupportedDbType dbType)
+		internal static Certification ToCertificationDto(this CertificationMongoEntity entity)
 		{
-			return dbType switch
+			if (entity == null) return null;
+
+			return new Certification
 			{
-				SupportedDbType.Mongo => dto.ToCertificationMongoEntity(),
-				SupportedDbType.MsSql => dto.ToCertificationSqlEntity(),
-				_ => throw new NotSupportedException($"{dbType} DB type is not supported"),
+				Name = entity.Name,
+				Issuer = entity.Issuer,
+				IssueDate = entity.IssueDate,
+				ExpirationDate = entity.ExpirationDate,
+				VerificationUrl = entity.VerificationUrl
 			};
 		}
 
-		private static ICertificationEntity ToCertificationMongoEntity(this Certification dto)
+		internal static CertificationMongoEntity ToCertificationMongoEntity(this Certification dto)
 		{
 			if (dto == null) return null;
 			return new CertificationMongoEntity
@@ -45,7 +47,7 @@ namespace ResumeApp.BusinessLogic.Mappers
 			};
 		}
 
-		private static ICertificationEntity ToCertificationSqlEntity(this Certification dto)
+		internal static CertificationSqlEntity ToCertificationSqlEntity(this Certification dto)
 		{
 			if (dto == null) return null;
 			return new CertificationSqlEntity

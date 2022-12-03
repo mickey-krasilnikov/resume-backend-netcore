@@ -1,6 +1,4 @@
-﻿using ResumeApp.DataAccess.Abstractions.Entities;
-using ResumeApp.DataAccess.Abstractions.Enums;
-using ResumeApp.DataAccess.Mongo.Entities;
+﻿using ResumeApp.DataAccess.Mongo.Entities;
 using ResumeApp.DataAccess.Sql.Entities;
 using ResumeApp.Poco;
 
@@ -8,7 +6,7 @@ namespace ResumeApp.BusinessLogic.Mappers
 {
 	internal static class ExperienceMapper
 	{
-		internal static Experience ToExperienceDto(this IExperienceEntity entity)
+		internal static Experience ToExperienceDto(this ExperienceSqlEntity entity)
 		{
 			if (entity == null) return null;
 			return new Experience
@@ -20,17 +18,19 @@ namespace ResumeApp.BusinessLogic.Mappers
 			};
 		}
 
-		internal static IExperienceEntity ToExperienceEntity(this Experience dto, SupportedDbType dbType)
+		internal static Experience ToExperienceDto(this ExperienceMongoEntity entity)
 		{
-			return dbType switch
+			if (entity == null) return null;
+			return new Experience
 			{
-				SupportedDbType.Mongo => dto.ToExperienceMongoEntity(dbType),
-				SupportedDbType.MsSql => dto.ToExperienceSqlEntity(dbType),
-				_ => throw new NotSupportedException($"{dbType} DB type is not supported"),
+				Title = entity.Title,
+				Company = entity.Company,
+				StartDate = entity.StartDate,
+				EndDate = entity.EndDate
 			};
 		}
 
-		private static IExperienceEntity ToExperienceMongoEntity(this Experience dto, SupportedDbType dbType)
+		internal static ExperienceMongoEntity ToExperienceMongoEntity(this Experience dto)
 		{
 			if (dto == null) return null;
 			return new ExperienceMongoEntity
@@ -39,11 +39,11 @@ namespace ResumeApp.BusinessLogic.Mappers
 				Company = dto.Company,
 				StartDate = dto.StartDate,
 				EndDate = dto.EndDate,
-				Projects = dto.Projects.Select(d => d.ToProjectEntity(dbType))
+				Projects = dto.Projects.Select(d => d.ToProjectMongoEntity())
 			};
 		}
 
-		private static IExperienceEntity ToExperienceSqlEntity(this Experience dto, SupportedDbType dbType)
+		internal static ExperienceSqlEntity ToExperienceSqlEntity(this Experience dto)
 		{
 			if (dto == null) return null;
 			return new ExperienceSqlEntity
@@ -52,7 +52,7 @@ namespace ResumeApp.BusinessLogic.Mappers
 				Company = dto.Company,
 				StartDate = dto.StartDate,
 				EndDate = dto.EndDate,
-				Projects = dto.Projects.Select(d => d.ToProjectEntity(dbType))
+				Projects = dto.Projects.Select(d => d.ToProjectSqlEntity())
 			};
 		}
 	}

@@ -3,7 +3,7 @@ using ResumeApp.DataAccess.Sql.Entities;
 
 namespace ResumeApp.DataAccess.Sql.Context
 {
-	internal interface IResumeDbContext : IDisposable
+	internal interface ISqlDbContext : IDisposable
 	{
 		public DbSet<ResumeSqlEntity> Resumes { get; set; }
 	}

@@ -1,6 +1,4 @@
-﻿using ResumeApp.DataAccess.Abstractions.Entities;
-using ResumeApp.DataAccess.Abstractions.Enums;
-using ResumeApp.DataAccess.Mongo.Entities;
+﻿using ResumeApp.DataAccess.Mongo.Entities;
 using ResumeApp.DataAccess.Sql.Entities;
 using ResumeApp.Poco;
 
@@ -8,7 +6,7 @@ namespace ResumeApp.BusinessLogic.Mappers
 {
 	internal static class ResumeMapper
 	{
-		internal static ShortResume ToShortResumeDto(this IResumeEntity entity)
+		internal static ShortResume ToShortResumeDto(this ResumeMongoEntity entity)
 		{
 			if (entity == null) return null!;
 
@@ -27,7 +25,26 @@ namespace ResumeApp.BusinessLogic.Mappers
 			};
 		}
 
-		internal static FullResume ToFullResumeDto(this IResumeEntity entity)
+		internal static ShortResume ToShortResumeDto(this ResumeSqlEntity entity)
+		{
+			if (entity == null) return null!;
+
+			var yearsOfExperience = entity.Experience
+				.Select(e => (e.IsCurrentCompany ? DateOnly.FromDateTime(DateTime.Now) : e.EndDate.Value).DayNumber - e.StartDate.DayNumber)
+				.Aggregate((t1, t2) => t1 + t2) / 365.0;
+
+			return new ShortResume
+			{
+				Id = entity.Id,
+				FirstName = entity.FirstName,
+				LastName = entity.LastName,
+				Title = entity.Title,
+				Contacts = entity.Contacts.ToDictionary(i => i.Key, i => i.Value),
+				YearsOfExperience = Math.Round(yearsOfExperience, 0, MidpointRounding.AwayFromZero)
+			};
+		}
+
+		internal static FullResume ToFullResumeDto(this ResumeMongoEntity entity)
 		{
 			if (entity == null) return null!;
 
@@ -46,17 +63,26 @@ namespace ResumeApp.BusinessLogic.Mappers
 			};
 		}
 
-		internal static IResumeEntity ToResumeEntity(this FullResume dto, SupportedDbType dbType)
+		internal static FullResume ToFullResumeDto(this ResumeSqlEntity entity)
 		{
-			return dbType switch
+			if (entity == null) return null!;
+
+			return new FullResume
 			{
-				SupportedDbType.Mongo => dto.ToResumeMongoEntity(dbType),
-				SupportedDbType.MsSql => dto.ToResumeSqlEntity(dbType),
-				_ => throw new NotSupportedException($"{dbType} DB type is not supported"),
+				Id = entity.Id,
+				FirstName = entity.FirstName,
+				LastName = entity.LastName,
+				Title = entity.Title,
+				Contacts = entity.Contacts.ToDictionary(i => i.Key, i => i.Value),
+				Summary = entity.Summary,
+				Skills = entity.Skills.Select(g => g.ToSkillDto()).ToList(),
+				Experience = entity.Experience.Select(e => e.ToExperienceDto()).ToList(),
+				Certifications = entity.Certifications.Select(c => c.ToCertificationDto()).ToList(),
+				Education = entity.Education.Select(e => e.ToEducationDto()).ToList()
 			};
 		}
 
-		private static IResumeEntity ToResumeMongoEntity(this FullResume dto, SupportedDbType dbType)
+		internal static ResumeMongoEntity ToResumeMongoEntity(this FullResume dto)
 		{
 			return new ResumeMongoEntity
 			{
@@ -66,14 +92,14 @@ namespace ResumeApp.BusinessLogic.Mappers
 				Title = dto.Title,
 				Summary = dto.Summary,
 				Contacts = dto.Contacts.Select(i => new ContactMongoEntity { Key = i.Key, Value = i.Value }),
-				Skills = dto.Skills.Select(g => g.ToSkillEntity(dbType)),
-				Experience = dto.Experience.Select(e => e.ToExperienceEntity(dbType)),
-				Certifications = dto.Certifications.Select(c => c.ToCertificationEntity(dbType)),
-				Education = dto.Education.Select(e => e.ToEducationEntity(dbType))
+				Skills = dto.Skills.Select(g => g.ToSkillMongoEntity()),
+				Experience = dto.Experience.Select(e => e.ToExperienceMongoEntity()),
+				Certifications = dto.Certifications.Select(c => c.ToCertificationMongoEntity()),
+				Education = dto.Education.Select(e => e.ToEducationMongoEntity())
 			};
 		}
 
-		internal static IResumeEntity ToResumeSqlEntity(this FullResume dto, SupportedDbType dbType)
+		internal static ResumeSqlEntity ToResumeSqlEntity(this FullResume dto)
 		{
 			return new ResumeSqlEntity
 			{
@@ -83,10 +109,10 @@ namespace ResumeApp.BusinessLogic.Mappers
 				Title = dto.Title,
 				Summary = dto.Summary,
 				Contacts = dto.Contacts.Select(i => new ContactSqlEntity { Key = i.Key, Value = i.Value }),
-				Skills = dto.Skills.Select(g => g.ToSkillEntity(dbType)),
-				Experience = dto.Experience.Select(e => e.ToExperienceEntity(dbType)),
-				Certifications = dto.Certifications.Select(c => c.ToCertificationEntity(dbType)),
-				Education = dto.Education.Select(e => e.ToEducationEntity(dbType))
+				Skills = dto.Skills.Select(g => g.ToSkillSqlEntity()),
+				Experience = dto.Experience.Select(e => e.ToExperienceSqlEntity()),
+				Certifications = dto.Certifications.Select(c => c.ToCertificationSqlEntity()),
+				Education = dto.Education.Select(e => e.ToEducationSqlEntity())
 			};
 		}
 	}

@@ -1,9 +1,8 @@
-﻿using ResumeApp.DataAccess.Abstractions.Entities;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace ResumeApp.DataAccess.Sql.Entities
 {
-	public class ContactSqlEntity : IContactEntity
+	public class ContactSqlEntity
 	{
 		[Key]
 		public string Key { get; set; }

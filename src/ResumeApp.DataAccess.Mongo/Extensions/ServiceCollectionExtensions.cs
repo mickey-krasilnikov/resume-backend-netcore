@@ -1,18 +1,16 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using ResumeApp.DataAccess.Abstractions;
-using ResumeApp.DataAccess.Abstractions.Options;
+﻿using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using ResumeApp.DataAccess.Mongo.Context;
 using ResumeApp.DataAccess.Mongo.Repositories;
 
 namespace ResumeApp.DataAccess.Mongo.Extensions
 {
 	public static class ServiceCollectionExtensions
 	{
-		public static IServiceCollection AddResumeMongoDb(this IServiceCollection services, DbConnectionConfig dbConnectionOptions)
+		public static IServiceCollection AddResumeMongoDb(this IServiceCollection services)
 		{
-			if (dbConnectionOptions == null) throw new ArgumentNullException(nameof(dbConnectionOptions));
-
-			services.AddScoped(typeof(IRepository<>), typeof(MongoResumeRepository));
-
+			services.AddScoped(typeof(IMongoDbContext<>), typeof(MongoDbContext<>));
+			services.AddScoped<IMongoResumeRepository, MongoResumeRepository>();
 			return services;
 		}
 	}

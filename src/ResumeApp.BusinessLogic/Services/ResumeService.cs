@@ -1,54 +1,85 @@
-﻿using ResumeApp.BusinessLogic.Mappers;
-using ResumeApp.DataAccess.Abstractions;
-using ResumeApp.DataAccess.Abstractions.Entities;
-using ResumeApp.DataAccess.Abstractions.Enums;
-using ResumeApp.DataAccess.Abstractions.Options;
+﻿using ResumeApp.BusinessLogic.Configs;
+using ResumeApp.BusinessLogic.Enums;
+using ResumeApp.BusinessLogic.Mappers;
+using ResumeApp.DataAccess.Mongo.Repositories;
+using ResumeApp.DataAccess.Sql.Repositories;
 using ResumeApp.Poco;
 
 namespace ResumeApp.BusinessLogic.Services
 {
 	public class ResumeService : IResumeService
 	{
-		private readonly IRepository<IResumeEntity> _resumeRepository;
 		private readonly SupportedDbType _dbType;
+		private readonly ISqlResumeRepository _sqlResumeRepository;
+		private readonly IMongoResumeRepository _mongoResumeRepository;
 
 		public ResumeService(
-			IRepository<IResumeEntity> resumeRepository,
-			DbConnectionConfig dbConnectionOptions)
+			ISqlResumeRepository sqlResumeRepository,
+			IMongoResumeRepository mongoResumeRepository)
 		{
-			_resumeRepository = resumeRepository;
 			_dbType = dbConnectionOptions.DbType;
+			_sqlResumeRepository = sqlResumeRepository;
+			_mongoResumeRepository = mongoResumeRepository;
 		}
 
 		public async Task<IReadOnlyList<ShortResume>> GetAllResumesAsync()
 		{
-			return await _resumeRepository.ProjectAsync(r => r.ToShortResumeDto());
+			return _dbType switch
+			{
+				SupportedDbType.Mongo => await _sqlResumeRepository.ProjectAsync(r => r.ToShortResumeDto()),
+				SupportedDbType.MsSql => await _mongoResumeRepository.ProjectAsync(r => r.ToShortResumeDto()),
+				_ => throw new NotSupportedException($"{_dbType} DB type is not supported"),
+			};
 		}
 
 		public async Task<bool> CheckIfItemExistsAsync(Guid id)
 		{
-			return await _resumeRepository.CheckIfItemExistsAsync(id);
+			return _dbType switch
+			{
+				SupportedDbType.Mongo => await _sqlResumeRepository.CheckIfItemExistsAsync(id),
+				SupportedDbType.MsSql => await _mongoResumeRepository.CheckIfItemExistsAsync(id),
+				_ => throw new NotSupportedException($"{_dbType} DB type is not supported"),
+			};
 		}
 
 		public async Task<FullResume> GetResumeByIdAsync(Guid id)
 		{
-			var resume = await _resumeRepository.FindByIdAsync(id);
-			return resume.ToFullResumeDto();
+			return _dbType switch
+			{
+				SupportedDbType.Mongo => await _sqlResumeRepository.FindByIdAsync(id, r => r.ToFullResumeDto()),
+				SupportedDbType.MsSql => await _mongoResumeRepository.FindByIdAsync(id, r => r.ToFullResumeDto()),
+				_ => throw new NotSupportedException($"{_dbType} DB type is not supported"),
+			};
 		}
 
 		public async Task DeleteResumesAsync(Guid id)
 		{
-			await _resumeRepository.DeleteByIdAsync(id);
+			switch (_dbType)
+			{
+				case SupportedDbType.Mongo: await _sqlResumeRepository.DeleteByIdAsync(id); break;
+				case SupportedDbType.MsSql: await _mongoResumeRepository.DeleteByIdAsync(id); break;
+				default: throw new NotSupportedException($"{_dbType} DB type is not supported");
+			}
 		}
 
 		public async Task CreateResumesAsync(FullResume fullResume)
 		{
-			await _resumeRepository.InsertOneAsync(fullResume.ToResumeEntity(_dbType));
+			switch (_dbType)
+			{
+				case SupportedDbType.Mongo: await _sqlResumeRepository.InsertOneAsync(fullResume.ToResumeSqlEntity()); break;
+				case SupportedDbType.MsSql: await _mongoResumeRepository.InsertOneAsync(fullResume.ToResumeMongoEntity()); break;
+				default: throw new NotSupportedException($"{_dbType} DB type is not supported");
+			}
 		}
 
 		public async Task UpdateResumesAsync(FullResume fullResume)
 		{
-			await _resumeRepository.ReplaceOneAsync(fullResume.ToResumeEntity(_dbType));
+			switch (_dbType)
+			{
+				case SupportedDbType.Mongo: await _sqlResumeRepository.ReplaceOneAsync(fullResume.ToResumeSqlEntity()); break;
+				case SupportedDbType.MsSql: await _mongoResumeRepository.ReplaceOneAsync(fullResume.ToResumeMongoEntity()); break;
+				default: throw new NotSupportedException($"{_dbType} DB type is not supported");
+			}
 		}
 	}
 }

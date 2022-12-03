@@ -1,103 +1,79 @@
-﻿using MongoDB.Bson.Serialization.Conventions;
-using MongoDB.Driver;
-using ResumeApp.DataAccess.Abstractions.Options;
-using ResumeApp.DataAccess.Mongo.Attributes;
+﻿using MongoDB.Driver;
+using ResumeApp.DataAccess.Mongo.Context;
 using ResumeApp.DataAccess.Mongo.Entities;
-using ResumeApp.DataAccess.Mongo.Exceptions;
 using System.Linq.Expressions;
 namespace ResumeApp.DataAccess.Mongo.Repositories
 {
 	public class MongoResumeRepository : IMongoResumeRepository
 	{
-		private readonly IMongoCollection<ResumeMongoEntity> _collection;
+		private readonly MongoDbContext<ResumeMongoEntity> _context;
 
-		public MongoResumeRepository(DbConnectionConfig dbConnectionOptions)
+		public MongoResumeRepository(MongoDbContext<ResumeMongoEntity> context)
 		{
-			if (dbConnectionOptions is null) throw new ArgumentNullException(nameof(dbConnectionOptions));
-
-			var conventionPack = new ConventionPack { new CamelCaseElementNameConvention() };
-			ConventionRegistry.Register("camelCase", conventionPack, _ => true);
-
-			var database = new MongoClient(dbConnectionOptions.ConnectionString).GetDatabase(dbConnectionOptions.DbName);
-			_collection = database.GetCollection<ResumeMongoEntity>(GetCollectionName(typeof(ResumeMongoEntity)));
-		}
-
-		public async Task<IReadOnlyList<ResumeMongoEntity>> FilterByAsync(
-			Expression<Func<ResumeMongoEntity, bool>> filterExpression)
-		{
-			return await _collection.Find(filterExpression).ToListAsync();
+			_context = context;
 		}
 
 		public async Task<IReadOnlyList<TProjected>> FilterByAsync<TProjected>(
 			Expression<Func<ResumeMongoEntity, bool>> filterExpression,
 			Expression<Func<ResumeMongoEntity, TProjected>> projectionExpression)
 		{
-			return await _collection.Find(filterExpression).Project(projectionExpression).ToListAsync();
+			return await _context.Collection.Find(filterExpression).Project(projectionExpression).ToListAsync();
 		}
 
-		public async Task<IReadOnlyList<TProjected>> ProjectAsync<TProjected>(Expression<Func<ResumeMongoEntity, TProjected>> projectionExpression)
+		public async Task<IReadOnlyList<TProjected>> ProjectAsync<TProjected>(
+			Expression<Func<ResumeMongoEntity, TProjected>> projectionExpression)
 		{
-			return await _collection.Find(GetEmptyFilter()).Project(projectionExpression).ToListAsync();
+			return await _context.Collection.Find(MongoDbContext<ResumeMongoEntity>.GetEmptyFilter()).Project(projectionExpression).ToListAsync();
 		}
 
-		public async Task<ResumeMongoEntity> FindOneAsync(Expression<Func<ResumeMongoEntity, bool>> filterExpression)
+		public async Task<TProjected> FindOneAsync<TProjected>(
+			Expression<Func<ResumeMongoEntity, bool>> filterExpression,
+			Expression<Func<ResumeMongoEntity, TProjected>> projectionExpression)
 		{
-			return await _collection.Find(filterExpression).FirstOrDefaultAsync();
+			return await _context.Collection.Find(filterExpression).Project(projectionExpression).FirstOrDefaultAsync();
 		}
 
 		public async Task<bool> CheckIfItemExistsAsync(Guid id)
 		{
-			var count = await _collection.CountDocumentsAsync(GetFilterById(id));
+			var count = await _context.Collection.CountDocumentsAsync(MongoDbContext<ResumeMongoEntity>.GetFilterById(id));
 			return count == 1;
 		}
 
-		public async Task<ResumeMongoEntity> FindByIdAsync(Guid id)
+		public async Task<TProjected> FindByIdAsync<TProjected>(
+			Guid id			,
+			Expression<Func<ResumeMongoEntity, TProjected>> projectionExpression)
 		{
-			return await _collection.Find(GetFilterById(id)).SingleOrDefaultAsync();
+			return await _context.Collection.Find(MongoDbContext<ResumeMongoEntity>.GetFilterById(id)).Project(projectionExpression).SingleOrDefaultAsync();
 		}
 
 		public async Task InsertOneAsync(ResumeMongoEntity entity)
 		{
-			await _collection.InsertOneAsync(entity);
+			await _context.Collection.InsertOneAsync(entity);
 		}
 
 		public async Task InsertManyAsync(ICollection<ResumeMongoEntity> documents)
 		{
-			await _collection.InsertManyAsync(documents);
+			await _context.Collection.InsertManyAsync(documents);
 		}
 
 		public async Task ReplaceOneAsync(ResumeMongoEntity entity)
 		{
-			await _collection.FindOneAndReplaceAsync(GetFilterById(entity.Id), entity);
+			await _context.Collection.FindOneAndReplaceAsync(MongoDbContext<ResumeMongoEntity>.GetFilterById(entity.Id), entity);
 		}
 
 		public async Task DeleteOneAsync(Expression<Func<ResumeMongoEntity, bool>> filterExpression)
 		{
-			await _collection.FindOneAndDeleteAsync(filterExpression);
+			await _context.Collection.FindOneAndDeleteAsync(filterExpression);
 		}
 
 		public async Task DeleteByIdAsync(Guid id)
 		{
-			await _collection.FindOneAndDeleteAsync(GetFilterById(id));
+			await _context.Collection.FindOneAndDeleteAsync(MongoDbContext<ResumeMongoEntity>.GetFilterById(id));
 		}
 
 		public async Task DeleteManyAsync(Expression<Func<ResumeMongoEntity, bool>> filterExpression)
 		{
-			await _collection.DeleteManyAsync(filterExpression);
+			await _context.Collection.DeleteManyAsync(filterExpression);
 		}
-
-		private protected static string GetCollectionName(Type documentType)
-		{
-			if (documentType is null) throw new ArgumentNullException(nameof(documentType));
-
-			var collectionAttribute = documentType.GetCustomAttributes(typeof(BsonCollectionAttribute), true).FirstOrDefault();
-			if (collectionAttribute == null) throw new BsonCollectionAttributeMissingException();
-
-			return ((BsonCollectionAttribute)collectionAttribute).CollectionName;
-		}
-
-		private protected static FilterDefinition<ResumeMongoEntity> GetFilterById(Guid id) => Builders<ResumeMongoEntity>.Filter.Eq("_id", id);
-
-		private protected static FilterDefinition<ResumeMongoEntity> GetEmptyFilter() => Builders<ResumeMongoEntity>.Filter.Empty;
 	}
 }

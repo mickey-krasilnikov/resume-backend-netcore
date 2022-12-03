@@ -1,10 +1,9 @@
-﻿using ResumeApp.DataAccess.Abstractions.Entities;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ResumeApp.DataAccess.Sql.Entities
 {
-	public class ExperienceSqlEntity : IExperienceEntity
+	public class ExperienceSqlEntity
 	{
 		[Key]
 		[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -24,6 +23,6 @@ namespace ResumeApp.DataAccess.Sql.Entities
 
 		public ResumeSqlEntity Resume { get; set; }
 
-		public IEnumerable<IProjectEntity> Projects { get; set; } = new HashSet<ProjectSqlEntity>();
+		public IEnumerable<ProjectSqlEntity> Projects { get; set; } = new HashSet<ProjectSqlEntity>();
 	}
 }

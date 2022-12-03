@@ -1,6 +1,4 @@
-﻿using ResumeApp.DataAccess.Abstractions.Entities;
-using ResumeApp.DataAccess.Abstractions.Enums;
-using ResumeApp.DataAccess.Mongo.Entities;
+﻿using ResumeApp.DataAccess.Mongo.Entities;
 using ResumeApp.DataAccess.Sql.Entities;
 using ResumeApp.Poco;
 
@@ -8,7 +6,7 @@ namespace ResumeApp.BusinessLogic.Mappers
 {
 	internal static class SkillMapper
 	{
-		internal static Skill ToSkillDto(this ISkillEntity entity)
+		internal static Skill ToSkillDto(this SkillMongoEntity entity)
 		{
 			if (entity == null) return null!;
 
@@ -21,17 +19,20 @@ namespace ResumeApp.BusinessLogic.Mappers
 			};
 		}
 
-		internal static ISkillEntity ToSkillEntity(this Skill dto, SupportedDbType dbType)
+		internal static Skill ToSkillDto(this SkillSqlEntity entity)
 		{
-			return dbType switch
+			if (entity == null) return null!;
+
+			return new Skill
 			{
-				SupportedDbType.Mongo => dto.ToSkillMongoEntity(),
-				SupportedDbType.MsSql => dto.ToSkillSqlEntity(),
-				_ => throw new NotSupportedException($"{dbType} DB type is not supported"),
+				Id = entity.Id,
+				Name = entity.Name,
+				AdditionalInfo = entity.AdditionalInfo,
+				SkillGroup = entity.SkillGroup,
 			};
 		}
 
-		private static ISkillEntity ToSkillMongoEntity(this Skill dto)
+		internal static SkillMongoEntity ToSkillMongoEntity(this Skill dto)
 		{
 			if (dto == null) return null;
 			return new SkillMongoEntity
@@ -43,7 +44,7 @@ namespace ResumeApp.BusinessLogic.Mappers
 			};
 		}
 
-		private static ISkillEntity ToSkillSqlEntity(this Skill dto)
+		internal static SkillSqlEntity ToSkillSqlEntity(this Skill dto)
 		{
 			if (dto == null) return null;
 			return new SkillSqlEntity

@@ -1,8 +1,6 @@
-﻿using ResumeApp.DataAccess.Abstractions.Entities;
-
-namespace ResumeApp.DataAccess.Mongo.Entities
+﻿namespace ResumeApp.DataAccess.Mongo.Entities
 {
-	public class ContactMongoEntity : IContactEntity
+	public class ContactMongoEntity
 	{
 		public string Key { get; set; }
 

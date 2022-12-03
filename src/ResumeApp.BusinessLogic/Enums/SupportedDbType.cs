@@ -1,4 +1,4 @@
-﻿namespace ResumeApp.DataAccess.Abstractions.Enums
+﻿namespace ResumeApp.BusinessLogic.Enums
 {
 	public enum SupportedDbType
 	{

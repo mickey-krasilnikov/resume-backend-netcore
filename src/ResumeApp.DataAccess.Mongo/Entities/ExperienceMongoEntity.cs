@@ -1,8 +1,6 @@
-﻿using ResumeApp.DataAccess.Abstractions.Entities;
-
-namespace ResumeApp.DataAccess.Mongo.Entities
+﻿namespace ResumeApp.DataAccess.Mongo.Entities
 {
-	public class ExperienceMongoEntity : IExperienceEntity
+	public class ExperienceMongoEntity
 	{
 		public Guid Id { get; set; }
 
@@ -16,6 +14,6 @@ namespace ResumeApp.DataAccess.Mongo.Entities
 
 		public bool IsCurrentCompany { get; set; }
 
-		public IEnumerable<IProjectEntity> Projects { get; set; } = new HashSet<ProjectMongoEntity>();
+		public IEnumerable<ProjectMongoEntity> Projects { get; set; } = new HashSet<ProjectMongoEntity>();
 	}
 }

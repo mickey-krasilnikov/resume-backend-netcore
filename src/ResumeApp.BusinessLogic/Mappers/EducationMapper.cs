@@ -1,6 +1,4 @@
-﻿using ResumeApp.DataAccess.Abstractions.Entities;
-using ResumeApp.DataAccess.Abstractions.Enums;
-using ResumeApp.DataAccess.Mongo.Entities;
+﻿using ResumeApp.DataAccess.Mongo.Entities;
 using ResumeApp.DataAccess.Sql.Entities;
 using ResumeApp.Poco;
 
@@ -8,7 +6,7 @@ namespace ResumeApp.BusinessLogic.Mappers
 {
 	internal static class EducationMapper
 	{
-		internal static Education ToEducationDto(this IEducationEntity entity)
+		internal static Education ToEducationDto(this EducationSqlEntity entity)
 		{
 			if (entity == null) return null;
 
@@ -23,17 +21,22 @@ namespace ResumeApp.BusinessLogic.Mappers
 			};
 		}
 
-		internal static IEducationEntity ToEducationEntity(this Education dto, SupportedDbType dbType)
+		internal static Education ToEducationDto(this EducationMongoEntity entity)
 		{
-			return dbType switch
+			if (entity == null) return null;
+
+			return new Education
 			{
-				SupportedDbType.Mongo => dto.ToEducationMongoEntity(),
-				SupportedDbType.MsSql => dto.ToEducationSqlEntity(),
-				_ => throw new NotSupportedException($"{dbType} DB type is not supported"),
+				Name = entity.Name,
+				Degree = entity.Degree,
+				FieldOfStudy = entity.FieldOfStudy,
+				StartDate = entity.StartDate,
+				EndDate = entity.EndDate,
+				Url = entity.Url
 			};
 		}
 
-		private static IEducationEntity ToEducationMongoEntity(this Education dto)
+		internal static EducationMongoEntity ToEducationMongoEntity(this Education dto)
 		{
 			if (dto == null) return null;
 			return new EducationMongoEntity
@@ -47,7 +50,7 @@ namespace ResumeApp.BusinessLogic.Mappers
 			};
 		}
 
-		private static IEducationEntity ToEducationSqlEntity(this Education dto)
+		internal static EducationSqlEntity ToEducationSqlEntity(this Education dto)
 		{
 			if (dto == null) return null;
 			return new EducationSqlEntity

@@ -7,9 +7,9 @@ namespace ResumeApp.DataAccess.Sql.Repositories
 {
 	public class SqlResumeRepository : ISqlResumeRepository
 	{
-		private readonly ResumeDbContext _context;
+		private readonly SqlDbContext _context;
 
-		public SqlResumeRepository(ResumeDbContext context)
+		public SqlResumeRepository(SqlDbContext context)
 		{
 			_context = context;
 		}
@@ -17,12 +17,6 @@ namespace ResumeApp.DataAccess.Sql.Repositories
 		public async Task<bool> CheckIfItemExistsAsync(Guid id)
 		{
 			return await _context.Resumes.AnyAsync(r => r.Id == id);
-		}
-
-		public async Task<IReadOnlyList<ResumeSqlEntity>> FilterByAsync(
-			Expression<Func<ResumeSqlEntity, bool>> filterExpression)
-		{
-			return await _context.Resumes.Where(filterExpression).ToListAsync();
 		}
 
 		public async Task<IReadOnlyList<TProjected>> FilterByAsync<TProjected>(
@@ -35,14 +29,18 @@ namespace ResumeApp.DataAccess.Sql.Repositories
 				.ToListAsync();
 		}
 
-		public async Task<ResumeSqlEntity> FindByIdAsync(Guid id)
+		public async Task<TProjected> FindByIdAsync<TProjected>(
+			Guid id,
+			Expression<Func<ResumeSqlEntity, TProjected>> projectionExpression)
 		{
-			return await _context.Resumes.FirstOrDefaultAsync(r => r.Id == id);
+			return await _context.Resumes.Where(r => r.Id == id).Select(projectionExpression).FirstOrDefaultAsync();
 		}
 
-		public async Task<ResumeSqlEntity> FindOneAsync(Expression<Func<ResumeSqlEntity, bool>> filterExpression)
+		public async Task<TProjected> FindOneAsync<TProjected>(
+			Expression<Func<ResumeSqlEntity, bool>> filterExpression,
+			Expression<Func<ResumeSqlEntity, TProjected>> projectionExpression)
 		{
-			return await _context.Resumes.FirstOrDefaultAsync(filterExpression);
+			return await _context.Resumes.Where(filterExpression).Select(projectionExpression).FirstOrDefaultAsync();
 		}
 
 		public async Task<IReadOnlyList<TProjected>> ProjectAsync<TProjected>(Expression<Func<ResumeSqlEntity, TProjected>> projectionExpression)
