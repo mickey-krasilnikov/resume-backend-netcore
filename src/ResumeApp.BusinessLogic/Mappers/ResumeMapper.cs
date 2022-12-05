@@ -6,6 +6,13 @@ namespace ResumeApp.BusinessLogic.Mappers
 {
 	internal static class ResumeMapper
 	{
+		internal static ShortResume ToShortResumeDto<TResumeEntity>(this TResumeEntity entity)
+		{
+			if (typeof(TResumeEntity) == typeof(ResumeMongoEntity)) return (entity as ResumeMongoEntity).ToShortResumeDto();
+			else if (typeof(TResumeEntity) == typeof(ResumeSqlEntity)) return (entity as ResumeSqlEntity).ToShortResumeDto();
+			else throw new NotSupportedException($"Type '{typeof(TResumeEntity)}' is not supported by resume mapper");
+		}
+
 		internal static ShortResume ToShortResumeDto(this ResumeMongoEntity entity)
 		{
 			if (entity == null) return null!;
@@ -46,6 +53,13 @@ namespace ResumeApp.BusinessLogic.Mappers
 			};
 		}
 
+		internal static FullResume ToFullResumeDto<TResumeEntity>(this TResumeEntity entity)
+		{
+			if (typeof(TResumeEntity) == typeof(ResumeMongoEntity)) return (entity as ResumeMongoEntity).ToFullResumeDto();
+			else if (typeof(TResumeEntity) == typeof(ResumeSqlEntity)) return (entity as ResumeSqlEntity).ToFullResumeDto();
+			else throw new NotSupportedException($"Type '{typeof(TResumeEntity)}' is not supported by resume mapper");
+		}
+
 		internal static FullResume ToFullResumeDto(this ResumeMongoEntity entity)
 		{
 			if (entity == null) return null!;
@@ -82,6 +96,13 @@ namespace ResumeApp.BusinessLogic.Mappers
 				Certifications = entity.Certifications.Select(c => c.ToCertificationDto()).ToList(),
 				Education = entity.Education.Select(e => e.ToEducationDto()).ToList()
 			};
+		}
+
+		internal static TResumeEntity ToResumeEntity<TResumeEntity>(this FullResume dto)
+		{
+			if (typeof(TResumeEntity) == typeof(ResumeMongoEntity)) return (TResumeEntity)Convert.ChangeType(dto.ToResumeMongoEntity(), typeof(TResumeEntity));
+			else if (typeof(TResumeEntity) == typeof(ResumeSqlEntity)) return (TResumeEntity)Convert.ChangeType(dto.ToResumeSqlEntity(), typeof(TResumeEntity));
+			else throw new NotSupportedException($"Type '{typeof(TResumeEntity)}' is not supported by resume mapper");
 		}
 
 		internal static ResumeMongoEntity ToResumeMongoEntity(this FullResume dto)

@@ -1,15 +1,14 @@
 ﻿using ResumeApp.BusinessLogic.Mappers;
 using ResumeApp.DataAccess.Abstractions;
-using ResumeApp.DataAccess.Sql.Entities;
 using ResumeApp.Poco;
 
 namespace ResumeApp.BusinessLogic.Services
 {
-	public class ResumeService : IResumeService
+	public class ResumeService<TResumeEntity> : IResumeService
 	{
-		private readonly IRepository<ResumeSqlEntity> _repository;
+		private readonly IRepository<TResumeEntity> _repository;
 
-		public ResumeService(IRepository<ResumeSqlEntity> repository)
+		public ResumeService(IRepository<TResumeEntity> repository)
 		{
 			_repository = repository;
 		}
@@ -36,12 +35,12 @@ namespace ResumeApp.BusinessLogic.Services
 
 		public async Task CreateResumesAsync(FullResume fullResume)
 		{
-			await _repository.InsertOneAsync(fullResume.ToResumeSqlEntity());
+			await _repository.InsertOneAsync(fullResume.ToResumeEntity<TResumeEntity>());
 		}
 
 		public async Task UpdateResumesAsync(FullResume fullResume)
 		{
-			await _repository.ReplaceOneAsync(fullResume.ToResumeSqlEntity());
+			await _repository.ReplaceOneAsync(fullResume.ToResumeEntity<TResumeEntity>());
 		}
 	}
 }
