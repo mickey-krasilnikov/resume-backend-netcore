@@ -10,6 +10,7 @@ namespace ResumeApp.DataAccess.Mongo.Extensions
 	{
 		public static IServiceCollection AddResumeMongoDb(this IServiceCollection services)
 		{
+			//services.AddScoped<IMongoDbContext<ResumeMongoEntity>, MongoDbContext<ResumeMongoEntity>>();
 			services.AddScoped(typeof(IMongoDbContext<>), typeof(MongoDbContext<>));
 			services.AddScoped<IRepository<ResumeMongoEntity>, MongoResumeRepository>();
 			return services;

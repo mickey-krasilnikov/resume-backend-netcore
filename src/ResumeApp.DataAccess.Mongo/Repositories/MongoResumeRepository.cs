@@ -7,9 +7,9 @@ namespace ResumeApp.DataAccess.Mongo.Repositories
 {
 	public class MongoResumeRepository : IRepository<ResumeMongoEntity>
 	{
-		private readonly MongoDbContext<ResumeMongoEntity> _context;
+		private readonly IMongoDbContext<ResumeMongoEntity> _context;
 
-		public MongoResumeRepository(MongoDbContext<ResumeMongoEntity> context)
+		public MongoResumeRepository(IMongoDbContext<ResumeMongoEntity> context)
 		{
 			_context = context;
 		}
@@ -24,7 +24,7 @@ namespace ResumeApp.DataAccess.Mongo.Repositories
 		public async Task<IReadOnlyList<TProjected>> ProjectAsync<TProjected>(
 			Expression<Func<ResumeMongoEntity, TProjected>> projectionExpression)
 		{
-			return await _context.Collection.Find(MongoDbContext<ResumeMongoEntity>.GetEmptyFilter()).Project(projectionExpression).ToListAsync();
+			return await _context.Collection.Find(_context.GetEmptyFilter()).Project(projectionExpression).ToListAsync();
 		}
 
 		public async Task<TProjected> FindOneAsync<TProjected>(
@@ -36,7 +36,7 @@ namespace ResumeApp.DataAccess.Mongo.Repositories
 
 		public async Task<bool> CheckIfItemExistsAsync(Guid id)
 		{
-			var count = await _context.Collection.CountDocumentsAsync(MongoDbContext<ResumeMongoEntity>.GetFilterById(id));
+			var count = await _context.Collection.CountDocumentsAsync(_context.GetFilterById(id));
 			return count == 1;
 		}
 
@@ -44,7 +44,7 @@ namespace ResumeApp.DataAccess.Mongo.Repositories
 			Guid id			,
 			Expression<Func<ResumeMongoEntity, TProjected>> projectionExpression)
 		{
-			return await _context.Collection.Find(MongoDbContext<ResumeMongoEntity>.GetFilterById(id)).Project(projectionExpression).SingleOrDefaultAsync();
+			return await _context.Collection.Find(_context.GetFilterById(id)).Project(projectionExpression).SingleOrDefaultAsync();
 		}
 
 		public async Task InsertOneAsync(ResumeMongoEntity entity)
@@ -59,7 +59,7 @@ namespace ResumeApp.DataAccess.Mongo.Repositories
 
 		public async Task ReplaceOneAsync(ResumeMongoEntity entity)
 		{
-			await _context.Collection.FindOneAndReplaceAsync(MongoDbContext<ResumeMongoEntity>.GetFilterById(entity.Id), entity);
+			await _context.Collection.FindOneAndReplaceAsync(_context.GetFilterById(entity.Id), entity);
 		}
 
 		public async Task DeleteOneAsync(Expression<Func<ResumeMongoEntity, bool>> filterExpression)
@@ -69,7 +69,7 @@ namespace ResumeApp.DataAccess.Mongo.Repositories
 
 		public async Task DeleteByIdAsync(Guid id)
 		{
-			await _context.Collection.FindOneAndDeleteAsync(MongoDbContext<ResumeMongoEntity>.GetFilterById(id));
+			await _context.Collection.FindOneAndDeleteAsync(_context.GetFilterById(id));
 		}
 
 		public async Task DeleteManyAsync(Expression<Func<ResumeMongoEntity, bool>> filterExpression)

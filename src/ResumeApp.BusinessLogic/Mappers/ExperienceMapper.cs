@@ -39,7 +39,7 @@ namespace ResumeApp.BusinessLogic.Mappers
 				Company = dto.Company,
 				StartDate = dto.StartDate,
 				EndDate = dto.EndDate,
-				Projects = dto.Projects.Select(d => d.ToProjectMongoEntity())
+				Projects = dto.Projects?.Select(d => d.ToProjectMongoEntity())
 			};
 		}
 

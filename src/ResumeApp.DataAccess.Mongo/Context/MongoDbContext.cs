@@ -33,9 +33,9 @@ namespace ResumeApp.DataAccess.Mongo.Context
 			Collection = db.GetCollection<TMongoCollection>(GetCollectionName(typeof(TMongoCollection)));
 		}
 
-		public static FilterDefinition<TMongoCollection> GetFilterById(Guid id) => Builders<TMongoCollection>.Filter.Eq("_id", id);
+		public FilterDefinition<TMongoCollection> GetFilterById(Guid id) => Builders<TMongoCollection>.Filter.Eq("_id", id);
 
-		public static FilterDefinition<TMongoCollection> GetEmptyFilter() => Builders<TMongoCollection>.Filter.Empty;
+		public FilterDefinition<TMongoCollection> GetEmptyFilter() => Builders<TMongoCollection>.Filter.Empty;
 
 		private protected static string GetCollectionName(Type documentType)
 		{

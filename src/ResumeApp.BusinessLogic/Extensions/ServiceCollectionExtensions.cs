@@ -24,7 +24,7 @@ namespace ResumeApp.BusinessLogic.Extensions
 
 				case SupportedDbType.Sql:
 					services.AddScoped<IResumeService, ResumeService<ResumeSqlEntity>>();
-					services.AddResumeSqlDb(configuration, dbOptions.SqlMaxReties);
+					services.AddResumeSqlDb(configuration, dbOptions.SqlMaxRetries);
 					break;
 			}
 
