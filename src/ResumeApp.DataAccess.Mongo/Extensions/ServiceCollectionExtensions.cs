@@ -1,6 +1,7 @@
-﻿using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
+using ResumeApp.DataAccess.Abstractions;
 using ResumeApp.DataAccess.Mongo.Context;
+using ResumeApp.DataAccess.Mongo.Entities;
 using ResumeApp.DataAccess.Mongo.Repositories;
 
 namespace ResumeApp.DataAccess.Mongo.Extensions
@@ -10,7 +11,7 @@ namespace ResumeApp.DataAccess.Mongo.Extensions
 		public static IServiceCollection AddResumeMongoDb(this IServiceCollection services)
 		{
 			services.AddScoped(typeof(IMongoDbContext<>), typeof(MongoDbContext<>));
-			services.AddScoped<IMongoResumeRepository, MongoResumeRepository>();
+			services.AddScoped<IRepository<ResumeMongoEntity>, MongoResumeRepository>();
 			return services;
 		}
 	}

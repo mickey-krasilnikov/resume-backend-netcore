@@ -2,8 +2,8 @@
 {
 	public enum SupportedDbType
 	{
+		NotSupported,
 		Mongo,
-		MsSql,
-		NotSupported
+		Sql,
 	}
 }

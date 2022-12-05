@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using ResumeApp.DataAccess.Sql.Context.Converters;
+using ResumeApp.DataAccess.Sql.Context.InitialData;
 using ResumeApp.DataAccess.Sql.Entities;
 
 namespace ResumeApp.DataAccess.Sql.Context
@@ -27,18 +28,18 @@ namespace ResumeApp.DataAccess.Sql.Context
 				.HaveColumnType("date");
 		}
 
-		//protected override void OnModelCreating(ModelBuilder modelBuilder)
-		//{
-		//	// seed the database with initial data
-		//	var dataToSeed = InitialDataGenerator.GetDataToSeed();
-		//	modelBuilder.Entity<CertificationSqlEntity>().HasData(dataToSeed.Certification);
-		//	modelBuilder.Entity<ContactSqlEntity>().HasData(dataToSeed.Contacts);
-		//	modelBuilder.Entity<EducationSqlEntity>().HasData(dataToSeed.Eduction);
-		//	modelBuilder.Entity<ProjectSqlEntity>().HasData(dataToSeed.Projects);
-		//	modelBuilder.Entity<ExperienceSqlEntity>().HasData(dataToSeed.Experience);
-		//	modelBuilder.Entity<SkillSqlEntity>().HasData(dataToSeed.Skills);
-		//	modelBuilder.Entity<ResumeSqlEntity>().HasData(dataToSeed.Resume);
-		//	base.OnModelCreating(modelBuilder);
-		//}
+		protected override void OnModelCreating(ModelBuilder modelBuilder)
+		{
+			// seed the database with initial data
+			var dataToSeed = InitialDataGenerator.GetDataToSeed();
+			modelBuilder.Entity<CertificationSqlEntity>().HasData(dataToSeed.Certification);
+			modelBuilder.Entity<ContactSqlEntity>().HasData(dataToSeed.Contacts);
+			modelBuilder.Entity<EducationSqlEntity>().HasData(dataToSeed.Eduction);
+			modelBuilder.Entity<ProjectSqlEntity>().HasData(dataToSeed.Projects);
+			modelBuilder.Entity<ExperienceSqlEntity>().HasData(dataToSeed.Experience);
+			modelBuilder.Entity<SkillSqlEntity>().HasData(dataToSeed.Skills);
+			modelBuilder.Entity<ResumeSqlEntity>().HasData(dataToSeed.Resume);
+			base.OnModelCreating(modelBuilder);
+		}
 	}
 }

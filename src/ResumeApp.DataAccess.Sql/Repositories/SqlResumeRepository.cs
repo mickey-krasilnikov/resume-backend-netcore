@@ -1,11 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using ResumeApp.DataAccess.Abstractions;
 using ResumeApp.DataAccess.Sql.Context;
 using ResumeApp.DataAccess.Sql.Entities;
 using System.Linq.Expressions;
 
 namespace ResumeApp.DataAccess.Sql.Repositories
 {
-	public class SqlResumeRepository : ISqlResumeRepository
+	public class SqlResumeRepository : IRepository<ResumeSqlEntity>
 	{
 		private readonly SqlDbContext _context;
 

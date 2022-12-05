@@ -1,10 +1,11 @@
 ﻿using MongoDB.Driver;
+using ResumeApp.DataAccess.Abstractions;
 using ResumeApp.DataAccess.Mongo.Context;
 using ResumeApp.DataAccess.Mongo.Entities;
 using System.Linq.Expressions;
 namespace ResumeApp.DataAccess.Mongo.Repositories
 {
-	public class MongoResumeRepository : IMongoResumeRepository
+	public class MongoResumeRepository : IRepository<ResumeMongoEntity>
 	{
 		private readonly MongoDbContext<ResumeMongoEntity> _context;
 
