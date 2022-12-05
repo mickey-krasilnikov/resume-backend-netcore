@@ -25,6 +25,12 @@ namespace ResumeApp.DataAccess.Sql.Repositories
 			Expression<Func<ResumeSqlEntity, TProjected>> projectionExpression)
 		{
 			return await _context.Resumes
+				.Include(r => r.Contacts)
+				.Include(r => r.Skills)
+				.Include(r => r.Certifications)
+				.Include(r => r.Education)
+				.Include(r => r.Experience)
+				.ThenInclude(e => e.Projects)
 				.Where(filterExpression)
 				.Select(projectionExpression)
 				.ToListAsync();
@@ -34,19 +40,44 @@ namespace ResumeApp.DataAccess.Sql.Repositories
 			Guid id,
 			Expression<Func<ResumeSqlEntity, TProjected>> projectionExpression)
 		{
-			return await _context.Resumes.Where(r => r.Id == id).Select(projectionExpression).FirstOrDefaultAsync();
+			return await _context.Resumes
+				.Include(r => r.Contacts)
+				.Include(r => r.Skills)
+				.Include(r => r.Certifications)
+				.Include(r => r.Education)
+				.Include(r => r.Experience)
+				.ThenInclude(e => e.Projects)
+				.Where(r => r.Id == id)
+				.Select(projectionExpression)
+				.FirstOrDefaultAsync();
 		}
 
 		public async Task<TProjected> FindOneAsync<TProjected>(
 			Expression<Func<ResumeSqlEntity, bool>> filterExpression,
 			Expression<Func<ResumeSqlEntity, TProjected>> projectionExpression)
 		{
-			return await _context.Resumes.Where(filterExpression).Select(projectionExpression).FirstOrDefaultAsync();
+			return await _context.Resumes
+				.Include(r => r.Contacts)
+				.Include(r => r.Skills)
+				.Include(r => r.Certifications)
+				.Include(r => r.Education)
+				.Include(r => r.Experience)
+				.ThenInclude(e => e.Projects)
+				.Where(filterExpression)
+				.Select(projectionExpression)
+				.FirstOrDefaultAsync();
 		}
 
 		public async Task<IReadOnlyList<TProjected>> ProjectAsync<TProjected>(Expression<Func<ResumeSqlEntity, TProjected>> projectionExpression)
 		{
-			return await _context.Resumes.Select(projectionExpression).ToListAsync();
+			return await _context.Resumes
+				.Include(r => r.Contacts)
+				.Include(r => r.Skills)
+				.Include(r => r.Certifications)
+				.Include(r => r.Education)
+				.Include(r => r.Experience)
+				.ThenInclude(e => e.Projects)
+				.Select(projectionExpression).ToListAsync();
 		}
 
 		public async Task InsertOneAsync(ResumeSqlEntity entity)

@@ -29,9 +29,11 @@ namespace ResumeApp.BusinessLogic.Mappers
 		{
 			if (entity == null) return null!;
 
-			var yearsOfExperience = entity.Experience
-				.Select(e => (e.IsCurrentCompany ? DateOnly.FromDateTime(DateTime.Now) : e.EndDate.Value).DayNumber - e.StartDate.DayNumber)
-				.Aggregate((t1, t2) => t1 + t2) / 365.0;
+			var yearsOfExperience = entity.Experience.Any()
+				? entity.Experience
+					.Select(e => (e.IsCurrentCompany ? DateOnly.FromDateTime(DateTime.Now) : e.EndDate.Value).DayNumber - e.StartDate.DayNumber)
+					.Aggregate((t1, t2) => t1 + t2) / 365.0
+				: 0;
 
 			return new ShortResume
 			{
