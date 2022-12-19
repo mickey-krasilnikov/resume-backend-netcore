@@ -17,7 +17,7 @@ namespace ResumeApp.DataAccess.Sql.Entities
 
 		public DateOnly StartDate { get; set; }
 
-		public DateOnly EndDate { get; set; }
+		public DateOnly? EndDate { get; set; }
 
 		public Uri Url { get; set; }
 

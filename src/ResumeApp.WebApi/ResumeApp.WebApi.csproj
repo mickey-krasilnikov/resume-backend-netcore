@@ -24,5 +24,10 @@
 		<ProjectReference Include="..\ResumeApp.DataAccess.Sql\ResumeApp.DataAccess.Sql.csproj" />
 		<ProjectReference Include="..\ResumeApp.Poco\ResumeApp.Poco.csproj" />
 	</ItemGroup>
+	
+	<Target Name="PostBuild" AfterTargets="PostBuildEvent">
+		<Exec Command="dotnet tool restore" />
+		<Exec Command="dotnet swagger tofile --output openapi.json $(OutputPath)\$(AssemblyName).dll v1" />
+	</Target>
 
 </Project>

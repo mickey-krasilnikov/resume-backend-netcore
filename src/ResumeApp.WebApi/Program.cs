@@ -1,3 +1,4 @@
+using Microsoft.OpenApi.Models;
 using ResumeApp.BusinessLogic.Extensions;
 using System.Reflection;
 using System.Text.Json.Serialization;
@@ -16,7 +17,16 @@ builder.Services
 
 builder.Services
 	.AddEndpointsApiExplorer()
-	.AddSwaggerGen()
+	.AddSwaggerGen(options =>
+	{
+		options.SwaggerDoc("v1", new OpenApiInfo
+		{
+			Version = "v1",
+			Title = "Resume API",
+			Description = "A Web API for managing Resume items",
+			Contact = new OpenApiContact { Name = "Mikhail Krasilnikov", Email = "mickey.krasilnikov@gmail.com" }
+		});
+	})
 	.AddResumeServices(builder.Configuration);
 
 var app = builder.Build();

@@ -15,7 +15,7 @@ namespace ResumeApp.DataAccess.Sql.Entities
 
 		public DateOnly IssueDate { get; set; }
 
-		public DateOnly ExpirationDate { get; set; }
+		public DateOnly? ExpirationDate { get; set; }
 
 		public Uri VerificationUrl { get; set; }
 
