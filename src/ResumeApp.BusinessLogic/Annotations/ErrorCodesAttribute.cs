@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace ResumeApp.BusinessLogic.Annotations
+﻿namespace ResumeApp.BusinessLogic.Annotations
 {
 	/// <summary>
 	/// Indicates that the class upon which this attribute is applied defines error codes which may be included in a
