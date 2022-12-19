@@ -1,12 +1,15 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using FluentValidation;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using ResumeApp.BusinessLogic.Configs;
 using ResumeApp.BusinessLogic.Enums;
 using ResumeApp.BusinessLogic.Services;
+using ResumeApp.BusinessLogic.Validations;
 using ResumeApp.DataAccess.Mongo.Entities;
 using ResumeApp.DataAccess.Mongo.Extensions;
 using ResumeApp.DataAccess.Sql.Entities;
 using ResumeApp.DataAccess.Sql.Extensions;
+using ResumeApp.Poco;
 
 namespace ResumeApp.BusinessLogic.Extensions
 {
@@ -19,14 +22,16 @@ namespace ResumeApp.BusinessLogic.Extensions
 			{
 				case SupportedDbType.Mongo:
 					services.AddScoped<IResumeService, ResumeService<ResumeMongoEntity>>();
-					services.AddResumeMongoDb();
+					services.AddMongoResumeDb();
 					break;
 
 				case SupportedDbType.Sql:
 					services.AddScoped<IResumeService, ResumeService<ResumeSqlEntity>>();
-					services.AddResumeSqlDb(configuration, dbOptions.SqlMaxRetries);
+					services.AddSqlResumeDb(configuration, dbOptions.SqlMaxRetries);
 					break;
 			}
+
+			services.AddScoped<IValidator<FullResume>, ResumeValidator>();
 
 			return services;
 		}

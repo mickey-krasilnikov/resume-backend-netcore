@@ -10,7 +10,7 @@ namespace ResumeApp.DataAccess.Sql.Extensions
 {
 	public static class ServiceCollectionExtensions
 	{
-		public static IServiceCollection AddResumeSqlDb(this IServiceCollection services, IConfiguration configuration, int maxReties)
+		public static IServiceCollection AddSqlResumeDb(this IServiceCollection services, IConfiguration configuration, int maxReties)
 		{
 			var connectionString = configuration.GetConnectionString("Sql");
 			services.AddDbContext<SqlDbContext>(options => options.UseSqlServer(connectionString, o => o.EnableRetryOnFailure(maxReties)));

@@ -4,14 +4,11 @@ VisualStudioVersion = 17.2.32630.192
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ResumeApp.WebApi", "src\ResumeApp.WebApi\ResumeApp.WebApi.csproj", "{4F5D80DD-4B5E-4421-97C8-156E9512AAEE}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ResumeApp.BusinessLogic", "src\ResumeApp.BusinessLogic\ResumeApp.BusinessLogic.csproj", "{7E2862E3-03E2-4791-A196-BF1D215F01B7}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ResumeApp.Poco", "src\ResumeApp.Poco\ResumeApp.Poco.csproj", "{48A40DAE-582F-4A28-A94B-1D77E5391CC1}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{123F1DC3-1A72-46EF-82A7-A831EBC5A7E4}"
-	ProjectSection(SolutionItems) = preProject
-		.editorconfig = .editorconfig
-	EndProjectSection
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ResumeApp.BusinessLogic", "src\ResumeApp.BusinessLogic\ResumeApp.BusinessLogic.csproj", "{7E2862E3-03E2-4791-A196-BF1D215F01B7}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ResumeApp.DataAccess.Abstractions", "src\ResumeApp.DataAccess.Abstractions\ResumeApp.DataAccess.Abstractions.csproj", "{D64F4FB4-DD07-4C7A-AB0C-C3D29ADD6EB2}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ResumeApp.DataAccess.Mongo", "src\ResumeApp.DataAccess.Mongo\ResumeApp.DataAccess.Mongo.csproj", "{3664B8FE-7304-4D86-A9F9-9902B6AE6D19}"
 EndProject
@@ -19,11 +16,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ResumeApp.DataAccess.Sql", 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{15CB87EE-5CD7-4426-A8A5-E48C086E6FB2}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ResumeApp.BusinessLogic.Tests", "tests\ResumeApp.BusinessLogic.Tests\ResumeApp.BusinessLogic.Tests.csproj", "{D079D6FE-F050-474B-A6EF-80A48A437346}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ResumeApp.UnitTests", "tests\ResumeApp.UnitTests\ResumeApp.UnitTests.csproj", "{D079D6FE-F050-474B-A6EF-80A48A437346}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ResumeApp.ApiClient", "src\ResumeApp.ApiClient\ResumeApp.ApiClient.csproj", "{77A28822-6540-43F8-84E4-C6D752598D91}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ResumeApp.DataAccess.Abstractions", "src\ResumeApp.DataAccess.Abstractions\ResumeApp.DataAccess.Abstractions.csproj", "{D64F4FB4-DD07-4C7A-AB0C-C3D29ADD6EB2}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{123F1DC3-1A72-46EF-82A7-A831EBC5A7E4}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,14 +33,18 @@ Global
 		{4F5D80DD-4B5E-4421-97C8-156E9512AAEE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4F5D80DD-4B5E-4421-97C8-156E9512AAEE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4F5D80DD-4B5E-4421-97C8-156E9512AAEE}.Release|Any CPU.Build.0 = Release|Any CPU
-		{7E2862E3-03E2-4791-A196-BF1D215F01B7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7E2862E3-03E2-4791-A196-BF1D215F01B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7E2862E3-03E2-4791-A196-BF1D215F01B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7E2862E3-03E2-4791-A196-BF1D215F01B7}.Release|Any CPU.Build.0 = Release|Any CPU
 		{48A40DAE-582F-4A28-A94B-1D77E5391CC1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{48A40DAE-582F-4A28-A94B-1D77E5391CC1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{48A40DAE-582F-4A28-A94B-1D77E5391CC1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{48A40DAE-582F-4A28-A94B-1D77E5391CC1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7E2862E3-03E2-4791-A196-BF1D215F01B7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7E2862E3-03E2-4791-A196-BF1D215F01B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7E2862E3-03E2-4791-A196-BF1D215F01B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7E2862E3-03E2-4791-A196-BF1D215F01B7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D64F4FB4-DD07-4C7A-AB0C-C3D29ADD6EB2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D64F4FB4-DD07-4C7A-AB0C-C3D29ADD6EB2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D64F4FB4-DD07-4C7A-AB0C-C3D29ADD6EB2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D64F4FB4-DD07-4C7A-AB0C-C3D29ADD6EB2}.Release|Any CPU.Build.0 = Release|Any CPU
 		{3664B8FE-7304-4D86-A9F9-9902B6AE6D19}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{3664B8FE-7304-4D86-A9F9-9902B6AE6D19}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3664B8FE-7304-4D86-A9F9-9902B6AE6D19}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -55,14 +57,6 @@ Global
 		{D079D6FE-F050-474B-A6EF-80A48A437346}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D079D6FE-F050-474B-A6EF-80A48A437346}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D079D6FE-F050-474B-A6EF-80A48A437346}.Release|Any CPU.Build.0 = Release|Any CPU
-		{77A28822-6540-43F8-84E4-C6D752598D91}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{77A28822-6540-43F8-84E4-C6D752598D91}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{77A28822-6540-43F8-84E4-C6D752598D91}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{77A28822-6540-43F8-84E4-C6D752598D91}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D64F4FB4-DD07-4C7A-AB0C-C3D29ADD6EB2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D64F4FB4-DD07-4C7A-AB0C-C3D29ADD6EB2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D64F4FB4-DD07-4C7A-AB0C-C3D29ADD6EB2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D64F4FB4-DD07-4C7A-AB0C-C3D29ADD6EB2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

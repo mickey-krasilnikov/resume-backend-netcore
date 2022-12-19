@@ -1,4 +1,4 @@
-namespace ResumeApp.BusinessLogic.Tests.Services
+namespace ResumeApp.UnitTests.Services
 {
 	public class ResumeServiceTests
 	{
