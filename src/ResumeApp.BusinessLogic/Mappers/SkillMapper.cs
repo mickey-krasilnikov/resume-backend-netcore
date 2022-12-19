@@ -1,7 +1,9 @@
 ﻿using ResumeApp.DataAccess.Mongo.Entities;
 using ResumeApp.DataAccess.Sql.Entities;
 using ResumeApp.Poco;
+using System.Runtime.CompilerServices;
 
+[assembly: InternalsVisibleTo("ResumeApp.UnitTests")]
 namespace ResumeApp.BusinessLogic.Mappers
 {
 	internal static class SkillMapper
