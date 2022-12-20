@@ -14,6 +14,7 @@ namespace ResumeApp.BusinessLogic.Mappers
 
 			return new Education
 			{
+				Id = entity.Id,
 				Name = entity.Name,
 				Degree = entity.Degree,
 				FieldOfStudy = entity.FieldOfStudy,
@@ -28,8 +29,9 @@ namespace ResumeApp.BusinessLogic.Mappers
 			if (entity == null) return null;
 
 			return new Education
-			{
-				Name = entity.Name,
+            {
+                Id = entity.Id,
+                Name = entity.Name,
 				Degree = entity.Degree,
 				FieldOfStudy = entity.FieldOfStudy,
 				StartDate = entity.StartDate,
@@ -43,6 +45,7 @@ namespace ResumeApp.BusinessLogic.Mappers
 			if (dto == null) return null;
 			return new EducationMongoEntity
 			{
+				Id = dto.Id,
 				Name = dto.Name,
 				Degree = dto.Degree,
 				FieldOfStudy = dto.FieldOfStudy,
@@ -56,8 +59,9 @@ namespace ResumeApp.BusinessLogic.Mappers
 		{
 			if (dto == null) return null;
 			return new EducationSqlEntity
-			{
-				Name = dto.Name,
+            {
+                Id = dto.Id,
+                Name = dto.Name,
 				Degree = dto.Degree,
 				FieldOfStudy = dto.FieldOfStudy,
 				StartDate = dto.StartDate,

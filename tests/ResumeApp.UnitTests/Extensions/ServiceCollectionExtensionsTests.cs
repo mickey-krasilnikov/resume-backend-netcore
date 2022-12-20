@@ -6,7 +6,7 @@ using ResumeApp.DataAccess.Abstractions;
 using ResumeApp.DataAccess.Mongo.Entities;
 using ResumeApp.DataAccess.Sql.Entities;
 
-namespace ElipsLife.Party.UnitTests.Extensions
+namespace ResumeApp.UnitTests.Extensions
 {
 	public class ServiceCollectionExtensionsTests
 	{

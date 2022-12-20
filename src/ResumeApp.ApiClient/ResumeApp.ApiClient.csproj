@@ -7,22 +7,20 @@
   </PropertyGroup>
 
 	<ItemGroup>
-		<OpenApiReference Include="..\ResumeApp.WebApi\openapi.json">
-			<CodeGenerator>NSwagCSharp</CodeGenerator>
+		<OpenApiReference Include="..\ResumeApp.WebApi\openapi.json" CodeGenerator="NSwagCSharp" Namespace="ResumeApp.ApiClient">
 			<Link>OpenAPIs\openapi.json</Link>
-			<Namespace>ResumeApp.ApiClient</Namespace>
 			<ClassName>ResumeApiClient</ClassName>
 			<OutputPath>..\ResumeApiClient.g.cs</OutputPath>
 		</OpenApiReference>
 	</ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.Extensions.ApiDescription.Client" Version="3.0.0">
+    <PackageReference Include="Microsoft.Extensions.ApiDescription.Client" Version="7.0.1">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
-    <PackageReference Include="NSwag.ApiDescription.Client" Version="13.0.5">
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.2" />
+    <PackageReference Include="NSwag.ApiDescription.Client" Version="13.18.2">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
