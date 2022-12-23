@@ -19,7 +19,7 @@ namespace ResumeApp.BusinessLogic.Mappers
 				StartDate = entity.StartDate,
 				EndDate = entity.EndDate,
 				IsCurrentCompany = entity.IsCurrentCompany,
-				Projects = entity.Projects.Select(e => e.ToProjectDto())
+				Projects = entity.Projects?.Select(e => e.ToProjectDto())
 			};
 		}
 
@@ -34,7 +34,7 @@ namespace ResumeApp.BusinessLogic.Mappers
 				StartDate = entity.StartDate,
 				EndDate = entity.EndDate,
 				IsCurrentCompany = entity.IsCurrentCompany,
-				Projects = entity.Projects.Select(e => e.ToProjectDto())
+				Projects = entity.Projects?.Select(e => e.ToProjectDto())
 			};
 		}
 
@@ -64,7 +64,7 @@ namespace ResumeApp.BusinessLogic.Mappers
 				StartDate = dto.StartDate,
 				EndDate = dto.EndDate,
 				IsCurrentCompany = dto.IsCurrentCompany,
-				Projects = dto.Projects.Select(d => d.ToProjectSqlEntity())
+				Projects = dto.Projects?.Select(d => d.ToProjectSqlEntity())
 			};
 		}
 	}

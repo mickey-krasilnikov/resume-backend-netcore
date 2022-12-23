@@ -886,6 +886,9 @@ namespace ResumeApp.ApiClient
         [System.ComponentModel.DataAnnotations.Required]
         public DateOnly StartDate { get; set; } = new DateOnly();
 
+        [Newtonsoft.Json.JsonProperty("isCurrentCompany", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public bool IsCurrentCompany { get; set; }
+
         [Newtonsoft.Json.JsonProperty("endDate", Required = Newtonsoft.Json.Required.DisallowNull, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public DateOnly EndDate { get; set; }
 

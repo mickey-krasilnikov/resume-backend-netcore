@@ -17,10 +17,12 @@ namespace ResumeApp.BusinessLogic.Mappers
 
 		internal static ShortResume ToShortResumeDto(this ResumeMongoEntity entity)
 		{
-			if (entity == null) return null!;
+			if (entity == null) return null;
 
 			var yearsOfExperience = entity.Experience
-				.Select(e => (e.IsCurrentCompany ? DateOnly.FromDateTime(DateTime.Now) : e.EndDate.Value).DayNumber - e.StartDate.DayNumber)
+				.Select(e => (e.IsCurrentCompany && e.EndDate.HasValue 
+					? DateOnly.FromDateTime(DateTime.Now) 
+					: e.EndDate.Value).DayNumber - e.StartDate.DayNumber)
 				.Aggregate((t1, t2) => t1 + t2) / 365.0;
 
 			return new ShortResume
@@ -36,11 +38,13 @@ namespace ResumeApp.BusinessLogic.Mappers
 
 		internal static ShortResume ToShortResumeDto(this ResumeSqlEntity entity)
 		{
-			if (entity == null) return null!;
+			if (entity == null) return null;
 
 			var yearsOfExperience = entity.Experience.Any()
 				? entity.Experience
-					.Select(e => (e.IsCurrentCompany ? DateOnly.FromDateTime(DateTime.Now) : e.EndDate.Value).DayNumber - e.StartDate.DayNumber)
+					.Select(e => (e.IsCurrentCompany && e.EndDate.HasValue 
+						? DateOnly.FromDateTime(DateTime.Now) 
+						: e.EndDate.Value).DayNumber - e.StartDate.DayNumber)
 					.Aggregate((t1, t2) => t1 + t2) / 365.0
 				: 0;
 
@@ -64,7 +68,7 @@ namespace ResumeApp.BusinessLogic.Mappers
 
 		internal static FullResume ToFullResumeDto(this ResumeMongoEntity entity)
 		{
-			if (entity == null) return null!;
+			if (entity == null) return null;
 
 			return new FullResume
 			{
@@ -83,7 +87,7 @@ namespace ResumeApp.BusinessLogic.Mappers
 
 		internal static FullResume ToFullResumeDto(this ResumeSqlEntity entity)
 		{
-			if (entity == null) return null!;
+			if (entity == null) return null;
 
 			return new FullResume
 			{

@@ -10,7 +10,7 @@ namespace ResumeApp.BusinessLogic.Mappers
 	{
 		internal static Skill ToSkillDto(this SkillMongoEntity entity)
 		{
-			if (entity == null) return null!;
+			if (entity == null) return null;
 
 			return new Skill
 			{
@@ -23,7 +23,7 @@ namespace ResumeApp.BusinessLogic.Mappers
 
 		internal static Skill ToSkillDto(this SkillSqlEntity entity)
 		{
-			if (entity == null) return null!;
+			if (entity == null) return null;
 
 			return new Skill
 			{
