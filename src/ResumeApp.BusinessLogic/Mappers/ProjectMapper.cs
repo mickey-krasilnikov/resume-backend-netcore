@@ -1,6 +1,7 @@
 ﻿using ResumeApp.DataAccess.Mongo.Entities;
 using ResumeApp.DataAccess.Sql.Entities;
 using ResumeApp.Poco;
+using SharpCompress.Common;
 using System.Runtime.CompilerServices;
 
 [assembly: InternalsVisibleTo("ResumeApp.UnitTests")]
@@ -14,6 +15,7 @@ namespace ResumeApp.BusinessLogic.Mappers
 
 			return new Project
 			{
+				Id = entity.Id,
 				Client = entity.Client,
 				StartDate = entity.StartDate,
 				EndDate = entity.EndDate,
@@ -29,6 +31,7 @@ namespace ResumeApp.BusinessLogic.Mappers
 
 			return new Project
 			{
+				Id = entity.Id,
 				Client = entity.Client,
 				StartDate = entity.StartDate,
 				EndDate = entity.EndDate,
@@ -43,6 +46,7 @@ namespace ResumeApp.BusinessLogic.Mappers
 			if (dto == null) return null;
 			return new ProjectMongoEntity
 			{
+				Id = dto.Id,
 				Client = dto.Client,
 				StartDate = dto.StartDate,
 				EndDate = dto.EndDate,
@@ -57,6 +61,7 @@ namespace ResumeApp.BusinessLogic.Mappers
 			if (dto == null) return null;
 			return new ProjectSqlEntity
 			{
+				Id = dto.Id,
 				Client = dto.Client,
 				StartDate = dto.StartDate,
 				EndDate = dto.EndDate,

@@ -15,8 +15,10 @@ namespace ResumeApp.Poco
 		[Required]
 		public DateOnly StartDate { get; set; }
 
+		public bool IsCurrentCompany { get; set; }
+
 		public DateOnly? EndDate { get; set; }
 
-		public IReadOnlyList<Project> Projects { get; set; }
+		public IEnumerable<Project> Projects { get; set; }
 	}
 }

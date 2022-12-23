@@ -13,10 +13,13 @@ namespace ResumeApp.BusinessLogic.Mappers
 			if (entity == null) return null;
 			return new Experience
 			{
+				Id = entity.Id,
 				Title = entity.Title,
 				Company = entity.Company,
 				StartDate = entity.StartDate,
-				EndDate = entity.EndDate
+				EndDate = entity.EndDate,
+				IsCurrentCompany = entity.IsCurrentCompany,
+				Projects = entity.Projects.Select(e => e.ToProjectDto())
 			};
 		}
 
@@ -25,10 +28,13 @@ namespace ResumeApp.BusinessLogic.Mappers
 			if (entity == null) return null;
 			return new Experience
 			{
+				Id = entity.Id,
 				Title = entity.Title,
 				Company = entity.Company,
 				StartDate = entity.StartDate,
-				EndDate = entity.EndDate
+				EndDate = entity.EndDate,
+				IsCurrentCompany = entity.IsCurrentCompany,
+				Projects = entity.Projects.Select(e => e.ToProjectDto())
 			};
 		}
 
@@ -37,10 +43,12 @@ namespace ResumeApp.BusinessLogic.Mappers
 			if (dto == null) return null;
 			return new ExperienceMongoEntity
 			{
+				Id = dto.Id,
 				Title = dto.Title,
 				Company = dto.Company,
 				StartDate = dto.StartDate,
 				EndDate = dto.EndDate,
+				IsCurrentCompany = dto.IsCurrentCompany,
 				Projects = dto.Projects?.Select(d => d.ToProjectMongoEntity())
 			};
 		}
@@ -50,10 +58,12 @@ namespace ResumeApp.BusinessLogic.Mappers
 			if (dto == null) return null;
 			return new ExperienceSqlEntity
 			{
+				Id = dto.Id,
 				Title = dto.Title,
 				Company = dto.Company,
 				StartDate = dto.StartDate,
 				EndDate = dto.EndDate,
+				IsCurrentCompany = dto.IsCurrentCompany,
 				Projects = dto.Projects.Select(d => d.ToProjectSqlEntity())
 			};
 		}
