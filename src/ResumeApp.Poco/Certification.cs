@@ -2,7 +2,7 @@
 
 namespace ResumeApp.Poco
 {
-	public class Certification
+    public class Certification : IHasId
 	{
 		public Guid Id { get; set; }
 
@@ -12,11 +12,11 @@ namespace ResumeApp.Poco
 		[Required]
 		public string Issuer { get; set; }
 
+		public Uri VerificationUrl { get; set; }
+
 		[Required]
 		public DateOnly IssueDate { get; set; }
 
 		public DateOnly? ExpirationDate { get; set; }
-
-		public Uri VerificationUrl { get; set; }
 	}
 }

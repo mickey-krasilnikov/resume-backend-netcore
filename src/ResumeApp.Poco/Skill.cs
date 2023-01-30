@@ -2,8 +2,8 @@
 
 namespace ResumeApp.Poco
 {
-	public class Skill
-	{
+	public class Skill : IHasId
+    {
 		public Guid Id { get; set; }
 
 		[Required]

@@ -13,27 +13,33 @@ using ResumeApp.Poco;
 
 namespace ResumeApp.BusinessLogic.Extensions
 {
-	public static class ServiceCollectionExtensions
-	{
-		public static IServiceCollection AddResumeServices(this IServiceCollection services, IConfiguration configuration)
-		{
-			var dbOptions = configuration.GetSection(DbConnectionOptions.SectionName).Get<DbConnectionOptions>();
-			switch (dbOptions.UseDbType)
-			{
-				case SupportedDbType.Mongo:
-					services.AddScoped<IResumeService, ResumeService<ResumeMongoEntity>>();
-					services.AddMongoResumeDb();
-					break;
+    public static class ServiceCollectionExtensions
+    {
+        public static IServiceCollection AddResumeServices(this IServiceCollection services, IConfiguration configuration)
+        {
+            var dbOptions = configuration.GetSection(DbConnectionOptions.SectionName).Get<DbConnectionOptions>();
+            switch (dbOptions.UseDbType)
+            {
+                case SupportedDbType.Mongo:
+                    services.AddScoped<ICrudService<Certification>, CertificationService<CertificationMongoEntity>>();
+                    services.AddScoped<ICrudService<Education>, EducationService<EducationMongoEntity>>();
+                    services.AddScoped<ICrudService<Experience>, ExperienceService<ExperienceMongoEntity>>();
+                    services.AddScoped<ICrudService<Skill>, SkillsService<SkillMongoEntity>>();
+                    services.AddMongoResumeDb();
+                    break;
 
-				case SupportedDbType.Sql:
-					services.AddScoped<IResumeService, ResumeService<ResumeSqlEntity>>();
-					services.AddSqlResumeDb(configuration, dbOptions.SqlMaxRetries);
-					break;
-			}
+                case SupportedDbType.Sql:
+                    services.AddScoped<ICrudService<Certification>, CertificationService<CertificationSqlEntity>>();
+                    services.AddScoped<ICrudService<Education>, EducationService<EducationSqlEntity>>();
+                    services.AddScoped<ICrudService<Experience>, ExperienceService<ExperienceSqlEntity>>();
+                    services.AddScoped<ICrudService<Skill>, SkillsService<SkillSqlEntity>>();
+                    services.AddSqlResumeDb(configuration, dbOptions.SqlMaxRetries);
+                    break;
+            }
 
-			services.AddScoped<IValidator<FullResume>, ResumeValidator>();
+            services.AddScoped<IValidator<Certification>, CertificationValidator>();
 
-			return services;
-		}
-	}
+            return services;
+        }
+    }
 }

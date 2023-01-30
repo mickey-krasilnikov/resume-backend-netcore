@@ -3,12 +3,27 @@ using ResumeApp.DataAccess.Sql.Entities;
 using ResumeApp.Poco;
 using System.Runtime.CompilerServices;
 
-[assembly: InternalsVisibleTo("ResumeApp.UnitTests")]
+[assembly: InternalsVisibleTo("CertificationApp.UnitTests")]
 namespace ResumeApp.BusinessLogic.Mappers
 {
 	internal static class CertificationMapper
-	{
-		internal static Certification ToCertificationDto(this CertificationSqlEntity entity)
+    {
+        internal static Certification ToDto<TCertificationEntity>(this TCertificationEntity entity)
+        {
+            if (typeof(TCertificationEntity) == typeof(CertificationMongoEntity)) return (entity as CertificationMongoEntity).ToCertificationDto();
+            else if (typeof(TCertificationEntity) == typeof(CertificationSqlEntity)) return (entity as CertificationSqlEntity).ToCertificationDto();
+            else throw new NotSupportedException($"Type '{typeof(TCertificationEntity)}' is not supported by Certification mapper");
+        }
+
+        internal static TCertificationEntity ToEntity<TCertificationEntity>(this Certification dto)
+        {
+            if (typeof(TCertificationEntity) == typeof(CertificationMongoEntity)) return (TCertificationEntity)Convert.ChangeType(dto.ToCertificationMongoEntity(), typeof(TCertificationEntity));
+            else if (typeof(TCertificationEntity) == typeof(CertificationSqlEntity)) return (TCertificationEntity)Convert.ChangeType(dto.ToCertificationSqlEntity(), typeof(TCertificationEntity));
+            else throw new NotSupportedException($"Type '{typeof(TCertificationEntity)}' is not supported by Certification mapper");
+        }
+
+
+        internal static Certification ToDto(this CertificationSqlEntity entity)
 		{
 			if (entity == null) return null;
 			return new Certification
@@ -22,7 +37,7 @@ namespace ResumeApp.BusinessLogic.Mappers
 			};
 		}
 
-		internal static Certification ToCertificationDto(this CertificationMongoEntity entity)
+		internal static Certification ToDto(this CertificationMongoEntity entity)
 		{
 			if (entity == null) return null;
 			return new Certification
@@ -36,7 +51,8 @@ namespace ResumeApp.BusinessLogic.Mappers
 			};
 		}
 
-		internal static CertificationMongoEntity ToCertificationMongoEntity(this Certification dto)
+
+        internal static CertificationMongoEntity ToMongoEntity(this Certification dto)
 		{
 			if (dto == null) return null;
 			return new CertificationMongoEntity
@@ -50,7 +66,7 @@ namespace ResumeApp.BusinessLogic.Mappers
 			};
 		}
 
-		internal static CertificationSqlEntity ToCertificationSqlEntity(this Certification dto)
+		internal static CertificationSqlEntity ToSqlEntity(this Certification dto)
 		{
 			if (dto == null) return null;
 			return new CertificationSqlEntity

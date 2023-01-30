@@ -20,9 +20,10 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\ResumeApp.BusinessLogic\ResumeApp.BusinessLogic.csproj" />
-		<ProjectReference Include="..\ResumeApp.DataAccess.Sql\ResumeApp.DataAccess.Sql.csproj" />
 		<ProjectReference Include="..\ResumeApp.Poco\ResumeApp.Poco.csproj" />
+		<ProjectReference Include="..\ResumeApp.BusinessLogic\ResumeApp.BusinessLogic.csproj">
+		  <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
+		</ProjectReference>
 	</ItemGroup>
 	
 	<Target Name="PostBuild" AfterTargets="PostBuildEvent">

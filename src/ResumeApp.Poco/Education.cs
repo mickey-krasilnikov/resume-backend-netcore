@@ -2,8 +2,8 @@
 
 namespace ResumeApp.Poco
 {
-	public class Education
-	{
+	public class Education : IHasId
+    {
 		public Guid Id { get; set; }
 
 		[Required]
@@ -14,11 +14,11 @@ namespace ResumeApp.Poco
 
 		public string FieldOfStudy { get; set; }
 
+		public Uri Url { get; set; }
+
 		[Required]
 		public DateOnly StartDate { get; set; }
 
 		public DateOnly? EndDate { get; set; }
-
-		public Uri Url { get; set; }
 	}
 }

@@ -8,7 +8,22 @@ namespace ResumeApp.BusinessLogic.Mappers
 {
 	internal static class ExperienceMapper
 	{
-		internal static Experience ToExperienceDto(this ExperienceSqlEntity entity)
+        internal static Experience ToDto<TExperienceEntity>(this TExperienceEntity entity)
+        {
+            if (typeof(TExperienceEntity) == typeof(ExperienceMongoEntity)) return (entity as ExperienceMongoEntity).ToExperienceDto();
+            else if (typeof(TExperienceEntity) == typeof(ExperienceSqlEntity)) return (entity as ExperienceSqlEntity).ToExperienceDto();
+            else throw new NotSupportedException($"Type '{typeof(TExperienceEntity)}' is not supported by Experience mapper");
+        }
+
+        internal static TExperienceEntity ToEntity<TExperienceEntity>(this Experience dto)
+        {
+            if (typeof(TExperienceEntity) == typeof(ExperienceMongoEntity)) return (TExperienceEntity)Convert.ChangeType(dto.ToExperienceMongoEntity(), typeof(TExperienceEntity));
+            else if (typeof(TExperienceEntity) == typeof(ExperienceSqlEntity)) return (TExperienceEntity)Convert.ChangeType(dto.ToExperienceSqlEntity(), typeof(TExperienceEntity));
+            else throw new NotSupportedException($"Type '{typeof(TExperienceEntity)}' is not supported by Experience mapper");
+        }
+
+
+        internal static Experience ToDto(this ExperienceSqlEntity entity)
 		{
 			if (entity == null) return null;
 			return new Experience
@@ -23,7 +38,7 @@ namespace ResumeApp.BusinessLogic.Mappers
 			};
 		}
 
-		internal static Experience ToExperienceDto(this ExperienceMongoEntity entity)
+		internal static Experience ToDto(this ExperienceMongoEntity entity)
 		{
 			if (entity == null) return null;
 			return new Experience
@@ -38,7 +53,8 @@ namespace ResumeApp.BusinessLogic.Mappers
 			};
 		}
 
-		internal static ExperienceMongoEntity ToExperienceMongoEntity(this Experience dto)
+
+		internal static ExperienceMongoEntity ToMongoEntity(this Experience dto)
 		{
 			if (dto == null) return null;
 			return new ExperienceMongoEntity
@@ -53,7 +69,7 @@ namespace ResumeApp.BusinessLogic.Mappers
 			};
 		}
 
-		internal static ExperienceSqlEntity ToExperienceSqlEntity(this Experience dto)
+		internal static ExperienceSqlEntity ToSqlEntity(this Experience dto)
 		{
 			if (dto == null) return null;
 			return new ExperienceSqlEntity

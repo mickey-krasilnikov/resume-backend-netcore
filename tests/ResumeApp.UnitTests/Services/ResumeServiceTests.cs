@@ -12,110 +12,110 @@ using System.Reflection;
 
 namespace ResumeApp.UnitTests.Services
 {
-	public class ResumeServiceTests
-	{
-		#region HappyPath
+    public class ResumeServiceTests
+    {
+        #region HappyPath
 
-		public static IEnumerable<object[]> EntityTypes => new List<object[]>
-		{
-			new object[] { new ResumeMongoEntity() },
-			new object[] { new ResumeSqlEntity() }
-		};
+        public static IEnumerable<object[]> EntityTypes => new List<object[]>
+        {
+            new object[] { new ResumeMongoEntity() },
+            new object[] { new ResumeSqlEntity() }
+        };
 
-		[Theory]
-		[MemberData(nameof(EntityTypes))]
-		[SuppressMessage("Usage", "xUnit1026:Theory methods should use all of their parameters", Justification = "Resolving Generic Type with MemberData")]
-		public async Task GetAllResumes_HappyPath<TEntity>(TEntity _)
-		{
-			//Arrange
-			var repoMock = new Mock<IRepository<TEntity>>();
-			repoMock
-				.Setup(r => r.ProjectAsync(It.IsAny<Expression<Func<TEntity, ShortResume>>>()))
-				.ReturnsAsync(new List<ShortResume> { new ShortResume() });
+        [Theory]
+        [MemberData(nameof(EntityTypes))]
+        [SuppressMessage("Usage", "xUnit1026:Theory methods should use all of their parameters", Justification = "Resolving Generic Type with MemberData")]
+        public async Task GetAllResumes_HappyPath<TEntity>(TEntity _)
+        {
+            //Arrange
+            var repoMock = new Mock<IRepository<TEntity>>();
+            repoMock
+                .Setup(r => r.ProjectAsync(It.IsAny<Expression<Func<TEntity, ShortResume>>>()))
+                .ReturnsAsync(new List<ShortResume> { new ShortResume() });
 
-			var validatorMock = new Mock<IValidator<FullResume>>();
-			IResumeService resumeService = new ResumeService<TEntity>(repoMock.Object, validatorMock.Object);
+            var validatorMock = new Mock<IValidator<FullResume>>();
+            IResumeService resumeService = new ResumeService<TEntity>(repoMock.Object, validatorMock.Object);
 
-			//Act
-			var resumes = await resumeService.GetAllResumesAsync();
+            //Act
+            var resumes = await resumeService.GetAllResumesAsync();
 
-			//Assert
-			Assert.NotNull(resumes);
-			Assert.NotEmpty(resumes);
-			repoMock.Verify(m => m.ProjectAsync(It.IsAny<Expression<Func<TEntity, ShortResume>>>()), Times.Once);
-		}
-
-
-		[Fact]
-		public void CheckIfItemExists_HappyPath()
-		{
-			//Arrange
+            //Assert
+            Assert.NotNull(resumes);
+            Assert.NotEmpty(resumes);
+            repoMock.Verify(m => m.ProjectAsync(It.IsAny<Expression<Func<TEntity, ShortResume>>>()), Times.Once);
+        }
 
 
-			//Act
+        [Fact]
+        public void CheckIfItemExists_HappyPath()
+        {
+            //Arrange
 
 
-			//Assert
+            //Act
 
 
-		}
-
-		[Fact]
-		public void GetResumeById_HappyPath()
-		{
-			//Arrange
+            //Assert
 
 
-			//Act
+        }
+
+        [Fact]
+        public void GetResumeById_HappyPath()
+        {
+            //Arrange
 
 
-			//Assert
+            //Act
 
 
-		}
-
-		[Fact]
-		public void DeleteResumes_HappyPath()
-		{
-			//Arrange
+            //Assert
 
 
-			//Act
+        }
+
+        [Fact]
+        public void DeleteResumes_HappyPath()
+        {
+            //Arrange
 
 
-			//Assert
+            //Act
 
 
-		}
-
-		[Fact]
-		public void CreateResumes_HappyPath()
-		{
-			//Arrange
+            //Assert
 
 
-			//Act
+        }
+
+        [Fact]
+        public void CreateResumes_HappyPath()
+        {
+            //Arrange
 
 
-			//Assert
+            //Act
 
 
-		}
-
-		[Fact]
-		public void UpdateResumes_HappyPath()
-		{
-			//Arrange
+            //Assert
 
 
-			//Act
+        }
+
+        [Fact]
+        public void UpdateResumes_HappyPath()
+        {
+            //Arrange
 
 
-			//Assert
+            //Act
 
 
-		}
+            //Assert
 
-		#endregion HappyPath
-	}
+
+        }
+
+        #endregion HappyPath
+    }
 }
