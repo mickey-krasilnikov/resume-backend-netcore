@@ -4,7 +4,7 @@ VisualStudioVersion = 17.2.32630.192
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ResumeApp.WebApi", "src\ResumeApp.WebApi\ResumeApp.WebApi.csproj", "{4F5D80DD-4B5E-4421-97C8-156E9512AAEE}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ResumeApp.Poco", "src\ResumeApp.Poco\ResumeApp.Poco.csproj", "{48A40DAE-582F-4A28-A94B-1D77E5391CC1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ResumeApp.Models", "src\ResumeApp.Models\ResumeApp.Models.csproj", "{48A40DAE-582F-4A28-A94B-1D77E5391CC1}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ResumeApp.BusinessLogic", "src\ResumeApp.BusinessLogic\ResumeApp.BusinessLogic.csproj", "{7E2862E3-03E2-4791-A196-BF1D215F01B7}"
 EndProject
@@ -23,9 +23,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		.editorconfig = .editorconfig
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ResumeApp.ApiClient", "src\ResumeApp.ApiClient\ResumeApp.ApiClient.csproj", "{548651A7-3A07-40BE-8D9B-2487BE63A448}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ResumeApp.ApiClient", "src\ResumeApp.ApiClient\ResumeApp.ApiClient.csproj", "{548651A7-3A07-40BE-8D9B-2487BE63A448}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ResumeApp.ContractTests", "tests\ResumeApp.ContractTests\ResumeApp.ContractTests.csproj", "{A8FA4139-E9DC-43A3-A093-514C666F1502}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ResumeApp.ContractTests", "tests\ResumeApp.ContractTests\ResumeApp.ContractTests.csproj", "{A8FA4139-E9DC-43A3-A093-514C666F1502}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

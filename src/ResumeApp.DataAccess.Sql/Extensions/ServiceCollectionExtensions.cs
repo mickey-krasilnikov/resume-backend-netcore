@@ -13,8 +13,12 @@ namespace ResumeApp.DataAccess.Sql.Extensions
 		public static IServiceCollection AddSqlResumeDb(this IServiceCollection services, IConfiguration configuration, int maxReties)
 		{
 			var connectionString = configuration.GetConnectionString("Sql");
-			services.AddDbContext<SqlDbContext>(options => options.UseSqlServer(connectionString, o => o.EnableRetryOnFailure(maxReties)));
-			services.AddScoped<IRepository<ResumeSqlEntity>, SqlResumeRepository>();
+			services.AddDbContext<ISqlDbContext, SqlDbContext>(options => options.UseSqlServer(connectionString, o => o.EnableRetryOnFailure(maxReties)));
+			services.AddScoped<IRepository<CertificationSqlEntity>, CertificationSqlRepository>();
+			services.AddScoped<IRepository<ContactSqlEntity>, ContactsSqlRepository>();
+			services.AddScoped<IRepository<EducationSqlEntity>, EducationSqlRepository>();
+			services.AddScoped<IRepository<ExperienceSqlEntity>, ExperienceSqlRepository>();
+			services.AddScoped<IRepository<SkillSqlEntity>, SkillsSqlRepository>();
 			return services;
 		}
 	}

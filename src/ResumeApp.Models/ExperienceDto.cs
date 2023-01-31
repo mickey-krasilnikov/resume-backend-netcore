@@ -1,17 +1,9 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
-namespace ResumeApp.DataAccess.Sql.Entities
+namespace ResumeApp.Models
 {
-	public class ExperienceSqlEntity
+	public class ExperienceDto : IHasId
 	{
-		public ExperienceSqlEntity()
-		{
-			Skills = new HashSet<SkillSqlEntity>();
-		}
-
-		[Key]
-		[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
 		public Guid Id { get; set; }
 
 		[Required]
@@ -22,14 +14,13 @@ namespace ResumeApp.DataAccess.Sql.Entities
 
 		public string Location { get; set; }
 
+		public SkillDto[] Environment { get; set; }
+
 		public string[] TaskPerformed { get; set; }
 
 		[Required]
 		public DateOnly StartDate { get; set; }
 
 		public DateOnly? EndDate { get; set; }
-
-
-		public virtual ICollection<SkillSqlEntity> Skills { get; set; }
 	}
 }

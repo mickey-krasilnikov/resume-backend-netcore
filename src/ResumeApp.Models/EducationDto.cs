@@ -1,9 +1,9 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace ResumeApp.Poco
+namespace ResumeApp.Models
 {
-	public class Education : IHasId
-    {
+	public class EducationDto : IHasId
+	{
 		public Guid Id { get; set; }
 
 		[Required]

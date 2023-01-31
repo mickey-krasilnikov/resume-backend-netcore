@@ -11,6 +11,10 @@
 	<PropertyGroup Condition=" '$(RunConfiguration)' == 'Resume.WebApi' " />
 
 	<ItemGroup>
+	  <None Remove="Controllers\0fxd2dh5.lmo~" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning" Version="5.0.0" />
 		<PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.1">
 			<PrivateAssets>all</PrivateAssets>
@@ -20,10 +24,10 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\ResumeApp.Poco\ResumeApp.Poco.csproj" />
 		<ProjectReference Include="..\ResumeApp.BusinessLogic\ResumeApp.BusinessLogic.csproj">
 		  <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
 		</ProjectReference>
+		<ProjectReference Include="..\ResumeApp.Models\ResumeApp.Models.csproj" />
 	</ItemGroup>
 	
 	<Target Name="PostBuild" AfterTargets="PostBuildEvent">

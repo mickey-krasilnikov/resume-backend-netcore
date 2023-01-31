@@ -1,10 +1,9 @@
 ﻿using FluentValidation;
-using ResumeApp.BusinessLogic.Constants;
-using ResumeApp.Poco;
+using ResumeApp.Models;
 
 namespace ResumeApp.BusinessLogic.Validations
 {
-	public class CertificationValidator : AbstractValidator<Certification>
+	public class CertificationValidator : AbstractValidator<CertificationDto>
 	{
 		public CertificationValidator()
 		{

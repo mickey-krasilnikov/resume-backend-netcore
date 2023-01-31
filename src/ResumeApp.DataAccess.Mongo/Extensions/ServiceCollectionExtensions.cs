@@ -10,9 +10,12 @@ namespace ResumeApp.DataAccess.Mongo.Extensions
 	{
 		public static IServiceCollection AddMongoResumeDb(this IServiceCollection services)
 		{
-			//services.AddScoped<IMongoDbContext<ResumeMongoEntity>, MongoDbContext<ResumeMongoEntity>>();
 			services.AddScoped(typeof(IMongoDbContext<>), typeof(MongoDbContext<>));
-			services.AddScoped<IRepository<ResumeMongoEntity>, MongoResumeRepository>();
+			services.AddScoped<IRepository<CertificationMongoEntity>, CertificationMongoRepository>();
+			services.AddScoped<IRepository<ContactMongoEntity>, ContactsMongoRepository>();
+			services.AddScoped<IRepository<EducationMongoEntity>, EducationMongoRepository>();
+			services.AddScoped<IRepository<ExperienceMongoEntity>, ExperienceMongoRepository>();
+			services.AddScoped<IRepository<SkillMongoEntity>, SkillsMongoRepository>();
 			return services;
 		}
 	}

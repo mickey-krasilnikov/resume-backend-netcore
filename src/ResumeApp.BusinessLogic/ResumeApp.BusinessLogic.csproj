@@ -10,7 +10,7 @@
 	<ItemGroup>
 		<ProjectReference Include="..\ResumeApp.DataAccess.Mongo\ResumeApp.DataAccess.Mongo.csproj" />
 		<ProjectReference Include="..\ResumeApp.DataAccess.Sql\ResumeApp.DataAccess.Sql.csproj" />
-		<ProjectReference Include="..\ResumeApp.Poco\ResumeApp.Poco.csproj" />
+		<ProjectReference Include="..\ResumeApp.Models\ResumeApp.Models.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>

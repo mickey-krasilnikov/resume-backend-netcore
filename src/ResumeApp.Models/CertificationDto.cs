@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace ResumeApp.Poco
+namespace ResumeApp.Models
 {
-    public class Certification : IHasId
+	public class CertificationDto : IHasId
 	{
 		public Guid Id { get; set; }
 

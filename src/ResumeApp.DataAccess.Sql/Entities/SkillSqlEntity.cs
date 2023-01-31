@@ -5,6 +5,11 @@ namespace ResumeApp.DataAccess.Sql.Entities
 {
 	public class SkillSqlEntity
 	{
+		public SkillSqlEntity()
+		{
+			Experiences = new HashSet<ExperienceSqlEntity>();
+		}
+
 		[Key]
 		[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
 		public Guid Id { get; set; }
@@ -16,8 +21,6 @@ namespace ResumeApp.DataAccess.Sql.Entities
 		public string SkillGroup { get; set; }
 
 
-		public Guid ResumeId { get; internal set; }
-
-		public ResumeSqlEntity Resume { get; set; }
+		public virtual ICollection<ExperienceSqlEntity> Experiences { get; set; }
 	}
 }

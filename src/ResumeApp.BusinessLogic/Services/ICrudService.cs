@@ -1,6 +1,4 @@
-﻿using ResumeApp.Poco;
-
-namespace ResumeApp.BusinessLogic.Services
+﻿namespace ResumeApp.BusinessLogic.Services
 {
 	public interface ICrudService<TItem>
     {

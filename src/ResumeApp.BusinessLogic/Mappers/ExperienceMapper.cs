@@ -1,6 +1,6 @@
 ﻿using ResumeApp.DataAccess.Mongo.Entities;
 using ResumeApp.DataAccess.Sql.Entities;
-using ResumeApp.Poco;
+using ResumeApp.Models;
 using System.Runtime.CompilerServices;
 
 [assembly: InternalsVisibleTo("ResumeApp.UnitTests")]
@@ -8,53 +8,33 @@ namespace ResumeApp.BusinessLogic.Mappers
 {
 	internal static class ExperienceMapper
 	{
-        internal static Experience ToDto<TExperienceEntity>(this TExperienceEntity entity)
-        {
-            if (typeof(TExperienceEntity) == typeof(ExperienceMongoEntity)) return (entity as ExperienceMongoEntity).ToExperienceDto();
-            else if (typeof(TExperienceEntity) == typeof(ExperienceSqlEntity)) return (entity as ExperienceSqlEntity).ToExperienceDto();
-            else throw new NotSupportedException($"Type '{typeof(TExperienceEntity)}' is not supported by Experience mapper");
-        }
-
-        internal static TExperienceEntity ToEntity<TExperienceEntity>(this Experience dto)
-        {
-            if (typeof(TExperienceEntity) == typeof(ExperienceMongoEntity)) return (TExperienceEntity)Convert.ChangeType(dto.ToExperienceMongoEntity(), typeof(TExperienceEntity));
-            else if (typeof(TExperienceEntity) == typeof(ExperienceSqlEntity)) return (TExperienceEntity)Convert.ChangeType(dto.ToExperienceSqlEntity(), typeof(TExperienceEntity));
-            else throw new NotSupportedException($"Type '{typeof(TExperienceEntity)}' is not supported by Experience mapper");
-        }
-
-
-        internal static Experience ToDto(this ExperienceSqlEntity entity)
+        internal static ExperienceDto ToDto(this ExperienceSqlEntity entity)
 		{
 			if (entity == null) return null;
-			return new Experience
+			return new ExperienceDto
 			{
 				Id = entity.Id,
 				Title = entity.Title,
 				Company = entity.Company,
 				StartDate = entity.StartDate,
-				EndDate = entity.EndDate,
-				IsCurrentCompany = entity.IsCurrentCompany,
-				Projects = entity.Projects?.Select(e => e.ToProjectDto())
+				EndDate = entity.EndDate
 			};
 		}
 
-		internal static Experience ToDto(this ExperienceMongoEntity entity)
+		internal static ExperienceDto ToDto(this ExperienceMongoEntity entity)
 		{
 			if (entity == null) return null;
-			return new Experience
+			return new ExperienceDto
 			{
 				Id = entity.Id,
 				Title = entity.Title,
 				Company = entity.Company,
 				StartDate = entity.StartDate,
-				EndDate = entity.EndDate,
-				IsCurrentCompany = entity.IsCurrentCompany,
-				Projects = entity.Projects?.Select(e => e.ToProjectDto())
+				EndDate = entity.EndDate
 			};
 		}
 
-
-		internal static ExperienceMongoEntity ToMongoEntity(this Experience dto)
+		internal static ExperienceMongoEntity ToMongoEntity(this ExperienceDto dto)
 		{
 			if (dto == null) return null;
 			return new ExperienceMongoEntity
@@ -63,13 +43,11 @@ namespace ResumeApp.BusinessLogic.Mappers
 				Title = dto.Title,
 				Company = dto.Company,
 				StartDate = dto.StartDate,
-				EndDate = dto.EndDate,
-				IsCurrentCompany = dto.IsCurrentCompany,
-				Projects = dto.Projects?.Select(d => d.ToProjectMongoEntity())
+				EndDate = dto.EndDate
 			};
 		}
 
-		internal static ExperienceSqlEntity ToSqlEntity(this Experience dto)
+		internal static ExperienceSqlEntity ToSqlEntity(this ExperienceDto dto)
 		{
 			if (dto == null) return null;
 			return new ExperienceSqlEntity
@@ -78,9 +56,7 @@ namespace ResumeApp.BusinessLogic.Mappers
 				Title = dto.Title,
 				Company = dto.Company,
 				StartDate = dto.StartDate,
-				EndDate = dto.EndDate,
-				IsCurrentCompany = dto.IsCurrentCompany,
-				Projects = dto.Projects?.Select(d => d.ToProjectSqlEntity())
+				EndDate = dto.EndDate
 			};
 		}
 	}

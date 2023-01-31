@@ -9,19 +9,17 @@ namespace ResumeApp.DataAccess.Sql.Entities
 		[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
 		public Guid Id { get; set; }
 
+		[Required]
 		public string Name { get; set; }
 
+		[Required]
 		public string Issuer { get; set; }
-
-		public DateOnly IssueDate { get; set; }
-
-		public DateOnly? ExpirationDate { get; set; }
 
 		public Uri VerificationUrl { get; set; }
 
+		[Required]
+		public DateOnly IssueDate { get; set; }
 
-		public Guid ResumeId { get; internal set; }
-
-		public ResumeSqlEntity Resume { get; set; }
+		public DateOnly? ExpirationDate { get; set; }
 	}
 }

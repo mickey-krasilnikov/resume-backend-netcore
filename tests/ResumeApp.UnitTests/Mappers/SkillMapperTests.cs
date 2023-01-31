@@ -1,7 +1,7 @@
 ﻿using ResumeApp.BusinessLogic.Mappers;
 using ResumeApp.DataAccess.Mongo.Entities;
 using ResumeApp.DataAccess.Sql.Entities;
-using ResumeApp.Poco;
+using ResumeApp.Models;
 
 namespace ResumeApp.UnitTests.Mappers
 {
@@ -28,7 +28,7 @@ namespace ResumeApp.UnitTests.Mappers
 			};
 
 			//Act
-			var result = entity.ToSkillDto();
+			var result = entity.ToDto();
 
 			//Assert
 			Assert.NotNull(result);
@@ -52,7 +52,7 @@ namespace ResumeApp.UnitTests.Mappers
 			};
 
 			//Act
-			var result = entity.ToSkillDto();
+			var result = entity.ToDto();
 
 			//Assert
 			Assert.NotNull(result);
@@ -67,7 +67,7 @@ namespace ResumeApp.UnitTests.Mappers
 		public void SkillDtoToMongoEntity(Guid id, string name, string additionalInfo, string skillGroup)
 		{
 			//Arrange
-			var dto = new Skill
+			var dto = new SkillDto
 			{
 				Id = id,
 				Name = name,
@@ -76,7 +76,7 @@ namespace ResumeApp.UnitTests.Mappers
 			};
 
 			//Act
-			var result = dto.ToSkillMongoEntity();
+			var result = dto.ToMongoEntity();
 
 			//Assert
 			Assert.NotNull(result);
@@ -91,7 +91,7 @@ namespace ResumeApp.UnitTests.Mappers
 		public void SkillDtoToSqlEntity(Guid id, string name, string additionalInfo, string skillGroup)
 		{
 			//Arrange
-			var dto = new Skill
+			var dto = new SkillDto
 			{
 				Id = id,
 				Name = name,
@@ -100,7 +100,7 @@ namespace ResumeApp.UnitTests.Mappers
 			};
 
 			//Act
-			var result = dto.ToSkillSqlEntity();
+			var result = dto.ToSqlEntity();
 
 			//Assert
 			Assert.NotNull(result);

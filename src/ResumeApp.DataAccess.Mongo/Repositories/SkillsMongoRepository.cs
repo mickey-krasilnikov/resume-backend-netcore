@@ -5,31 +5,31 @@ using ResumeApp.DataAccess.Mongo.Entities;
 using System.Linq.Expressions;
 namespace ResumeApp.DataAccess.Mongo.Repositories
 {
-	public class MongoResumeRepository : IRepository<ResumeMongoEntity>
+	public class SkillsMongoRepository : IRepository<SkillMongoEntity>
 	{
-		private readonly IMongoDbContext<ResumeMongoEntity> _context;
+		private readonly IMongoDbContext<SkillMongoEntity> _context;
 
-		public MongoResumeRepository(IMongoDbContext<ResumeMongoEntity> context)
+		public SkillsMongoRepository(IMongoDbContext<SkillMongoEntity> context)
 		{
 			_context = context;
 		}
 
 		public async Task<IReadOnlyList<TProjected>> FilterByAsync<TProjected>(
-			Expression<Func<ResumeMongoEntity, bool>> filterExpression,
-			Expression<Func<ResumeMongoEntity, TProjected>> projectionExpression)
+			Expression<Func<SkillMongoEntity, bool>> filterExpression,
+			Expression<Func<SkillMongoEntity, TProjected>> projectionExpression)
 		{
 			return await _context.Collection.Find(filterExpression).Project(projectionExpression).ToListAsync();
 		}
 
 		public async Task<IReadOnlyList<TProjected>> ProjectAsync<TProjected>(
-			Expression<Func<ResumeMongoEntity, TProjected>> projectionExpression)
+			Expression<Func<SkillMongoEntity, TProjected>> projectionExpression)
 		{
 			return await _context.Collection.Find(_context.GetEmptyFilter()).Project(projectionExpression).ToListAsync();
 		}
 
 		public async Task<TProjected> FindOneAsync<TProjected>(
-			Expression<Func<ResumeMongoEntity, bool>> filterExpression,
-			Expression<Func<ResumeMongoEntity, TProjected>> projectionExpression)
+			Expression<Func<SkillMongoEntity, bool>> filterExpression,
+			Expression<Func<SkillMongoEntity, TProjected>> projectionExpression)
 		{
 			return await _context.Collection.Find(filterExpression).Project(projectionExpression).FirstOrDefaultAsync();
 		}
@@ -42,27 +42,28 @@ namespace ResumeApp.DataAccess.Mongo.Repositories
 
 		public async Task<TProjected> FindByIdAsync<TProjected>(
 			Guid id			,
-			Expression<Func<ResumeMongoEntity, TProjected>> projectionExpression)
+			Expression<Func<SkillMongoEntity, TProjected>> projectionExpression)
 		{
 			return await _context.Collection.Find(_context.GetFilterById(id)).Project(projectionExpression).SingleOrDefaultAsync();
 		}
 
-		public async Task InsertOneAsync(ResumeMongoEntity entity)
+		public async Task<SkillMongoEntity> InsertOneAsync(SkillMongoEntity entity)
 		{
 			await _context.Collection.InsertOneAsync(entity);
+			return entity;
 		}
 
-		public async Task InsertManyAsync(ICollection<ResumeMongoEntity> documents)
+		public async Task InsertManyAsync(ICollection<SkillMongoEntity> documents)
 		{
 			await _context.Collection.InsertManyAsync(documents);
 		}
 
-		public async Task ReplaceOneAsync(ResumeMongoEntity entity)
+		public async Task ReplaceOneAsync(SkillMongoEntity entity)
 		{
 			await _context.Collection.FindOneAndReplaceAsync(_context.GetFilterById(entity.Id), entity);
 		}
 
-		public async Task DeleteOneAsync(Expression<Func<ResumeMongoEntity, bool>> filterExpression)
+		public async Task DeleteOneAsync(Expression<Func<SkillMongoEntity, bool>> filterExpression)
 		{
 			await _context.Collection.FindOneAndDeleteAsync(filterExpression);
 		}
@@ -72,7 +73,7 @@ namespace ResumeApp.DataAccess.Mongo.Repositories
 			await _context.Collection.FindOneAndDeleteAsync(_context.GetFilterById(id));
 		}
 
-		public async Task DeleteManyAsync(Expression<Func<ResumeMongoEntity, bool>> filterExpression)
+		public async Task DeleteManyAsync(Expression<Func<SkillMongoEntity, bool>> filterExpression)
 		{
 			await _context.Collection.DeleteManyAsync(filterExpression);
 		}

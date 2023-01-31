@@ -30,4 +30,9 @@
 	  <ProjectReference Include="..\ResumeApp.DataAccess.Abstractions\ResumeApp.DataAccess.Abstractions.csproj" />
 	</ItemGroup>
 
+
+	<ItemGroup>
+	  <Folder Include="Migrations\" />
+	</ItemGroup>
+
 </Project>

@@ -11,6 +11,7 @@
 			<Link>OpenAPIs\openapi.json</Link>
 			<ClassName>ResumeApiClient</ClassName>
 			<OutputPath>..\ResumeApiClient.g.cs</OutputPath>
+			<Options>/UseBaseUrl:false /GenerateClientInterfaces:true</Options>
 		</OpenApiReference>
 	</ItemGroup>
 

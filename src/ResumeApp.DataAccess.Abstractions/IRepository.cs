@@ -21,7 +21,7 @@ public interface IRepository<TEntity>
 		Guid id,
 		Expression<Func<TEntity, TProjected>> projectionExpression);
 
-	Task InsertOneAsync(TEntity entity);
+	Task<TEntity> InsertOneAsync(TEntity entity);
 
 	Task InsertManyAsync(ICollection<TEntity> documents);
 

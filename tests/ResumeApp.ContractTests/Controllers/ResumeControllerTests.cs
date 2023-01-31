@@ -1,11 +1,11 @@
-namespace ResumeApp.ContractTests.ResumeController
+namespace ResumeApp.ContractTests.Controllers
 {
-    public class ResumeControllerTests
-    {
-        [Fact]
-        public void Test1()
-        {
+	public class ResumeControllerTests
+	{
+		[Fact]
+		public void Test1()
+		{
 
-        }
-    }
+		}
+	}
 }
