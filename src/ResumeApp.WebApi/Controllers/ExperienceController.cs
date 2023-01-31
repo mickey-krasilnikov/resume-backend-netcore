@@ -14,9 +14,9 @@ namespace ResumeApp.WebApi.Controllers
 		private readonly ICrudService<ExperienceDto> _crudService;
 		private readonly ILogger _logger;
 
-		protected ExperienceController(
+		public ExperienceController(
 			ICrudService<ExperienceDto> crudService,
-			ILogger logger)
+			ILogger<ExperienceController> logger)
 		{
 			_crudService = crudService;
 			_logger = logger;
@@ -25,7 +25,7 @@ namespace ResumeApp.WebApi.Controllers
 		[HttpOptions]
 		public IActionResult GetOptions()
 		{
-			Response.Headers.Add(HeaderNames.Allow, $"{HttpMethods.Get},{HttpMethods.Options},{HttpMethods.Post}");
+			Response.Headers.Add(HeaderNames.Allow, $"{HttpMethods.Options},{HttpMethods.Get},{HttpMethods.Head},{HttpMethods.Post}");
 			return Ok();
 		}
 

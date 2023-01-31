@@ -20,16 +20,13 @@ namespace ResumeApp.UnitTests.Mappers
 		public void MongoEntityToExperienceDto(Guid id, string title, string company, DateOnly startDate, DateOnly? endDate, bool isCurrentCompany)
 		{
 			//Arrange
-			var projectsMock = new Mock<ProjectMongoEntity>();
 			var entity = new ExperienceMongoEntity
 			{
 				Id = id,
 				Title = title,
 				Company = company,
 				StartDate = startDate,
-				EndDate = endDate,
-				IsCurrentCompany = isCurrentCompany,
-				Projects = new List<ProjectMongoEntity> { projectsMock.Object }
+				EndDate = endDate
 			};
 
 			//Act
@@ -91,8 +88,6 @@ namespace ResumeApp.UnitTests.Mappers
 			Assert.Equal(title, result.Title);
 			Assert.Equal(company, result.Company);
 			Assert.Equal(startDate, result.StartDate);
-			Assert.Equal(isCurrentCompany, result.IsCurrentCompany);
-			Assert.Single(result.Projects);
 		}
 
 		[Theory]

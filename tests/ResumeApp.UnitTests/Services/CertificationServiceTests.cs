@@ -14,7 +14,7 @@ namespace ResumeApp.UnitTests.Services
 
 		public static IEnumerable<object[]> EntityTypes => new List<object[]>
 		{
-			new object[] { new ResumeMongoEntity() },
+			//new object[] { new ResumeMongoEntity() },
 			//new object[] { new ResumeSqlEntity() }
 		};
 

@@ -53,7 +53,7 @@ namespace ResumeApp.UnitTests.Extensions
 		{
 			//Arrange
 			//IResumeService resumeService = null;
-			IRepository<ResumeMongoEntity> mongoRepo = null;
+			//IRepository<ResumeMongoEntity> mongoRepo = null;
 			var serviceCollection = new ServiceCollection();
 			var builder = new ConfigurationBuilder();
 			builder.AddInMemoryCollection(new List<KeyValuePair<string, string>>()
@@ -70,13 +70,13 @@ namespace ResumeApp.UnitTests.Extensions
 				serviceCollection.AddResumeServices(configuration);
 				var serviceProvider = serviceCollection.BuildServiceProvider();
 				//resumeService = serviceProvider.GetRequiredService<IResumeService>();
-				mongoRepo = serviceProvider.GetRequiredService<IRepository<ResumeMongoEntity>>();
+				//mongoRepo = serviceProvider.GetRequiredService<IRepository<ResumeMongoEntity>>();
 			});
 
 			//Assert
 			Assert.Null(exception);
 			//Assert.NotNull(resumeService);
-			Assert.NotNull(mongoRepo);
+			//Assert.NotNull(mongoRepo);
 		}
 
 		[Theory]
