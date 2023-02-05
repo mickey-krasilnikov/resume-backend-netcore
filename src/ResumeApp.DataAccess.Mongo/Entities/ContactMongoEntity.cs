@@ -13,5 +13,7 @@ namespace ResumeApp.DataAccess.Mongo.Entities
 		public string Key { get; set; }
 
 		public string Value { get; set; }
-	}
+
+        public string Link { get; set; }
+    }
 }

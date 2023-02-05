@@ -16,5 +16,7 @@ namespace ResumeApp.DataAccess.Sql.Entities
 
 		[Required]
 		public string Value { get; set; }
-	}
+
+        public string Link { get; set; }
+    }
 }
