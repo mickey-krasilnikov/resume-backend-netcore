@@ -1,6 +1,5 @@
 ﻿using System;
 using ResumeApp.DataAccess.Sql.Entities;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace ResumeApp.DataAccess.Sql.Context.InitialData
 {
@@ -106,48 +105,197 @@ namespace ResumeApp.DataAccess.Sql.Context.InitialData
                     Id = Guid.NewGuid(),
                     Title = "Lead Software Engineer",
                     Company = "EPAM Systems",
-                    StartDate = new DateOnly(),
-                    EndDate = new DateOnly()
+                    Location = "San Jose, CA, USA",
+                    Skills = new List<SkillSqlEntity>
+                    {
+                        new SkillSqlEntity { Id = Guid.NewGuid(), SkillGroup = "Clouds", Name = "AWS"},
+                        new SkillSqlEntity { Id = Guid.NewGuid(), SkillGroup = "Backend", Name =  "C#",AdditionalInfo=".NET Core 6.0"},
+                        new SkillSqlEntity { Id = Guid.NewGuid(), SkillGroup = "Backend", Name = "ASP.NET Core Web API"},
+                        new SkillSqlEntity { Id = Guid.NewGuid(), SkillGroup = "Backend", Name = "Python 3.9"},
+                        new SkillSqlEntity { Id = Guid.NewGuid(), SkillGroup = "Frontend", Name = "Vue.js"},
+                        new SkillSqlEntity { Id = Guid.NewGuid(), SkillGroup = "Frontend", Name = "JavaScript"},
+                        new SkillSqlEntity { Id = Guid.NewGuid(), SkillGroup = "Frontend", Name =  "TypeScript"},
+                        new SkillSqlEntity { Id = Guid.NewGuid(), SkillGroup = "Frontend", Name = "HTML"},
+                        new SkillSqlEntity { Id = Guid.NewGuid(), SkillGroup = "Frontend", Name = "CSS"},
+                        new SkillSqlEntity { Id = Guid.NewGuid(), SkillGroup = "Database",Name =  "MySQL"},
+                        new SkillSqlEntity { Id = Guid.NewGuid(), SkillGroup = "Tools", Name = "Docker"},
+                        new SkillSqlEntity { Id = Guid.NewGuid(), SkillGroup = "Tools", Name = "Jenkins"},
+                        new SkillSqlEntity { Id = Guid.NewGuid(), SkillGroup = "Tools", Name =  "NUnit" }
+                    },
+                    TaskPerformed = new string[]
+                    {
+                        "Developed cloud-native Execution Compliance and Trade Surveillance System.",
+                        "Designed and implemented a web dashboard for monitoring and analyzing using Vue.js.",
+                        "Developed backend services following a RESTful approach using.NET Core.",
+                        "Implemented event-driven workflow of loading and parsing large data files with Amazon SQS and AWS Lambdas written in Python."
+                    },
+                    StartDate = new DateOnly(2021, 10, 1)
                 },
                 new ExperienceSqlEntity
                 {
                     Id = Guid.NewGuid(),
-                    Title = "Front Office Risk System Developer (AVP) (Senior Software Engineer)",
-                    Company = "Credit Suisse",
-                    StartDate = new DateOnly(),
-                    EndDate = new DateOnly()
+                    Title = "Lead Software Engineer",
+                    Company = "EPAM Systems",
+                    Location = "Wroclaw, Poland",
+                    Skills = new List<SkillSqlEntity>
+                    {
+                      new SkillSqlEntity {Id = Guid.NewGuid(), SkillGroup = "Clouds", Name = "Azure"},
+                      new SkillSqlEntity {Id = Guid.NewGuid(), SkillGroup = "Backend", Name = "C#", AdditionalInfo = ".NET Core 6.0"},
+                      new SkillSqlEntity {Id = Guid.NewGuid(), SkillGroup = "Backend", Name = "ASP.NET Core Web API"},
+                      new SkillSqlEntity {Id = Guid.NewGuid(), SkillGroup = "Backend", Name = "GoLang", AdditionalInfo = "Gin"},
+                      new SkillSqlEntity {Id = Guid.NewGuid(), SkillGroup = "Frontend", Name = "Angular 13"},
+                      new SkillSqlEntity {Id = Guid.NewGuid(), SkillGroup = "Frontend", Name = "JavaScript"},
+                      new SkillSqlEntity {Id = Guid.NewGuid(), SkillGroup = "Frontend", Name = "TypeScript"},
+                      new SkillSqlEntity {Id = Guid.NewGuid(), SkillGroup = "Frontend", Name = "HTML"},
+                      new SkillSqlEntity {Id = Guid.NewGuid(), SkillGroup = "Frontend", Name = "CSS"},
+                      new SkillSqlEntity {Id = Guid.NewGuid(), SkillGroup = "Database", Name = "Cosmos DB"},
+                      new SkillSqlEntity {Id = Guid.NewGuid(), SkillGroup = "Database", Name = "Redis"},
+                      new SkillSqlEntity {Id = Guid.NewGuid(), SkillGroup = "Tools", Name = "Azure DevOps"},
+                      new SkillSqlEntity {Id = Guid.NewGuid(), SkillGroup = "Tools", Name = "OKTA"},
+                      new SkillSqlEntity { Id = Guid.NewGuid(), SkillGroup = "Tools", Name = "xUnit" }
+                    },
+                    TaskPerformed = new string[]
+                    {
+                      "Designed and developed a cloud-native microservice-based system for managing insurance claims, underwriting, and reporting.",
+                      "Developed a web self-service portal using Angular, and RESTful Web APIs using .NET Core.",
+                      "Implemented performance-critical internal services using GoLang with Gin web framework.",
+                      "Achieved and maintained 80% code coverage by unit and contract tests, and established automated quality gates in CI/CD.",
+                    },
+                    StartDate = new DateOnly(2019, 4, 1),
+                    EndDate = new DateOnly(2021, 10, 1)
                 },
                 new ExperienceSqlEntity
                 {
                     Id = Guid.NewGuid(),
                     Title = "Senior Software Engineer",
-                    Company = "SINTEGRO SOFT",
-                    StartDate = new DateOnly(),
-                    EndDate = new DateOnly()
+                    Company = "Credit Suisse",
+                    Location = "Wroclaw, Poland",
+                    Skills = new List<SkillSqlEntity>
+                    {
+                      new SkillSqlEntity {Id = Guid.NewGuid(), SkillGroup = "Backend", Name = "C#", AdditionalInfo = ".NET Core 2.1 and .NET 4.6"},
+                      new SkillSqlEntity {Id = Guid.NewGuid(), SkillGroup = "Backend", Name = "WCF"},
+                      new SkillSqlEntity {Id = Guid.NewGuid(), SkillGroup = "Frontend", Name = "WPF"},
+                      new SkillSqlEntity {Id = Guid.NewGuid(), SkillGroup = "Frontend", Name = "XAML"},
+                      new SkillSqlEntity {Id = Guid.NewGuid(), SkillGroup = "Database", Name = "MS SQL"},
+                      new SkillSqlEntity {Id = Guid.NewGuid(), SkillGroup = "Database", Name = "MS SSAS"},
+                      new SkillSqlEntity {Id = Guid.NewGuid(), SkillGroup = "Tools", Name = "Entity Framework"},
+                      new SkillSqlEntity {Id = Guid.NewGuid(), SkillGroup = "Tools", Name = "NUnit"},
+                      new SkillSqlEntity {Id = Guid.NewGuid(), SkillGroup = "Tools", Name = "TeamCity"},
+                      new SkillSqlEntity { Id = Guid.NewGuid(), SkillGroup = "Tools", Name = "Jenkins"},
+                    },
+                    TaskPerformed = new string[]
+                    {
+                      "Developed a risk management desktop application for the Credit Suisse front office using WPF and C#.",
+                      "Converted an existing backend monolithic architecture into microservices and implemented new RESTful Web APIs using .NET Core.",
+                      "Maintained and improved the performance of the in-house distributed cache written in C#.",
+                      "Supported worldwide users as a part of the SL3 team.",
+                    },
+                    StartDate = new DateOnly(2015, 8, 1),
+                    EndDate = new DateOnly(2019, 3, 1)
+                },
+                new ExperienceSqlEntity
+                {
+                    Id = Guid.NewGuid(),
+                    Title = "Senior Software Engineer",
+                    Company = "Yandex",
+                    Location = "Moscow, Russia",
+                    Skills = new List<SkillSqlEntity>
+                    {
+                      new SkillSqlEntity {Id = Guid.NewGuid(), SkillGroup = "Backend", Name = "C#", AdditionalInfo = ".NET 4.5"},
+                      new SkillSqlEntity {Id = Guid.NewGuid(), SkillGroup = "Backend", Name = "ASP.NET Web API"},
+                      new SkillSqlEntity {Id = Guid.NewGuid(), SkillGroup = "Frontend", Name = "ASP.NET", AdditionalInfo = "MVC 5"},
+                      new SkillSqlEntity {Id = Guid.NewGuid(), SkillGroup = "Frontend", Name = "JavaScript"},
+                      new SkillSqlEntity {Id = Guid.NewGuid(), SkillGroup = "Frontend", Name = "HTML"},
+                      new SkillSqlEntity {Id = Guid.NewGuid(), SkillGroup = "Frontend", Name = "CSS"},
+                      new SkillSqlEntity {Id = Guid.NewGuid(), SkillGroup = "Frontend", Name = "WPF"},
+                      new SkillSqlEntity {Id = Guid.NewGuid(), SkillGroup = "Frontend", Name = "XAML"},
+                      new SkillSqlEntity {Id = Guid.NewGuid(), SkillGroup = "Database", Name = "MS SQL"},
+                      new SkillSqlEntity {Id = Guid.NewGuid(), SkillGroup = "Tools", Name = "Entity Framework"},
+                      new SkillSqlEntity {Id = Guid.NewGuid(), SkillGroup = "Tools", Name = "NUnit"},
+                      new SkillSqlEntity { Id = Guid.NewGuid(), SkillGroup = "Tools", Name = "TeamCity"},
+                    },
+                    TaskPerformed = new string[]
+                    {
+                      "Developed a payment system that allows employees to pay for lunch at nearby cafes and restaurants with the office access card (RFID tag)",
+                      "Developed a personal page for users, a desktop application for administrators, and payment service middleware.",
+                      "Participated in the software integration process."
+                    },
+                    StartDate = new DateOnly(2014, 8, 1),
+                    EndDate = new DateOnly(2015, 8, 1)
                 },
                 new ExperienceSqlEntity
                 {
                     Id = Guid.NewGuid(),
                     Title = "Software Engineer",
                     Company = "Gollard",
-                    StartDate = new DateOnly(),
-                    EndDate = new DateOnly()
+                    Location = "Moscow, Russia",
+                    Skills = new List<SkillSqlEntity>
+                    {
+                      new SkillSqlEntity {Id = Guid.NewGuid(), SkillGroup = "Backend", Name = "C#",AdditionalInfo = ".NET 4.5"},
+                      new SkillSqlEntity {Id = Guid.NewGuid(), SkillGroup = "Backend", Name = "ASP.NET Web API"},
+                      new SkillSqlEntity {Id = Guid.NewGuid(), SkillGroup = "Backend", Name = "WCF"},
+                      new SkillSqlEntity {Id = Guid.NewGuid(), SkillGroup = "Frontend", Name = "WPF"},
+                      new SkillSqlEntity {Id = Guid.NewGuid(), SkillGroup = "Frontend", Name = "XAML"},
+                      new SkillSqlEntity {Id = Guid.NewGuid(), SkillGroup = "Database", Name = "MS SQL"},
+                      new SkillSqlEntity {Id = Guid.NewGuid(), SkillGroup = "Database", Name = "MySQL"},
+                      new SkillSqlEntity {Id = Guid.NewGuid(), SkillGroup = "Tools", Name = "Esri ArcGIS"},
+                      new SkillSqlEntity {Id = Guid.NewGuid(), SkillGroup = "Tools", Name = "TeamCity"},
+                      new SkillSqlEntity { Id = Guid.NewGuid(), SkillGroup = "Tools", Name = "NUnit"}
+                    },
+                    TaskPerformed = new string[]
+                    {
+                      "Developed a desktop GIS application for an energy distribution company that deals with electrical grids, stations, and facilities.",
+                      "Implemented real-time tracking of service transport location and engine state.",
+                      "Developed an alerting system that uses biometric data from cameras and events from sensors."
+                    },
+                    StartDate = new DateOnly(2013, 6, 1),
+                    EndDate = new DateOnly(2014, 7, 1)
                 },
                 new ExperienceSqlEntity
                 {
                     Id = Guid.NewGuid(),
                     Title = "Software Engineer",
                     Company = "SGC",
-                    StartDate = new DateOnly(),
-                    EndDate = new DateOnly()
+                    Location = "Moscow, Russia",
+                    Skills = new List<SkillSqlEntity>
+                    {
+                      new SkillSqlEntity {Id = Guid.NewGuid(), SkillGroup = "Backend", Name = "C#",AdditionalInfo = ".NET 4.0"},
+                      new SkillSqlEntity {Id = Guid.NewGuid(), SkillGroup = "Backend", Name = "SOAP"},
+                      new SkillSqlEntity {Id = Guid.NewGuid(), SkillGroup = "Frontend", Name = "WPF"},
+                      new SkillSqlEntity {Id = Guid.NewGuid(), SkillGroup = "Frontend", Name = "XAML"},
+                      new SkillSqlEntity {Id = Guid.NewGuid(), SkillGroup = "Database", Name = "MS SQL"},
+                      new SkillSqlEntity { Id = Guid.NewGuid(), SkillGroup = "Tools", Name = "MSTest"},
+                    },
+                    TaskPerformed = new string[]
+                    {
+                      "Developed software for composing estimates to determine the cost of construction.",
+                      "Added functionality for converting files from other well-known systems for composing estimates available on the market.",
+                      "Implemented logic that allows exporting the final result to Excel, Word, etc."
+                    },
+                    StartDate = new DateOnly(2012, 7, 1),
+                    EndDate = new DateOnly(2013, 6, 1)
                 },
                 new ExperienceSqlEntity
                 {
                     Id = Guid.NewGuid(),
                     Title = "Software Engineer",
                     Company = "Research and Production Center 'Start'",
-                    StartDate = new DateOnly(),
-                    EndDate = new DateOnly()
+                    Location = "Penza, Russia",
+                    Skills = new List<SkillSqlEntity>
+                    {
+                      new SkillSqlEntity { Id = Guid.NewGuid(), SkillGroup = "Backend", Name = "C#", AdditionalInfo = ".NET 3.5" },
+                      new SkillSqlEntity { Id = Guid.NewGuid(), SkillGroup = "Backend", Name = "SOAP" },
+                      new SkillSqlEntity { Id = Guid.NewGuid(), SkillGroup = "Frontend", Name = "WinForms" },
+                      new SkillSqlEntity { Id = Guid.NewGuid(), SkillGroup = "Database", Name = "MS SQL" }
+                    },
+                    TaskPerformed = new string[]
+                    {
+                      "Developed in-house CAD for designing microboards.",
+                      "Implemented functionality for printing photomasks of microboards using special equipment.",
+                      "Added the possibility to import AutoCAD files."
+                    },
+                    StartDate = new DateOnly(2010, 8, 1),
+                    EndDate = new DateOnly(2012, 6, 1)
                 }
             };
 
@@ -195,7 +343,6 @@ namespace ResumeApp.DataAccess.Sql.Context.InitialData
                 },
                 new SkillSqlEntity
                 {
-
                     SkillGroup = "Programming Languages/Frontend",
                     Id = Guid.NewGuid(),
                     Name = "JavaScript",
@@ -220,7 +367,6 @@ namespace ResumeApp.DataAccess.Sql.Context.InitialData
                 },
                 new SkillSqlEntity
                 {
-
                     SkillGroup = "Programming Languages/Database/SQL",
                     Id = Guid.NewGuid(),
                     Name = "T-SQL",
