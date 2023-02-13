@@ -48,6 +48,7 @@ namespace ResumeApp.DataAccess.Sql.Context
 			modelBuilder.Entity<EducationSqlEntity>().HasData(dataToSeed.Eduction);
 			modelBuilder.Entity<ExperienceSqlEntity>().HasData(dataToSeed.Experience);
 			modelBuilder.Entity<SkillSqlEntity>().HasData(dataToSeed.Skills);
+            modelBuilder.Entity<SkillExperienceSqlEntity>().HasData(dataToSeed.SkillExperienceMapping);
 
             base.OnModelCreating(modelBuilder);
 		}

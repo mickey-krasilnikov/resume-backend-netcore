@@ -253,206 +253,202 @@ namespace ResumeApp.DataAccess.Sql.Context.InitialData
                 toolsEsriArcGis,
             };
 
-            var experience = new[]
+            var epamUs = new ExperienceSqlEntity
             {
-                new ExperienceSqlEntity
-                {
-                    Id = Guid.NewGuid(),
-                    Title = "Lead Software Engineer",
-                    Company = "EPAM Systems",
-                    Location = "San Jose, CA, USA",
-                    Skills = new List<SkillSqlEntity>
-                    {
-                        cloudsAws,
-                        backendCSharp,
-                        backendDotNetCore,
-                        backendAspNetCore,
-                        backendPython3,
-                        frontendVueJs,
-                        frontendJavaScript,
-                        frontendTypeScript,
-                        frontendHtml,
-                        frontendCss,
-                        databaseMySql,
-                        toolsDocker,
-                        toolsJenkins,
-                        toolsNUnit,
-                    },
-                    TaskPerformed = new StringBuilder()
+                Id = Guid.NewGuid(),
+                Title = "Lead Software Engineer",
+                Company = "EPAM Systems",
+                Location = "San Jose, CA, USA",
+                TaskPerformed = new StringBuilder()
                         .AppendLine("Developed cloud-native Execution Compliance and Trade Surveillance System.")
                         .AppendLine("Designed and implemented a web dashboard for monitoring and analyzing using Vue.js.")
                         .AppendLine("Developed backend services following a RESTful approach using.NET Core.")
                         .AppendLine("Implemented event-driven workflow of loading and parsing large data files with Amazon SQS and AWS Lambdas written in Python.")
                         .ToString(),
-                    StartDate = new DateOnly(2021, 10, 1)
-                },
-                new ExperienceSqlEntity
-                {
-                    Id = Guid.NewGuid(),
-                    Title = "Lead Software Engineer",
-                    Company = "EPAM Systems",
-                    Location = "Wroclaw, Poland",
-                    Skills = new List<SkillSqlEntity>
-                    {
-                        cloudsAzure,
-                        backendCSharp,
-                        backendDotNetCore,
-                        backendAspNetCore,
-                        backendGoLang,
-                        backendGinWebFramework,
-                        frontendAngular8Plus,
-                        frontendTypeScript,
-                        frontendJavaScript,
-                        frontendHtml,
-                        frontendCss,
-                        databaseCosmosDb,
-                        databaseRedis,
-                        toolsDevOps,
-                        toolsOkta,
-                        toolsEfCore,
-                        toolsXUnit
-                    },
-                    TaskPerformed = new StringBuilder()
+                StartDate = new DateOnly(2021, 10, 1)
+            };
+            var epamPoland = new ExperienceSqlEntity
+            {
+                Id = Guid.NewGuid(),
+                Title = "Lead Software Engineer",
+                Company = "EPAM Systems",
+                Location = "Wroclaw, Poland",
+                TaskPerformed = new StringBuilder()
                         .AppendLine("Designed and developed a cloud-native microservice-based system for managing insurance claims, underwriting, and reporting.")
                         .AppendLine("Developed a web self-service portal using Angular, and RESTful Web APIs using .NET Core.")
                         .AppendLine("Implemented performance-critical internal services using GoLang with Gin web framework.")
                         .AppendLine("Achieved and maintained 80% code coverage by unit and contract tests, and established automated quality gates in CI/CD.")
                         .ToString(),
-                    StartDate = new DateOnly(2019, 4, 1),
-                    EndDate = new DateOnly(2021, 10, 1)
-                },
-                new ExperienceSqlEntity
-                {
-                    Id = Guid.NewGuid(),
-                    Title = "Senior Software Engineer",
-                    Company = "Credit Suisse",
-                    Location = "Wroclaw, Poland",
-                    Skills = new List<SkillSqlEntity>
-                    {
-                        backendCSharp,
-                        backendDotNetCore,
-                        backendDotNet,
-                        backendWcf,
-                        frontendWpf,
-                        frontendXaml,
-                        databaseMsSql,
-                        databaseMsSsas,
-                        toolsEfCore,
-                        toolsEf,
-                        toolsNUnit,
-                        toolsTeamCity,
-                        toolsJenkins
-                    },
-                    TaskPerformed = new StringBuilder()
+                StartDate = new DateOnly(2019, 4, 1),
+                EndDate = new DateOnly(2021, 10, 1)
+            };
+            var creditSuisse = new ExperienceSqlEntity
+            {
+                Id = Guid.NewGuid(),
+                Title = "Senior Software Engineer",
+                Company = "Credit Suisse",
+                Location = "Wroclaw, Poland",
+                TaskPerformed = new StringBuilder()
                         .AppendLine("Developed a risk management desktop application for the Credit Suisse front office using WPF and C#.")
                         .AppendLine("Converted an existing backend monolithic architecture into microservices and implemented new RESTful Web APIs using .NET Core.")
                         .AppendLine("Maintained and improved the performance of the in-house distributed cache written in C#.")
                         .AppendLine("Supported worldwide users as a part of the SL3 team.")
                         .ToString(),
-                    StartDate = new DateOnly(2015, 8, 1),
-                    EndDate = new DateOnly(2019, 3, 1)
-                },
-                new ExperienceSqlEntity
-                {
-                    Id = Guid.NewGuid(),
-                    Title = "Senior Software Engineer",
-                    Company = "Yandex",
-                    Location = "Moscow, Russia",
-                    Skills = new List<SkillSqlEntity>
-                    {
-                        backendCSharp,
-                        backendDotNet,
-                        backendAspNet,
-                        frontendJavaScript,
-                        frontendHtml,
-                        frontendCss,
-                        frontendWpf,
-                        frontendXaml,
-                        databaseMsSql,
-                        toolsEf,
-                        toolsNUnit,
-                        toolsTeamCity
-                    },
-                    TaskPerformed = new StringBuilder()
+                StartDate = new DateOnly(2015, 8, 1),
+                EndDate = new DateOnly(2019, 3, 1)
+            };
+            var yandex = new ExperienceSqlEntity
+            {
+                Id = Guid.NewGuid(),
+                Title = "Senior Software Engineer",
+                Company = "Yandex",
+                Location = "Moscow, Russia",
+                TaskPerformed = new StringBuilder()
                         .AppendLine("Developed a payment system that allows employees to pay for lunch at nearby cafes and restaurants with the office access card (RFID tag)")
                         .AppendLine("Developed a personal page for users, a desktop application for administrators, and payment service middleware.")
                         .AppendLine("Participated in the software integration process.")
                         .ToString(),
-                    StartDate = new DateOnly(2014, 8, 1),
-                    EndDate = new DateOnly(2015, 8, 1)
-                },
-                new ExperienceSqlEntity
-                {
-                    Id = Guid.NewGuid(),
-                    Title = "Software Engineer",
-                    Company = "Gollard",
-                    Location = "Moscow, Russia",
-                    Skills = new List<SkillSqlEntity>
-                    {
-                        backendCSharp,
-                        backendDotNet,
-                        backendAspNet,
-                        backendWcf,
-                        frontendWpf,
-                        frontendXaml,
-                        databaseMsSql,
-                        databaseMySql,
-                        toolsEsriArcGis,
-                        toolsTeamCity,
-                        toolsNUnit
-                    },
-                    TaskPerformed = new StringBuilder()
+                StartDate = new DateOnly(2014, 8, 1),
+                EndDate = new DateOnly(2015, 8, 1)
+            };
+            var gollard = new ExperienceSqlEntity
+            {
+                Id = Guid.NewGuid(),
+                Title = "Software Engineer",
+                Company = "Gollard",
+                Location = "Moscow, Russia",
+                TaskPerformed = new StringBuilder()
                         .AppendLine("Developed a desktop GIS application for an energy distribution company that deals with electrical grids, stations, and facilities.")
                         .AppendLine("Implemented real-time tracking of service transport location and engine state.")
                         .AppendLine("Developed an alerting system that uses biometric data from cameras and events from sensors.")
                         .ToString(),
-                    StartDate = new DateOnly(2013, 6, 1),
-                    EndDate = new DateOnly(2014, 7, 1)
-                },
-                new ExperienceSqlEntity
-                {
-                    Id = Guid.NewGuid(),
-                    Title = "Software Engineer",
-                    Company = "SGC",
-                    Location = "Moscow, Russia",
-                    Skills = new List<SkillSqlEntity>
-                    {
-                        backendCSharp,
-                        backendDotNet,
-                        frontendWpf,
-                        frontendXaml,
-                        databaseMsSql,
-                        toolsMsTest
-                    },
-                    TaskPerformed = new StringBuilder()
+                StartDate = new DateOnly(2013, 6, 1),
+                EndDate = new DateOnly(2014, 7, 1)
+            };
+            var sgc = new ExperienceSqlEntity
+            {
+                Id = Guid.NewGuid(),
+                Title = "Software Engineer",
+                Company = "SGC",
+                Location = "Moscow, Russia",
+                TaskPerformed = new StringBuilder()
                         .AppendLine("Developed software for composing estimates to determine the cost of construction.")
                         .AppendLine("Added functionality for converting files from other well-known systems for composing estimates available on the market.")
                         .AppendLine("Implemented logic that allows exporting the final result to Excel, Word, etc.")
                         .ToString(),
-                    StartDate = new DateOnly(2012, 7, 1),
-                    EndDate = new DateOnly(2013, 6, 1)
-                },
-                new ExperienceSqlEntity
-                {
-                    Id = Guid.NewGuid(),
-                    Title = "Software Engineer",
-                    Company = "Research and Production Center 'Start'",
-                    Location = "Penza, Russia",
-                    Skills = new List<SkillSqlEntity>
-                    {
-                        backendCSharp,
-                        backendDotNet,
-                        frontendWinForms,
-                        databaseMsSql
-                    },
-                    TaskPerformed = new StringBuilder()
+                StartDate = new DateOnly(2012, 7, 1),
+                EndDate = new DateOnly(2013, 6, 1)
+            };
+            var poStart = new ExperienceSqlEntity
+            {
+                Id = Guid.NewGuid(),
+                Title = "Software Engineer",
+                Company = "Research and Production Center 'Start'",
+                Location = "Penza, Russia",
+                TaskPerformed = new StringBuilder()
                         .AppendLine("Developed in-house CAD for designing microboards.")
                         .AppendLine("Implemented functionality for printing photomasks of microboards using special equipment.")
                         .AppendLine("Added the possibility to import AutoCAD files.")
                         .ToString(),
-                    StartDate = new DateOnly(2010, 8, 1),
-                    EndDate = new DateOnly(2012, 6, 1)
-                }
+                StartDate = new DateOnly(2010, 8, 1),
+                EndDate = new DateOnly(2012, 6, 1)
+            };
+            var experience = new[]
+            {
+                epamUs,
+                epamPoland,
+                creditSuisse,
+                yandex,
+                gollard,
+                sgc,
+                poStart
+            };
+
+            var skillExperienceMapping = new[]
+            {
+                new SkillExperienceSqlEntity { ExperienceId = epamUs.Id, SkillId = cloudsAws.Id },
+                new SkillExperienceSqlEntity { ExperienceId = epamUs.Id, SkillId = backendCSharp.Id },
+                new SkillExperienceSqlEntity { ExperienceId = epamUs.Id, SkillId = backendDotNetCore.Id },
+                new SkillExperienceSqlEntity { ExperienceId = epamUs.Id, SkillId = backendAspNetCore.Id },
+                new SkillExperienceSqlEntity { ExperienceId = epamUs.Id, SkillId = backendPython3.Id },
+                new SkillExperienceSqlEntity { ExperienceId = epamUs.Id, SkillId = frontendVueJs.Id },
+                new SkillExperienceSqlEntity { ExperienceId = epamUs.Id, SkillId = frontendJavaScript.Id },
+                new SkillExperienceSqlEntity { ExperienceId = epamUs.Id, SkillId = frontendTypeScript.Id },
+                new SkillExperienceSqlEntity { ExperienceId = epamUs.Id, SkillId = frontendHtml.Id },
+                new SkillExperienceSqlEntity { ExperienceId = epamUs.Id, SkillId = frontendCss.Id },
+                new SkillExperienceSqlEntity { ExperienceId = epamUs.Id, SkillId = databaseMySql.Id },
+                new SkillExperienceSqlEntity { ExperienceId = epamUs.Id, SkillId = toolsDocker.Id },
+                new SkillExperienceSqlEntity { ExperienceId = epamUs.Id, SkillId = toolsJenkins.Id },
+                new SkillExperienceSqlEntity { ExperienceId = epamUs.Id, SkillId = toolsNUnit.Id },
+
+                new SkillExperienceSqlEntity { ExperienceId = epamPoland.Id, SkillId = cloudsAzure.Id },
+                new SkillExperienceSqlEntity { ExperienceId = epamPoland.Id, SkillId = backendCSharp.Id },
+                new SkillExperienceSqlEntity { ExperienceId = epamPoland.Id, SkillId = backendDotNetCore.Id },
+                new SkillExperienceSqlEntity { ExperienceId = epamPoland.Id, SkillId = backendAspNetCore.Id },
+                new SkillExperienceSqlEntity { ExperienceId = epamPoland.Id, SkillId = backendGoLang.Id },
+                new SkillExperienceSqlEntity { ExperienceId = epamPoland.Id, SkillId = backendGinWebFramework.Id },
+                new SkillExperienceSqlEntity { ExperienceId = epamPoland.Id, SkillId = frontendAngular8Plus.Id },
+                new SkillExperienceSqlEntity { ExperienceId = epamPoland.Id, SkillId = frontendTypeScript.Id },
+                new SkillExperienceSqlEntity { ExperienceId = epamPoland.Id, SkillId = frontendJavaScript.Id },
+                new SkillExperienceSqlEntity { ExperienceId = epamPoland.Id, SkillId = frontendHtml.Id },
+                new SkillExperienceSqlEntity { ExperienceId = epamPoland.Id, SkillId = frontendCss.Id },
+                new SkillExperienceSqlEntity { ExperienceId = epamPoland.Id, SkillId = databaseCosmosDb.Id },
+                new SkillExperienceSqlEntity { ExperienceId = epamPoland.Id, SkillId = databaseRedis.Id },
+                new SkillExperienceSqlEntity { ExperienceId = epamPoland.Id, SkillId = toolsDevOps.Id },
+                new SkillExperienceSqlEntity { ExperienceId = epamPoland.Id, SkillId = toolsOkta.Id },
+                new SkillExperienceSqlEntity { ExperienceId = epamPoland.Id, SkillId = toolsEfCore.Id },
+                new SkillExperienceSqlEntity { ExperienceId = epamPoland.Id, SkillId = toolsXUnit.Id },
+
+                new SkillExperienceSqlEntity { ExperienceId = creditSuisse.Id, SkillId = backendCSharp.Id },
+                new SkillExperienceSqlEntity { ExperienceId = creditSuisse.Id, SkillId = backendDotNetCore.Id },
+                new SkillExperienceSqlEntity { ExperienceId = creditSuisse.Id, SkillId = backendDotNet.Id },
+                new SkillExperienceSqlEntity { ExperienceId = creditSuisse.Id, SkillId = backendWcf.Id },
+                new SkillExperienceSqlEntity { ExperienceId = creditSuisse.Id, SkillId = frontendWpf.Id },
+                new SkillExperienceSqlEntity { ExperienceId = creditSuisse.Id, SkillId = frontendXaml.Id },
+                new SkillExperienceSqlEntity { ExperienceId = creditSuisse.Id, SkillId = databaseMsSql.Id },
+                new SkillExperienceSqlEntity { ExperienceId = creditSuisse.Id, SkillId = databaseMsSsas.Id },
+                new SkillExperienceSqlEntity { ExperienceId = creditSuisse.Id, SkillId = toolsEfCore.Id },
+                new SkillExperienceSqlEntity { ExperienceId = creditSuisse.Id, SkillId = toolsEf.Id },
+                new SkillExperienceSqlEntity { ExperienceId = creditSuisse.Id, SkillId = toolsNUnit.Id },
+                new SkillExperienceSqlEntity { ExperienceId = creditSuisse.Id, SkillId = toolsTeamCity.Id },
+                new SkillExperienceSqlEntity { ExperienceId = creditSuisse.Id, SkillId = toolsJenkins.Id },
+
+                new SkillExperienceSqlEntity { ExperienceId = yandex.Id, SkillId = backendCSharp.Id },
+                new SkillExperienceSqlEntity { ExperienceId = yandex.Id, SkillId = backendDotNet.Id },
+                new SkillExperienceSqlEntity { ExperienceId = yandex.Id, SkillId = backendAspNet.Id },
+                new SkillExperienceSqlEntity { ExperienceId = yandex.Id, SkillId = frontendJavaScript.Id },
+                new SkillExperienceSqlEntity { ExperienceId = yandex.Id, SkillId = frontendHtml.Id },
+                new SkillExperienceSqlEntity { ExperienceId = yandex.Id, SkillId = frontendCss.Id },
+                new SkillExperienceSqlEntity { ExperienceId = yandex.Id, SkillId = frontendWpf.Id },
+                new SkillExperienceSqlEntity { ExperienceId = yandex.Id, SkillId = frontendXaml.Id },
+                new SkillExperienceSqlEntity { ExperienceId = yandex.Id, SkillId = databaseMsSql.Id },
+                new SkillExperienceSqlEntity { ExperienceId = yandex.Id, SkillId = toolsEf.Id },
+                new SkillExperienceSqlEntity { ExperienceId = yandex.Id, SkillId = toolsNUnit.Id },
+                new SkillExperienceSqlEntity { ExperienceId = yandex.Id, SkillId = toolsTeamCity.Id },
+
+                new SkillExperienceSqlEntity { ExperienceId = gollard.Id, SkillId = backendCSharp.Id },
+                new SkillExperienceSqlEntity { ExperienceId = gollard.Id, SkillId = backendDotNet.Id },
+                new SkillExperienceSqlEntity { ExperienceId = gollard.Id, SkillId = backendAspNet.Id },
+                new SkillExperienceSqlEntity { ExperienceId = gollard.Id, SkillId = backendWcf.Id },
+                new SkillExperienceSqlEntity { ExperienceId = gollard.Id, SkillId = frontendWpf.Id },
+                new SkillExperienceSqlEntity { ExperienceId = gollard.Id, SkillId = frontendXaml.Id },
+                new SkillExperienceSqlEntity { ExperienceId = gollard.Id, SkillId = databaseMsSql.Id },
+                new SkillExperienceSqlEntity { ExperienceId = gollard.Id, SkillId = databaseMySql.Id },
+                new SkillExperienceSqlEntity { ExperienceId = gollard.Id, SkillId = toolsEsriArcGis.Id },
+                new SkillExperienceSqlEntity { ExperienceId = gollard.Id, SkillId = toolsTeamCity.Id },
+                new SkillExperienceSqlEntity { ExperienceId = gollard.Id, SkillId = toolsNUnit.Id },
+
+                new SkillExperienceSqlEntity { ExperienceId = sgc.Id, SkillId = backendCSharp.Id },
+                new SkillExperienceSqlEntity { ExperienceId = sgc.Id, SkillId = backendDotNet.Id },
+                new SkillExperienceSqlEntity { ExperienceId = sgc.Id, SkillId = frontendWpf.Id },
+                new SkillExperienceSqlEntity { ExperienceId = sgc.Id, SkillId = frontendXaml.Id },
+                new SkillExperienceSqlEntity { ExperienceId = sgc.Id, SkillId = databaseMsSql.Id },
+                new SkillExperienceSqlEntity { ExperienceId = sgc.Id, SkillId = toolsMsTest.Id },
+
+                new SkillExperienceSqlEntity { ExperienceId = poStart.Id, SkillId = backendCSharp.Id },
+                new SkillExperienceSqlEntity { ExperienceId = poStart.Id, SkillId = backendDotNet.Id },
+                new SkillExperienceSqlEntity { ExperienceId = poStart.Id, SkillId = frontendWinForms.Id },
+                new SkillExperienceSqlEntity { ExperienceId = poStart.Id, SkillId = databaseMsSql.Id }
             };
 
             return new DataToSeed
@@ -461,7 +457,8 @@ namespace ResumeApp.DataAccess.Sql.Context.InitialData
                 Contacts = contacts,
                 Eduction = education,
                 Experience = experience,
-                Skills = skills
+                Skills = skills,
+                SkillExperienceMapping = skillExperienceMapping
             };
         }
     }
@@ -473,5 +470,6 @@ namespace ResumeApp.DataAccess.Sql.Context.InitialData
         public EducationSqlEntity[] Eduction { get; internal set; }
         public ExperienceSqlEntity[] Experience { get; internal set; }
         public SkillSqlEntity[] Skills { get; internal set; }
+        public SkillExperienceSqlEntity[] SkillExperienceMapping { get; internal set; }
     }
 }
