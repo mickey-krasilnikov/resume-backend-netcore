@@ -15,8 +15,7 @@ namespace ResumeApp.BusinessLogic.Mappers
 			return new SkillDto
 			{
 				Id = entity.Id,
-				Name = entity.Name,
-				AdditionalInfo = entity.AdditionalInfo,
+				Name = entity.Name,				
 				SkillGroup = entity.SkillGroup,
 			};
 		}
@@ -28,8 +27,7 @@ namespace ResumeApp.BusinessLogic.Mappers
 			return new SkillDto
 			{
 				Id = entity.Id,
-				Name = entity.Name,
-				AdditionalInfo = entity.AdditionalInfo,
+				Name = entity.Name,				
 				SkillGroup = entity.SkillGroup,
 			};
 		}
@@ -41,7 +39,6 @@ namespace ResumeApp.BusinessLogic.Mappers
 			{
 				Id = dto.Id,
 				Name = dto.Name,
-				AdditionalInfo = dto.AdditionalInfo,
 				SkillGroup = dto.SkillGroup
 			};
 		}
@@ -53,7 +50,6 @@ namespace ResumeApp.BusinessLogic.Mappers
 			{
 				Id = dto.Id,
 				Name = dto.Name,
-				AdditionalInfo = dto.AdditionalInfo,
 				SkillGroup = dto.SkillGroup
 			};
 		}

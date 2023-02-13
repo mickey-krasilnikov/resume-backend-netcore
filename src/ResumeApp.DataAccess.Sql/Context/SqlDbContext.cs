@@ -28,6 +28,19 @@ namespace ResumeApp.DataAccess.Sql.Context
 
 		protected override void OnModelCreating(ModelBuilder modelBuilder)
 		{
+			modelBuilder.Entity<SkillExperienceSqlEntity> ()
+				.HasKey(bc => new { bc.SkillId, bc.ExperienceId });
+
+            modelBuilder.Entity<SkillExperienceSqlEntity>()
+                .HasOne(bc => bc.Skill)
+                .WithMany(b => b.SkillExperience)
+                .HasForeignKey(bc => bc.SkillId);
+
+            modelBuilder.Entity<SkillExperienceSqlEntity>()
+                .HasOne(bc => bc.Experience)
+                .WithMany(c => c.SkillExperience)
+                .HasForeignKey(bc => bc.ExperienceId);
+
 			// seed the database with initial data
 			var dataToSeed = InitialDataGenerator.GetDataToSeed();
 			modelBuilder.Entity<CertificationSqlEntity>().HasData(dataToSeed.Certification);
@@ -35,7 +48,8 @@ namespace ResumeApp.DataAccess.Sql.Context
 			modelBuilder.Entity<EducationSqlEntity>().HasData(dataToSeed.Eduction);
 			modelBuilder.Entity<ExperienceSqlEntity>().HasData(dataToSeed.Experience);
 			modelBuilder.Entity<SkillSqlEntity>().HasData(dataToSeed.Skills);
-			base.OnModelCreating(modelBuilder);
+
+            base.OnModelCreating(modelBuilder);
 		}
 	}
 }

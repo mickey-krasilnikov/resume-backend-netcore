@@ -9,21 +9,20 @@ namespace ResumeApp.UnitTests.Mappers
 	{
 		public static IEnumerable<object[]> TestData => new List<object[]>
 		{
-			new object[] { Guid.Empty, null, null, null },
-			new object[] { Guid.Empty, string.Empty, string.Empty, string.Empty },
-			new object[] { Guid.NewGuid(), "TestSkill", "TestInfo", "TestSkillGroup" }
+			new object[] { Guid.Empty, null, null },
+			new object[] { Guid.Empty, string.Empty, string.Empty },
+			new object[] { Guid.NewGuid(), "TestSkill", "TestSkillGroup" }
 		};
 
 		[Theory]
 		[MemberData(nameof(TestData))]
-		public void MongoEntityToSkillDto(Guid id, string name, string additionalInfo, string skillGroup)
+		public void MongoEntityToSkillDto(Guid id, string name, string skillGroup)
 		{
 			//Arrange
 			var entity = new SkillMongoEntity
 			{
 				Id = id,
 				Name = name,
-				AdditionalInfo = additionalInfo,
 				SkillGroup = skillGroup
 			};
 
@@ -34,20 +33,18 @@ namespace ResumeApp.UnitTests.Mappers
 			Assert.NotNull(result);
 			Assert.Equal(id, result.Id);
 			Assert.Equal(name, result.Name);
-			Assert.Equal(additionalInfo, result.AdditionalInfo);
 			Assert.Equal(skillGroup, result.SkillGroup);
 		}
 
 		[Theory]
 		[MemberData(nameof(TestData))]
-		public void SqlEntityToSkillDto(Guid id, string name, string additionalInfo, string skillGroup)
+		public void SqlEntityToSkillDto(Guid id, string name, string skillGroup)
 		{
 			//Arrange
 			var entity = new SkillSqlEntity
 			{
 				Id = id,
 				Name = name,
-				AdditionalInfo = additionalInfo,
 				SkillGroup = skillGroup
 			};
 
@@ -58,20 +55,18 @@ namespace ResumeApp.UnitTests.Mappers
 			Assert.NotNull(result);
 			Assert.Equal(id, result.Id);
 			Assert.Equal(name, result.Name);
-			Assert.Equal(additionalInfo, result.AdditionalInfo);
 			Assert.Equal(skillGroup, result.SkillGroup);
 		}
 
 		[Theory]
 		[MemberData(nameof(TestData))]
-		public void SkillDtoToMongoEntity(Guid id, string name, string additionalInfo, string skillGroup)
+		public void SkillDtoToMongoEntity(Guid id, string name, string skillGroup)
 		{
 			//Arrange
 			var dto = new SkillDto
 			{
 				Id = id,
 				Name = name,
-				AdditionalInfo = additionalInfo,
 				SkillGroup = skillGroup
 			};
 
@@ -82,20 +77,18 @@ namespace ResumeApp.UnitTests.Mappers
 			Assert.NotNull(result);
 			Assert.Equal(id, result.Id);
 			Assert.Equal(name, result.Name);
-			Assert.Equal(additionalInfo, result.AdditionalInfo);
 			Assert.Equal(skillGroup, result.SkillGroup);
 		}
 
 		[Theory]
 		[MemberData(nameof(TestData))]
-		public void SkillDtoToSqlEntity(Guid id, string name, string additionalInfo, string skillGroup)
+		public void SkillDtoToSqlEntity(Guid id, string name, string skillGroup)
 		{
 			//Arrange
 			var dto = new SkillDto
 			{
 				Id = id,
 				Name = name,
-				AdditionalInfo = additionalInfo,
 				SkillGroup = skillGroup
 			};
 
@@ -106,7 +99,6 @@ namespace ResumeApp.UnitTests.Mappers
 			Assert.NotNull(result);
 			Assert.Equal(id, result.Id);
 			Assert.Equal(name, result.Name);
-			Assert.Equal(additionalInfo, result.AdditionalInfo);
 			Assert.Equal(skillGroup, result.SkillGroup);
 		}
 	}

@@ -7,7 +7,7 @@ namespace ResumeApp.DataAccess.Sql.Entities
 	{
 		public ExperienceSqlEntity()
 		{
-			Skills = new HashSet<SkillSqlEntity>();
+            SkillExperience = new HashSet<SkillExperienceSqlEntity>();
 		}
 
 		[Key]
@@ -22,7 +22,7 @@ namespace ResumeApp.DataAccess.Sql.Entities
 
 		public string Location { get; set; }
 
-		public string[] TaskPerformed { get; set; }
+		public string TaskPerformed { get; set; }
 
 		[Required]
 		public DateOnly StartDate { get; set; }
@@ -30,6 +30,6 @@ namespace ResumeApp.DataAccess.Sql.Entities
 		public DateOnly? EndDate { get; set; }
 
 
-		public virtual ICollection<SkillSqlEntity> Skills { get; set; }
+		public virtual ICollection<SkillExperienceSqlEntity> SkillExperience { get; set; }
 	}
 }

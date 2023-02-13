@@ -3,11 +3,11 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ResumeApp.DataAccess.Sql.Entities
 {
-	public class SkillSqlEntity
+    public class SkillSqlEntity
 	{
 		public SkillSqlEntity()
 		{
-			Experiences = new HashSet<ExperienceSqlEntity>();
+            SkillExperience = new HashSet<SkillExperienceSqlEntity>();
 		}
 
 		[Key]
@@ -16,11 +16,9 @@ namespace ResumeApp.DataAccess.Sql.Entities
 
 		public string Name { get; set; }
 
-		public string AdditionalInfo { get; set; }
-
 		public string SkillGroup { get; set; }
 
 
-		public virtual ICollection<ExperienceSqlEntity> Experiences { get; set; }
+		public virtual ICollection<SkillExperienceSqlEntity> SkillExperience { get; set; }
 	}
 }

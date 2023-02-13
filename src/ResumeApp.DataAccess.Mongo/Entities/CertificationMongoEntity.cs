@@ -20,5 +20,4 @@ namespace ResumeApp.DataAccess.Mongo.Entities
 
 		public Uri VerificationUrl { get; set; }
 	}
-
 }
