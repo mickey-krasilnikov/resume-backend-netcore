@@ -1,17 +1,17 @@
 ﻿using ResumeApp.DataAccess.Mongo.Entities;
 using ResumeApp.DataAccess.Sql.Entities;
-using ResumeApp.Poco;
+using ResumeApp.Models;
 using System.Runtime.CompilerServices;
 
-[assembly: InternalsVisibleTo("ResumeApp.UnitTests")]
+[assembly: InternalsVisibleTo("CertificationApp.UnitTests")]
 namespace ResumeApp.BusinessLogic.Mappers
 {
 	internal static class CertificationMapper
-	{
-		internal static Certification ToCertificationDto(this CertificationSqlEntity entity)
+    {
+        internal static CertificationDto ToDto(this CertificationSqlEntity entity)
 		{
 			if (entity == null) return null;
-			return new Certification
+			return new CertificationDto
 			{
 				Id = entity.Id,
 				Name = entity.Name,
@@ -22,10 +22,10 @@ namespace ResumeApp.BusinessLogic.Mappers
 			};
 		}
 
-		internal static Certification ToCertificationDto(this CertificationMongoEntity entity)
+		internal static CertificationDto ToDto(this CertificationMongoEntity entity)
 		{
 			if (entity == null) return null;
-			return new Certification
+			return new CertificationDto
 			{
 				Id = entity.Id,
 				Name = entity.Name,
@@ -36,7 +36,7 @@ namespace ResumeApp.BusinessLogic.Mappers
 			};
 		}
 
-		internal static CertificationMongoEntity ToCertificationMongoEntity(this Certification dto)
+        internal static CertificationMongoEntity ToMongoEntity(this CertificationDto dto)
 		{
 			if (dto == null) return null;
 			return new CertificationMongoEntity
@@ -50,7 +50,7 @@ namespace ResumeApp.BusinessLogic.Mappers
 			};
 		}
 
-		internal static CertificationSqlEntity ToCertificationSqlEntity(this Certification dto)
+		internal static CertificationSqlEntity ToSqlEntity(this CertificationDto dto)
 		{
 			if (dto == null) return null;
 			return new CertificationSqlEntity

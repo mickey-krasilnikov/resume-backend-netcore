@@ -23,7 +23,7 @@ builder.Services
 		{
 			Version = "v1",
 			Title = "Resume API",
-			Description = "A Web API for managing Resume items",
+			Description = "A Web API for managing Resume",
 			Contact = new OpenApiContact { Name = "Mikhail Krasilnikov", Email = "mickey.krasilnikov@gmail.com" }
 		});
 	})

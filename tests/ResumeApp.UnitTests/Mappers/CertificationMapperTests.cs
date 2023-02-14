@@ -1,7 +1,7 @@
 ﻿using ResumeApp.BusinessLogic.Mappers;
 using ResumeApp.DataAccess.Mongo.Entities;
 using ResumeApp.DataAccess.Sql.Entities;
-using ResumeApp.Poco;
+using ResumeApp.Models;
 
 namespace ResumeApp.UnitTests.Mappers
 {
@@ -16,7 +16,7 @@ namespace ResumeApp.UnitTests.Mappers
 
 		[Theory]
 		[MemberData(nameof(TestData))]
-		public void MongoEntityToCertificationDto(Guid id, string name, string issuer, DateOnly issueDate, DateOnly? expirationDate, Uri verificationUrl)
+		public void MongoEntityToDto(Guid id, string name, string issuer, DateOnly issueDate, DateOnly? expirationDate, Uri verificationUrl)
 		{
 			//Arrange
 			var entity = new CertificationMongoEntity
@@ -30,7 +30,7 @@ namespace ResumeApp.UnitTests.Mappers
 			};
 
 			//Act
-			var result = entity.ToCertificationDto();
+			var result = entity.ToDto();
 
 			//Assert
 			Assert.NotNull(result);
@@ -44,7 +44,7 @@ namespace ResumeApp.UnitTests.Mappers
 
 		[Theory]
 		[MemberData(nameof(TestData))]
-		public void SqlEntityToCertificationDto(Guid id, string name, string issuer, DateOnly issueDate, DateOnly? expirationDate, Uri verificationUrl)
+		public void SqlEntityToDto(Guid id, string name, string issuer, DateOnly issueDate, DateOnly? expirationDate, Uri verificationUrl)
 		{
 			//Arrange
 			var entity = new CertificationSqlEntity
@@ -58,7 +58,7 @@ namespace ResumeApp.UnitTests.Mappers
 			};
 
 			//Act
-			var result = entity.ToCertificationDto();
+			var result = entity.ToDto();
 
 			//Assert
 			Assert.NotNull(result);
@@ -75,7 +75,7 @@ namespace ResumeApp.UnitTests.Mappers
 		public void CertificationDtoToMongoEntity(Guid id, string name, string issuer, DateOnly issueDate, DateOnly? expirationDate, Uri verificationUrl)
 		{
 			//Arrange
-			var dto = new Certification
+			var dto = new CertificationDto
 			{
 				Id = id,
 				Name = name,
@@ -86,7 +86,7 @@ namespace ResumeApp.UnitTests.Mappers
 			};
 
 			//Act
-			var result = dto.ToCertificationMongoEntity();
+			var result = dto.ToMongoEntity();
 
 			//Assert
 			Assert.NotNull(result);
@@ -103,7 +103,7 @@ namespace ResumeApp.UnitTests.Mappers
 		public void CertificationDtoToSqlEntity(Guid id, string name, string issuer, DateOnly issueDate, DateOnly? expirationDate, Uri verificationUrl)
 		{
 			//Arrange
-			var dto = new Certification
+			var dto = new CertificationDto
 			{
 				Id = id,
 				Name = name,
@@ -114,7 +114,7 @@ namespace ResumeApp.UnitTests.Mappers
 			};
 
 			//Act
-			var result = dto.ToCertificationSqlEntity();
+			var result = dto.ToSqlEntity();
 
 			//Assert
 			Assert.NotNull(result);

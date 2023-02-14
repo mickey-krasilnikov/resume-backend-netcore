@@ -1,18 +1,18 @@
 ﻿using ResumeApp.DataAccess.Mongo.Entities;
 using ResumeApp.DataAccess.Sql.Entities;
-using ResumeApp.Poco;
+using ResumeApp.Models;
 using System.Runtime.CompilerServices;
 
-[assembly: InternalsVisibleTo("ResumeApp.UnitTests")]
+[assembly: InternalsVisibleTo("EducationApp.UnitTests")]
 namespace ResumeApp.BusinessLogic.Mappers
 {
 	internal static class EducationMapper
 	{
-		internal static Education ToEducationDto(this EducationSqlEntity entity)
+        internal static EducationDto ToDto(this EducationSqlEntity entity)
 		{
 			if (entity == null) return null;
 
-			return new Education
+			return new EducationDto
 			{
 				Id = entity.Id,
 				Name = entity.Name,
@@ -24,11 +24,11 @@ namespace ResumeApp.BusinessLogic.Mappers
 			};
 		}
 
-		internal static Education ToEducationDto(this EducationMongoEntity entity)
+		internal static EducationDto ToDto(this EducationMongoEntity entity)
 		{
 			if (entity == null) return null;
 
-			return new Education
+			return new EducationDto
             {
                 Id = entity.Id,
                 Name = entity.Name,
@@ -40,7 +40,7 @@ namespace ResumeApp.BusinessLogic.Mappers
 			};
 		}
 
-		internal static EducationMongoEntity ToEducationMongoEntity(this Education dto)
+		internal static EducationMongoEntity ToMongoEntity(this EducationDto dto)
 		{
 			if (dto == null) return null;
 			return new EducationMongoEntity
@@ -55,7 +55,7 @@ namespace ResumeApp.BusinessLogic.Mappers
 			};
 		}
 
-		internal static EducationSqlEntity ToEducationSqlEntity(this Education dto)
+		internal static EducationSqlEntity ToSqlEntity(this EducationDto dto)
 		{
 			if (dto == null) return null;
 			return new EducationSqlEntity

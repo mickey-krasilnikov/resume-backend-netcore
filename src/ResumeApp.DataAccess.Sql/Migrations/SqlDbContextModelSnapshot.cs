@@ -17,7 +17,7 @@ namespace ResumeApp.DataAccess.Sql.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "7.0.0")
+                .HasAnnotation("ProductVersion", "7.0.2")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
@@ -28,127 +28,192 @@ namespace ResumeApp.DataAccess.Sql.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<DateTime>("ExpirationDate")
+                    b.Property<DateTime?>("ExpirationDate")
                         .HasColumnType("date");
 
                     b.Property<DateTime>("IssueDate")
                         .HasColumnType("date");
 
                     b.Property<string>("Issuer")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<Guid>("ResumeId")
-                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("VerificationUrl")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ResumeId");
-
                     b.ToTable("Certifications");
 
                     b.HasData(
                         new
                         {
-                            Id = new Guid("f0a5c173-10e6-4fa6-91c4-8c31adcb0c34"),
-                            ExpirationDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IssueDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Id = new Guid("691ecc14-6081-4568-af4b-b43364c0c6eb"),
+                            ExpirationDate = new DateTime(2023, 5, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IssueDate = new DateTime(2020, 6, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Issuer = "Microsoft",
                             Name = "Azure Solutions Architect Expert",
-                            ResumeId = new Guid("84b91e21-e998-464e-b8ba-c6be6c16b3be"),
-                            VerificationUrl = "https://www.credly.com/badges/42f9be70-0b40-4bb0-8256-bd9d573e36af/public_url"
+                            VerificationUrl = "https://www.credly.com/badges/8ea21901-34c7-4cb4-bc48-71e0c5cf3e85"
                         },
                         new
                         {
-                            Id = new Guid("85ad96eb-09d9-49ff-9f43-03ba5ee9bbc2"),
-                            ExpirationDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IssueDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Id = new Guid("1c609b35-f19b-4366-90eb-f44440fa26e8"),
+                            ExpirationDate = new DateTime(2022, 9, 27, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IssueDate = new DateTime(2020, 9, 27, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Issuer = "Google",
                             Name = "Professional Cloud Architect",
-                            ResumeId = new Guid("84b91e21-e998-464e-b8ba-c6be6c16b3be"),
                             VerificationUrl = "https://www.credential.net/786961ad-0225-4bb0-883a-3c2feceb5174"
                         },
                         new
                         {
-                            Id = new Guid("8a1079de-f850-47e5-9ffd-2bd42609e2d5"),
-                            ExpirationDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IssueDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Id = new Guid("62d2fc22-9881-4bc0-9cdd-4c70a4feb65e"),
+                            ExpirationDate = new DateTime(2024, 3, 28, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IssueDate = new DateTime(2020, 3, 28, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Issuer = "Amazon",
                             Name = "AWS Certified Solutions Architect Associate",
-                            ResumeId = new Guid("84b91e21-e998-464e-b8ba-c6be6c16b3be"),
-                            VerificationUrl = "https://www.credly.com/badges/dc95ff2a-12d8-4816-91b2-a9292ae5df85/public_url"
+                            VerificationUrl = "https://www.credly.com/badges/dc95ff2a-12d8-4816-91b2-a9292ae5df85"
                         },
                         new
                         {
-                            Id = new Guid("a96937f6-9a00-44c8-a216-de6858efed75"),
-                            ExpirationDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IssueDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Id = new Guid("7b16b9a1-18d2-46fb-9c31-d1c44ad8ee5f"),
+                            ExpirationDate = new DateTime(2023, 11, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IssueDate = new DateTime(2020, 11, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Issuer = "Microsoft",
                             Name = "DevOps Engineer Expert",
-                            ResumeId = new Guid("84b91e21-e998-464e-b8ba-c6be6c16b3be"),
-                            VerificationUrl = "https://www.credly.com/badges/2d29613e-7c7e-481d-aba3-842b409fecd7/public_url"
+                            VerificationUrl = "https://www.credly.com/badges/eaedb35f-5ea9-45b2-b551-acad69b94488"
+                        },
+                        new
+                        {
+                            Id = new Guid("b3099c2b-9ea7-4e0b-8dc1-661aa8df665a"),
+                            ExpirationDate = new DateTime(2022, 4, 13, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IssueDate = new DateTime(2020, 4, 13, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Issuer = "Microsoft",
+                            Name = "Azure Developer Associate",
+                            VerificationUrl = "https://www.credly.com/badges/49ab14ad-ffe5-47ae-b3d1-9d29b00ef4dc"
+                        },
+                        new
+                        {
+                            Id = new Guid("e6b50372-d4e8-4d5e-ae05-fe8d9394c586"),
+                            ExpirationDate = new DateTime(2023, 8, 29, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IssueDate = new DateTime(2020, 8, 29, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Issuer = "Google",
+                            Name = "Associate Cloud Engineer",
+                            VerificationUrl = "https://www.credential.net/f4054913-d10c-4cd4-89cb-e286f00de2ae"
                         });
                 });
 
             modelBuilder.Entity("ResumeApp.DataAccess.Sql.Entities.ContactSqlEntity", b =>
                 {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<string>("Key")
+                        .IsRequired()
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<Guid>("ResumeId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<string>("Link")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Value")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Key");
+                    b.HasKey("Id");
 
-                    b.HasIndex("ResumeId");
+                    b.HasIndex("Key")
+                        .IsUnique();
 
                     b.ToTable("Contacts");
 
                     b.HasData(
                         new
                         {
-                            Key = "Location",
-                            ResumeId = new Guid("84b91e21-e998-464e-b8ba-c6be6c16b3be"),
-                            Value = "Sunnyvale, CA, 94085"
+                            Id = new Guid("f85b7a75-1df7-481c-b8e3-f9413d19d6d5"),
+                            Key = "Phone",
+                            Link = "tel:+14084803600",
+                            Value = "+14084803600"
                         },
                         new
                         {
-                            Key = "Phone",
-                            ResumeId = new Guid("84b91e21-e998-464e-b8ba-c6be6c16b3be"),
+                            Id = new Guid("aa60daa6-7474-416f-aaea-1df70aee2f5a"),
+                            Key = "Telegram",
+                            Link = "https://t.me/+14084803600",
                             Value = "+1(408)480-3600"
                         },
                         new
                         {
+                            Id = new Guid("0d07ede7-68cf-45f3-af42-74c2be4c3696"),
+                            Key = "Whatsapp",
+                            Link = "https://wa.me/+14084803600",
+                            Value = "+1(408)480-3600"
+                        },
+                        new
+                        {
+                            Id = new Guid("02a4cae9-d308-4f64-b007-a8c0ed0b33f9"),
                             Key = "Email",
-                            ResumeId = new Guid("84b91e21-e998-464e-b8ba-c6be6c16b3be"),
-                            Value = "mickey.krasilnikov@gmail.com"
+                            Link = "mailto:your_email",
+                            Value = "Mickey.Krasilnikov@gmail.com"
                         },
                         new
                         {
-                            Key = "Accredible",
-                            ResumeId = new Guid("84b91e21-e998-464e-b8ba-c6be6c16b3be"),
-                            Value = "https://www.credential.net/profile/mikhailkrasilnikov328966/wallet"
+                            Id = new Guid("d74d843d-a55b-493a-ae1a-9d6d3121bf57"),
+                            Key = "Location",
+                            Link = "https://www.google.com/maps/place/Sunyvale%20CA%2094085/",
+                            Value = "Sunyvale, CA, 94085"
                         },
                         new
                         {
-                            Key = "Credly",
-                            ResumeId = new Guid("84b91e21-e998-464e-b8ba-c6be6c16b3be"),
-                            Value = "https://www.credly.com/users/mickey-krasilnikov/badges"
+                            Id = new Guid("b9a5e6ef-64ac-415c-bd98-3df641eebe1f"),
+                            Key = "Github",
+                            Link = "https://github.com/mickey-krasilnikov",
+                            Value = "@mickey-krasilnikov"
                         },
                         new
                         {
+                            Id = new Guid("a46aee19-f5cb-4c90-8150-9d7e8c276567"),
                             Key = "LinkedIn",
-                            ResumeId = new Guid("84b91e21-e998-464e-b8ba-c6be6c16b3be"),
-                            Value = "https://www.linkedin.com/in/mickeykrasilnikov/"
+                            Link = "https://www.linkedin.com/in/mickeykrasilnikov",
+                            Value = "@mickeykrasilnikov"
+                        },
+                        new
+                        {
+                            Id = new Guid("93039dbe-5c88-4fb6-9dc4-aa4037cb725c"),
+                            Key = "Accredible",
+                            Link = "https://www.credential.net/profile/mikhailkrasilnikov328966/wallet",
+                            Value = "@mikhailkrasilnikov328966"
+                        },
+                        new
+                        {
+                            Id = new Guid("5319715d-9d2b-4453-86dd-3339b6dfdcd7"),
+                            Key = "Credly",
+                            Link = "https://www.credly.com/users/mickey-krasilnikov/badges",
+                            Value = "@mickey-krasilnikov"
+                        },
+                        new
+                        {
+                            Id = new Guid("a44a818a-47fb-4b31-b7c5-06e7d84221e5"),
+                            Key = "Instagram",
+                            Link = "https://www.instagram.com/mickey.krasilnikov",
+                            Value = "@mickey.krasilnikov"
+                        },
+                        new
+                        {
+                            Id = new Guid("700cb581-aea0-4bfd-9e01-d479b36cc979"),
+                            Key = "Facebook",
+                            Link = "https://www.facebook.com/mickey.krasilnikov",
+                            Value = "@mickey.krasilnikov"
+                        },
+                        new
+                        {
+                            Id = new Guid("d4b0c82d-55e3-4ab4-bea1-11cd56635640"),
+                            Key = "Twitter",
+                            Link = "https://twitter.com/mickey_kras",
+                            Value = "@mickey_kras"
                         });
                 });
 
@@ -159,19 +224,19 @@ namespace ResumeApp.DataAccess.Sql.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Degree")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("EndDate")
+                    b.Property<DateTime?>("EndDate")
                         .HasColumnType("date");
 
                     b.Property<string>("FieldOfStudy")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<Guid>("ResumeId")
-                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("StartDate")
                         .HasColumnType("date");
@@ -181,20 +246,17 @@ namespace ResumeApp.DataAccess.Sql.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ResumeId");
-
                     b.ToTable("Educations");
 
                     b.HasData(
                         new
                         {
-                            Id = new Guid("c60ecfd2-bd9a-4aba-8b41-7235c78cec03"),
+                            Id = new Guid("d31a9a15-a883-46c7-a4f6-acd2e2da6ade"),
                             Degree = "Bachelor's degree",
-                            EndDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            EndDate = new DateTime(2013, 6, 19, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             FieldOfStudy = "Design and technology of radio electronic devices",
                             Name = "Penza State University",
-                            ResumeId = new Guid("84b91e21-e998-464e-b8ba-c6be6c16b3be"),
-                            StartDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            StartDate = new DateTime(2006, 9, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Url = "https://international.pnzgu.ru/"
                         });
                 });
@@ -206,114 +268,13 @@ namespace ResumeApp.DataAccess.Sql.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Company")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("EndDate")
                         .HasColumnType("date");
 
-                    b.Property<bool>("IsCurrentCompany")
-                        .HasColumnType("bit");
-
-                    b.Property<Guid>("ResumeId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<DateTime>("StartDate")
-                        .HasColumnType("date");
-
-                    b.Property<string>("Title")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("ResumeId");
-
-                    b.ToTable("Experiences");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = new Guid("9e7b2051-8774-47c3-b826-7d7dfb34bf6d"),
-                            Company = "EPAM Systems",
-                            EndDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IsCurrentCompany = false,
-                            ResumeId = new Guid("84b91e21-e998-464e-b8ba-c6be6c16b3be"),
-                            StartDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Title = "Lead Software Engineer"
-                        },
-                        new
-                        {
-                            Id = new Guid("ebae285d-cde6-4cc6-a4d0-fd40966bf331"),
-                            Company = "Credit Suisse",
-                            EndDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IsCurrentCompany = false,
-                            ResumeId = new Guid("84b91e21-e998-464e-b8ba-c6be6c16b3be"),
-                            StartDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Title = "Front Office Risk System Developer (AVP) (Senior Software Engineer)"
-                        },
-                        new
-                        {
-                            Id = new Guid("30509bff-4c5d-41f0-ae29-852b51dd07b2"),
-                            Company = "SINTEGRO SOFT",
-                            EndDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IsCurrentCompany = false,
-                            ResumeId = new Guid("84b91e21-e998-464e-b8ba-c6be6c16b3be"),
-                            StartDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Title = "Senior Software Engineer"
-                        },
-                        new
-                        {
-                            Id = new Guid("88ddacf2-141f-4f28-9740-7f4477eb5cf2"),
-                            Company = "Gollard",
-                            EndDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IsCurrentCompany = false,
-                            ResumeId = new Guid("84b91e21-e998-464e-b8ba-c6be6c16b3be"),
-                            StartDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Title = "Software Engineer"
-                        },
-                        new
-                        {
-                            Id = new Guid("9ef842b2-26e0-47db-9906-45bf5c9aa12d"),
-                            Company = "SGC",
-                            EndDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IsCurrentCompany = false,
-                            ResumeId = new Guid("84b91e21-e998-464e-b8ba-c6be6c16b3be"),
-                            StartDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Title = "Software Engineer"
-                        },
-                        new
-                        {
-                            Id = new Guid("126533a6-23c5-4fd8-8c9c-f332e2da0173"),
-                            Company = "Research and Production Center 'Start'",
-                            EndDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            IsCurrentCompany = false,
-                            ResumeId = new Guid("84b91e21-e998-464e-b8ba-c6be6c16b3be"),
-                            StartDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Title = "Software Engineer"
-                        });
-                });
-
-            modelBuilder.Entity("ResumeApp.DataAccess.Sql.Entities.ProjectSqlEntity", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Client")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime?>("EndDate")
-                        .HasColumnType("date");
-
-                    b.Property<string>("Environment")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<Guid>("ExperienceId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<bool>("IsCurrentProject")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("ProjectRoles")
+                    b.Property<string>("Location")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("StartDate")
@@ -322,127 +283,485 @@ namespace ResumeApp.DataAccess.Sql.Migrations
                     b.Property<string>("TaskPerformed")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Id");
-
-                    b.HasIndex("ExperienceId");
-
-                    b.ToTable("Projects");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = new Guid("cb2bd704-e700-4d53-b666-4d239f184ac5"),
-                            Client = "Broadridge",
-                            EndDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Environment = ".NET Core 6.0, Vue.js, Python 3.7, AWS, AWS Lambda, AWS S3, AWS Beanstalk, AWS EC2, AWS Code Commit, AWS Code Build, AWS Code Deploy, AWS Code Pipeline, Docker, AWS RDS, GIT",
-                            ExperienceId = new Guid("9e7b2051-8774-47c3-b826-7d7dfb34bf6d"),
-                            IsCurrentProject = false,
-                            ProjectRoles = "Key Developer, Team Lead",
-                            StartDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified)
-                        },
-                        new
-                        {
-                            Id = new Guid("83c9f60f-673e-4e80-9e9c-b65f6a34fee2"),
-                            Client = "ElipsLife",
-                            EndDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Environment = ".NET Core 6.0Angular 13Go LangAzureAzure DevOpsOctopusOKTADockerCosmos DBRedisMS SQLGIT",
-                            ExperienceId = new Guid("9e7b2051-8774-47c3-b826-7d7dfb34bf6d"),
-                            IsCurrentProject = false,
-                            ProjectRoles = "Key Developer, Team Lead",
-                            StartDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            TaskPerformed = "Designed microservice-based hybrid-cloud solution architecture for multi-role self-service portal for managing insurance claims + underwriting + and broker reports.Designed and developed microservices following a RESTful approach and applying best practices. • Covered code with unit and contract tests and maintained code coverage on 80%.Configured CI/CD pipelines and established automated quality gates on different stages.Mentored new joiners and supported them during the ramp-up period.Performed systematic knowledge transfer to the client support team + including the creation of visual documentation. Introduced and ensured the development team follows the very best engineering practices (with respect to various limitations on the client side)."
-                        },
-                        new
-                        {
-                            Id = new Guid("82f125db-50d1-499b-a00d-96a953d96918"),
-                            EndDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Environment = ".NET Core 2.1, .NET 4.6, WPF, WCF, EF, MS SQL, MS SSAS, TeamCity, Jira, Confluence, Splunk, GIT",
-                            ExperienceId = new Guid("ebae285d-cde6-4cc6-a4d0-fd40966bf331"),
-                            IsCurrentProject = false,
-                            ProjectRoles = "Key Developer, Tech Lead",
-                            StartDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            TaskPerformed = "Maintained Risk Management System for Credit Suisse Front Office and developed new modules. Improved performance and decreased memory usage in CS in-house distributed cache. Splatted monolith server-side architecture to microservices. Analyzed and arranged requirements with traders + BAU team and QA. Supported worldwide users as a part of the SL3 team. Administrated CI/CD on TeamCity. Documented design decisions and usage examples. Mentored new joiners."
-                        },
-                        new
-                        {
-                            Id = new Guid("beddb152-6ad7-4f70-b554-7a72e04227fd"),
-                            Client = "Yandex",
-                            EndDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Environment = ".NET 4.5, ASP.NET MVC 5, ASP.NET Web API, WPF, MS SQL, EF, TFS, WIX, GIT",
-                            ExperienceId = new Guid("30509bff-4c5d-41f0-ae29-852b51dd07b2"),
-                            IsCurrentProject = false,
-                            ProjectRoles = "Key Developer",
-                            StartDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            TaskPerformed = "Participated in the development of the system that helps organize corporate bonuses + such as meals + mobile phones + fitness + transportation + etc.Developed user personal page that contains account balance and transaction history. Developed desktop administration systems for corporate bonus managers.Documented design decisions + component APIs and usage examples.Participated in the software integration process."
-                        },
-                        new
-                        {
-                            Id = new Guid("39e39a57-b90e-4ca9-8724-2e103e5fe35f"),
-                            EndDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Environment = ".NET 4.5, WPF, WCF, ASP.NET Web API, Esri ArcGIS, MS SQL, MySQL, GitLab, WIX, GIT",
-                            ExperienceId = new Guid("88ddacf2-141f-4f28-9740-7f4477eb5cf2"),
-                            IsCurrentProject = false,
-                            ProjectRoles = "Key Developer",
-                            StartDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            TaskPerformed = "Participated in the development of desktop GIS application for the power distribution company dealing with electrical grids, stations and facilities on the map.Implemented a feature that allows monitoring the service transport on the map in real-timeIntroduced the possibility to view video streams from the cameras marked on the map.Participated in the development of the solution to maintain security and safety of the buildings and areas using cameras and different types of sensors.Implemented an alerting system that works based on the biometric data from the cameras or events from the sensors."
-                        },
-                        new
-                        {
-                            Id = new Guid("4f7ba226-dca3-4f6a-8587-ebceef364b7d"),
-                            EndDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Environment = ".NET 4.0, WPF, SOAP, MS SQL, WIX, SVN",
-                            ExperienceId = new Guid("9ef842b2-26e0-47db-9906-45bf5c9aa12d"),
-                            IsCurrentProject = false,
-                            ProjectRoles = "Key Developer",
-                            StartDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            TaskPerformed = "Developed software for composing estimates to determine the cost of construction.Integrated with other well-known systems available on the market for composing estimates."
-                        },
-                        new
-                        {
-                            Id = new Guid("86f3fb29-4dd8-4696-8fc6-7a90d64736ce"),
-                            EndDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Environment = ".NET 3.5, WinForms, SOAP, MS SQL, SVN",
-                            ExperienceId = new Guid("126533a6-23c5-4fd8-8c9c-f332e2da0173"),
-                            IsCurrentProject = false,
-                            ProjectRoles = "Key Developer",
-                            StartDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            TaskPerformed = "Developed software for designing micro boards and creating a mask for interacting with third-party equipment for printing this kind of product."
-                        });
-                });
-
-            modelBuilder.Entity("ResumeApp.DataAccess.Sql.Entities.ResumeSqlEntity", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("FirstName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("LastName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Summary")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Title")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Resumes");
+                    b.ToTable("Experiences");
 
                     b.HasData(
                         new
                         {
-                            Id = new Guid("84b91e21-e998-464e-b8ba-c6be6c16b3be"),
-                            FirstName = "Mikhail",
-                            LastName = "Krasilnikov",
-                            Summary = "12+ years of professional programming experience with consistently increasing responsibilities in the design and development of commercial applications on different platforms and environments \nCertified Cloud Solution Architect (Azure, GCP, AWS) \nExperienced as a Team Leader \nInvolved in full Software Development Life Cycle (SDLC)",
+                            Id = new Guid("42647a6a-5498-4a76-8ef2-3c5f2932989b"),
+                            Company = "EPAM Systems",
+                            Location = "San Jose, CA, USA",
+                            StartDate = new DateTime(2021, 10, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            TaskPerformed = "Developed cloud-native Execution Compliance and Trade Surveillance System.\r\nDesigned and implemented a web dashboard for monitoring and analyzing using Vue.js.\r\nDeveloped backend services following a RESTful approach using.NET Core.\r\nImplemented event-driven workflow of loading and parsing large data files with Amazon SQS and AWS Lambdas written in Python.\r\n",
                             Title = "Lead Software Engineer"
+                        },
+                        new
+                        {
+                            Id = new Guid("b229a58a-9799-462e-a69a-b0443e0f5f0c"),
+                            Company = "EPAM Systems",
+                            EndDate = new DateTime(2021, 10, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Location = "Wroclaw, Poland",
+                            StartDate = new DateTime(2019, 4, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            TaskPerformed = "Designed and developed a cloud-native microservice-based system for managing insurance claims, underwriting, and reporting.\r\nDeveloped a web self-service portal using Angular, and RESTful Web APIs using .NET Core.\r\nImplemented performance-critical internal services using GoLang with Gin web framework.\r\nAchieved and maintained 80% code coverage by unit and contract tests, and established automated quality gates in CI/CD.\r\n",
+                            Title = "Lead Software Engineer"
+                        },
+                        new
+                        {
+                            Id = new Guid("11896c54-51ef-4ecb-9d76-d47f98ecf703"),
+                            Company = "Credit Suisse",
+                            EndDate = new DateTime(2019, 3, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Location = "Wroclaw, Poland",
+                            StartDate = new DateTime(2015, 8, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            TaskPerformed = "Developed a risk management desktop application for the Credit Suisse front office using WPF and C#.\r\nConverted an existing backend monolithic architecture into microservices and implemented new RESTful Web APIs using .NET Core.\r\nMaintained and improved the performance of the in-house distributed cache written in C#.\r\nSupported worldwide users as a part of the SL3 team.\r\n",
+                            Title = "Senior Software Engineer"
+                        },
+                        new
+                        {
+                            Id = new Guid("d40c5c03-514b-4c52-9c16-e0f212d2a709"),
+                            Company = "Yandex",
+                            EndDate = new DateTime(2015, 8, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Location = "Moscow, Russia",
+                            StartDate = new DateTime(2014, 8, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            TaskPerformed = "Developed a payment system that allows employees to pay for lunch at nearby cafes and restaurants with the office access card (RFID tag)\r\nDeveloped a personal page for users, a desktop application for administrators, and payment service middleware.\r\nParticipated in the software integration process.\r\n",
+                            Title = "Senior Software Engineer"
+                        },
+                        new
+                        {
+                            Id = new Guid("f38b7451-ad35-4f0f-8135-3b296738939f"),
+                            Company = "Gollard",
+                            EndDate = new DateTime(2014, 7, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Location = "Moscow, Russia",
+                            StartDate = new DateTime(2013, 6, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            TaskPerformed = "Developed a desktop GIS application for an energy distribution company that deals with electrical grids, stations, and facilities.\r\nImplemented real-time tracking of service transport location and engine state.\r\nDeveloped an alerting system that uses biometric data from cameras and events from sensors.\r\n",
+                            Title = "Software Engineer"
+                        },
+                        new
+                        {
+                            Id = new Guid("4d99f5fe-c1e3-4008-8946-69324331ed01"),
+                            Company = "SGC",
+                            EndDate = new DateTime(2013, 6, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Location = "Moscow, Russia",
+                            StartDate = new DateTime(2012, 7, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            TaskPerformed = "Developed software for composing estimates to determine the cost of construction.\r\nAdded functionality for converting files from other well-known systems for composing estimates available on the market.\r\nImplemented logic that allows exporting the final result to Excel, Word, etc.\r\n",
+                            Title = "Software Engineer"
+                        },
+                        new
+                        {
+                            Id = new Guid("4a3d0a26-55dd-458e-a2d6-34be27f9466a"),
+                            Company = "Research and Production Center 'Start'",
+                            EndDate = new DateTime(2012, 6, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Location = "Penza, Russia",
+                            StartDate = new DateTime(2010, 8, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            TaskPerformed = "Developed in-house CAD for designing microboards.\r\nImplemented functionality for printing photomasks of microboards using special equipment.\r\nAdded the possibility to import AutoCAD files.\r\n",
+                            Title = "Software Engineer"
+                        });
+                });
+
+            modelBuilder.Entity("ResumeApp.DataAccess.Sql.Entities.SkillExperienceMappingSqlEntity", b =>
+                {
+                    b.Property<Guid>("SkillId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("ExperienceId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("SkillId", "ExperienceId");
+
+                    b.HasIndex("ExperienceId");
+
+                    b.ToTable("SkillExperienceMappings");
+
+                    b.HasData(
+                        new
+                        {
+                            SkillId = new Guid("6b028ae2-734d-453a-8ecb-f37a7202c1a2"),
+                            ExperienceId = new Guid("42647a6a-5498-4a76-8ef2-3c5f2932989b")
+                        },
+                        new
+                        {
+                            SkillId = new Guid("45404f69-3e14-4107-8b5f-77dacbd1736c"),
+                            ExperienceId = new Guid("42647a6a-5498-4a76-8ef2-3c5f2932989b")
+                        },
+                        new
+                        {
+                            SkillId = new Guid("8c277707-ef89-48c7-9e11-b3da5a2f55d2"),
+                            ExperienceId = new Guid("42647a6a-5498-4a76-8ef2-3c5f2932989b")
+                        },
+                        new
+                        {
+                            SkillId = new Guid("f64a7f5a-1ed0-4bed-a39e-8a952ad295c4"),
+                            ExperienceId = new Guid("42647a6a-5498-4a76-8ef2-3c5f2932989b")
+                        },
+                        new
+                        {
+                            SkillId = new Guid("b6988db9-10e0-4bad-9b1d-bd2ef54bdc62"),
+                            ExperienceId = new Guid("42647a6a-5498-4a76-8ef2-3c5f2932989b")
+                        },
+                        new
+                        {
+                            SkillId = new Guid("837daf5d-2d2c-4bde-a944-7fd722a3a5d9"),
+                            ExperienceId = new Guid("42647a6a-5498-4a76-8ef2-3c5f2932989b")
+                        },
+                        new
+                        {
+                            SkillId = new Guid("5c5e078a-4826-4c07-a75c-5f770a134a69"),
+                            ExperienceId = new Guid("42647a6a-5498-4a76-8ef2-3c5f2932989b")
+                        },
+                        new
+                        {
+                            SkillId = new Guid("d0f0c657-3ab6-41a2-9303-18cab0a8dfe6"),
+                            ExperienceId = new Guid("42647a6a-5498-4a76-8ef2-3c5f2932989b")
+                        },
+                        new
+                        {
+                            SkillId = new Guid("c546ed63-b96a-4f78-8562-cd55b6562a68"),
+                            ExperienceId = new Guid("42647a6a-5498-4a76-8ef2-3c5f2932989b")
+                        },
+                        new
+                        {
+                            SkillId = new Guid("ed19e565-ad16-427d-9965-d8122f88e635"),
+                            ExperienceId = new Guid("42647a6a-5498-4a76-8ef2-3c5f2932989b")
+                        },
+                        new
+                        {
+                            SkillId = new Guid("5498dd83-f3db-49f3-91b8-0c12fdd9e33f"),
+                            ExperienceId = new Guid("42647a6a-5498-4a76-8ef2-3c5f2932989b")
+                        },
+                        new
+                        {
+                            SkillId = new Guid("d2b44131-4f80-4a59-a60d-4828e3f90866"),
+                            ExperienceId = new Guid("42647a6a-5498-4a76-8ef2-3c5f2932989b")
+                        },
+                        new
+                        {
+                            SkillId = new Guid("2f179910-d592-4b5c-82b8-7c0b7383fce7"),
+                            ExperienceId = new Guid("42647a6a-5498-4a76-8ef2-3c5f2932989b")
+                        },
+                        new
+                        {
+                            SkillId = new Guid("48a6631b-2edc-45fd-b3fe-cdbbe624ce04"),
+                            ExperienceId = new Guid("42647a6a-5498-4a76-8ef2-3c5f2932989b")
+                        },
+                        new
+                        {
+                            SkillId = new Guid("595c5389-0d7a-446a-bcaa-f8ce30e5152a"),
+                            ExperienceId = new Guid("b229a58a-9799-462e-a69a-b0443e0f5f0c")
+                        },
+                        new
+                        {
+                            SkillId = new Guid("45404f69-3e14-4107-8b5f-77dacbd1736c"),
+                            ExperienceId = new Guid("b229a58a-9799-462e-a69a-b0443e0f5f0c")
+                        },
+                        new
+                        {
+                            SkillId = new Guid("8c277707-ef89-48c7-9e11-b3da5a2f55d2"),
+                            ExperienceId = new Guid("b229a58a-9799-462e-a69a-b0443e0f5f0c")
+                        },
+                        new
+                        {
+                            SkillId = new Guid("f64a7f5a-1ed0-4bed-a39e-8a952ad295c4"),
+                            ExperienceId = new Guid("b229a58a-9799-462e-a69a-b0443e0f5f0c")
+                        },
+                        new
+                        {
+                            SkillId = new Guid("f90c4279-a314-4960-8bf7-da6606cee19c"),
+                            ExperienceId = new Guid("b229a58a-9799-462e-a69a-b0443e0f5f0c")
+                        },
+                        new
+                        {
+                            SkillId = new Guid("b5a6230a-be9f-4197-8169-6a6db0cebeaa"),
+                            ExperienceId = new Guid("b229a58a-9799-462e-a69a-b0443e0f5f0c")
+                        },
+                        new
+                        {
+                            SkillId = new Guid("fdf6c906-5b27-40a8-bfd3-c20d9d2a62cc"),
+                            ExperienceId = new Guid("b229a58a-9799-462e-a69a-b0443e0f5f0c")
+                        },
+                        new
+                        {
+                            SkillId = new Guid("d0f0c657-3ab6-41a2-9303-18cab0a8dfe6"),
+                            ExperienceId = new Guid("b229a58a-9799-462e-a69a-b0443e0f5f0c")
+                        },
+                        new
+                        {
+                            SkillId = new Guid("5c5e078a-4826-4c07-a75c-5f770a134a69"),
+                            ExperienceId = new Guid("b229a58a-9799-462e-a69a-b0443e0f5f0c")
+                        },
+                        new
+                        {
+                            SkillId = new Guid("c546ed63-b96a-4f78-8562-cd55b6562a68"),
+                            ExperienceId = new Guid("b229a58a-9799-462e-a69a-b0443e0f5f0c")
+                        },
+                        new
+                        {
+                            SkillId = new Guid("ed19e565-ad16-427d-9965-d8122f88e635"),
+                            ExperienceId = new Guid("b229a58a-9799-462e-a69a-b0443e0f5f0c")
+                        },
+                        new
+                        {
+                            SkillId = new Guid("7861c16e-d82f-4527-8914-175384a7272f"),
+                            ExperienceId = new Guid("b229a58a-9799-462e-a69a-b0443e0f5f0c")
+                        },
+                        new
+                        {
+                            SkillId = new Guid("d573787a-8021-48f7-acbc-0f16fc7ecb80"),
+                            ExperienceId = new Guid("b229a58a-9799-462e-a69a-b0443e0f5f0c")
+                        },
+                        new
+                        {
+                            SkillId = new Guid("85e045bf-f5d8-428a-9ea7-4403b8459176"),
+                            ExperienceId = new Guid("b229a58a-9799-462e-a69a-b0443e0f5f0c")
+                        },
+                        new
+                        {
+                            SkillId = new Guid("b7b6a8ae-3713-4427-a2c2-8b78258ab802"),
+                            ExperienceId = new Guid("b229a58a-9799-462e-a69a-b0443e0f5f0c")
+                        },
+                        new
+                        {
+                            SkillId = new Guid("0cc1df6b-654b-4037-b3f0-3c88c5c842fa"),
+                            ExperienceId = new Guid("b229a58a-9799-462e-a69a-b0443e0f5f0c")
+                        },
+                        new
+                        {
+                            SkillId = new Guid("5f1e1abf-d068-4d06-b176-698c2c6fd38d"),
+                            ExperienceId = new Guid("b229a58a-9799-462e-a69a-b0443e0f5f0c")
+                        },
+                        new
+                        {
+                            SkillId = new Guid("45404f69-3e14-4107-8b5f-77dacbd1736c"),
+                            ExperienceId = new Guid("11896c54-51ef-4ecb-9d76-d47f98ecf703")
+                        },
+                        new
+                        {
+                            SkillId = new Guid("8c277707-ef89-48c7-9e11-b3da5a2f55d2"),
+                            ExperienceId = new Guid("11896c54-51ef-4ecb-9d76-d47f98ecf703")
+                        },
+                        new
+                        {
+                            SkillId = new Guid("f71e817d-978c-4c3c-b43b-212b658b9861"),
+                            ExperienceId = new Guid("11896c54-51ef-4ecb-9d76-d47f98ecf703")
+                        },
+                        new
+                        {
+                            SkillId = new Guid("c2430241-81bd-4ca8-8f52-e0739e43877d"),
+                            ExperienceId = new Guid("11896c54-51ef-4ecb-9d76-d47f98ecf703")
+                        },
+                        new
+                        {
+                            SkillId = new Guid("b2545caa-91d4-4363-b48c-3a9685d90725"),
+                            ExperienceId = new Guid("11896c54-51ef-4ecb-9d76-d47f98ecf703")
+                        },
+                        new
+                        {
+                            SkillId = new Guid("63ed5300-cebd-4167-b383-348c98695ee5"),
+                            ExperienceId = new Guid("11896c54-51ef-4ecb-9d76-d47f98ecf703")
+                        },
+                        new
+                        {
+                            SkillId = new Guid("9dd966f9-47d0-4c8e-aee4-13ebeaf24c02"),
+                            ExperienceId = new Guid("11896c54-51ef-4ecb-9d76-d47f98ecf703")
+                        },
+                        new
+                        {
+                            SkillId = new Guid("d494d01f-a939-48db-bcc2-88a3021a8d06"),
+                            ExperienceId = new Guid("11896c54-51ef-4ecb-9d76-d47f98ecf703")
+                        },
+                        new
+                        {
+                            SkillId = new Guid("0cc1df6b-654b-4037-b3f0-3c88c5c842fa"),
+                            ExperienceId = new Guid("11896c54-51ef-4ecb-9d76-d47f98ecf703")
+                        },
+                        new
+                        {
+                            SkillId = new Guid("27deee5d-937a-4801-a028-97226a9d97d6"),
+                            ExperienceId = new Guid("11896c54-51ef-4ecb-9d76-d47f98ecf703")
+                        },
+                        new
+                        {
+                            SkillId = new Guid("48a6631b-2edc-45fd-b3fe-cdbbe624ce04"),
+                            ExperienceId = new Guid("11896c54-51ef-4ecb-9d76-d47f98ecf703")
+                        },
+                        new
+                        {
+                            SkillId = new Guid("ce64e8ef-238d-4e65-8a7e-c9564c9340bc"),
+                            ExperienceId = new Guid("11896c54-51ef-4ecb-9d76-d47f98ecf703")
+                        },
+                        new
+                        {
+                            SkillId = new Guid("2f179910-d592-4b5c-82b8-7c0b7383fce7"),
+                            ExperienceId = new Guid("11896c54-51ef-4ecb-9d76-d47f98ecf703")
+                        },
+                        new
+                        {
+                            SkillId = new Guid("45404f69-3e14-4107-8b5f-77dacbd1736c"),
+                            ExperienceId = new Guid("d40c5c03-514b-4c52-9c16-e0f212d2a709")
+                        },
+                        new
+                        {
+                            SkillId = new Guid("f71e817d-978c-4c3c-b43b-212b658b9861"),
+                            ExperienceId = new Guid("d40c5c03-514b-4c52-9c16-e0f212d2a709")
+                        },
+                        new
+                        {
+                            SkillId = new Guid("38bfe8d8-8498-45b0-bc6e-292ba75ded7b"),
+                            ExperienceId = new Guid("d40c5c03-514b-4c52-9c16-e0f212d2a709")
+                        },
+                        new
+                        {
+                            SkillId = new Guid("5c5e078a-4826-4c07-a75c-5f770a134a69"),
+                            ExperienceId = new Guid("d40c5c03-514b-4c52-9c16-e0f212d2a709")
+                        },
+                        new
+                        {
+                            SkillId = new Guid("c546ed63-b96a-4f78-8562-cd55b6562a68"),
+                            ExperienceId = new Guid("d40c5c03-514b-4c52-9c16-e0f212d2a709")
+                        },
+                        new
+                        {
+                            SkillId = new Guid("ed19e565-ad16-427d-9965-d8122f88e635"),
+                            ExperienceId = new Guid("d40c5c03-514b-4c52-9c16-e0f212d2a709")
+                        },
+                        new
+                        {
+                            SkillId = new Guid("b2545caa-91d4-4363-b48c-3a9685d90725"),
+                            ExperienceId = new Guid("d40c5c03-514b-4c52-9c16-e0f212d2a709")
+                        },
+                        new
+                        {
+                            SkillId = new Guid("63ed5300-cebd-4167-b383-348c98695ee5"),
+                            ExperienceId = new Guid("d40c5c03-514b-4c52-9c16-e0f212d2a709")
+                        },
+                        new
+                        {
+                            SkillId = new Guid("9dd966f9-47d0-4c8e-aee4-13ebeaf24c02"),
+                            ExperienceId = new Guid("d40c5c03-514b-4c52-9c16-e0f212d2a709")
+                        },
+                        new
+                        {
+                            SkillId = new Guid("27deee5d-937a-4801-a028-97226a9d97d6"),
+                            ExperienceId = new Guid("d40c5c03-514b-4c52-9c16-e0f212d2a709")
+                        },
+                        new
+                        {
+                            SkillId = new Guid("48a6631b-2edc-45fd-b3fe-cdbbe624ce04"),
+                            ExperienceId = new Guid("d40c5c03-514b-4c52-9c16-e0f212d2a709")
+                        },
+                        new
+                        {
+                            SkillId = new Guid("ce64e8ef-238d-4e65-8a7e-c9564c9340bc"),
+                            ExperienceId = new Guid("d40c5c03-514b-4c52-9c16-e0f212d2a709")
+                        },
+                        new
+                        {
+                            SkillId = new Guid("45404f69-3e14-4107-8b5f-77dacbd1736c"),
+                            ExperienceId = new Guid("f38b7451-ad35-4f0f-8135-3b296738939f")
+                        },
+                        new
+                        {
+                            SkillId = new Guid("f71e817d-978c-4c3c-b43b-212b658b9861"),
+                            ExperienceId = new Guid("f38b7451-ad35-4f0f-8135-3b296738939f")
+                        },
+                        new
+                        {
+                            SkillId = new Guid("38bfe8d8-8498-45b0-bc6e-292ba75ded7b"),
+                            ExperienceId = new Guid("f38b7451-ad35-4f0f-8135-3b296738939f")
+                        },
+                        new
+                        {
+                            SkillId = new Guid("c2430241-81bd-4ca8-8f52-e0739e43877d"),
+                            ExperienceId = new Guid("f38b7451-ad35-4f0f-8135-3b296738939f")
+                        },
+                        new
+                        {
+                            SkillId = new Guid("b2545caa-91d4-4363-b48c-3a9685d90725"),
+                            ExperienceId = new Guid("f38b7451-ad35-4f0f-8135-3b296738939f")
+                        },
+                        new
+                        {
+                            SkillId = new Guid("63ed5300-cebd-4167-b383-348c98695ee5"),
+                            ExperienceId = new Guid("f38b7451-ad35-4f0f-8135-3b296738939f")
+                        },
+                        new
+                        {
+                            SkillId = new Guid("9dd966f9-47d0-4c8e-aee4-13ebeaf24c02"),
+                            ExperienceId = new Guid("f38b7451-ad35-4f0f-8135-3b296738939f")
+                        },
+                        new
+                        {
+                            SkillId = new Guid("5498dd83-f3db-49f3-91b8-0c12fdd9e33f"),
+                            ExperienceId = new Guid("f38b7451-ad35-4f0f-8135-3b296738939f")
+                        },
+                        new
+                        {
+                            SkillId = new Guid("06c18dc9-80b6-494f-8bb0-a2cede682f9e"),
+                            ExperienceId = new Guid("f38b7451-ad35-4f0f-8135-3b296738939f")
+                        },
+                        new
+                        {
+                            SkillId = new Guid("ce64e8ef-238d-4e65-8a7e-c9564c9340bc"),
+                            ExperienceId = new Guid("f38b7451-ad35-4f0f-8135-3b296738939f")
+                        },
+                        new
+                        {
+                            SkillId = new Guid("48a6631b-2edc-45fd-b3fe-cdbbe624ce04"),
+                            ExperienceId = new Guid("f38b7451-ad35-4f0f-8135-3b296738939f")
+                        },
+                        new
+                        {
+                            SkillId = new Guid("45404f69-3e14-4107-8b5f-77dacbd1736c"),
+                            ExperienceId = new Guid("4d99f5fe-c1e3-4008-8946-69324331ed01")
+                        },
+                        new
+                        {
+                            SkillId = new Guid("f71e817d-978c-4c3c-b43b-212b658b9861"),
+                            ExperienceId = new Guid("4d99f5fe-c1e3-4008-8946-69324331ed01")
+                        },
+                        new
+                        {
+                            SkillId = new Guid("b2545caa-91d4-4363-b48c-3a9685d90725"),
+                            ExperienceId = new Guid("4d99f5fe-c1e3-4008-8946-69324331ed01")
+                        },
+                        new
+                        {
+                            SkillId = new Guid("63ed5300-cebd-4167-b383-348c98695ee5"),
+                            ExperienceId = new Guid("4d99f5fe-c1e3-4008-8946-69324331ed01")
+                        },
+                        new
+                        {
+                            SkillId = new Guid("9dd966f9-47d0-4c8e-aee4-13ebeaf24c02"),
+                            ExperienceId = new Guid("4d99f5fe-c1e3-4008-8946-69324331ed01")
+                        },
+                        new
+                        {
+                            SkillId = new Guid("d6e10246-2b24-4a87-b6b7-aae4e8ffa04d"),
+                            ExperienceId = new Guid("4d99f5fe-c1e3-4008-8946-69324331ed01")
+                        },
+                        new
+                        {
+                            SkillId = new Guid("45404f69-3e14-4107-8b5f-77dacbd1736c"),
+                            ExperienceId = new Guid("4a3d0a26-55dd-458e-a2d6-34be27f9466a")
+                        },
+                        new
+                        {
+                            SkillId = new Guid("f71e817d-978c-4c3c-b43b-212b658b9861"),
+                            ExperienceId = new Guid("4a3d0a26-55dd-458e-a2d6-34be27f9466a")
+                        },
+                        new
+                        {
+                            SkillId = new Guid("71977b8e-458e-4fd1-bdac-c608325777d9"),
+                            ExperienceId = new Guid("4a3d0a26-55dd-458e-a2d6-34be27f9466a")
+                        },
+                        new
+                        {
+                            SkillId = new Guid("9dd966f9-47d0-4c8e-aee4-13ebeaf24c02"),
+                            ExperienceId = new Guid("4a3d0a26-55dd-458e-a2d6-34be27f9466a")
                         });
                 });
 
@@ -452,375 +771,268 @@ namespace ResumeApp.DataAccess.Sql.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("AdditionalInfo")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<Guid>("ResumeId")
-                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("SkillGroup")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ResumeId");
-
                     b.ToTable("Skills");
 
                     b.HasData(
                         new
                         {
-                            Id = new Guid("bb571259-c6bd-4425-b4b8-1e44261ef599"),
-                            AdditionalInfo = ".Net Core, .Net",
-                            Name = "C#",
-                            ResumeId = new Guid("84b91e21-e998-464e-b8ba-c6be6c16b3be"),
-                            SkillGroup = "Programming Languages/Backend"
-                        },
-                        new
-                        {
-                            Id = new Guid("87b0c15c-b4a5-41e4-9346-c5fdeba4affa"),
-                            AdditionalInfo = "Gin",
-                            Name = "GoLang",
-                            ResumeId = new Guid("84b91e21-e998-464e-b8ba-c6be6c16b3be"),
-                            SkillGroup = "Programming Languages/Backend"
-                        },
-                        new
-                        {
-                            Id = new Guid("91968550-e11e-45b1-bd35-e628c6898214"),
-                            AdditionalInfo = "Node.js",
-                            Name = "Javascript",
-                            ResumeId = new Guid("84b91e21-e998-464e-b8ba-c6be6c16b3be"),
-                            SkillGroup = "Programming Languages/Backend"
-                        },
-                        new
-                        {
-                            Id = new Guid("088736fb-df50-4fc3-a131-c92c23192969"),
-                            AdditionalInfo = "FastAPI",
-                            Name = "Python",
-                            ResumeId = new Guid("84b91e21-e998-464e-b8ba-c6be6c16b3be"),
-                            SkillGroup = "Programming Languages/Backend"
-                        },
-                        new
-                        {
-                            Id = new Guid("4bda5608-4160-4a65-a874-b672b248cd1f"),
-                            Name = "Angular",
-                            ResumeId = new Guid("84b91e21-e998-464e-b8ba-c6be6c16b3be"),
-                            SkillGroup = "Programming Languages/Frontend"
-                        },
-                        new
-                        {
-                            Id = new Guid("280e6565-d075-418b-ad16-f354c426d5e4"),
-                            Name = "Vue.js",
-                            ResumeId = new Guid("84b91e21-e998-464e-b8ba-c6be6c16b3be"),
-                            SkillGroup = "Programming Languages/Frontend"
-                        },
-                        new
-                        {
-                            Id = new Guid("41e824af-bcaf-40c9-9884-ede94b0dcfec"),
-                            Name = "JavaScript",
-                            ResumeId = new Guid("84b91e21-e998-464e-b8ba-c6be6c16b3be"),
-                            SkillGroup = "Programming Languages/Frontend"
-                        },
-                        new
-                        {
-                            Id = new Guid("1e673657-545a-477b-92cc-e2b2c99d72f5"),
-                            Name = "TypeScript",
-                            ResumeId = new Guid("84b91e21-e998-464e-b8ba-c6be6c16b3be"),
-                            SkillGroup = "Programming Languages/Frontend"
-                        },
-                        new
-                        {
-                            Id = new Guid("e04fd530-1420-43bd-9e16-42be22d6ff29"),
-                            Name = "HTML",
-                            ResumeId = new Guid("84b91e21-e998-464e-b8ba-c6be6c16b3be"),
-                            SkillGroup = "Programming Languages/Frontend"
-                        },
-                        new
-                        {
-                            Id = new Guid("d9dbe63f-09c8-48ea-b87b-989aa5f3cdc6"),
-                            Name = "CSS",
-                            ResumeId = new Guid("84b91e21-e998-464e-b8ba-c6be6c16b3be"),
-                            SkillGroup = "Programming Languages/Frontend"
-                        },
-                        new
-                        {
-                            Id = new Guid("d7951bcb-29b0-44f2-a044-3f48e70a4ab1"),
-                            AdditionalInfo = "MS SQL",
-                            Name = "T-SQL",
-                            ResumeId = new Guid("84b91e21-e998-464e-b8ba-c6be6c16b3be"),
-                            SkillGroup = "Programming Languages/Database/SQL"
-                        },
-                        new
-                        {
-                            Id = new Guid("9e48dff5-2bde-4d84-bbec-ea8e5c10f5e0"),
-                            AdditionalInfo = "MySQL",
-                            Name = "SQL/PSM",
-                            ResumeId = new Guid("84b91e21-e998-464e-b8ba-c6be6c16b3be"),
-                            SkillGroup = "Programming Languages/Database/SQL"
-                        },
-                        new
-                        {
-                            Id = new Guid("1a5e5d9d-3d21-42fd-96e7-84fa8cca13fa"),
-                            AdditionalInfo = "PostgreSQL, Oracle",
-                            Name = "PL-SQL",
-                            ResumeId = new Guid("84b91e21-e998-464e-b8ba-c6be6c16b3be"),
-                            SkillGroup = "Programming Languages/Database/SQL"
-                        },
-                        new
-                        {
-                            Id = new Guid("669e70e0-4a36-4864-8a7c-31dc78c1fa94"),
-                            Name = "MongoDB",
-                            ResumeId = new Guid("84b91e21-e998-464e-b8ba-c6be6c16b3be"),
-                            SkillGroup = "Programming Languages/Database/NoSQL"
-                        },
-                        new
-                        {
-                            Id = new Guid("6bedf9e7-625d-454c-b51e-35871fc2fbe8"),
-                            Name = "Redis",
-                            ResumeId = new Guid("84b91e21-e998-464e-b8ba-c6be6c16b3be"),
-                            SkillGroup = "Programming Languages/Database/NoSQL"
-                        },
-                        new
-                        {
-                            Id = new Guid("9d808f6e-92be-4acf-95c3-d89c66d4af36"),
-                            Name = "CosmosDB",
-                            ResumeId = new Guid("84b91e21-e998-464e-b8ba-c6be6c16b3be"),
-                            SkillGroup = "Programming Languages/Database/NoSQL"
-                        },
-                        new
-                        {
-                            Id = new Guid("9f7db796-8d0b-4c9d-a50d-5535273dafc1"),
-                            Name = "DynamoDB",
-                            ResumeId = new Guid("84b91e21-e998-464e-b8ba-c6be6c16b3be"),
-                            SkillGroup = "Programming Languages/Database/NoSQL"
-                        },
-                        new
-                        {
-                            Id = new Guid("45b62247-f738-48f6-8339-c0c8e57f6eb5"),
-                            Name = "BigTable",
-                            ResumeId = new Guid("84b91e21-e998-464e-b8ba-c6be6c16b3be"),
-                            SkillGroup = "Programming Languages/Database/NoSQL"
-                        },
-                        new
-                        {
-                            Id = new Guid("b2f4335f-3ff6-4ba8-8144-4d9d89fb42e2"),
-                            Name = "Docker",
-                            ResumeId = new Guid("84b91e21-e998-464e-b8ba-c6be6c16b3be"),
-                            SkillGroup = "Container Services"
-                        },
-                        new
-                        {
-                            Id = new Guid("1467bc6b-d0b2-451c-8640-be2c06c1aa05"),
-                            Name = "Docker Swarm",
-                            ResumeId = new Guid("84b91e21-e998-464e-b8ba-c6be6c16b3be"),
-                            SkillGroup = "Container Services"
-                        },
-                        new
-                        {
-                            Id = new Guid("32bdb763-b939-4d4c-a266-6dc9d2a60b06"),
-                            Name = "Kubernetes",
-                            ResumeId = new Guid("84b91e21-e998-464e-b8ba-c6be6c16b3be"),
-                            SkillGroup = "Container Services"
-                        },
-                        new
-                        {
-                            Id = new Guid("7b3fe737-ee87-4939-9d24-13f50b6956c5"),
-                            Name = "Azure DevOps",
-                            ResumeId = new Guid("84b91e21-e998-464e-b8ba-c6be6c16b3be"),
-                            SkillGroup = "CI/CD"
-                        },
-                        new
-                        {
-                            Id = new Guid("363c11a3-df91-489c-ab75-50c2d69cf3a0"),
-                            Name = "GitHub Actions",
-                            ResumeId = new Guid("84b91e21-e998-464e-b8ba-c6be6c16b3be"),
-                            SkillGroup = "CI/CD"
-                        },
-                        new
-                        {
-                            Id = new Guid("a1102dc4-d1af-4e78-be19-7a2f20bb77b6"),
-                            Name = "AWS CodePipeline",
-                            ResumeId = new Guid("84b91e21-e998-464e-b8ba-c6be6c16b3be"),
-                            SkillGroup = "CI/CD"
-                        },
-                        new
-                        {
-                            Id = new Guid("9170bfed-4b5c-4583-aacc-c596324249cd"),
-                            Name = "Octopus",
-                            ResumeId = new Guid("84b91e21-e998-464e-b8ba-c6be6c16b3be"),
-                            SkillGroup = "CI/CD"
-                        },
-                        new
-                        {
-                            Id = new Guid("70bf6a37-9cec-4554-824c-08b66e6650c6"),
-                            Name = "Jenkins",
-                            ResumeId = new Guid("84b91e21-e998-464e-b8ba-c6be6c16b3be"),
-                            SkillGroup = "CI/CD"
-                        },
-                        new
-                        {
-                            Id = new Guid("4106fd00-8048-460e-8f1d-cf47d38042d5"),
-                            Name = "TeamCity",
-                            ResumeId = new Guid("84b91e21-e998-464e-b8ba-c6be6c16b3be"),
-                            SkillGroup = "CI/CD"
-                        },
-                        new
-                        {
-                            Id = new Guid("19bbef85-71ee-414d-beee-acc6eb18f10f"),
-                            Name = "JIRA",
-                            ResumeId = new Guid("84b91e21-e998-464e-b8ba-c6be6c16b3be"),
-                            SkillGroup = "Bug Tracking"
-                        },
-                        new
-                        {
-                            Id = new Guid("eca45e48-2c5c-4edb-8349-60282302d68c"),
-                            Name = "Azure DevOps",
-                            ResumeId = new Guid("84b91e21-e998-464e-b8ba-c6be6c16b3be"),
-                            SkillGroup = "Bug Tracking"
-                        },
-                        new
-                        {
-                            Id = new Guid("ad9f085b-2675-4bce-be22-f6158130b734"),
-                            Name = "GIT",
-                            ResumeId = new Guid("84b91e21-e998-464e-b8ba-c6be6c16b3be"),
-                            SkillGroup = "Source Control"
-                        },
-                        new
-                        {
-                            Id = new Guid("91a03baa-03c4-4d53-8e75-f555ff64ee6b"),
-                            Name = "SVN",
-                            ResumeId = new Guid("84b91e21-e998-464e-b8ba-c6be6c16b3be"),
-                            SkillGroup = "Source Control"
-                        },
-                        new
-                        {
-                            Id = new Guid("d7833db0-6942-435b-a0c8-97a6beaccbe2"),
-                            Name = "Windows",
-                            ResumeId = new Guid("84b91e21-e998-464e-b8ba-c6be6c16b3be"),
-                            SkillGroup = "OS"
-                        },
-                        new
-                        {
-                            Id = new Guid("5d2b12df-fee4-48fa-afde-07f5d841674e"),
-                            Name = "MacOS",
-                            ResumeId = new Guid("84b91e21-e998-464e-b8ba-c6be6c16b3be"),
-                            SkillGroup = "OS"
-                        },
-                        new
-                        {
-                            Id = new Guid("1128cef7-65ba-4699-b917-dedb135713d6"),
-                            Name = "Ubuntu",
-                            ResumeId = new Guid("84b91e21-e998-464e-b8ba-c6be6c16b3be"),
-                            SkillGroup = "OS"
-                        },
-                        new
-                        {
-                            Id = new Guid("1ca6a89f-b808-4d6e-adfc-90509c750c45"),
+                            Id = new Guid("595c5389-0d7a-446a-bcaa-f8ce30e5152a"),
                             Name = "Azure",
-                            ResumeId = new Guid("84b91e21-e998-464e-b8ba-c6be6c16b3be"),
-                            SkillGroup = "Cloud"
+                            SkillGroup = "Clouds"
                         },
                         new
                         {
-                            Id = new Guid("73200eac-f79b-4a68-abd7-785bc9b4c42b"),
+                            Id = new Guid("6b028ae2-734d-453a-8ecb-f37a7202c1a2"),
                             Name = "AWS",
-                            ResumeId = new Guid("84b91e21-e998-464e-b8ba-c6be6c16b3be"),
-                            SkillGroup = "Cloud"
+                            SkillGroup = "Clouds"
                         },
                         new
                         {
-                            Id = new Guid("acda6dfa-e4f5-4c6a-9a9f-e43d36925eb7"),
+                            Id = new Guid("edf93b3f-e56a-4e37-8910-70b59655efd9"),
                             Name = "GCP",
-                            ResumeId = new Guid("84b91e21-e998-464e-b8ba-c6be6c16b3be"),
-                            SkillGroup = "Cloud"
+                            SkillGroup = "Clouds"
+                        },
+                        new
+                        {
+                            Id = new Guid("45404f69-3e14-4107-8b5f-77dacbd1736c"),
+                            Name = "C#",
+                            SkillGroup = "Backend"
+                        },
+                        new
+                        {
+                            Id = new Guid("f71e817d-978c-4c3c-b43b-212b658b9861"),
+                            Name = ".NET",
+                            SkillGroup = "Backend"
+                        },
+                        new
+                        {
+                            Id = new Guid("8c277707-ef89-48c7-9e11-b3da5a2f55d2"),
+                            Name = ".NET Core",
+                            SkillGroup = "Backend"
+                        },
+                        new
+                        {
+                            Id = new Guid("f64a7f5a-1ed0-4bed-a39e-8a952ad295c4"),
+                            Name = "ASP.NET Core",
+                            SkillGroup = "Backend"
+                        },
+                        new
+                        {
+                            Id = new Guid("38bfe8d8-8498-45b0-bc6e-292ba75ded7b"),
+                            Name = "ASP.NET",
+                            SkillGroup = "Backend"
+                        },
+                        new
+                        {
+                            Id = new Guid("f90c4279-a314-4960-8bf7-da6606cee19c"),
+                            Name = "GoLang",
+                            SkillGroup = "Backend"
+                        },
+                        new
+                        {
+                            Id = new Guid("b5a6230a-be9f-4197-8169-6a6db0cebeaa"),
+                            Name = "Gin Web Framework",
+                            SkillGroup = "Backend"
+                        },
+                        new
+                        {
+                            Id = new Guid("b6988db9-10e0-4bad-9b1d-bd2ef54bdc62"),
+                            Name = "Python3",
+                            SkillGroup = "Backend"
+                        },
+                        new
+                        {
+                            Id = new Guid("c2430241-81bd-4ca8-8f52-e0739e43877d"),
+                            Name = "WCF",
+                            SkillGroup = "Backend"
+                        },
+                        new
+                        {
+                            Id = new Guid("fdf6c906-5b27-40a8-bfd3-c20d9d2a62cc"),
+                            Name = "Angular 8+",
+                            SkillGroup = "Frontend"
+                        },
+                        new
+                        {
+                            Id = new Guid("837daf5d-2d2c-4bde-a944-7fd722a3a5d9"),
+                            Name = "Vue.js",
+                            SkillGroup = "Frontend"
+                        },
+                        new
+                        {
+                            Id = new Guid("5c5e078a-4826-4c07-a75c-5f770a134a69"),
+                            Name = "JavaScript",
+                            SkillGroup = "Frontend"
+                        },
+                        new
+                        {
+                            Id = new Guid("d0f0c657-3ab6-41a2-9303-18cab0a8dfe6"),
+                            Name = "TypeScript",
+                            SkillGroup = "Frontend"
+                        },
+                        new
+                        {
+                            Id = new Guid("c546ed63-b96a-4f78-8562-cd55b6562a68"),
+                            Name = "HTML",
+                            SkillGroup = "Frontend"
+                        },
+                        new
+                        {
+                            Id = new Guid("ed19e565-ad16-427d-9965-d8122f88e635"),
+                            Name = "CSS",
+                            SkillGroup = "Frontend"
+                        },
+                        new
+                        {
+                            Id = new Guid("b2545caa-91d4-4363-b48c-3a9685d90725"),
+                            Name = "WPF",
+                            SkillGroup = "Frontend"
+                        },
+                        new
+                        {
+                            Id = new Guid("63ed5300-cebd-4167-b383-348c98695ee5"),
+                            Name = "XAML",
+                            SkillGroup = "Frontend"
+                        },
+                        new
+                        {
+                            Id = new Guid("71977b8e-458e-4fd1-bdac-c608325777d9"),
+                            Name = "WinForms",
+                            SkillGroup = "Frontend"
+                        },
+                        new
+                        {
+                            Id = new Guid("5498dd83-f3db-49f3-91b8-0c12fdd9e33f"),
+                            Name = "MySQL",
+                            SkillGroup = "Database"
+                        },
+                        new
+                        {
+                            Id = new Guid("9dd966f9-47d0-4c8e-aee4-13ebeaf24c02"),
+                            Name = "MS SQL",
+                            SkillGroup = "Database"
+                        },
+                        new
+                        {
+                            Id = new Guid("d494d01f-a939-48db-bcc2-88a3021a8d06"),
+                            Name = "MS SSAS",
+                            SkillGroup = "Database"
+                        },
+                        new
+                        {
+                            Id = new Guid("7861c16e-d82f-4527-8914-175384a7272f"),
+                            Name = "Cosmos DB",
+                            SkillGroup = "Database"
+                        },
+                        new
+                        {
+                            Id = new Guid("d573787a-8021-48f7-acbc-0f16fc7ecb80"),
+                            Name = "Redis",
+                            SkillGroup = "Database"
+                        },
+                        new
+                        {
+                            Id = new Guid("d2b44131-4f80-4a59-a60d-4828e3f90866"),
+                            Name = "Docker",
+                            SkillGroup = "Tools"
+                        },
+                        new
+                        {
+                            Id = new Guid("85e045bf-f5d8-428a-9ea7-4403b8459176"),
+                            Name = "Azure DevOps",
+                            SkillGroup = "Tools"
+                        },
+                        new
+                        {
+                            Id = new Guid("2f179910-d592-4b5c-82b8-7c0b7383fce7"),
+                            Name = "Jenkins",
+                            SkillGroup = "Tools"
+                        },
+                        new
+                        {
+                            Id = new Guid("ce64e8ef-238d-4e65-8a7e-c9564c9340bc"),
+                            Name = "TeamCity",
+                            SkillGroup = "Tools"
+                        },
+                        new
+                        {
+                            Id = new Guid("b7b6a8ae-3713-4427-a2c2-8b78258ab802"),
+                            Name = "OKTA",
+                            SkillGroup = "Tools"
+                        },
+                        new
+                        {
+                            Id = new Guid("27deee5d-937a-4801-a028-97226a9d97d6"),
+                            Name = "Entity Framework",
+                            SkillGroup = "Tools"
+                        },
+                        new
+                        {
+                            Id = new Guid("0cc1df6b-654b-4037-b3f0-3c88c5c842fa"),
+                            Name = "Entity Framework Core",
+                            SkillGroup = "Tools"
+                        },
+                        new
+                        {
+                            Id = new Guid("5f1e1abf-d068-4d06-b176-698c2c6fd38d"),
+                            Name = "xUnit",
+                            SkillGroup = "Tools"
+                        },
+                        new
+                        {
+                            Id = new Guid("48a6631b-2edc-45fd-b3fe-cdbbe624ce04"),
+                            Name = "NUnit",
+                            SkillGroup = "Tools"
+                        },
+                        new
+                        {
+                            Id = new Guid("d6e10246-2b24-4a87-b6b7-aae4e8ffa04d"),
+                            Name = "MSTest",
+                            SkillGroup = "Tools"
+                        },
+                        new
+                        {
+                            Id = new Guid("06c18dc9-80b6-494f-8bb0-a2cede682f9e"),
+                            Name = "Esri ArcGIS",
+                            SkillGroup = "Tools"
                         });
                 });
 
-            modelBuilder.Entity("ResumeApp.DataAccess.Sql.Entities.CertificationSqlEntity", b =>
-                {
-                    b.HasOne("ResumeApp.DataAccess.Sql.Entities.ResumeSqlEntity", "Resume")
-                        .WithMany("Certifications")
-                        .HasForeignKey("ResumeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Resume");
-                });
-
-            modelBuilder.Entity("ResumeApp.DataAccess.Sql.Entities.ContactSqlEntity", b =>
-                {
-                    b.HasOne("ResumeApp.DataAccess.Sql.Entities.ResumeSqlEntity", "Resume")
-                        .WithMany("Contacts")
-                        .HasForeignKey("ResumeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Resume");
-                });
-
-            modelBuilder.Entity("ResumeApp.DataAccess.Sql.Entities.EducationSqlEntity", b =>
-                {
-                    b.HasOne("ResumeApp.DataAccess.Sql.Entities.ResumeSqlEntity", "Resume")
-                        .WithMany("Education")
-                        .HasForeignKey("ResumeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Resume");
-                });
-
-            modelBuilder.Entity("ResumeApp.DataAccess.Sql.Entities.ExperienceSqlEntity", b =>
-                {
-                    b.HasOne("ResumeApp.DataAccess.Sql.Entities.ResumeSqlEntity", "Resume")
-                        .WithMany("Experience")
-                        .HasForeignKey("ResumeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Resume");
-                });
-
-            modelBuilder.Entity("ResumeApp.DataAccess.Sql.Entities.ProjectSqlEntity", b =>
+            modelBuilder.Entity("ResumeApp.DataAccess.Sql.Entities.SkillExperienceMappingSqlEntity", b =>
                 {
                     b.HasOne("ResumeApp.DataAccess.Sql.Entities.ExperienceSqlEntity", "Experience")
-                        .WithMany("Projects")
+                        .WithMany("SkillExperienceMapping")
                         .HasForeignKey("ExperienceId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Experience");
-                });
-
-            modelBuilder.Entity("ResumeApp.DataAccess.Sql.Entities.SkillSqlEntity", b =>
-                {
-                    b.HasOne("ResumeApp.DataAccess.Sql.Entities.ResumeSqlEntity", "Resume")
-                        .WithMany("Skills")
-                        .HasForeignKey("ResumeId")
+                    b.HasOne("ResumeApp.DataAccess.Sql.Entities.SkillSqlEntity", "Skill")
+                        .WithMany("SkillExperienceMapping")
+                        .HasForeignKey("SkillId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Resume");
+                    b.Navigation("Experience");
+
+                    b.Navigation("Skill");
                 });
 
             modelBuilder.Entity("ResumeApp.DataAccess.Sql.Entities.ExperienceSqlEntity", b =>
                 {
-                    b.Navigation("Projects");
+                    b.Navigation("SkillExperienceMapping");
                 });
 
-            modelBuilder.Entity("ResumeApp.DataAccess.Sql.Entities.ResumeSqlEntity", b =>
+            modelBuilder.Entity("ResumeApp.DataAccess.Sql.Entities.SkillSqlEntity", b =>
                 {
-                    b.Navigation("Certifications");
-
-                    b.Navigation("Contacts");
-
-                    b.Navigation("Education");
-
-                    b.Navigation("Experience");
-
-                    b.Navigation("Skills");
+                    b.Navigation("SkillExperienceMapping");
                 });
 #pragma warning restore 612, 618
         }

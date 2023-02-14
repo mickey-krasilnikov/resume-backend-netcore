@@ -8,14 +8,26 @@ using ResumeApp.DataAccess.Sql.Repositories;
 
 namespace ResumeApp.DataAccess.Sql.Extensions
 {
-	public static class ServiceCollectionExtensions
-	{
-		public static IServiceCollection AddSqlResumeDb(this IServiceCollection services, IConfiguration configuration, int maxReties)
-		{
-			var connectionString = configuration.GetConnectionString("Sql");
-			services.AddDbContext<SqlDbContext>(options => options.UseSqlServer(connectionString, o => o.EnableRetryOnFailure(maxReties)));
-			services.AddScoped<IRepository<ResumeSqlEntity>, SqlResumeRepository>();
-			return services;
-		}
-	}
+    public static class ServiceCollectionExtensions
+    {
+        public static IServiceCollection AddSqlResumeDb(this IServiceCollection services, IConfiguration configuration, int maxReties)
+        {
+            var connectionString = configuration.GetConnectionString("Sql");
+            services.AddDbContext<ISqlDbContext, SqlDbContext>(options =>
+            {
+                options.UseSqlServer(connectionString, o =>
+                {
+                    o.EnableRetryOnFailure(maxReties);
+                    o.MigrationsAssembly("ResumeApp.DataAccess.Sql");
+                });
+                options.EnableSensitiveDataLogging(true);
+            });
+            services.AddScoped<IRepository<CertificationSqlEntity>, CertificationSqlRepository>();
+            services.AddScoped<IRepository<ContactSqlEntity>, ContactsSqlRepository>();
+            services.AddScoped<IRepository<EducationSqlEntity>, EducationSqlRepository>();
+            services.AddScoped<IRepository<ExperienceSqlEntity>, ExperienceSqlRepository>();
+            services.AddScoped<IRepository<SkillSqlEntity>, SkillsSqlRepository>();
+            return services;
+        }
+    }
 }

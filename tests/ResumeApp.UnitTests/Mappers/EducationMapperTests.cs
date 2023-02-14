@@ -1,11 +1,11 @@
 ﻿using ResumeApp.BusinessLogic.Mappers;
 using ResumeApp.DataAccess.Mongo.Entities;
 using ResumeApp.DataAccess.Sql.Entities;
-using ResumeApp.Poco;
+using ResumeApp.Models;
 
 namespace ResumeApp.UnitTests.Mappers
 {
-    public class EducationMapperTests
+	public class EducationMapperTests
     {
         public static IEnumerable<object[]> TestData => new List<object[]>
         {
@@ -16,7 +16,7 @@ namespace ResumeApp.UnitTests.Mappers
 
         [Theory]
         [MemberData(nameof(TestData))]
-        public void MongoEntityToEducationDto(Guid id, string name, string degree, string fieldOfStudy, DateOnly startDate, DateOnly? endDate, Uri url)
+        public void MongoEntityToDto(Guid id, string name, string degree, string fieldOfStudy, DateOnly startDate, DateOnly? endDate, Uri url)
         {
             //Arrange
             var entity = new EducationMongoEntity
@@ -31,7 +31,7 @@ namespace ResumeApp.UnitTests.Mappers
             };
 
             //Act
-            var result = entity.ToEducationDto();
+            var result = entity.ToDto();
 
             //Assert
             Assert.NotNull(result);
@@ -46,7 +46,7 @@ namespace ResumeApp.UnitTests.Mappers
 
         [Theory]
         [MemberData(nameof(TestData))]
-        public void SqlEntityToEducationDto(Guid id, string name, string degree, string fieldOfStudy, DateOnly startDate, DateOnly? endDate, Uri url)
+        public void SqlEntityToDto(Guid id, string name, string degree, string fieldOfStudy, DateOnly startDate, DateOnly? endDate, Uri url)
         {
             //Arrange
             var entity = new EducationSqlEntity
@@ -61,7 +61,7 @@ namespace ResumeApp.UnitTests.Mappers
             };
 
             //Act
-            var result = entity.ToEducationDto();
+            var result = entity.ToDto();
 
             //Assert
             Assert.NotNull(result);
@@ -79,7 +79,7 @@ namespace ResumeApp.UnitTests.Mappers
         public void EducationDtoToMongoEntity(Guid id, string name, string degree, string fieldOfStudy, DateOnly startDate, DateOnly? endDate, Uri url)
         {
             //Arrange
-            var dto = new Education
+            var dto = new EducationDto
             {
                 Id = id,
                 Name = name,
@@ -91,7 +91,7 @@ namespace ResumeApp.UnitTests.Mappers
             };
 
             //Act
-            var result = dto.ToEducationMongoEntity();
+            var result = dto.ToMongoEntity();
 
             //Assert
             Assert.NotNull(result);
@@ -109,7 +109,7 @@ namespace ResumeApp.UnitTests.Mappers
         public void EducationDtoToSqlEntity(Guid id, string name, string degree, string fieldOfStudy, DateOnly startDate, DateOnly? endDate, Uri url)
         {
             //Arrange
-            var dto = new Education
+            var dto = new EducationDto
             {
                 Id = id,
                 Name = name,
@@ -121,7 +121,7 @@ namespace ResumeApp.UnitTests.Mappers
             };
 
             //Act
-            var result = dto.ToEducationSqlEntity();
+            var result = dto.ToSqlEntity();
 
             //Assert
             Assert.NotNull(result);

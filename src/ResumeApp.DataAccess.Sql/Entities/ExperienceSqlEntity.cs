@@ -5,24 +5,31 @@ namespace ResumeApp.DataAccess.Sql.Entities
 {
 	public class ExperienceSqlEntity
 	{
+		public ExperienceSqlEntity()
+		{
+            SkillExperienceMapping = new HashSet<SkillExperienceMappingSqlEntity>();
+		}
+
 		[Key]
 		[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
 		public Guid Id { get; set; }
 
+		[Required]
 		public string Title { get; set; }
 
+		[Required]
 		public string Company { get; set; }
 
+		public string Location { get; set; }
+
+		public string TaskPerformed { get; set; }
+
+		[Required]
 		public DateOnly StartDate { get; set; }
 
 		public DateOnly? EndDate { get; set; }
 
-		public bool IsCurrentCompany { get; set; }
 
-		public Guid ResumeId { get; internal set; }
-
-		public ResumeSqlEntity Resume { get; set; }
-
-		public IEnumerable<ProjectSqlEntity> Projects { get; set; } = new HashSet<ProjectSqlEntity>();
+		public virtual ICollection<SkillExperienceMappingSqlEntity> SkillExperienceMapping { get; set; }
 	}
 }

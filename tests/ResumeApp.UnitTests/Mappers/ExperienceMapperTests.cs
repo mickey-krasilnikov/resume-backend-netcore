@@ -2,7 +2,7 @@
 using ResumeApp.BusinessLogic.Mappers;
 using ResumeApp.DataAccess.Mongo.Entities;
 using ResumeApp.DataAccess.Sql.Entities;
-using ResumeApp.Poco;
+using ResumeApp.Models;
 
 namespace ResumeApp.UnitTests.Mappers
 {
@@ -20,20 +20,17 @@ namespace ResumeApp.UnitTests.Mappers
 		public void MongoEntityToExperienceDto(Guid id, string title, string company, DateOnly startDate, DateOnly? endDate, bool isCurrentCompany)
 		{
 			//Arrange
-			var projectsMock = new Mock<ProjectMongoEntity>();
 			var entity = new ExperienceMongoEntity
 			{
 				Id = id,
 				Title = title,
 				Company = company,
 				StartDate = startDate,
-				EndDate = endDate,
-				IsCurrentCompany = isCurrentCompany,
-				Projects = new List<ProjectMongoEntity> { projectsMock.Object }
+				EndDate = endDate
 			};
 
 			//Act
-			var result = entity.ToExperienceDto();
+			var result = entity.ToDto();
 
 			//Assert
 			Assert.NotNull(result);
@@ -41,8 +38,6 @@ namespace ResumeApp.UnitTests.Mappers
 			Assert.Equal(title, result.Title);
 			Assert.Equal(company, result.Company);
 			Assert.Equal(startDate, result.StartDate);
-			Assert.Equal(isCurrentCompany, result.IsCurrentCompany);
-			Assert.Single(result.Projects);
 		}
 
 		[Theory]
@@ -50,20 +45,17 @@ namespace ResumeApp.UnitTests.Mappers
 		public void SqlEntityToExperienceDto(Guid id, string title, string company, DateOnly startDate, DateOnly? endDate, bool isCurrentCompany)
 		{
 			//Arrange
-			var projectsMock = new Mock<ProjectSqlEntity>();
 			var entity = new ExperienceSqlEntity
 			{
 				Id = id,
 				Title = title,
 				Company = company,
 				StartDate = startDate,
-				EndDate = endDate,
-				IsCurrentCompany = isCurrentCompany,
-				Projects = new List<ProjectSqlEntity> { projectsMock.Object }
+				EndDate = endDate
 			};
 
 			//Act
-			var result = entity.ToExperienceDto();
+			var result = entity.ToDto();
 
 			//Assert
 			Assert.NotNull(result);
@@ -71,8 +63,6 @@ namespace ResumeApp.UnitTests.Mappers
 			Assert.Equal(title, result.Title);
 			Assert.Equal(company, result.Company);
 			Assert.Equal(startDate, result.StartDate);
-			Assert.Equal(isCurrentCompany, result.IsCurrentCompany);
-			Assert.Single(result.Projects);
 		}
 
 		[Theory]
@@ -80,20 +70,17 @@ namespace ResumeApp.UnitTests.Mappers
 		public void ExperienceDtoToMongoEntity(Guid id, string title, string company, DateOnly startDate, DateOnly? endDate, bool isCurrentCompany)
 		{
 			//Arrange
-			var projectsMock = new Mock<Project>();
-			var dto = new Experience
+			var dto = new ExperienceDto
 			{
 				Id = id,
 				Title = title,
 				Company = company,
 				StartDate = startDate,
 				EndDate = endDate,
-				IsCurrentCompany = isCurrentCompany,
-				Projects = new List<Project> { projectsMock.Object }
 			};
 
 			//Act
-			var result = dto.ToExperienceMongoEntity();
+			var result = dto.ToMongoEntity();
 
 			//Assert
 			Assert.NotNull(result);
@@ -101,8 +88,6 @@ namespace ResumeApp.UnitTests.Mappers
 			Assert.Equal(title, result.Title);
 			Assert.Equal(company, result.Company);
 			Assert.Equal(startDate, result.StartDate);
-			Assert.Equal(isCurrentCompany, result.IsCurrentCompany);
-			Assert.Single(result.Projects);
 		}
 
 		[Theory]
@@ -110,20 +95,17 @@ namespace ResumeApp.UnitTests.Mappers
 		public void ExperienceDtoToSqlEntity(Guid id, string title, string company, DateOnly startDate, DateOnly? endDate, bool isCurrentCompany)
 		{
 			//Arrange
-			var projectsMock = new Mock<Project>();
-			var dto = new Experience
+			var dto = new ExperienceDto
 			{
 				Id = id,
 				Title = title,
 				Company = company,
 				StartDate = startDate,
 				EndDate = endDate,
-				IsCurrentCompany = isCurrentCompany,
-				Projects = new List<Project> { projectsMock.Object }
 			};
 
 			//Act
-			var result = dto.ToExperienceSqlEntity();
+			var result = dto.ToSqlEntity();
 
 			//Assert
 			Assert.NotNull(result);
@@ -131,8 +113,6 @@ namespace ResumeApp.UnitTests.Mappers
 			Assert.Equal(title, result.Title);
 			Assert.Equal(company, result.Company);
 			Assert.Equal(startDate, result.StartDate);
-			Assert.Equal(isCurrentCompany, result.IsCurrentCompany);
-			Assert.Single(result.Projects);
 		}
 	}
 }

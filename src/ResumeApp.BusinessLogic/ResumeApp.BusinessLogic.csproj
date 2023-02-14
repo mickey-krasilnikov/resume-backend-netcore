@@ -10,13 +10,13 @@
 	<ItemGroup>
 		<ProjectReference Include="..\ResumeApp.DataAccess.Mongo\ResumeApp.DataAccess.Mongo.csproj" />
 		<ProjectReference Include="..\ResumeApp.DataAccess.Sql\ResumeApp.DataAccess.Sql.csproj" />
-		<ProjectReference Include="..\ResumeApp.Poco\ResumeApp.Poco.csproj" />
+		<ProjectReference Include="..\ResumeApp.Models\ResumeApp.Models.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>
 		<PackageReference Include="FluentValidation" Version="11.4.0" />
 		<PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="7.0.0" />
-		<PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="7.0.1" />
+		<PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="7.0.2" />
 		<PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="7.0.0" />
 	</ItemGroup>
 
