@@ -1,5 +1,5 @@
 # Resume API 
-[![Build and deploy to Azure Web App](https://github.com/mickey-krasilnikov/resume-backend-netcore/actions/workflows/main_app-resumeapp-api.yml/badge.svg)](https://github.com/mickey-krasilnikov/resume-backend-netcore/actions/workflows/main_app-resumeapp-api.yml)
+[![Build and deploy](https://github.com/mickey-krasilnikov/resume-backend-netcore/actions/workflows/main_app-resumeapp-api.yml/badge.svg)](https://github.com/mickey-krasilnikov/resume-backend-netcore/actions/workflows/main_app-resumeapp-api.yml)
 
 This is a .NET Core 7 web API that provides the resume information. 
 The purpose of the project is to demonstrate knowledge in .Net Core and use it on web frontend.
