@@ -10,7 +10,7 @@
     "version": "v1"
   },
   "paths": {
-    "/api/ResumeService/Certification": {
+    "/api/resumeservice/Certification": {
       "options": {
         "tags": [
           "Certification"
@@ -128,7 +128,7 @@
         }
       }
     },
-    "/api/ResumeService/Certification/{id}": {
+    "/api/resumeservice/Certification/{id}": {
       "get": {
         "tags": [
           "Certification"
@@ -296,7 +296,7 @@
         }
       }
     },
-    "/api/ResumeService/Contacts": {
+    "/api/resumeservice/Contacts": {
       "options": {
         "tags": [
           "Contacts"
@@ -414,7 +414,7 @@
         }
       }
     },
-    "/api/ResumeService/Contacts/{id}": {
+    "/api/resumeservice/Contacts/{id}": {
       "get": {
         "tags": [
           "Contacts"
@@ -582,7 +582,7 @@
         }
       }
     },
-    "/api/ResumeService/Education": {
+    "/api/resumeservice/Education": {
       "options": {
         "tags": [
           "Education"
@@ -700,7 +700,7 @@
         }
       }
     },
-    "/api/ResumeService/Education/{id}": {
+    "/api/resumeservice/Education/{id}": {
       "get": {
         "tags": [
           "Education"
@@ -868,7 +868,7 @@
         }
       }
     },
-    "/api/ResumeService/Experience": {
+    "/api/resumeservice/Experience": {
       "options": {
         "tags": [
           "Experience"
@@ -986,7 +986,7 @@
         }
       }
     },
-    "/api/ResumeService/Experience/{id}": {
+    "/api/resumeservice/Experience/{id}": {
       "get": {
         "tags": [
           "Experience"
@@ -1154,7 +1154,29 @@
         }
       }
     },
-    "/api/ResumeService/Skills": {
+    "/api/resumeservice/Health": {
+      "get": {
+        "tags": [
+          "Health"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "head": {
+        "tags": [
+          "Health"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/resumeservice/Skills": {
       "options": {
         "tags": [
           "Skills"
@@ -1272,7 +1294,7 @@
         }
       }
     },
-    "/api/ResumeService/Skills/{id}": {
+    "/api/resumeservice/Skills/{id}": {
       "get": {
         "tags": [
           "Skills"

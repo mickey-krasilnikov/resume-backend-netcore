@@ -8,7 +8,7 @@ namespace ResumeApp.WebApi.Controllers
 	[ApiController]
 	[Consumes("application/json")]
 	[Produces("application/json")]
-	[Route("api/ResumeService/[controller]")]
+	[Route("api/resumeservice/[controller]")]
 	public class ExperienceController : ControllerBase
 	{
 		private readonly ICrudService<ExperienceDto> _crudService;

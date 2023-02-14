@@ -274,6 +274,24 @@ namespace ResumeApp.ApiClient
 
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
+        System.Threading.Tasks.Task HealthGETAsync();
+
+        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+        /// <returns>Success</returns>
+        /// <exception cref="ApiException">A server side error occurred.</exception>
+        System.Threading.Tasks.Task HealthGETAsync(System.Threading.CancellationToken cancellationToken);
+
+        /// <returns>Success</returns>
+        /// <exception cref="ApiException">A server side error occurred.</exception>
+        System.Threading.Tasks.Task HealthHEADAsync();
+
+        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+        /// <returns>Success</returns>
+        /// <exception cref="ApiException">A server side error occurred.</exception>
+        System.Threading.Tasks.Task HealthHEADAsync(System.Threading.CancellationToken cancellationToken);
+
+        /// <returns>Success</returns>
+        /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task SkillsOPTIONSAsync();
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
@@ -377,7 +395,7 @@ namespace ResumeApp.ApiClient
         public virtual async System.Threading.Tasks.Task CertificationOPTIONSAsync(System.Threading.CancellationToken cancellationToken)
         {
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append("api/ResumeService/Certification");
+            urlBuilder_.Append("api/resumeservice/Certification");
 
             var client_ = _httpClient;
             var disposeClient_ = false;
@@ -446,7 +464,7 @@ namespace ResumeApp.ApiClient
         public virtual async System.Threading.Tasks.Task<System.Collections.Generic.ICollection<CertificationDto>> CertificationAllGETAsync(System.Threading.CancellationToken cancellationToken)
         {
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append("api/ResumeService/Certification");
+            urlBuilder_.Append("api/resumeservice/Certification");
 
             var client_ = _httpClient;
             var disposeClient_ = false;
@@ -524,7 +542,7 @@ namespace ResumeApp.ApiClient
         public virtual async System.Threading.Tasks.Task<System.Collections.Generic.ICollection<CertificationDto>> CertificationAllHEADAsync(System.Threading.CancellationToken cancellationToken)
         {
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append("api/ResumeService/Certification");
+            urlBuilder_.Append("api/resumeservice/Certification");
 
             var client_ = _httpClient;
             var disposeClient_ = false;
@@ -602,7 +620,7 @@ namespace ResumeApp.ApiClient
         public virtual async System.Threading.Tasks.Task<CertificationDto> CertificationPOSTAsync(CertificationDto body, System.Threading.CancellationToken cancellationToken)
         {
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append("api/ResumeService/Certification");
+            urlBuilder_.Append("api/resumeservice/Certification");
 
             var client_ = _httpClient;
             var disposeClient_ = false;
@@ -697,7 +715,7 @@ namespace ResumeApp.ApiClient
                 throw new System.ArgumentNullException("id");
 
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append("api/ResumeService/Certification/{id}");
+            urlBuilder_.Append("api/resumeservice/Certification/{id}");
             urlBuilder_.Replace("{id}", System.Uri.EscapeDataString(ConvertToString(id, System.Globalization.CultureInfo.InvariantCulture)));
 
             var client_ = _httpClient;
@@ -799,7 +817,7 @@ namespace ResumeApp.ApiClient
                 throw new System.ArgumentNullException("id");
 
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append("api/ResumeService/Certification/{id}");
+            urlBuilder_.Append("api/resumeservice/Certification/{id}");
             urlBuilder_.Replace("{id}", System.Uri.EscapeDataString(ConvertToString(id, System.Globalization.CultureInfo.InvariantCulture)));
 
             var client_ = _httpClient;
@@ -899,7 +917,7 @@ namespace ResumeApp.ApiClient
                 throw new System.ArgumentNullException("id");
 
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append("api/ResumeService/Certification/{id}");
+            urlBuilder_.Append("api/resumeservice/Certification/{id}");
             urlBuilder_.Replace("{id}", System.Uri.EscapeDataString(ConvertToString(id, System.Globalization.CultureInfo.InvariantCulture)));
 
             var client_ = _httpClient;
@@ -992,7 +1010,7 @@ namespace ResumeApp.ApiClient
         public virtual async System.Threading.Tasks.Task ContactsOPTIONSAsync(System.Threading.CancellationToken cancellationToken)
         {
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append("api/ResumeService/Contacts");
+            urlBuilder_.Append("api/resumeservice/Contacts");
 
             var client_ = _httpClient;
             var disposeClient_ = false;
@@ -1061,7 +1079,7 @@ namespace ResumeApp.ApiClient
         public virtual async System.Threading.Tasks.Task<System.Collections.Generic.ICollection<ContactDto>> ContactsAllGETAsync(System.Threading.CancellationToken cancellationToken)
         {
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append("api/ResumeService/Contacts");
+            urlBuilder_.Append("api/resumeservice/Contacts");
 
             var client_ = _httpClient;
             var disposeClient_ = false;
@@ -1139,7 +1157,7 @@ namespace ResumeApp.ApiClient
         public virtual async System.Threading.Tasks.Task<System.Collections.Generic.ICollection<ContactDto>> ContactsAllHEADAsync(System.Threading.CancellationToken cancellationToken)
         {
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append("api/ResumeService/Contacts");
+            urlBuilder_.Append("api/resumeservice/Contacts");
 
             var client_ = _httpClient;
             var disposeClient_ = false;
@@ -1217,7 +1235,7 @@ namespace ResumeApp.ApiClient
         public virtual async System.Threading.Tasks.Task<ContactDto> ContactsPOSTAsync(ContactDto body, System.Threading.CancellationToken cancellationToken)
         {
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append("api/ResumeService/Contacts");
+            urlBuilder_.Append("api/resumeservice/Contacts");
 
             var client_ = _httpClient;
             var disposeClient_ = false;
@@ -1312,7 +1330,7 @@ namespace ResumeApp.ApiClient
                 throw new System.ArgumentNullException("id");
 
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append("api/ResumeService/Contacts/{id}");
+            urlBuilder_.Append("api/resumeservice/Contacts/{id}");
             urlBuilder_.Replace("{id}", System.Uri.EscapeDataString(ConvertToString(id, System.Globalization.CultureInfo.InvariantCulture)));
 
             var client_ = _httpClient;
@@ -1414,7 +1432,7 @@ namespace ResumeApp.ApiClient
                 throw new System.ArgumentNullException("id");
 
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append("api/ResumeService/Contacts/{id}");
+            urlBuilder_.Append("api/resumeservice/Contacts/{id}");
             urlBuilder_.Replace("{id}", System.Uri.EscapeDataString(ConvertToString(id, System.Globalization.CultureInfo.InvariantCulture)));
 
             var client_ = _httpClient;
@@ -1514,7 +1532,7 @@ namespace ResumeApp.ApiClient
                 throw new System.ArgumentNullException("id");
 
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append("api/ResumeService/Contacts/{id}");
+            urlBuilder_.Append("api/resumeservice/Contacts/{id}");
             urlBuilder_.Replace("{id}", System.Uri.EscapeDataString(ConvertToString(id, System.Globalization.CultureInfo.InvariantCulture)));
 
             var client_ = _httpClient;
@@ -1607,7 +1625,7 @@ namespace ResumeApp.ApiClient
         public virtual async System.Threading.Tasks.Task EducationOPTIONSAsync(System.Threading.CancellationToken cancellationToken)
         {
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append("api/ResumeService/Education");
+            urlBuilder_.Append("api/resumeservice/Education");
 
             var client_ = _httpClient;
             var disposeClient_ = false;
@@ -1676,7 +1694,7 @@ namespace ResumeApp.ApiClient
         public virtual async System.Threading.Tasks.Task<System.Collections.Generic.ICollection<EducationDto>> EducationAllGETAsync(System.Threading.CancellationToken cancellationToken)
         {
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append("api/ResumeService/Education");
+            urlBuilder_.Append("api/resumeservice/Education");
 
             var client_ = _httpClient;
             var disposeClient_ = false;
@@ -1754,7 +1772,7 @@ namespace ResumeApp.ApiClient
         public virtual async System.Threading.Tasks.Task<System.Collections.Generic.ICollection<EducationDto>> EducationAllHEADAsync(System.Threading.CancellationToken cancellationToken)
         {
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append("api/ResumeService/Education");
+            urlBuilder_.Append("api/resumeservice/Education");
 
             var client_ = _httpClient;
             var disposeClient_ = false;
@@ -1832,7 +1850,7 @@ namespace ResumeApp.ApiClient
         public virtual async System.Threading.Tasks.Task<EducationDto> EducationPOSTAsync(EducationDto body, System.Threading.CancellationToken cancellationToken)
         {
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append("api/ResumeService/Education");
+            urlBuilder_.Append("api/resumeservice/Education");
 
             var client_ = _httpClient;
             var disposeClient_ = false;
@@ -1927,7 +1945,7 @@ namespace ResumeApp.ApiClient
                 throw new System.ArgumentNullException("id");
 
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append("api/ResumeService/Education/{id}");
+            urlBuilder_.Append("api/resumeservice/Education/{id}");
             urlBuilder_.Replace("{id}", System.Uri.EscapeDataString(ConvertToString(id, System.Globalization.CultureInfo.InvariantCulture)));
 
             var client_ = _httpClient;
@@ -2029,7 +2047,7 @@ namespace ResumeApp.ApiClient
                 throw new System.ArgumentNullException("id");
 
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append("api/ResumeService/Education/{id}");
+            urlBuilder_.Append("api/resumeservice/Education/{id}");
             urlBuilder_.Replace("{id}", System.Uri.EscapeDataString(ConvertToString(id, System.Globalization.CultureInfo.InvariantCulture)));
 
             var client_ = _httpClient;
@@ -2129,7 +2147,7 @@ namespace ResumeApp.ApiClient
                 throw new System.ArgumentNullException("id");
 
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append("api/ResumeService/Education/{id}");
+            urlBuilder_.Append("api/resumeservice/Education/{id}");
             urlBuilder_.Replace("{id}", System.Uri.EscapeDataString(ConvertToString(id, System.Globalization.CultureInfo.InvariantCulture)));
 
             var client_ = _httpClient;
@@ -2222,7 +2240,7 @@ namespace ResumeApp.ApiClient
         public virtual async System.Threading.Tasks.Task ExperienceOPTIONSAsync(System.Threading.CancellationToken cancellationToken)
         {
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append("api/ResumeService/Experience");
+            urlBuilder_.Append("api/resumeservice/Experience");
 
             var client_ = _httpClient;
             var disposeClient_ = false;
@@ -2291,7 +2309,7 @@ namespace ResumeApp.ApiClient
         public virtual async System.Threading.Tasks.Task<System.Collections.Generic.ICollection<ExperienceDto>> ExperienceAllGETAsync(System.Threading.CancellationToken cancellationToken)
         {
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append("api/ResumeService/Experience");
+            urlBuilder_.Append("api/resumeservice/Experience");
 
             var client_ = _httpClient;
             var disposeClient_ = false;
@@ -2369,7 +2387,7 @@ namespace ResumeApp.ApiClient
         public virtual async System.Threading.Tasks.Task<System.Collections.Generic.ICollection<ExperienceDto>> ExperienceAllHEADAsync(System.Threading.CancellationToken cancellationToken)
         {
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append("api/ResumeService/Experience");
+            urlBuilder_.Append("api/resumeservice/Experience");
 
             var client_ = _httpClient;
             var disposeClient_ = false;
@@ -2447,7 +2465,7 @@ namespace ResumeApp.ApiClient
         public virtual async System.Threading.Tasks.Task<ExperienceDto> ExperiencePOSTAsync(ExperienceDto body, System.Threading.CancellationToken cancellationToken)
         {
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append("api/ResumeService/Experience");
+            urlBuilder_.Append("api/resumeservice/Experience");
 
             var client_ = _httpClient;
             var disposeClient_ = false;
@@ -2542,7 +2560,7 @@ namespace ResumeApp.ApiClient
                 throw new System.ArgumentNullException("id");
 
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append("api/ResumeService/Experience/{id}");
+            urlBuilder_.Append("api/resumeservice/Experience/{id}");
             urlBuilder_.Replace("{id}", System.Uri.EscapeDataString(ConvertToString(id, System.Globalization.CultureInfo.InvariantCulture)));
 
             var client_ = _httpClient;
@@ -2644,7 +2662,7 @@ namespace ResumeApp.ApiClient
                 throw new System.ArgumentNullException("id");
 
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append("api/ResumeService/Experience/{id}");
+            urlBuilder_.Append("api/resumeservice/Experience/{id}");
             urlBuilder_.Replace("{id}", System.Uri.EscapeDataString(ConvertToString(id, System.Globalization.CultureInfo.InvariantCulture)));
 
             var client_ = _httpClient;
@@ -2744,7 +2762,7 @@ namespace ResumeApp.ApiClient
                 throw new System.ArgumentNullException("id");
 
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append("api/ResumeService/Experience/{id}");
+            urlBuilder_.Append("api/resumeservice/Experience/{id}");
             urlBuilder_.Replace("{id}", System.Uri.EscapeDataString(ConvertToString(id, System.Globalization.CultureInfo.InvariantCulture)));
 
             var client_ = _httpClient;
@@ -2826,6 +2844,142 @@ namespace ResumeApp.ApiClient
 
         /// <returns>Success</returns>
         /// <exception cref="ApiException">A server side error occurred.</exception>
+        public virtual System.Threading.Tasks.Task HealthGETAsync()
+        {
+            return HealthGETAsync(System.Threading.CancellationToken.None);
+        }
+
+        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+        /// <returns>Success</returns>
+        /// <exception cref="ApiException">A server side error occurred.</exception>
+        public virtual async System.Threading.Tasks.Task HealthGETAsync(System.Threading.CancellationToken cancellationToken)
+        {
+            var urlBuilder_ = new System.Text.StringBuilder();
+            urlBuilder_.Append("api/resumeservice/Health");
+
+            var client_ = _httpClient;
+            var disposeClient_ = false;
+            try
+            {
+                using (var request_ = new System.Net.Http.HttpRequestMessage())
+                {
+                    request_.Method = new System.Net.Http.HttpMethod("GET");
+
+                    PrepareRequest(client_, request_, urlBuilder_);
+
+                    var url_ = urlBuilder_.ToString();
+                    request_.RequestUri = new System.Uri(url_, System.UriKind.RelativeOrAbsolute);
+
+                    PrepareRequest(client_, request_, url_);
+
+                    var response_ = await client_.SendAsync(request_, System.Net.Http.HttpCompletionOption.ResponseHeadersRead, cancellationToken).ConfigureAwait(false);
+                    var disposeResponse_ = true;
+                    try
+                    {
+                        var headers_ = System.Linq.Enumerable.ToDictionary(response_.Headers, h_ => h_.Key, h_ => h_.Value);
+                        if (response_.Content != null && response_.Content.Headers != null)
+                        {
+                            foreach (var item_ in response_.Content.Headers)
+                                headers_[item_.Key] = item_.Value;
+                        }
+
+                        ProcessResponse(client_, response_);
+
+                        var status_ = (int)response_.StatusCode;
+                        if (status_ == 200)
+                        {
+                            return;
+                        }
+                        else
+                        {
+                            var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
+                            throw new ApiException("The HTTP status code of the response was not expected (" + status_ + ").", status_, responseData_, headers_, null);
+                        }
+                    }
+                    finally
+                    {
+                        if (disposeResponse_)
+                            response_.Dispose();
+                    }
+                }
+            }
+            finally
+            {
+                if (disposeClient_)
+                    client_.Dispose();
+            }
+        }
+
+        /// <returns>Success</returns>
+        /// <exception cref="ApiException">A server side error occurred.</exception>
+        public virtual System.Threading.Tasks.Task HealthHEADAsync()
+        {
+            return HealthHEADAsync(System.Threading.CancellationToken.None);
+        }
+
+        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+        /// <returns>Success</returns>
+        /// <exception cref="ApiException">A server side error occurred.</exception>
+        public virtual async System.Threading.Tasks.Task HealthHEADAsync(System.Threading.CancellationToken cancellationToken)
+        {
+            var urlBuilder_ = new System.Text.StringBuilder();
+            urlBuilder_.Append("api/resumeservice/Health");
+
+            var client_ = _httpClient;
+            var disposeClient_ = false;
+            try
+            {
+                using (var request_ = new System.Net.Http.HttpRequestMessage())
+                {
+                    request_.Method = new System.Net.Http.HttpMethod("HEAD");
+
+                    PrepareRequest(client_, request_, urlBuilder_);
+
+                    var url_ = urlBuilder_.ToString();
+                    request_.RequestUri = new System.Uri(url_, System.UriKind.RelativeOrAbsolute);
+
+                    PrepareRequest(client_, request_, url_);
+
+                    var response_ = await client_.SendAsync(request_, System.Net.Http.HttpCompletionOption.ResponseHeadersRead, cancellationToken).ConfigureAwait(false);
+                    var disposeResponse_ = true;
+                    try
+                    {
+                        var headers_ = System.Linq.Enumerable.ToDictionary(response_.Headers, h_ => h_.Key, h_ => h_.Value);
+                        if (response_.Content != null && response_.Content.Headers != null)
+                        {
+                            foreach (var item_ in response_.Content.Headers)
+                                headers_[item_.Key] = item_.Value;
+                        }
+
+                        ProcessResponse(client_, response_);
+
+                        var status_ = (int)response_.StatusCode;
+                        if (status_ == 200)
+                        {
+                            return;
+                        }
+                        else
+                        {
+                            var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
+                            throw new ApiException("The HTTP status code of the response was not expected (" + status_ + ").", status_, responseData_, headers_, null);
+                        }
+                    }
+                    finally
+                    {
+                        if (disposeResponse_)
+                            response_.Dispose();
+                    }
+                }
+            }
+            finally
+            {
+                if (disposeClient_)
+                    client_.Dispose();
+            }
+        }
+
+        /// <returns>Success</returns>
+        /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual System.Threading.Tasks.Task SkillsOPTIONSAsync()
         {
             return SkillsOPTIONSAsync(System.Threading.CancellationToken.None);
@@ -2837,7 +2991,7 @@ namespace ResumeApp.ApiClient
         public virtual async System.Threading.Tasks.Task SkillsOPTIONSAsync(System.Threading.CancellationToken cancellationToken)
         {
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append("api/ResumeService/Skills");
+            urlBuilder_.Append("api/resumeservice/Skills");
 
             var client_ = _httpClient;
             var disposeClient_ = false;
@@ -2906,7 +3060,7 @@ namespace ResumeApp.ApiClient
         public virtual async System.Threading.Tasks.Task<System.Collections.Generic.ICollection<SkillDto>> SkillsAllGETAsync(System.Threading.CancellationToken cancellationToken)
         {
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append("api/ResumeService/Skills");
+            urlBuilder_.Append("api/resumeservice/Skills");
 
             var client_ = _httpClient;
             var disposeClient_ = false;
@@ -2984,7 +3138,7 @@ namespace ResumeApp.ApiClient
         public virtual async System.Threading.Tasks.Task<System.Collections.Generic.ICollection<SkillDto>> SkillsAllHEADAsync(System.Threading.CancellationToken cancellationToken)
         {
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append("api/ResumeService/Skills");
+            urlBuilder_.Append("api/resumeservice/Skills");
 
             var client_ = _httpClient;
             var disposeClient_ = false;
@@ -3062,7 +3216,7 @@ namespace ResumeApp.ApiClient
         public virtual async System.Threading.Tasks.Task<SkillDto> SkillsPOSTAsync(SkillDto body, System.Threading.CancellationToken cancellationToken)
         {
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append("api/ResumeService/Skills");
+            urlBuilder_.Append("api/resumeservice/Skills");
 
             var client_ = _httpClient;
             var disposeClient_ = false;
@@ -3157,7 +3311,7 @@ namespace ResumeApp.ApiClient
                 throw new System.ArgumentNullException("id");
 
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append("api/ResumeService/Skills/{id}");
+            urlBuilder_.Append("api/resumeservice/Skills/{id}");
             urlBuilder_.Replace("{id}", System.Uri.EscapeDataString(ConvertToString(id, System.Globalization.CultureInfo.InvariantCulture)));
 
             var client_ = _httpClient;
@@ -3259,7 +3413,7 @@ namespace ResumeApp.ApiClient
                 throw new System.ArgumentNullException("id");
 
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append("api/ResumeService/Skills/{id}");
+            urlBuilder_.Append("api/resumeservice/Skills/{id}");
             urlBuilder_.Replace("{id}", System.Uri.EscapeDataString(ConvertToString(id, System.Globalization.CultureInfo.InvariantCulture)));
 
             var client_ = _httpClient;
@@ -3359,7 +3513,7 @@ namespace ResumeApp.ApiClient
                 throw new System.ArgumentNullException("id");
 
             var urlBuilder_ = new System.Text.StringBuilder();
-            urlBuilder_.Append("api/ResumeService/Skills/{id}");
+            urlBuilder_.Append("api/resumeservice/Skills/{id}");
             urlBuilder_.Replace("{id}", System.Uri.EscapeDataString(ConvertToString(id, System.Globalization.CultureInfo.InvariantCulture)));
 
             var client_ = _httpClient;
