@@ -1,6 +1,6 @@
 ﻿namespace ResumeApp.DataAccess.Sql.Entities
 {
-    public class SkillExperienceSqlEntity
+    public class SkillExperienceMappingSqlEntity
     {
         public Guid SkillId { get; set; }
         public SkillSqlEntity Skill { get; set; }

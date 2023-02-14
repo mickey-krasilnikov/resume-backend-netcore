@@ -18,7 +18,7 @@ namespace ResumeApp.DataAccess.Sql.Extensions
                 options.UseSqlServer(connectionString, o =>
                 {
                     o.EnableRetryOnFailure(maxReties);
-                    o.MigrationsAssembly("ResumeApp.WebApi");
+                    o.MigrationsAssembly("ResumeApp.DataAccess.Sql");
                 });
                 options.EnableSensitiveDataLogging(true);
             });

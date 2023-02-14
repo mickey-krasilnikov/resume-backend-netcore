@@ -14,6 +14,7 @@ namespace ResumeApp.DataAccess.Sql.Context
 		public DbSet<EducationSqlEntity> Educations { get; set; }
 		public DbSet<ExperienceSqlEntity> Experiences { get; set; }
 		public DbSet<SkillSqlEntity> Skills { get; set; }
+		public DbSet<SkillExperienceMappingSqlEntity> SkillExperienceMappings { get; set; }
 
 		protected override void ConfigureConventions(ModelConfigurationBuilder builder)
 		{
@@ -28,18 +29,18 @@ namespace ResumeApp.DataAccess.Sql.Context
 
 		protected override void OnModelCreating(ModelBuilder modelBuilder)
 		{
-			modelBuilder.Entity<SkillExperienceSqlEntity> ()
+			modelBuilder.Entity<SkillExperienceMappingSqlEntity>()
 				.HasKey(bc => new { bc.SkillId, bc.ExperienceId });
 
-            modelBuilder.Entity<SkillExperienceSqlEntity>()
-                .HasOne(bc => bc.Skill)
-                .WithMany(b => b.SkillExperience)
-                .HasForeignKey(bc => bc.SkillId);
+			modelBuilder.Entity<SkillExperienceMappingSqlEntity>()
+				.HasOne(bc => bc.Skill)
+				.WithMany(b => b.SkillExperienceMapping)
+				.HasForeignKey(bc => bc.SkillId);
 
-            modelBuilder.Entity<SkillExperienceSqlEntity>()
-                .HasOne(bc => bc.Experience)
-                .WithMany(c => c.SkillExperience)
-                .HasForeignKey(bc => bc.ExperienceId);
+			modelBuilder.Entity<SkillExperienceMappingSqlEntity>()
+				.HasOne(bc => bc.Experience)
+				.WithMany(c => c.SkillExperienceMapping)
+				.HasForeignKey(bc => bc.ExperienceId);
 
 			// seed the database with initial data
 			var dataToSeed = InitialDataGenerator.GetDataToSeed();
@@ -48,9 +49,9 @@ namespace ResumeApp.DataAccess.Sql.Context
 			modelBuilder.Entity<EducationSqlEntity>().HasData(dataToSeed.Eduction);
 			modelBuilder.Entity<ExperienceSqlEntity>().HasData(dataToSeed.Experience);
 			modelBuilder.Entity<SkillSqlEntity>().HasData(dataToSeed.Skills);
-            modelBuilder.Entity<SkillExperienceSqlEntity>().HasData(dataToSeed.SkillExperienceMapping);
+			modelBuilder.Entity<SkillExperienceMappingSqlEntity>().HasData(dataToSeed.SkillExperienceMapping);
 
-            base.OnModelCreating(modelBuilder);
+			base.OnModelCreating(modelBuilder);
 		}
 	}
 }
