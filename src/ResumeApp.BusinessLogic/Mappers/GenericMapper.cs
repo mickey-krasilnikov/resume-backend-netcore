@@ -42,9 +42,18 @@ namespace ResumeApp.BusinessLogic.Mappers
 					return (entity as SkillSqlEntity).ToDto() as TModel;
 				else if (typeof(TEntity) == typeof(SkillMongoEntity))
 					return (entity as SkillMongoEntity).ToDto() as TModel;
-			}
+            }
 
-			throw new NotSupportedException($"The entity type '{typeof(TEntity)}' can not be mapped to the DTO type '{typeof(TModel)}'");
+            // contact
+            if (typeof(TModel) == typeof(ContactDto))
+            {
+                if (typeof(TEntity) == typeof(ContactSqlEntity))
+                    return (entity as ContactSqlEntity).ToDto() as TModel;
+                else if (typeof(TEntity) == typeof(ContactMongoEntity))
+                    return (entity as ContactMongoEntity).ToDto() as TModel;
+            }
+
+            throw new NotSupportedException($"The entity type '{typeof(TEntity)}' can not be mapped to the DTO type '{typeof(TModel)}'");
 		}
 
 		internal static TEntity ToEntity<TModel, TEntity>(this TModel dto) where TEntity : class
@@ -83,9 +92,18 @@ namespace ResumeApp.BusinessLogic.Mappers
 					return (dto as SkillDto).ToSqlEntity() as TEntity;
 				else if (typeof(TEntity) == typeof(SkillMongoEntity))
 					return (dto as SkillDto).ToMongoEntity() as TEntity;
-			}
+            }
 
-			throw new NotSupportedException($"The DTO type '{typeof(TModel)}' can not be mapped to the entity type '{typeof(TEntity)}'");
+            // skill
+            if (typeof(TModel) == typeof(ContactDto))
+            {
+                if (typeof(TEntity) == typeof(ContactSqlEntity))
+                    return (dto as ContactDto).ToSqlEntity() as TEntity;
+                else if (typeof(TEntity) == typeof(ContactMongoEntity))
+                    return (dto as ContactDto).ToMongoEntity() as TEntity;
+            }
+
+            throw new NotSupportedException($"The DTO type '{typeof(TModel)}' can not be mapped to the entity type '{typeof(TEntity)}'");
 		}
 	}
 }
