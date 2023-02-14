@@ -8,8 +8,6 @@
 		<UserSecretsId>resume-app-web-api-7560c88f-57ca-492e-82c0-459cffa85cf4</UserSecretsId>
 	</PropertyGroup>
 
-	<PropertyGroup Condition=" '$(RunConfiguration)' == 'Resume.WebApi' " />
-
 	<ItemGroup>
 	  <None Remove="Controllers\0fxd2dh5.lmo~" />
 	</ItemGroup>
@@ -30,7 +28,7 @@
 		<ProjectReference Include="..\ResumeApp.Models\ResumeApp.Models.csproj" />
 	</ItemGroup>
 	
-	<Target Name="PostBuild" AfterTargets="PostBuildEvent">
+	<Target Name="PostBuild" AfterTargets="PostBuildEvent" Condition=" '$(Configuration)' == 'Debug' " >
 		<Exec Command="dotnet tool restore" />
 		<Exec Command="dotnet swagger tofile --output openapi.json $(OutputPath)\$(AssemblyName).dll v1" />
 	</Target>
