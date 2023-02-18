@@ -10,14 +10,14 @@ namespace ResumeApp.UnitTests.Mappers
 	{
 		public static IEnumerable<object[]> TestData => new List<object[]>
 		{
-			new object[] { Guid.Empty, null, null, new DateOnly(), null, false },
-			new object[] { Guid.Empty, string.Empty, string.Empty, new DateOnly(), new DateOnly(), false },
-			new object[] { Guid.NewGuid(), "TestTitle", "TestCompany", DateOnly.FromDateTime(DateTime.UtcNow.AddYears(-2)), DateOnly.FromDateTime(DateTime.UtcNow), false }
+			new object[] { Guid.Empty, null, null, new DateOnly(), null },
+			new object[] { Guid.Empty, string.Empty, string.Empty, new DateOnly(), new DateOnly() },
+			new object[] { Guid.NewGuid(), "TestTitle", "TestCompany", DateOnly.FromDateTime(DateTime.UtcNow.AddYears(-2)), DateOnly.FromDateTime(DateTime.UtcNow) }
 		};
 
 		[Theory]
 		[MemberData(nameof(TestData))]
-		public void MongoEntityToExperienceDto(Guid id, string title, string company, DateOnly startDate, DateOnly? endDate, bool isCurrentCompany)
+		public void MongoEntityToExperienceDto(Guid id, string title, string company, DateOnly startDate, DateOnly? endDate)
 		{
 			//Arrange
 			var entity = new ExperienceMongoEntity
@@ -42,7 +42,7 @@ namespace ResumeApp.UnitTests.Mappers
 
 		[Theory]
 		[MemberData(nameof(TestData))]
-		public void SqlEntityToExperienceDto(Guid id, string title, string company, DateOnly startDate, DateOnly? endDate, bool isCurrentCompany)
+		public void SqlEntityToExperienceDto(Guid id, string title, string company, DateOnly startDate, DateOnly? endDate)
 		{
 			//Arrange
 			var entity = new ExperienceSqlEntity
@@ -67,7 +67,7 @@ namespace ResumeApp.UnitTests.Mappers
 
 		[Theory]
 		[MemberData(nameof(TestData))]
-		public void ExperienceDtoToMongoEntity(Guid id, string title, string company, DateOnly startDate, DateOnly? endDate, bool isCurrentCompany)
+		public void ExperienceDtoToMongoEntity(Guid id, string title, string company, DateOnly startDate, DateOnly? endDate)
 		{
 			//Arrange
 			var dto = new ExperienceDto
@@ -92,7 +92,7 @@ namespace ResumeApp.UnitTests.Mappers
 
 		[Theory]
 		[MemberData(nameof(TestData))]
-		public void ExperienceDtoToSqlEntity(Guid id, string title, string company, DateOnly startDate, DateOnly? endDate, bool isCurrentCompany)
+		public void ExperienceDtoToSqlEntity(Guid id, string title, string company, DateOnly startDate, DateOnly? endDate)
 		{
 			//Arrange
 			var dto = new ExperienceDto

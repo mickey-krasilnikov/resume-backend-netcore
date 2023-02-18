@@ -3,10 +3,7 @@
   "info": {
     "title": "Resume API",
     "description": "A Web API for managing Resume",
-    "contact": {
-      "name": "Mikhail Krasilnikov",
-      "email": "mickey.krasilnikov@gmail.com"
-    },
+    "contact": { },
     "version": "v1"
   },
   "paths": {
