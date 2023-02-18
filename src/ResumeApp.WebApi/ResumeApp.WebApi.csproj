@@ -8,10 +8,9 @@
 		<UserSecretsId>resume-app-web-api-7560c88f-57ca-492e-82c0-459cffa85cf4</UserSecretsId>
 	</PropertyGroup>
 
-	<PropertyGroup Condition=" '$(RunConfiguration)' == 'Resume.WebApi' " />
 	<ItemGroup>
 		<PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning" Version="5.0.0" />
-		<PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.2">
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.3">
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
@@ -25,9 +24,15 @@
 		<ProjectReference Include="..\ResumeApp.Models\ResumeApp.Models.csproj" />
 	</ItemGroup>
 	
+	<ItemGroup>
+	  <None Remove="Configs\" />
+	</ItemGroup>
+	<ItemGroup>
+	  <Folder Include="Configs\" />
+	</ItemGroup>
 	<Target Name="PostBuild" AfterTargets="PostBuildEvent" Condition=" '$(Configuration)' == 'Debug' ">
 		<Exec Command="dotnet tool restore" />
-		<Exec Command="dotnet swagger tofile --output openapi.json $(OutputPath)\$(AssemblyName).dll v1" />
+		<Exec Command="ASPNETCORE_ENVIRONMENT=development dotnet swagger tofile --output openapi.json $(OutputPath)\$(AssemblyName).dll v1" />
 	</Target>
 
 </Project>
