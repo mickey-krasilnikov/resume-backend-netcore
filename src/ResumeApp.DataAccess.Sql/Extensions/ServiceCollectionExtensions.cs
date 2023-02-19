@@ -15,12 +15,15 @@ namespace ResumeApp.DataAccess.Sql.Extensions
             var connectionString = configuration.GetConnectionString("Sql");
             services.AddDbContext<ISqlDbContext, SqlDbContext>(options =>
             {
-                options.UseSqlServer(connectionString, o =>
+                if (!options.IsConfigured)
                 {
-                    o.EnableRetryOnFailure(maxReties);
-                    o.MigrationsAssembly("ResumeApp.DataAccess.Sql");
-                });
-                options.EnableSensitiveDataLogging(true);
+                    options.UseSqlServer(connectionString, o =>
+                    {
+                        o.EnableRetryOnFailure(maxReties);
+                        o.MigrationsAssembly("ResumeApp.DataAccess.Sql");
+                    });
+                    options.EnableSensitiveDataLogging(true);
+                }
             });
             services.AddScoped<IRepository<CertificationSqlEntity>, CertificationSqlRepository>();
             services.AddScoped<IRepository<ContactSqlEntity>, ContactsSqlRepository>();
