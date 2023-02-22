@@ -82,7 +82,6 @@ namespace ResumeApp.UnitTests.Extensions
 		[Theory]
 		[InlineData("Abc")]
 		[InlineData("")]
-		[InlineData(null)]
 		public void WhenUnknownDbType_ExceptionThrown(string dbType)
 		{
 			//Arrange

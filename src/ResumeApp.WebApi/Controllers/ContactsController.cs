@@ -69,12 +69,18 @@ namespace ResumeApp.WebApi.Controllers
 		[ProducesDefaultResponseType]
 		public async Task<ActionResult<ContactDto>> UpdateItem([FromRoute] string id, [FromBody] ContactDto item)
 		{
-			if (!Guid.TryParse(id, out var guidId)) return BadRequest();
-            if (item.Id != Guid.Empty && item.Id != guidId) return BadRequest();
+			if (string.IsNullOrWhiteSpace(id) ||
+				!Guid.TryParse(id, out var guidId) ||
+				item == null ||
+				item.Id != Guid.Empty && item.Id != guidId)
+			{
+				return BadRequest();
+			}
+            if (item.Id == Guid.Empty) item.Id = guidId;
+
             var isExists = await _crudService.CheckIfItemExistsAsync(guidId);
 			if (!isExists) return NotFound();
 
-            if (item.Id == Guid.Empty) item.Id = guidId;
             await _crudService.UpdateItemAsync(item);
 			return NoContent();
 		}

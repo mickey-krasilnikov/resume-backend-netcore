@@ -6,7 +6,7 @@ using System.Text.Json.Serialization;
 
 namespace ResumeApp.WebApi;
 
-public class Program
+public sealed class Program
 {
     public static void Main(string[] args)
     {
@@ -49,7 +49,7 @@ public class Program
         {
             options.AddDefaultPolicy(policy =>
             {
-                policy.WithOrigins(corsConfig.AllowedOrigins)
+                policy.WithOrigins(corsConfig.AllowedOrigins.ToArray())
                     .AllowAnyHeader()
                     .AllowAnyMethod();
             });

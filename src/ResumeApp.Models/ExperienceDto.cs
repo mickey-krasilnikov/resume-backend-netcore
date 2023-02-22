@@ -14,9 +14,9 @@ namespace ResumeApp.Models
 
 		public string Location { get; set; }
 
-		public SkillDto[] Environment { get; set; }
+		public IReadOnlyList<SkillDto> Environment { get; set; }
 
-		public string[] TaskPerformed { get; set; }
+		public IReadOnlyList<string> TaskPerformed { get; set; }
 
 		[Required]
 		public DateOnly StartDate { get; set; }
