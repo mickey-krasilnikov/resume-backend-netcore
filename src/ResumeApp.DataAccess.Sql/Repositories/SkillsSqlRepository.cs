@@ -69,9 +69,10 @@ namespace ResumeApp.DataAccess.Sql.Repositories
 		}
 
 		public async Task ReplaceOneAsync(SkillSqlEntity entity)
-		{
-			_context.Skills.Update(entity);
-			await _context.SaveChangesAsync();
+        {
+            var entityToUpdate = await _context.Skills.FirstOrDefaultAsync(c => c.Id == entity.Id);
+            _context.Skills.Entry(entityToUpdate).CurrentValues.SetValues(entity);
+            await _context.SaveChangesAsync();
 		}
 
 		public async Task DeleteByIdAsync(Guid id)

@@ -69,9 +69,10 @@ namespace ResumeApp.DataAccess.Sql.Repositories
 		}
 
 		public async Task ReplaceOneAsync(ExperienceSqlEntity entity)
-		{
-			_context.Experiences.Update(entity);
-			await _context.SaveChangesAsync();
+        {
+            var entityToUpdate = await _context.Experiences.FirstOrDefaultAsync(c => c.Id == entity.Id);
+            _context.Experiences.Entry(entityToUpdate).CurrentValues.SetValues(entity);
+            await _context.SaveChangesAsync();
 		}
 
 		public async Task DeleteByIdAsync(Guid id)

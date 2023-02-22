@@ -69,8 +69,9 @@ namespace ResumeApp.DataAccess.Sql.Repositories
 		}
 
 		public async Task ReplaceOneAsync(ContactSqlEntity entity)
-		{
-			_context.Contacts.Update(entity);
+        {
+            var entityToUpdate = await _context.Contacts.FirstOrDefaultAsync(c => c.Id == entity.Id);
+            _context.Contacts.Entry(entityToUpdate).CurrentValues.SetValues(entity);
 			await _context.SaveChangesAsync();
 		}
 

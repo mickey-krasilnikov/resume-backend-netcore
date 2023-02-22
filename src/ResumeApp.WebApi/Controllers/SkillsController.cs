@@ -30,7 +30,6 @@ namespace ResumeApp.WebApi.Controllers
 		}
 
 		[HttpGet]
-		[HttpHead]
 		[ProducesResponseType(StatusCodes.Status200OK)]
 		[ProducesDefaultResponseType]
 		public async Task<ActionResult<IEnumerable<SkillDto>>> GetAllItems()
@@ -60,7 +59,7 @@ namespace ResumeApp.WebApi.Controllers
 		{
 			if (item == null) return BadRequest();
 			var newItem = await _crudService.CreateItemAsync(item);
-			return CreatedAtAction(nameof(GetItemById), newItem.Id, newItem);
+			return CreatedAtAction(nameof(GetItemById), new { id = newItem.Id }, newItem);
 		}
 
 		[HttpPut("{id}")]
@@ -71,10 +70,12 @@ namespace ResumeApp.WebApi.Controllers
 		public async Task<ActionResult<SkillDto>> UpdateItem([FromRoute] string id, [FromBody] SkillDto item)
 		{
 			if (!Guid.TryParse(id, out var guidId)) return BadRequest();
-			var isExists = await _crudService.CheckIfItemExistsAsync(guidId);
+            if (item.Id != Guid.Empty && item.Id != guidId) return BadRequest();
+            var isExists = await _crudService.CheckIfItemExistsAsync(guidId);
 			if (!isExists) return NotFound();
 
-			await _crudService.UpdateItemAsync(item);
+            if (item.Id == Guid.Empty) item.Id = guidId;
+            await _crudService.UpdateItemAsync(item);
 			return NoContent();
 		}
 

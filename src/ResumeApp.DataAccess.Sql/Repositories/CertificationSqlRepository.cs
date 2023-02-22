@@ -2,6 +2,7 @@
 using ResumeApp.DataAccess.Abstractions;
 using ResumeApp.DataAccess.Sql.Context;
 using ResumeApp.DataAccess.Sql.Entities;
+using System;
 using System.Linq.Expressions;
 
 namespace ResumeApp.DataAccess.Sql.Repositories
@@ -70,7 +71,8 @@ namespace ResumeApp.DataAccess.Sql.Repositories
 
 		public async Task ReplaceOneAsync(CertificationSqlEntity entity)
 		{
-			_context.Certifications.Update(entity);
+			var entityToUpdate = await _context.Certifications.FirstOrDefaultAsync(c => c.Id == entity.Id);
+            _context.Certifications.Entry(entityToUpdate).CurrentValues.SetValues(entity);
 			await _context.SaveChangesAsync();
 		}
 
