@@ -17,6 +17,8 @@ namespace ResumeApp.ContractTests.Controllers
             _sqlDbContext = testFixture.Services.CreateScope().ServiceProvider.GetService<ISqlDbContext>();
         }
 
+        #region HappyPath
+
         [Fact]
         public async Task GetAllCertificates_HappyPath()
         {
