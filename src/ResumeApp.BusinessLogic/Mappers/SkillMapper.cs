@@ -6,55 +6,51 @@ using System.Runtime.CompilerServices;
 [assembly: InternalsVisibleTo("ResumeApp.UnitTests")]
 namespace ResumeApp.BusinessLogic.Mappers
 {
-	internal static class ContactMapper
+	internal static class SkillMapper
 	{
-        internal static ContactDto ToDto(this ContactMongoEntity entity)
-		{
-            if (entity == null) return null;
-
-            return new ContactDto
-            {
-                Id = entity.Id,
-                Key = entity.Key,
-                Value = entity.Value,
-                Link = entity.Link
-            };
-        }
-
-		internal static ContactDto ToDto(this ContactSqlEntity entity)
+        internal static SkillDto ToDto(this SkillMongoEntity entity)
 		{
 			if (entity == null) return null;
 
-			return new ContactDto
-            {
-                Id = entity.Id,
-                Key = entity.Key,
-                Value = entity.Value,
-                Link = entity.Link
-            };
-		}
-
-		internal static ContactMongoEntity ToMongoEntity(this ContactDto dto)
-		{
-			if (dto == null) return null;
-			return new ContactMongoEntity
+			return new SkillDto
 			{
-                Id = dto.Id,
-                Key = dto.Key,
-                Value = dto.Value,
-                Link = dto.Link
-            };
+				Id = entity.Id,
+				Name = entity.Name,				
+				SkillGroup = entity.SkillGroup,
+			};
 		}
 
-		internal static ContactSqlEntity ToSqlEntity(this ContactDto dto)
+		internal static SkillDto ToDto(this SkillSqlEntity entity)
+		{
+			if (entity == null) return null;
+
+			return new SkillDto
+			{
+				Id = entity.Id,
+				Name = entity.Name,				
+				SkillGroup = entity.SkillGroup,
+			};
+		}
+
+		internal static SkillMongoEntity ToMongoEntity(this SkillDto dto)
 		{
 			if (dto == null) return null;
-			return new ContactSqlEntity
+			return new SkillMongoEntity
 			{
 				Id = dto.Id,
-				Key = dto.Key,
-				Value = dto.Value,
-                Link = dto.Link
+				Name = dto.Name,
+				SkillGroup = dto.SkillGroup
+			};
+		}
+
+		internal static SkillSqlEntity ToSqlEntity(this SkillDto dto)
+		{
+			if (dto == null) return null;
+			return new SkillSqlEntity
+			{
+				Id = dto.Id,
+				Name = dto.Name,
+				SkillGroup = dto.SkillGroup
 			};
 		}
 	}

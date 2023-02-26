@@ -13,7 +13,6 @@ namespace ResumeApp.UnitTests.Mappers
 		{
 			// Arrange
 			var mockEntity = new Mock<CertificationSqlEntity>();
-			mockEntity.Setup(x => x.ToDto()).Returns(new CertificationDto());
 
 			// Act
 			var result = mockEntity.Object.ToDto<CertificationDto, CertificationSqlEntity>();
@@ -27,7 +26,6 @@ namespace ResumeApp.UnitTests.Mappers
 		{
 			// Arrange
 			var mockEntity = new Mock<CertificationMongoEntity>();
-			mockEntity.Setup(x => x.ToDto()).Returns(new CertificationDto());
 
 			// Act
 			var result = mockEntity.Object.ToDto<CertificationDto, CertificationMongoEntity>();
@@ -41,7 +39,6 @@ namespace ResumeApp.UnitTests.Mappers
 		{
 			// Arrange
 			var mockEntity = new Mock<EducationSqlEntity>();
-			mockEntity.Setup(x => x.ToDto()).Returns(new EducationDto());
 
 			// Act
 			var result = mockEntity.Object.ToDto<EducationDto, EducationSqlEntity>();
@@ -55,7 +52,6 @@ namespace ResumeApp.UnitTests.Mappers
 		{
 			// Arrange
 			var mockEntity = new Mock<EducationMongoEntity>();
-			mockEntity.Setup(x => x.ToDto()).Returns(new EducationDto());
 
 			// Act
 			var result = mockEntity.Object.ToDto<EducationDto, EducationMongoEntity>();
@@ -69,7 +65,6 @@ namespace ResumeApp.UnitTests.Mappers
 		{
 			// Arrange
 			var mockEntity = new Mock<ExperienceSqlEntity>();
-			mockEntity.Setup(x => x.ToDto()).Returns(new ExperienceDto());
 
 			// Act
 			var result = mockEntity.Object.ToDto<ExperienceDto, ExperienceSqlEntity>();

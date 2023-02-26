@@ -88,10 +88,8 @@ namespace ResumeApp.ContractTests.Controllers
         public async Task PostCertificate_HappyPath()
         {
             // Arrange
-            var certificateId = Guid.NewGuid();
             var certificateToPost = new CertificationDto()
             {
-                //Id = certificateId,
                 Name = "Test certificate",
                 Issuer = "Test issuer",
                 VerificationUrl = new Uri("https://testcertificate.com"),
@@ -100,7 +98,7 @@ namespace ResumeApp.ContractTests.Controllers
 
             // Act
             var certificatesBefore = _sqlDbContext.Certifications.AsNoTracking().SingleOrDefault();
-            var certificate = await _apiClient.CertificationPOSTAsync(certificateToPost);
+            await _apiClient.CertificationPOSTAsync(certificateToPost);
             var certificatesAfter = _sqlDbContext.Certifications.AsNoTracking().Single();
 
             _sqlDbContext.Certifications.RemoveRange(_sqlDbContext.Certifications.ToList());
