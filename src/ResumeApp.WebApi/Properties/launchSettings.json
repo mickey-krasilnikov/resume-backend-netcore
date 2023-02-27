@@ -20,7 +20,8 @@
     "ResumeApp.WebApi": {
       "commandName": "Project",
       "launchBrowser": true,
-      "applicationUrl": "http://localhost:55360",
+      "launchUrl": "swagger",
+      "applicationUrl": "https://localhost:55361;http://localhost:55360",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
