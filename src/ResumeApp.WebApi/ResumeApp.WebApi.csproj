@@ -15,6 +15,7 @@
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
 		<PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
+		<PackageReference Include="OwaspHeaders.Core" Version="4.5.1" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -24,12 +25,6 @@
 		<ProjectReference Include="..\ResumeApp.Models\ResumeApp.Models.csproj" />
 	</ItemGroup>
 	
-	<ItemGroup>
-	  <None Remove="Configs\" />
-	</ItemGroup>
-	<ItemGroup>
-	  <Folder Include="Configs\" />
-	</ItemGroup>
 	<Target Name="PostBuild" AfterTargets="PostBuildEvent" Condition=" '$(Configuration)' == 'Debug' ">
 		<Exec Command="dotnet tool restore" />
 		<Exec Command="ASPNETCORE_ENVIRONMENT=development dotnet swagger tofile --output openapi.json $(OutputPath)\$(AssemblyName).dll v1" />

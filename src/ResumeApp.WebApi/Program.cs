@@ -1,8 +1,10 @@
+using Microsoft.AspNetCore.Builder;
 using Microsoft.OpenApi.Models;
 using ResumeApp.BusinessLogic.Configs;
 using ResumeApp.BusinessLogic.Extensions;
 using System.Reflection;
 using System.Text.Json.Serialization;
+using OwaspHeaders.Core.Extensions;
 
 namespace ResumeApp.WebApi;
 
@@ -61,6 +63,10 @@ public sealed class Program
         {
             app.UseSwagger();
             app.UseSwaggerUI();
+        }
+        else
+        {
+            app.UseSecureHeadersMiddleware(SecureHeadersMiddlewareExtensions.BuildDefaultConfiguration());
         }
 
         app.UseHttpsRedirection();
