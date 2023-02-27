@@ -1,4 +1,4 @@
-# Resume App RESTful Web API
+# Resume Web API
 [![Build and Deploy to Azure Web App](https://github.com/mickey-krasilnikov/resume-backend-netcore/actions/workflows/main_app-resumeapp-api.yml/badge.svg)](https://github.com/mickey-krasilnikov/resume-backend-netcore/actions/workflows/main_app-resumeapp-api.yml)
 ![Code Coverage](https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/mickey-krasilnikov/8f7365cb925afff5db063ecee4688a55/raw/code-coverage.json)
 [![License: WTFPL](https://img.shields.io/badge/License-WTFPL-brightgreen.svg)](http://www.wtfpl.net/about/)
@@ -36,7 +36,7 @@ The Resume App RESTful Web API is a cross-platform web API written in .NET 7 tha
 - `OPTIONS,GET,POST /api/resumeservice/Skills`
 - `GET,PUT,DELETE /api/resumeservice/Skills/{id}`
 
-## To Run Locally
+## Configuration
 
 To run the API locally, you can use one of two launch profiles:
 
