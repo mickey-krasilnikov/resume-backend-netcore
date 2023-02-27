@@ -46,8 +46,23 @@ To run the API locally, you can use one of two launch profiles:
 To run the API locally, follow these steps:
 
 1. Open the solution file in Visual Studio.
-2. Choose the launch profile you want to use by clicking the "Launch" dropdown in the toolbar and selecting the appropriate profile.
-3. Click the "Play" button in the toolbar to start the server.
+2. Configure DbConnectionOptions in WebApi project in `appsettings.json`. 
+Default value: `Sql`; Possible values: `Sql`, `Mongo`
+Example: 
+```
+"DbConnectionOptions": {
+  "UseDbType": "Sql"
+}
+```
+3. Configure connection string depends on selected `DbConnectionOptions.UseDbType` DbType from previous step. The best way to do this is overwrite it in user secrets, to avoid commiting connection string to git repo. Or configure it in environment specific `appsettings.json` (e.g.  `appsettings.Development.json`)
+```
+"ConnectionStrings": {
+  "Mongo": "OVERWRITTEN_IN_USER_SECRETS",
+  "Sql": "OVERWRITTEN_IN_USER_SECRETS"
+},
+```
+4. Select WebApi project as Startup project. Choose the launch profile you want to use by clicking the "Launch" dropdown in the toolbar and selecting the appropriate profile.
+5. Click the "Play" button in the toolbar to start the server.
 
 ## Documentation
 
@@ -79,6 +94,20 @@ You can specify additional parameters by adding them to the `dotnet test` comman
 
 For more information about `dotnet test` and its parameters, see the [official documentation](https://docs.microsoft.com/en-us/dotnet/core/tools/dotnet-test).
 
+## Technologies Used
+
+- .Net 7
+- EntityFrameworkCore
+- xUnit
+- Moq
+- coverlet
+- Swashbuckle.AspNetCore
+- NSwagCSharp
+- OwaspHeaders.Core (for security headers)
+
+## License
+
+This project is licensed under the [WTFPL License](http://www.wtfpl.net/about/).
 
 
 
