@@ -1,5 +1,6 @@
 # Resume App RESTful Web API
 [![Build and Deploy to Azure Web App](https://github.com/mickey-krasilnikov/resume-backend-netcore/actions/workflows/main_app-resumeapp-api.yml/badge.svg)](https://github.com/mickey-krasilnikov/resume-backend-netcore/actions/workflows/main_app-resumeapp-api.yml)
+![Code Coverage](https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/mickey-krasilnikov/8f7365cb925afff5db063ecee4688a55/raw/code-coverage.json)
 
 The Resume App RESTful Web API is a cross-platform web API written in .NET 7 that serves as the backend for a resume application. It enables to manage resume by allowing to create, read, update, and delete the various parts of the resume, including Certifications, Contacts, Education, Experience, and Skills.
 
