@@ -9,53 +9,32 @@ The Resume App RESTful Web API is a cross-platform web API written in .NET 7 tha
 
 ### Health
 
-- `GET /api/resumeservice/Health`
-- `HEAD /api/resumeservice/Health`
+- `GET/HEAD /api/resumeservice/Health`
 
 ### Certification
 
-- `OPTIONS /api/resumeservice/Certification`
-- `GET /api/resumeservice/Certification`
-- `POST /api/resumeservice/Certification`
-- `GET /api/resumeservice/Certification/{id}`
-- `PUT /api/resumeservice/Certification/{id}`
-- `DELETE /api/resumeservice/Certification/{id}`
+- `OPTIONS/GET/POST /api/resumeservice/Certification`
+- `GET/PUT/DELETE /api/resumeservice/Certification/{id}`
 
 ### Contacts
 
-- `OPTIONS /api/resumeservice/Contacts`
-- `GET /api/resumeservice/Contacts`
-- `POST /api/resumeservice/Contacts`
-- `GET /api/resumeservice/Contacts/{id}`
-- `PUT /api/resumeservice/Contacts/{id}`
-- `DELETE /api/resumeservice/Contacts/{id}`
+- `OPTIONS/GET/POST /api/resumeservice/Contacts`
+- `GET/PUT/DELETE /api/resumeservice/Contacts/{id}`
 
 ### Education
 
-- `OPTIONS /api/resumeservice/Education`
-- `GET /api/resumeservice/Education`
-- `POST /api/resumeservice/Education`
-- `GET /api/resumeservice/Education/{id}`
-- `PUT /api/resumeservice/Education/{id}`
-- `DELETE /api/resumeservice/Education/{id}`
+- `OPTIONS/GET/POST /api/resumeservice/Education`
+- `GET/PUT/DELETE /api/resumeservice/Education/{id}`
 
 ### Experience
 
-- `OPTIONS /api/resumeservice/Experience`
-- `GET /api/resumeservice/Experience`
-- `POST /api/resumeservice/Experience`
-- `GET /api/resumeservice/Experience/{id}`
-- `PUT /api/resumeservice/Experience/{id}`
-- `DELETE /api/resumeservice/Experience/{id}`
+- `OPTIONS/GET/POST /api/resumeservice/Experience`
+- `GET/PUT/DELETE /api/resumeservice/Experience/{id}`
 
 ### Skills
 
-- `OPTIONS /api/resumeservice/Skills`
-- `GET /api/resumeservice/Skills`
-- `POST /api/resumeservice/Skills`
-- `GET /api/resumeservice/Skills/{id}`
-- `PUT /api/resumeservice/Skills/{id}`
-- `DELETE /api/resumeservice/Skills/{id}`
+- `OPTIONS/GET/POST /api/resumeservice/Skills`
+- `GET/PUT/DELETE /api/resumeservice/Skills/{id}`
 
 ## To Run Locally
 
