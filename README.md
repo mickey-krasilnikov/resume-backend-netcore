@@ -99,10 +99,10 @@ For more information about `dotnet test` and its parameters, see the [official d
 - .Net 7
 - EntityFrameworkCore
 - xUnit
-- Moq
-- coverlet
-- Swashbuckle.AspNetCore
-- NSwagCSharp
+- Moq (for Mock objects in Unit and Component tests)
+- coverlet (for generating code coverage report)
+- Swashbuckle.AspNetCore (for Swagger, SwaggerUI and OpenAPI v3 spec generation)
+- NSwagCSharp (for generating API Client)
 - OwaspHeaders.Core (for security headers)
 
 ## License
