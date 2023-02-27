@@ -26,7 +26,7 @@ jobs:
         run: dotnet build --configuration Release
         
       - name: Test
-        run: dotnet test tests/ResumeApp.UnitTests/ /p:CollectCoverage=true /p:CoverletOutput=TestResults/ /p:CoverletOutputFormat=opencover --no-build --verbosity normal 
+        run: dotnet test tests/ResumeApp.UnitTests/ /p:CollectCoverage=true /p:CoverletOutput=TestResults/ /p:CoverletOutputFormat=opencover --verbosity normal 
      
       - name: Create Test Coverage Badge
         uses: simon-k/dotnet-code-coverage-badge@v1.0.0
