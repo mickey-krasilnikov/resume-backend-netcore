@@ -23,6 +23,7 @@ namespace ResumeApp.ContractTests.Controllers
         public async Task GetAllCertificates_HappyPath()
         {
             // Arrange
+            ICollection<CertificationDto> certificates = null;
             var expectedCertificate = new CertificationSqlEntity()
             {
                 Id = Guid.NewGuid(),
@@ -33,13 +34,12 @@ namespace ResumeApp.ContractTests.Controllers
             };
 
             // Act
-            _sqlDbContext.Certifications.Add(expectedCertificate);
-            await _sqlDbContext.SaveChangesAsync();
-
-            var certificates = await _apiClient.CertificationAllAsync();
-
-            _sqlDbContext.Certifications.Remove(expectedCertificate);
-            await _sqlDbContext.SaveChangesAsync();
+            try
+            {
+                await InitializeWithEntityAsync(expectedCertificate);
+                certificates = await _apiClient.CertificationAllAsync();
+            }
+            finally { await CleanUpAsync(); }
 
             // Assert
             Assert.NotEmpty(certificates);
@@ -56,6 +56,7 @@ namespace ResumeApp.ContractTests.Controllers
         public async Task GetCertificateById_HappyPath()
         {
             // Arrange
+            CertificationDto certificate = null;
             var certificateId = Guid.NewGuid();
             var expectedCertificate = new CertificationSqlEntity()
             {
@@ -67,13 +68,12 @@ namespace ResumeApp.ContractTests.Controllers
             };
 
             // Act
-            _sqlDbContext.Certifications.Add(expectedCertificate);
-            await _sqlDbContext.SaveChangesAsync();
-
-            var certificate = await _apiClient.CertificationGETAsync(certificateId.ToString());
-
-            _sqlDbContext.Certifications.Remove(expectedCertificate);
-            await _sqlDbContext.SaveChangesAsync();
+            try
+            {
+                await InitializeWithEntityAsync(expectedCertificate);
+                certificate = await _apiClient.CertificationGETAsync(certificateId.ToString());
+            }
+            finally { await CleanUpAsync(); }
 
             // Assert
             Assert.NotNull(certificate);
@@ -88,6 +88,8 @@ namespace ResumeApp.ContractTests.Controllers
         public async Task PostCertificate_HappyPath()
         {
             // Arrange
+            CertificationSqlEntity certificatesBefore = null;
+            CertificationSqlEntity certificatesAfter = null;
             var certificateToPost = new CertificationDto()
             {
                 Name = "Test certificate",
@@ -97,12 +99,13 @@ namespace ResumeApp.ContractTests.Controllers
             };
 
             // Act
-            var certificatesBefore = _sqlDbContext.Certifications.AsNoTracking().SingleOrDefault();
-            await _apiClient.CertificationPOSTAsync(certificateToPost);
-            var certificatesAfter = _sqlDbContext.Certifications.AsNoTracking().Single();
-
-            _sqlDbContext.Certifications.RemoveRange(_sqlDbContext.Certifications.ToList());
-            await _sqlDbContext.SaveChangesAsync();
+            try
+            {
+                certificatesBefore = _sqlDbContext.Certifications.AsNoTracking().SingleOrDefault();
+                await _apiClient.CertificationPOSTAsync(certificateToPost);
+                certificatesAfter = _sqlDbContext.Certifications.AsNoTracking().Single();
+            }
+            finally { await CleanUpAsync(); }
 
             // Assert
             Assert.Null(certificatesBefore);
@@ -119,6 +122,8 @@ namespace ResumeApp.ContractTests.Controllers
         public async Task PutCertificate_HappyPath()
         {
             // Arrange
+            CertificationSqlEntity certificatesBefore = null;
+            CertificationSqlEntity certificatesAfter = null;
             var certificateId = Guid.NewGuid();
             var initialCertificate = new CertificationSqlEntity()
             {
@@ -126,7 +131,7 @@ namespace ResumeApp.ContractTests.Controllers
                 Name = "Test certificate 1",
                 Issuer = "Test issuer 1",
                 VerificationUrl = new Uri("https://testcertificate1.com"),
-                IssueDate = DateOnly.FromDateTime(DateTime.UtcNow).AddDays(-1)
+                IssueDate = DateOnly.FromDateTime(DateTime.UtcNow).AddDays(-2)
             };
             var certificateToPut = new CertificationDto()
             {
@@ -138,15 +143,14 @@ namespace ResumeApp.ContractTests.Controllers
             };
 
             // Act
-            _sqlDbContext.Certifications.Add(initialCertificate);
-            await _sqlDbContext.SaveChangesAsync();
-            var certificatesBefore = _sqlDbContext.Certifications.AsNoTracking().Single();
-
-            await _apiClient.CertificationPUTAsync(certificateId.ToString(), certificateToPut);
-
-            var certificatesAfter = _sqlDbContext.Certifications.AsNoTracking().Single();
-            _sqlDbContext.Certifications.RemoveRange(_sqlDbContext.Certifications.ToList());
-            await _sqlDbContext.SaveChangesAsync();
+            try
+            {
+                await InitializeWithEntityAsync(initialCertificate);
+                certificatesBefore = _sqlDbContext.Certifications.AsNoTracking().Single();
+                await _apiClient.CertificationPUTAsync(certificateId.ToString(), certificateToPut);
+                certificatesAfter = _sqlDbContext.Certifications.AsNoTracking().Single();
+            }
+            finally { await CleanUpAsync(); }
 
             // Assert
             Assert.NotNull(certificatesBefore);
@@ -179,8 +183,7 @@ namespace ResumeApp.ContractTests.Controllers
             };
 
             // Act
-            _sqlDbContext.Certifications.Add(certificateToDelete);
-            await _sqlDbContext.SaveChangesAsync();
+            await InitializeWithEntityAsync(certificateToDelete);
             var certificatesBefore = _sqlDbContext.Certifications.AsNoTracking().Single();
             await _apiClient.CertificationDELETEAsync(certificateId.ToString());
             var certificatesAfter = _sqlDbContext.Certifications.AsNoTracking().SingleOrDefault();
@@ -190,5 +193,17 @@ namespace ResumeApp.ContractTests.Controllers
             Assert.Null(certificatesAfter);
         }
         #endregion HappyPath
+
+        private async Task InitializeWithEntityAsync(CertificationSqlEntity entity)
+        {
+            _sqlDbContext.Certifications.Add(entity);
+            await _sqlDbContext.SaveChangesAsync();
+        }
+
+        private async Task CleanUpAsync()
+        {
+            _sqlDbContext.Certifications.RemoveRange(_sqlDbContext.Certifications.ToList());
+            await _sqlDbContext.SaveChangesAsync();
+        }
     }
 }

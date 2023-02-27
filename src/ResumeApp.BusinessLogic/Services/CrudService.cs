@@ -9,14 +9,14 @@ namespace ResumeApp.BusinessLogic.Services
 		where TEntity : class
 	{
 		private readonly IRepository<TEntity> _repository;
-		private readonly IValidator<TModel> _fullCertificationValidator;
+		private readonly IValidator<TModel> _modelValidator;
 
 		protected CrudService(
 			IRepository<TEntity> repository,
 			IValidator<TModel> fullCertificationValidator)
 		{
 			_repository = repository;
-			_fullCertificationValidator = fullCertificationValidator;
+			_modelValidator = fullCertificationValidator;
 		}
 
 		public async Task<bool> CheckIfItemExistsAsync(Guid id)
@@ -26,9 +26,17 @@ namespace ResumeApp.BusinessLogic.Services
 
 		public async Task<TModel> CreateItemAsync(TModel item)
 		{
-			_fullCertificationValidator.Validate(item);
-			var newItem = await _repository.InsertOneAsync(item.ToEntity<TModel, TEntity>());
-			return newItem.ToDto<TModel, TEntity>();
+			try
+			{
+				_modelValidator.Validate(item);
+				var newItem = await _repository.InsertOneAsync(item.ToEntity<TModel, TEntity>());
+				return newItem.ToDto<TModel, TEntity>();
+			}
+			catch (Exception ex)
+			{
+				var m = ex.Message;
+				throw;
+			}
 		}
 
 		public async Task<IReadOnlyList<TModel>> GetAllItemsAsync()
@@ -43,7 +51,7 @@ namespace ResumeApp.BusinessLogic.Services
 
 		public async Task UpdateItemAsync(TModel item)
 		{
-			_fullCertificationValidator.Validate(item);
+			_modelValidator.Validate(item);
 			await _repository.ReplaceOneAsync(item.ToEntity<TModel, TEntity>());
 		}
 

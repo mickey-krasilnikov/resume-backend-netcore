@@ -13,5 +13,7 @@ namespace ResumeApp.DataAccess.Mongo.Entities
 		public string Name { get; set; }
 
 		public string SkillGroup { get; set; }
-	}
+
+        public Guid[] ExperienceIds { get; set; }
+    }
 }

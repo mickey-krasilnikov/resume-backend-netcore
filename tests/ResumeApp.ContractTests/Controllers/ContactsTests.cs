@@ -23,6 +23,7 @@ namespace ResumeApp.ContractTests.Controllers
         public async Task GetAllContacts_HappyPath()
         {
             // Arrange
+            ICollection<ContactDto> contacts = null;
             var expectedContact = new ContactSqlEntity()
             {
                 Id = Guid.NewGuid(),
@@ -32,11 +33,12 @@ namespace ResumeApp.ContractTests.Controllers
             };
 
             // Act
-            _sqlDbContext.Contacts.Add(expectedContact);
-            await _sqlDbContext.SaveChangesAsync();
-            var contacts = await _apiClient.ContactsAllAsync();
-            _sqlDbContext.Contacts.Remove(expectedContact);
-            await _sqlDbContext.SaveChangesAsync();
+            try
+            {
+                await InitializeWithEntityAsync(expectedContact);
+                contacts = await _apiClient.ContactsAllAsync();
+            }
+            finally { await CleanUpAsync(); }
 
             // Assert
             Assert.NotEmpty(contacts);
@@ -52,6 +54,7 @@ namespace ResumeApp.ContractTests.Controllers
         public async Task GetContactById_HappyPath()
         {
             // Arrange
+            ContactDto contact = null;
             var contactId = Guid.NewGuid();
             var expectedContact = new ContactSqlEntity()
             {
@@ -62,11 +65,12 @@ namespace ResumeApp.ContractTests.Controllers
             };
 
             // Act
-            _sqlDbContext.Contacts.Add(expectedContact);
-            await _sqlDbContext.SaveChangesAsync();
-            var contact = await _apiClient.ContactsGETAsync(contactId.ToString());
-            _sqlDbContext.Contacts.Remove(expectedContact);
-            await _sqlDbContext.SaveChangesAsync();
+            try
+            {
+                await InitializeWithEntityAsync(expectedContact);
+                contact = await _apiClient.ContactsGETAsync(contactId.ToString());
+            }
+            finally { await CleanUpAsync(); }
 
             // Assert
             Assert.NotNull(contact);
@@ -80,6 +84,8 @@ namespace ResumeApp.ContractTests.Controllers
         public async Task PostContact_HappyPath()
         {
             // Arrange
+            ContactSqlEntity contactsBefore = null;
+            ContactSqlEntity contactsAfter = null;
             var contactToPost = new ContactDto()
             {
                 Key = "testContactKey",
@@ -88,11 +94,13 @@ namespace ResumeApp.ContractTests.Controllers
             };
 
             // Act
-            var contactsBefore = _sqlDbContext.Contacts.AsNoTracking().SingleOrDefault();
-            await _apiClient.ContactsPOSTAsync(contactToPost);
-            var contactsAfter = _sqlDbContext.Contacts.AsNoTracking().Single();
-            _sqlDbContext.Contacts.RemoveRange(_sqlDbContext.Contacts.ToList());
-            await _sqlDbContext.SaveChangesAsync();
+            try
+            {
+                contactsBefore = _sqlDbContext.Contacts.AsNoTracking().SingleOrDefault();
+                await _apiClient.ContactsPOSTAsync(contactToPost);
+                contactsAfter = _sqlDbContext.Contacts.AsNoTracking().Single();
+            }
+            finally { await CleanUpAsync(); }
 
             // Assert
             Assert.Null(contactsBefore);
@@ -108,6 +116,8 @@ namespace ResumeApp.ContractTests.Controllers
         public async Task PutContact_HappyPath()
         {
             // Arrange
+            ContactSqlEntity contactsBefore = null;
+            ContactSqlEntity contactsAfter = null;
             var contactId = Guid.NewGuid();
             var initialContact = new ContactSqlEntity()
             {
@@ -125,13 +135,14 @@ namespace ResumeApp.ContractTests.Controllers
             };
 
             // Act
-            _sqlDbContext.Contacts.Add(initialContact);
-            await _sqlDbContext.SaveChangesAsync();
-            var contactsBefore = _sqlDbContext.Contacts.AsNoTracking().Single();
-            await _apiClient.ContactsPUTAsync(contactId.ToString(), contactToPut);
-            var contactsAfter = _sqlDbContext.Contacts.AsNoTracking().Single();
-            _sqlDbContext.Contacts.RemoveRange(_sqlDbContext.Contacts.ToList());
-            await _sqlDbContext.SaveChangesAsync();
+            try
+            {
+                await InitializeWithEntityAsync(initialContact);
+                contactsBefore = _sqlDbContext.Contacts.AsNoTracking().Single();
+                await _apiClient.ContactsPUTAsync(contactId.ToString(), contactToPut);
+                contactsAfter = _sqlDbContext.Contacts.AsNoTracking().Single();
+            }
+            finally { await CleanUpAsync(); }
 
             // Assert
             Assert.NotNull(contactsBefore);
@@ -151,7 +162,7 @@ namespace ResumeApp.ContractTests.Controllers
         {
             // Arrange
             var contactId = Guid.NewGuid();
-            var ContactToDelete = new ContactSqlEntity()
+            var contactToDelete = new ContactSqlEntity()
             {
                 Id = contactId,
                 Key = "testContactKey",
@@ -160,8 +171,7 @@ namespace ResumeApp.ContractTests.Controllers
             };
 
             // Act
-            _sqlDbContext.Contacts.Add(ContactToDelete);
-            await _sqlDbContext.SaveChangesAsync();
+            await InitializeWithEntityAsync(contactToDelete);
             var contactsBefore = _sqlDbContext.Contacts.AsNoTracking().Single();
             await _apiClient.ContactsDELETEAsync(contactId.ToString());
             var contactsAfter = _sqlDbContext.Contacts.AsNoTracking().SingleOrDefault();
@@ -170,6 +180,19 @@ namespace ResumeApp.ContractTests.Controllers
             Assert.NotNull(contactsBefore);
             Assert.Null(contactsAfter);
         }
+
         #endregion HappyPath
+
+        private async Task InitializeWithEntityAsync(ContactSqlEntity entity)
+        {
+            _sqlDbContext.Contacts.Add(entity);
+            await _sqlDbContext.SaveChangesAsync();
+        }
+
+        private async Task CleanUpAsync()
+        {
+            _sqlDbContext.Contacts.RemoveRange(_sqlDbContext.Contacts.ToList());
+            await _sqlDbContext.SaveChangesAsync();
+        }
     }
 }

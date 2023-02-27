@@ -16,9 +16,9 @@ namespace ResumeApp.DataAccess.Mongo.Entities
 
 		public string Location { get; set; }
 
-		public string[] TaskPerformed { get; set; }
+		public string TaskPerformed { get; set; }
 
-		public string[] Skills { get; set; }
+		public Guid[] SkillIds { get; set; }
 
 		public DateOnly StartDate { get; set; }
 

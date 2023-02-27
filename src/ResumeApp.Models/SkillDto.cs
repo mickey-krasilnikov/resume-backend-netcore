@@ -10,5 +10,7 @@ namespace ResumeApp.Models
 		public string Name { get; set; }
 
 		public string SkillGroup { get; set; }
-	}
+
+        public IReadOnlyList<Guid> ExperienceIds { get; set; }
+    }
 }

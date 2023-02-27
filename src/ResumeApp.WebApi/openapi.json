@@ -1436,10 +1436,11 @@
             "type": "string",
             "nullable": true
           },
-          "environment": {
+          "skillIds": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/SkillDto"
+              "type": "string",
+              "format": "uuid"
             },
             "nullable": true
           },
@@ -1505,6 +1506,14 @@
           },
           "skillGroup": {
             "type": "string",
+            "nullable": true
+          },
+          "experienceIds": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "uuid"
+            },
             "nullable": true
           }
         },

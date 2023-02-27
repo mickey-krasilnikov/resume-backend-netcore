@@ -3354,8 +3354,8 @@ namespace ResumeApp.ApiClient
         [Newtonsoft.Json.JsonProperty("location", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string Location { get; set; }
 
-        [Newtonsoft.Json.JsonProperty("environment", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        public System.Collections.Generic.ICollection<SkillDto> Environment { get; set; }
+        [Newtonsoft.Json.JsonProperty("skillIds", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public System.Collections.Generic.ICollection<System.Guid> SkillIds { get; set; }
 
         [Newtonsoft.Json.JsonProperty("taskPerformed", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public System.Collections.Generic.ICollection<string> TaskPerformed { get; set; }
@@ -3412,6 +3412,9 @@ namespace ResumeApp.ApiClient
 
         [Newtonsoft.Json.JsonProperty("skillGroup", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public string SkillGroup { get; set; }
+
+        [Newtonsoft.Json.JsonProperty("experienceIds", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
+        public System.Collections.Generic.ICollection<System.Guid> ExperienceIds { get; set; }
 
     }
 
