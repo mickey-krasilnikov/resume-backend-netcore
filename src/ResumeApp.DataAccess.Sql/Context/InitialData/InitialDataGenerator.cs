@@ -18,7 +18,6 @@ namespace ResumeApp.DataAccess.Sql.Context.InitialData
                     IssueDate = new DateOnly(2020, 6, 10),
                     ExpirationDate = new DateOnly(2023, 5, 10),
                     VerificationUrl = new Uri("https://www.credly.com/badges/8ea21901-34c7-4cb4-bc48-71e0c5cf3e85"),
-
                 },
                 new CertificationSqlEntity
                 {
@@ -28,7 +27,6 @@ namespace ResumeApp.DataAccess.Sql.Context.InitialData
                     IssueDate = new DateOnly(2020, 9, 27),
                     ExpirationDate = new DateOnly(2022, 9, 27),
                     VerificationUrl = new Uri("https://www.credential.net/786961ad-0225-4bb0-883a-3c2feceb5174"),
-
                 },
                 new CertificationSqlEntity
                 {
@@ -38,7 +36,6 @@ namespace ResumeApp.DataAccess.Sql.Context.InitialData
                     IssueDate = new DateOnly(2020, 3, 28),
                     ExpirationDate = new DateOnly(2024, 3, 28),
                     VerificationUrl = new Uri("https://www.credly.com/badges/dc95ff2a-12d8-4816-91b2-a9292ae5df85"),
-
                 },
                 new CertificationSqlEntity
                 {

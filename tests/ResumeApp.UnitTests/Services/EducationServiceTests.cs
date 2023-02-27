@@ -1,4 +1,4 @@
-using FluentValidation;
+﻿using FluentValidation;
 using Moq;
 using ResumeApp.BusinessLogic.Services;
 using ResumeApp.DataAccess.Abstractions;
@@ -10,39 +10,39 @@ using System.Linq.Expressions;
 
 namespace ResumeApp.UnitTests.Services
 {
-    public class CertificationServiceTests
-	{
-		#region HappyPath
+    public class EducationServiceTests
+    {
+        #region HappyPath
 
-		// To pass the Type to generic test
-		public static IEnumerable<object[]> EntityTypes => new List<object[]>
+        // To pass the Type to generic test
+        public static IEnumerable<object[]> EntityTypes => new List<object[]>
         {
-            new object[] { new CertificationSqlEntity() },
-            new object[] { new CertificationMongoEntity() }
-		};
+            new object[] { new EducationSqlEntity() },
+            new object[] { new EducationMongoEntity() }
+        };
 
-		[Theory]
-		[MemberData(nameof(EntityTypes))]
-		[SuppressMessage("Usage", "xUnit1026:Theory methods should use all of their parameters", Justification = "Resolving Generic Type with MemberData")]
-		public async Task WhenGetAllCertification_ThenItemsReturnedAndProjectCalledOnce<TEntity>(TEntity _) where TEntity : class
+        [Theory]
+        [MemberData(nameof(EntityTypes))]
+        [SuppressMessage("Usage", "xUnit1026:Theory methods should use all of their parameters", Justification = "Resolving Generic Type with MemberData")]
+        public async Task WhenGetAllEducation_ThenItemsReturnedAndProjectCalledOnce<TEntity>(TEntity _) where TEntity : class
         {
-			//Arrange
-			var repoMock = new Mock<IRepository<TEntity>>();
-			repoMock
-				.Setup(r => r.ProjectAsync(It.IsAny<Expression<Func<TEntity, CertificationDto>>>()))
-				.ReturnsAsync(new List<CertificationDto> { new CertificationDto() });
+            //Arrange
+            var repoMock = new Mock<IRepository<TEntity>>();
+            repoMock
+                .Setup(r => r.ProjectAsync(It.IsAny<Expression<Func<TEntity, EducationDto>>>()))
+                .ReturnsAsync(new List<EducationDto> { new EducationDto() });
 
-			var validatorMock = new Mock<IValidator<CertificationDto>>();
-			var service = new CertificationService<TEntity>(repoMock.Object, validatorMock.Object);
+            var validatorMock = new Mock<IValidator<EducationDto>>();
+            var service = new EducationService<TEntity>(repoMock.Object, validatorMock.Object);
 
-			//Act
-			var items = await service.GetAllItemsAsync();
+            //Act
+            var items = await service.GetAllItemsAsync();
 
-			//Assert
-			Assert.NotNull(items);
-			Assert.NotEmpty(items);
-			repoMock.Verify(m => m.ProjectAsync(It.IsAny<Expression<Func<TEntity, CertificationDto>>>()), Times.Once);
-		}
+            //Assert
+            Assert.NotNull(items);
+            Assert.NotEmpty(items);
+            repoMock.Verify(m => m.ProjectAsync(It.IsAny<Expression<Func<TEntity, EducationDto>>>()), Times.Once);
+        }
 
         [Theory]
         [MemberData(nameof(EntityTypes))]
@@ -53,18 +53,18 @@ namespace ResumeApp.UnitTests.Services
             var id = Guid.NewGuid();
             var repoMock = new Mock<IRepository<TEntity>>();
             repoMock
-                .Setup(r => r.FindByIdAsync(It.IsAny<Guid>(), It.IsAny<Expression<Func<TEntity, CertificationDto>>>()))
-                .ReturnsAsync(new CertificationDto { Id = id });
+                .Setup(r => r.FindByIdAsync(It.IsAny<Guid>(), It.IsAny<Expression<Func<TEntity, EducationDto>>>()))
+                .ReturnsAsync(new EducationDto { Id = id });
 
-            var validatorMock = new Mock<IValidator<CertificationDto>>();
-            var service = new CertificationService<TEntity>(repoMock.Object, validatorMock.Object);
+            var validatorMock = new Mock<IValidator<EducationDto>>();
+            var service = new EducationService<TEntity>(repoMock.Object, validatorMock.Object);
 
             //Act
             var item = await service.GetItemByIdAsync(id);
 
             //Assert
             Assert.NotNull(item);
-            repoMock.Verify(m => m.FindByIdAsync(It.IsAny<Guid>(), It.IsAny<Expression<Func<TEntity, CertificationDto>>>()), Times.Once);
+            repoMock.Verify(m => m.FindByIdAsync(It.IsAny<Guid>(), It.IsAny<Expression<Func<TEntity, EducationDto>>>()), Times.Once);
         }
 
         [Theory]
@@ -79,8 +79,8 @@ namespace ResumeApp.UnitTests.Services
                 .Setup(r => r.CheckIfItemExistsAsync(It.IsAny<Guid>()))
                 .ReturnsAsync(true);
 
-            var validatorMock = new Mock<IValidator<CertificationDto>>();
-            var service = new CertificationService<TEntity>(repoMock.Object, validatorMock.Object);
+            var validatorMock = new Mock<IValidator<EducationDto>>();
+            var service = new EducationService<TEntity>(repoMock.Object, validatorMock.Object);
 
             //Act
             var isItemExists = await service.CheckIfItemExistsAsync(id);
@@ -96,14 +96,14 @@ namespace ResumeApp.UnitTests.Services
         public async Task WhenCreateItem_ThenNewItemReturnedAndInsertOneCalledOnce<TEntity>(TEntity _) where TEntity : class
         {
             //Arrange
-            var itemToCreate = new CertificationDto();
+            var itemToCreate = new EducationDto();
             var repoMock = new Mock<IRepository<TEntity>>();
             repoMock
                 .Setup(r => r.InsertOneAsync(It.IsAny<TEntity>()))
                 .Returns<TEntity>(r => Task.FromResult(r));
 
-            var validatorMock = new Mock<IValidator<CertificationDto>>();
-            var service = new CertificationService<TEntity>(repoMock.Object, validatorMock.Object);
+            var validatorMock = new Mock<IValidator<EducationDto>>();
+            var service = new EducationService<TEntity>(repoMock.Object, validatorMock.Object);
 
             //Act
             var createdItem = await service.CreateItemAsync(itemToCreate);
@@ -120,14 +120,14 @@ namespace ResumeApp.UnitTests.Services
         public async Task WhenUpdateItem_ThenReplaceOneCalledOnce<TEntity>(TEntity _) where TEntity : class
         {
             //Arrange
-            var itemForUpdate = new CertificationDto();
+            var itemForUpdate = new EducationDto();
             var repoMock = new Mock<IRepository<TEntity>>();
             repoMock
                 .Setup(r => r.ReplaceOneAsync(It.IsAny<TEntity>()))
                 .Returns(Task.CompletedTask);
 
-            var validatorMock = new Mock<IValidator<CertificationDto>>();
-            var service = new CertificationService<TEntity>(repoMock.Object, validatorMock.Object);
+            var validatorMock = new Mock<IValidator<EducationDto>>();
+            var service = new EducationService<TEntity>(repoMock.Object, validatorMock.Object);
 
             //Act
             await service.UpdateItemAsync(itemForUpdate);
@@ -149,8 +149,8 @@ namespace ResumeApp.UnitTests.Services
                 .Setup(r => r.DeleteByIdAsync(It.IsAny<Guid>()))
                 .Returns(Task.CompletedTask);
 
-            var validatorMock = new Mock<IValidator<CertificationDto>>();
-            var service = new CertificationService<TEntity>(repoMock.Object, validatorMock.Object);
+            var validatorMock = new Mock<IValidator<EducationDto>>();
+            var service = new EducationService<TEntity>(repoMock.Object, validatorMock.Object);
 
             //Act
             await service.DeleteItemAsync(itemToDeleteId);

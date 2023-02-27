@@ -26,17 +26,9 @@ namespace ResumeApp.BusinessLogic.Services
 
 		public async Task<TModel> CreateItemAsync(TModel item)
 		{
-			try
-			{
-				_modelValidator.Validate(item);
-				var newItem = await _repository.InsertOneAsync(item.ToEntity<TModel, TEntity>());
-				return newItem.ToDto<TModel, TEntity>();
-			}
-			catch (Exception ex)
-			{
-				var m = ex.Message;
-				throw;
-			}
+			_modelValidator.Validate(item);
+			var newItem = await _repository.InsertOneAsync(item.ToEntity<TModel, TEntity>());
+			return newItem.ToDto<TModel, TEntity>();
 		}
 
 		public async Task<IReadOnlyList<TModel>> GetAllItemsAsync()
