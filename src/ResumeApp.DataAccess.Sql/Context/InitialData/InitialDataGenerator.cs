@@ -71,84 +71,84 @@ namespace ResumeApp.DataAccess.Sql.Context.InitialData
                 new ContactSqlEntity
                 {
                     Id = Guid.NewGuid(),
-                    Key = "Phone",
+                    Key = "phone",
                     Value = "+14084803600",
                     Link = "tel:+14084803600"
                 },
                 new ContactSqlEntity
                 {
                     Id = Guid.NewGuid(),
-                    Key = "Telegram",
-                    Value = "+1(408)480-3600",
+                    Key = "telegram",
+                    Value = "Telegram",
                     Link = "https://t.me/+14084803600"
                 },
                 new ContactSqlEntity
                 {
                     Id = Guid.NewGuid(),
-                    Key = "Whatsapp",
-                    Value = "+1(408)480-3600",
+                    Key = "whatsapp",
+                    Value = "Whatsapp",
                     Link = "https://wa.me/+14084803600"
                 },
                 new ContactSqlEntity
                 {
                     Id = Guid.NewGuid(),
-                    Key = "Email",
-                    Value =  "Mickey.Krasilnikov@gmail.com",
+                    Key = "email",
+                    Value = "Mickey.Krasilnikov@gmail.com",
                     Link = "mailto:your_email"
                 },
                 new ContactSqlEntity
                 {
                     Id = Guid.NewGuid(),
-                    Key = "Location",
-                    Value =  "Sunyvale, CA, 94085",
+                    Key = "location",
+                    Value = "Sunyvale, CA, 94085",
                     Link = "https://www.google.com/maps/place/Sunyvale%20CA%2094085/"
                 },
                 new ContactSqlEntity
                 {
                     Id = Guid.NewGuid(),
-                    Key = "Github",
+                    Key = "github",
                     Value = "@mickey-krasilnikov",
                     Link = "https://github.com/mickey-krasilnikov"
                 },
                 new ContactSqlEntity
                 {
                     Id = Guid.NewGuid(),
-                    Key = "LinkedIn",
+                    Key = "linkedIn",
                     Value = "@mickeykrasilnikov",
                     Link = "https://www.linkedin.com/in/mickeykrasilnikov"
                 },
                 new ContactSqlEntity
                 {
                     Id = Guid.NewGuid(),
-                    Key = "Accredible",
+                    Key = "accredible",
                     Value = "@mikhailkrasilnikov328966",
                     Link = "https://www.credential.net/profile/mikhailkrasilnikov328966/wallet"
                 },
                 new ContactSqlEntity
                 {
                     Id = Guid.NewGuid(),
-                    Key = "Credly",
+                    Key = "credly",
                     Value = "@mickey-krasilnikov",
                     Link = "https://www.credly.com/users/mickey-krasilnikov/badges"
                 },
                 new ContactSqlEntity
                 {
                     Id = Guid.NewGuid(),
-                    Key = "Instagram",
+                    Key = "instagram",
                     Value = "@mickey.krasilnikov",
                     Link = "https://www.instagram.com/mickey.krasilnikov"
                 },
                 new ContactSqlEntity
                 {
                     Id = Guid.NewGuid(),
-                    Key = "Facebook",
+                    Key = "facebook",
                     Value = "@mickey.krasilnikov",
                     Link = "https://www.facebook.com/mickey.krasilnikov"
                 },
                 new ContactSqlEntity
                 {
                     Id = Guid.NewGuid(),
-                    Key = "Twitter",
+                    Key = "twitter",
                     Value = "@mickey_kras",
                     Link = "https://twitter.com/mickey_kras"
                 },
@@ -168,48 +168,59 @@ namespace ResumeApp.DataAccess.Sql.Context.InitialData
                 }
             };
 
-            var cloudsAzure = new SkillSqlEntity { Id = Guid.NewGuid(), SkillGroup = "Clouds", Name = "Azure" };
-            var cloudsAws = new SkillSqlEntity { Id = Guid.NewGuid(), SkillGroup = "Clouds", Name = "AWS" };
-            var cloudsGcp = new SkillSqlEntity { Id = Guid.NewGuid(), SkillGroup = "Clouds", Name = "GCP" };
+            var cloudsAzure = new SkillSqlEntity { Id = Guid.NewGuid(), SkillGroup = "Clouds", Name = "Azure", Priority = 101, IsHighlighted = true };
+            var cloudsAws = new SkillSqlEntity { Id = Guid.NewGuid(), SkillGroup = "Clouds", Name = "AWS", Priority = 102, IsHighlighted = true };
+            var cloudsGcp = new SkillSqlEntity { Id = Guid.NewGuid(), SkillGroup = "Clouds", Name = "GCP", Priority = 103, IsHighlighted = true };
 
-            var backendCSharp = new SkillSqlEntity { Id = Guid.NewGuid(), SkillGroup = "Backend", Name = "C#" };
-            var backendDotNet = new SkillSqlEntity { Id = Guid.NewGuid(), SkillGroup = "Backend", Name = ".NET" };
-            var backendDotNetCore = new SkillSqlEntity { Id = Guid.NewGuid(), SkillGroup = "Backend", Name = ".NET Core" };
-            var backendAspNetCore = new SkillSqlEntity { Id = Guid.NewGuid(), SkillGroup = "Backend", Name = "ASP.NET Core" };
-            var backendAspNet = new SkillSqlEntity { Id = Guid.NewGuid(), SkillGroup = "Backend", Name = "ASP.NET" };
-            var backendGoLang = new SkillSqlEntity { Id = Guid.NewGuid(), SkillGroup = "Backend", Name = "GoLang" };
-            var backendGinWebFramework = new SkillSqlEntity { Id = Guid.NewGuid(), SkillGroup = "Backend", Name = "Gin Web Framework" };
-            var backendPython3 = new SkillSqlEntity { Id = Guid.NewGuid(), SkillGroup = "Backend", Name = "Python3" };
-            var backendWcf = new SkillSqlEntity { Id = Guid.NewGuid(), SkillGroup = "Backend", Name = "WCF" };
+            var backendCSharp = new SkillSqlEntity { Id = Guid.NewGuid(), SkillGroup = "Backend", Name = "C#", Priority = 201, IsHighlighted = true };
+            var backendDotNetCore = new SkillSqlEntity { Id = Guid.NewGuid(), SkillGroup = "Backend", Name = ".NET Core", Priority = 202, IsHighlighted = true };
+            var backendDotNet = new SkillSqlEntity { Id = Guid.NewGuid(), SkillGroup = "Backend", Name = ".NET", Priority = 203, IsHighlighted = true };
+            var backendAspNetCoreWebApi = new SkillSqlEntity { Id = Guid.NewGuid(), SkillGroup = "Backend", Name = "ASP.NET Core Web API", Priority = 204, IsHighlighted = true };
+            var backendAspNetWebApi = new SkillSqlEntity { Id = Guid.NewGuid(), SkillGroup = "Backend", Name = "ASP.NET Web API", Priority = 205, IsHighlighted = true };
+            var backendJavaScript = new SkillSqlEntity { Id = Guid.NewGuid(), SkillGroup = "Backend", Name = "JavaScript", Priority = 206, IsHighlighted = true };
+            var backendTypeScript = new SkillSqlEntity { Id = Guid.NewGuid(), SkillGroup = "Backend", Name = "TypeScript", Priority = 207, IsHighlighted = true };
+            var backendExpressWebFramework = new SkillSqlEntity { Id = Guid.NewGuid(), SkillGroup = "Backend", Name = "Express Web Framework", Priority = 208, IsHighlighted = true };
+            var backendGoLang = new SkillSqlEntity { Id = Guid.NewGuid(), SkillGroup = "Backend", Name = "GoLang", Priority = 209, IsHighlighted = true };
+            var backendGinWebFramework = new SkillSqlEntity { Id = Guid.NewGuid(), SkillGroup = "Backend", Name = "Gin Web Framework", Priority = 210, IsHighlighted = true };
+            var backendPython3 = new SkillSqlEntity { Id = Guid.NewGuid(), SkillGroup = "Backend", Name = "Python3", Priority = 211, IsHighlighted = true };
+            var backendFlaskWebFramework = new SkillSqlEntity { Id = Guid.NewGuid(), SkillGroup = "Backend", Name = "Flask Web Framework", Priority = 212, IsHighlighted = true };
+            var backendWcf = new SkillSqlEntity { Id = Guid.NewGuid(), SkillGroup = "Backend", Name = "WCF", Priority = 213, IsHighlighted = false };
+            var backendEf = new SkillSqlEntity { Id = Guid.NewGuid(), SkillGroup = "Backend", Name = "Entity Framework", Priority = 214, IsHighlighted = false };
+            var backendEfCore = new SkillSqlEntity { Id = Guid.NewGuid(), SkillGroup = "Backend", Name = "Entity Framework Core", Priority = 215, IsHighlighted = false };
+            var backendXUnit = new SkillSqlEntity { Id = Guid.NewGuid(), SkillGroup = "Backend", Name = "xUnit", Priority = 216, IsHighlighted = false };
+            var backendNUnit = new SkillSqlEntity { Id = Guid.NewGuid(), SkillGroup = "Backend", Name = "NUnit", Priority = 217, IsHighlighted = false };
+            var backendMsTest = new SkillSqlEntity { Id = Guid.NewGuid(), SkillGroup = "Backend", Name = "MSTest", Priority = 218, IsHighlighted = false };
 
-            var frontendAngular8Plus = new SkillSqlEntity { Id = Guid.NewGuid(), SkillGroup = "Frontend", Name = "Angular 8+" };
-            var frontendVueJs = new SkillSqlEntity { Id = Guid.NewGuid(), SkillGroup = "Frontend", Name = "Vue.js" };
-            var frontendJavaScript = new SkillSqlEntity { Id = Guid.NewGuid(), SkillGroup = "Frontend", Name = "JavaScript" };
-            var frontendTypeScript = new SkillSqlEntity { Id = Guid.NewGuid(), SkillGroup = "Frontend", Name = "TypeScript" };
-            var frontendHtml = new SkillSqlEntity { Id = Guid.NewGuid(), SkillGroup = "Frontend", Name = "HTML" };
-            var frontendCss = new SkillSqlEntity { Id = Guid.NewGuid(), SkillGroup = "Frontend", Name = "CSS" };
-            var frontendWpf = new SkillSqlEntity { Id = Guid.NewGuid(), SkillGroup = "Frontend", Name = "WPF" };
-            var frontendXaml = new SkillSqlEntity { Id = Guid.NewGuid(), SkillGroup = "Frontend", Name = "XAML" };
-            var frontendWinForms = new SkillSqlEntity { Id = Guid.NewGuid(), SkillGroup = "Frontend", Name = "WinForms" };
+            var frontendAngular8Plus = new SkillSqlEntity { Id = Guid.NewGuid(), SkillGroup = "Frontend", Name = "Angular 8+", Priority = 301, IsHighlighted = true };
+            var frontendVueJs = new SkillSqlEntity { Id = Guid.NewGuid(), SkillGroup = "Frontend", Name = "Vue.js", Priority = 302, IsHighlighted = true };
+            var frontendAspNetCore = new SkillSqlEntity { Id = Guid.NewGuid(), SkillGroup = "Frontend", Name = "ASP.NET Core (Blazor)", Priority = 303, IsHighlighted = true };
+            var frontendAspNet = new SkillSqlEntity { Id = Guid.NewGuid(), SkillGroup = "Frontend", Name = "ASP.NET", Priority = 304, IsHighlighted = true };
+            var frontendJavaScript = new SkillSqlEntity { Id = Guid.NewGuid(), SkillGroup = "Frontend", Name = "JavaScript", Priority = 305, IsHighlighted = true };
+            var frontendTypeScript = new SkillSqlEntity { Id = Guid.NewGuid(), SkillGroup = "Frontend", Name = "TypeScript", Priority = 306, IsHighlighted = true };
+            var frontendHtml = new SkillSqlEntity { Id = Guid.NewGuid(), SkillGroup = "Frontend", Name = "HTML", Priority = 307, IsHighlighted = true };
+            var frontendCss = new SkillSqlEntity { Id = Guid.NewGuid(), SkillGroup = "Frontend", Name = "CSS", Priority = 308, IsHighlighted = true };
+            var frontendWpf = new SkillSqlEntity { Id = Guid.NewGuid(), SkillGroup = "Frontend", Name = "WPF", Priority = 309, IsHighlighted = true };
+            var frontendXaml = new SkillSqlEntity { Id = Guid.NewGuid(), SkillGroup = "Frontend", Name = "XAML", Priority = 310, IsHighlighted = true };
+            var frontendWinForms = new SkillSqlEntity { Id = Guid.NewGuid(), SkillGroup = "Frontend", Name = "WinForms", Priority = 311, IsHighlighted = false };
 
-            var databaseMySql = new SkillSqlEntity { Id = Guid.NewGuid(), SkillGroup = "Database", Name = "MySQL" };
-            var databaseMsSql = new SkillSqlEntity { Id = Guid.NewGuid(), SkillGroup = "Database", Name = "MS SQL" };
-            var databaseMsSsas = new SkillSqlEntity { Id = Guid.NewGuid(), SkillGroup = "Database", Name = "MS SSAS" };
-            var databaseCosmosDb = new SkillSqlEntity { Id = Guid.NewGuid(), SkillGroup = "Database", Name = "Cosmos DB" };
-            var databaseRedis = new SkillSqlEntity { Id = Guid.NewGuid(), SkillGroup = "Database", Name = "Redis" };
+            var databaseMySql = new SkillSqlEntity { Id = Guid.NewGuid(), SkillGroup = "Database", Name = "MySQL", Priority = 401, IsHighlighted = true };
+            var databaseMsSql = new SkillSqlEntity { Id = Guid.NewGuid(), SkillGroup = "Database", Name = "MS SQL", Priority = 402, IsHighlighted = true };
+            var databaseMsSsas = new SkillSqlEntity { Id = Guid.NewGuid(), SkillGroup = "Database", Name = "MS SSAS", Priority = 403, IsHighlighted = true };
+            var databaseCosmosDb = new SkillSqlEntity { Id = Guid.NewGuid(), SkillGroup = "Database", Name = "Cosmos DB", Priority = 404, IsHighlighted = true };
+            var databaseDynamoDb = new SkillSqlEntity { Id = Guid.NewGuid(), SkillGroup = "Database", Name = "Dynamo DB", Priority = 405, IsHighlighted = true };
+            var databaseRedis = new SkillSqlEntity { Id = Guid.NewGuid(), SkillGroup = "Database", Name = "Redis", Priority = 406, IsHighlighted = true };
 
-            var toolsDocker = new SkillSqlEntity { Id = Guid.NewGuid(), SkillGroup = "Tools", Name = "Docker" };
-            var toolsDevOps = new SkillSqlEntity { Id = Guid.NewGuid(), SkillGroup = "Tools", Name = "Azure DevOps" };
-            var toolsJenkins = new SkillSqlEntity { Id = Guid.NewGuid(), SkillGroup = "Tools", Name = "Jenkins" };
-            var toolsTeamCity = new SkillSqlEntity { Id = Guid.NewGuid(), SkillGroup = "Tools", Name = "TeamCity" };
-            var toolsOkta = new SkillSqlEntity { Id = Guid.NewGuid(), SkillGroup = "Tools", Name = "OKTA" };
-            var toolsEf = new SkillSqlEntity { Id = Guid.NewGuid(), SkillGroup = "Tools", Name = "Entity Framework" };
-            var toolsEfCore = new SkillSqlEntity { Id = Guid.NewGuid(), SkillGroup = "Tools", Name = "Entity Framework Core" };
-            var toolsXUnit = new SkillSqlEntity { Id = Guid.NewGuid(), SkillGroup = "Tools", Name = "xUnit" };
-            var toolsNUnit = new SkillSqlEntity { Id = Guid.NewGuid(), SkillGroup = "Tools", Name = "NUnit" };
-            var toolsMsTest = new SkillSqlEntity { Id = Guid.NewGuid(), SkillGroup = "Tools", Name = "MSTest" };
-            var toolsEsriArcGis = new SkillSqlEntity { Id = Guid.NewGuid(), SkillGroup = "Tools", Name = "Esri ArcGIS" };
-
+            var toolsDocker = new SkillSqlEntity { Id = Guid.NewGuid(), SkillGroup = "Tools", Name = "Docker", Priority = 501, IsHighlighted = true };
+            var toolsKubernetes = new SkillSqlEntity { Id = Guid.NewGuid(), SkillGroup = "Tools", Name = "Kubernetes", Priority = 502, IsHighlighted = true };
+            var toolsAzureDevOps = new SkillSqlEntity { Id = Guid.NewGuid(), SkillGroup = "Tools", Name = "Azure DevOps", Priority = 503, IsHighlighted = true };
+            var toolsGithubActions = new SkillSqlEntity { Id = Guid.NewGuid(), SkillGroup = "Tools", Name = "GitHub Actions", Priority = 504, IsHighlighted = true };
+            var toolsAwsDevOps = new SkillSqlEntity { Id = Guid.NewGuid(), SkillGroup = "Tools", Name = "AWS DevOps", Priority = 505, IsHighlighted = true };
+            var toolsJenkins = new SkillSqlEntity { Id = Guid.NewGuid(), SkillGroup = "Tools", Name = "Jenkins", Priority = 506, IsHighlighted = true };
+            var toolsTeamCity = new SkillSqlEntity { Id = Guid.NewGuid(), SkillGroup = "Tools", Name = "TeamCity", Priority = 507, IsHighlighted = true };
+            var toolsOkta = new SkillSqlEntity { Id = Guid.NewGuid(), SkillGroup = "Tools", Name = "OKTA", Priority = 508, IsHighlighted = true };
+            var toolsJira = new SkillSqlEntity { Id = Guid.NewGuid(), SkillGroup = "Tools", Name = "Jira", Priority = 509, IsHighlighted = true };
+            var toolsEsriArcGis = new SkillSqlEntity { Id = Guid.NewGuid(), SkillGroup = "Tools", Name = "Esri ArcGIS", Priority = 510, IsHighlighted = true };
+         
             var skills = new[] {
                 cloudsAzure,
                 cloudsAws,
@@ -217,14 +228,25 @@ namespace ResumeApp.DataAccess.Sql.Context.InitialData
                 backendCSharp,
                 backendDotNet,
                 backendDotNetCore,
-                backendAspNetCore,
-                backendAspNet,
+                backendAspNetCoreWebApi,
+                backendAspNetWebApi,
+                backendJavaScript,
+                backendTypeScript,
+                backendExpressWebFramework,
                 backendGoLang,
                 backendGinWebFramework,
                 backendPython3,
+                backendFlaskWebFramework,
                 backendWcf,
+                backendEf,
+                backendEfCore,
+                backendXUnit,
+                backendNUnit,
+                backendMsTest,
                 frontendAngular8Plus,
                 frontendVueJs,
+                frontendAspNetCore,
+                frontendAspNet,
                 frontendJavaScript,
                 frontendTypeScript,
                 frontendHtml,
@@ -236,17 +258,16 @@ namespace ResumeApp.DataAccess.Sql.Context.InitialData
                 databaseMsSql,
                 databaseMsSsas,
                 databaseCosmosDb,
+                databaseDynamoDb,
                 databaseRedis,
                 toolsDocker,
-                toolsDevOps,
+                toolsKubernetes,
+                toolsAzureDevOps,
+                toolsGithubActions,
                 toolsJenkins,
                 toolsTeamCity,
                 toolsOkta,
-                toolsEf,
-                toolsEfCore,
-                toolsXUnit,
-                toolsNUnit,
-                toolsMsTest,
+                toolsJira,
                 toolsEsriArcGis,
             };
 
@@ -366,8 +387,9 @@ namespace ResumeApp.DataAccess.Sql.Context.InitialData
                 new SkillExperienceMappingSqlEntity { ExperienceId = epamUs.Id, SkillId = cloudsAws.Id },
                 new SkillExperienceMappingSqlEntity { ExperienceId = epamUs.Id, SkillId = backendCSharp.Id },
                 new SkillExperienceMappingSqlEntity { ExperienceId = epamUs.Id, SkillId = backendDotNetCore.Id },
-                new SkillExperienceMappingSqlEntity { ExperienceId = epamUs.Id, SkillId = backendAspNetCore.Id },
+                new SkillExperienceMappingSqlEntity { ExperienceId = epamUs.Id, SkillId = backendAspNetCoreWebApi.Id },
                 new SkillExperienceMappingSqlEntity { ExperienceId = epamUs.Id, SkillId = backendPython3.Id },
+                new SkillExperienceMappingSqlEntity { ExperienceId = epamUs.Id, SkillId = backendNUnit.Id },
                 new SkillExperienceMappingSqlEntity { ExperienceId = epamUs.Id, SkillId = frontendVueJs.Id },
                 new SkillExperienceMappingSqlEntity { ExperienceId = epamUs.Id, SkillId = frontendJavaScript.Id },
                 new SkillExperienceMappingSqlEntity { ExperienceId = epamUs.Id, SkillId = frontendTypeScript.Id },
@@ -375,15 +397,18 @@ namespace ResumeApp.DataAccess.Sql.Context.InitialData
                 new SkillExperienceMappingSqlEntity { ExperienceId = epamUs.Id, SkillId = frontendCss.Id },
                 new SkillExperienceMappingSqlEntity { ExperienceId = epamUs.Id, SkillId = databaseMySql.Id },
                 new SkillExperienceMappingSqlEntity { ExperienceId = epamUs.Id, SkillId = toolsDocker.Id },
+                new SkillExperienceMappingSqlEntity { ExperienceId = epamUs.Id, SkillId = toolsAwsDevOps.Id },
                 new SkillExperienceMappingSqlEntity { ExperienceId = epamUs.Id, SkillId = toolsJenkins.Id },
-                new SkillExperienceMappingSqlEntity { ExperienceId = epamUs.Id, SkillId = toolsNUnit.Id },
+                new SkillExperienceMappingSqlEntity { ExperienceId = epamUs.Id, SkillId = toolsJira.Id },
 
                 new SkillExperienceMappingSqlEntity { ExperienceId = epamPoland.Id, SkillId = cloudsAzure.Id },
                 new SkillExperienceMappingSqlEntity { ExperienceId = epamPoland.Id, SkillId = backendCSharp.Id },
                 new SkillExperienceMappingSqlEntity { ExperienceId = epamPoland.Id, SkillId = backendDotNetCore.Id },
-                new SkillExperienceMappingSqlEntity { ExperienceId = epamPoland.Id, SkillId = backendAspNetCore.Id },
+                new SkillExperienceMappingSqlEntity { ExperienceId = epamPoland.Id, SkillId = backendAspNetCoreWebApi.Id },
                 new SkillExperienceMappingSqlEntity { ExperienceId = epamPoland.Id, SkillId = backendGoLang.Id },
                 new SkillExperienceMappingSqlEntity { ExperienceId = epamPoland.Id, SkillId = backendGinWebFramework.Id },
+                new SkillExperienceMappingSqlEntity { ExperienceId = epamPoland.Id, SkillId = backendEfCore.Id },
+                new SkillExperienceMappingSqlEntity { ExperienceId = epamPoland.Id, SkillId = backendXUnit.Id },
                 new SkillExperienceMappingSqlEntity { ExperienceId = epamPoland.Id, SkillId = frontendAngular8Plus.Id },
                 new SkillExperienceMappingSqlEntity { ExperienceId = epamPoland.Id, SkillId = frontendTypeScript.Id },
                 new SkillExperienceMappingSqlEntity { ExperienceId = epamPoland.Id, SkillId = frontendJavaScript.Id },
@@ -391,10 +416,9 @@ namespace ResumeApp.DataAccess.Sql.Context.InitialData
                 new SkillExperienceMappingSqlEntity { ExperienceId = epamPoland.Id, SkillId = frontendCss.Id },
                 new SkillExperienceMappingSqlEntity { ExperienceId = epamPoland.Id, SkillId = databaseCosmosDb.Id },
                 new SkillExperienceMappingSqlEntity { ExperienceId = epamPoland.Id, SkillId = databaseRedis.Id },
-                new SkillExperienceMappingSqlEntity { ExperienceId = epamPoland.Id, SkillId = toolsDevOps.Id },
+                new SkillExperienceMappingSqlEntity { ExperienceId = epamPoland.Id, SkillId = toolsAzureDevOps.Id },
                 new SkillExperienceMappingSqlEntity { ExperienceId = epamPoland.Id, SkillId = toolsOkta.Id },
-                new SkillExperienceMappingSqlEntity { ExperienceId = epamPoland.Id, SkillId = toolsEfCore.Id },
-                new SkillExperienceMappingSqlEntity { ExperienceId = epamPoland.Id, SkillId = toolsXUnit.Id },
+                new SkillExperienceMappingSqlEntity { ExperienceId = epamPoland.Id, SkillId = toolsJira.Id },
 
                 new SkillExperienceMappingSqlEntity { ExperienceId = creditSuisse.Id, SkillId = backendCSharp.Id },
                 new SkillExperienceMappingSqlEntity { ExperienceId = creditSuisse.Id, SkillId = backendDotNetCore.Id },
@@ -404,43 +428,46 @@ namespace ResumeApp.DataAccess.Sql.Context.InitialData
                 new SkillExperienceMappingSqlEntity { ExperienceId = creditSuisse.Id, SkillId = frontendXaml.Id },
                 new SkillExperienceMappingSqlEntity { ExperienceId = creditSuisse.Id, SkillId = databaseMsSql.Id },
                 new SkillExperienceMappingSqlEntity { ExperienceId = creditSuisse.Id, SkillId = databaseMsSsas.Id },
-                new SkillExperienceMappingSqlEntity { ExperienceId = creditSuisse.Id, SkillId = toolsEfCore.Id },
-                new SkillExperienceMappingSqlEntity { ExperienceId = creditSuisse.Id, SkillId = toolsEf.Id },
-                new SkillExperienceMappingSqlEntity { ExperienceId = creditSuisse.Id, SkillId = toolsNUnit.Id },
+                new SkillExperienceMappingSqlEntity { ExperienceId = creditSuisse.Id, SkillId = backendEfCore.Id },
+                new SkillExperienceMappingSqlEntity { ExperienceId = creditSuisse.Id, SkillId = backendEf.Id },
+                new SkillExperienceMappingSqlEntity { ExperienceId = creditSuisse.Id, SkillId = backendNUnit.Id },
                 new SkillExperienceMappingSqlEntity { ExperienceId = creditSuisse.Id, SkillId = toolsTeamCity.Id },
                 new SkillExperienceMappingSqlEntity { ExperienceId = creditSuisse.Id, SkillId = toolsJenkins.Id },
+                new SkillExperienceMappingSqlEntity { ExperienceId = creditSuisse.Id, SkillId = toolsJira.Id },
 
                 new SkillExperienceMappingSqlEntity { ExperienceId = yandex.Id, SkillId = backendCSharp.Id },
                 new SkillExperienceMappingSqlEntity { ExperienceId = yandex.Id, SkillId = backendDotNet.Id },
-                new SkillExperienceMappingSqlEntity { ExperienceId = yandex.Id, SkillId = backendAspNet.Id },
+                new SkillExperienceMappingSqlEntity { ExperienceId = yandex.Id, SkillId = backendAspNetWebApi.Id },
+                new SkillExperienceMappingSqlEntity { ExperienceId = yandex.Id, SkillId = backendEf.Id },
+                new SkillExperienceMappingSqlEntity { ExperienceId = yandex.Id, SkillId = backendNUnit.Id },
                 new SkillExperienceMappingSqlEntity { ExperienceId = yandex.Id, SkillId = frontendJavaScript.Id },
                 new SkillExperienceMappingSqlEntity { ExperienceId = yandex.Id, SkillId = frontendHtml.Id },
                 new SkillExperienceMappingSqlEntity { ExperienceId = yandex.Id, SkillId = frontendCss.Id },
                 new SkillExperienceMappingSqlEntity { ExperienceId = yandex.Id, SkillId = frontendWpf.Id },
                 new SkillExperienceMappingSqlEntity { ExperienceId = yandex.Id, SkillId = frontendXaml.Id },
                 new SkillExperienceMappingSqlEntity { ExperienceId = yandex.Id, SkillId = databaseMsSql.Id },
-                new SkillExperienceMappingSqlEntity { ExperienceId = yandex.Id, SkillId = toolsEf.Id },
-                new SkillExperienceMappingSqlEntity { ExperienceId = yandex.Id, SkillId = toolsNUnit.Id },
                 new SkillExperienceMappingSqlEntity { ExperienceId = yandex.Id, SkillId = toolsTeamCity.Id },
+                new SkillExperienceMappingSqlEntity { ExperienceId = yandex.Id, SkillId = toolsJira.Id },
 
                 new SkillExperienceMappingSqlEntity { ExperienceId = gollard.Id, SkillId = backendCSharp.Id },
                 new SkillExperienceMappingSqlEntity { ExperienceId = gollard.Id, SkillId = backendDotNet.Id },
-                new SkillExperienceMappingSqlEntity { ExperienceId = gollard.Id, SkillId = backendAspNet.Id },
+                new SkillExperienceMappingSqlEntity { ExperienceId = gollard.Id, SkillId = backendAspNetWebApi.Id },
                 new SkillExperienceMappingSqlEntity { ExperienceId = gollard.Id, SkillId = backendWcf.Id },
+                new SkillExperienceMappingSqlEntity { ExperienceId = gollard.Id, SkillId = backendNUnit.Id },
                 new SkillExperienceMappingSqlEntity { ExperienceId = gollard.Id, SkillId = frontendWpf.Id },
                 new SkillExperienceMappingSqlEntity { ExperienceId = gollard.Id, SkillId = frontendXaml.Id },
                 new SkillExperienceMappingSqlEntity { ExperienceId = gollard.Id, SkillId = databaseMsSql.Id },
                 new SkillExperienceMappingSqlEntity { ExperienceId = gollard.Id, SkillId = databaseMySql.Id },
                 new SkillExperienceMappingSqlEntity { ExperienceId = gollard.Id, SkillId = toolsEsriArcGis.Id },
                 new SkillExperienceMappingSqlEntity { ExperienceId = gollard.Id, SkillId = toolsTeamCity.Id },
-                new SkillExperienceMappingSqlEntity { ExperienceId = gollard.Id, SkillId = toolsNUnit.Id },
+                new SkillExperienceMappingSqlEntity { ExperienceId = gollard.Id, SkillId = toolsJira.Id },
 
                 new SkillExperienceMappingSqlEntity { ExperienceId = sgc.Id, SkillId = backendCSharp.Id },
                 new SkillExperienceMappingSqlEntity { ExperienceId = sgc.Id, SkillId = backendDotNet.Id },
+                new SkillExperienceMappingSqlEntity { ExperienceId = sgc.Id, SkillId = backendMsTest.Id },
                 new SkillExperienceMappingSqlEntity { ExperienceId = sgc.Id, SkillId = frontendWpf.Id },
                 new SkillExperienceMappingSqlEntity { ExperienceId = sgc.Id, SkillId = frontendXaml.Id },
                 new SkillExperienceMappingSqlEntity { ExperienceId = sgc.Id, SkillId = databaseMsSql.Id },
-                new SkillExperienceMappingSqlEntity { ExperienceId = sgc.Id, SkillId = toolsMsTest.Id },
 
                 new SkillExperienceMappingSqlEntity { ExperienceId = poStart.Id, SkillId = backendCSharp.Id },
                 new SkillExperienceMappingSqlEntity { ExperienceId = poStart.Id, SkillId = backendDotNet.Id },

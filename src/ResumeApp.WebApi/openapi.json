@@ -1520,6 +1520,13 @@
             "minLength": 1,
             "type": "string"
           },
+          "priority": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "isHighlighted": {
+            "type": "boolean"
+          },
           "experienceIds": {
             "type": "array",
             "items": {

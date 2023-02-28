@@ -18,7 +18,11 @@ namespace ResumeApp.DataAccess.Sql.Entities
 
 		public string SkillGroup { get; set; }
 
+        public int Priority { get; set; }
 
-		public virtual ICollection<SkillExperienceMappingSqlEntity> SkillExperienceMapping { get; set; }
+        public bool IsHighlighted { get; set; }
+
+
+        public virtual ICollection<SkillExperienceMappingSqlEntity> SkillExperienceMapping { get; set; }
 	}
 }
