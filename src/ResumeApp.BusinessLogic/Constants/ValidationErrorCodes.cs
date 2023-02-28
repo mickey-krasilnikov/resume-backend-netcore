@@ -2,13 +2,12 @@
 
 namespace ResumeApp.BusinessLogic.Constants
 {
-	[ErrorCodes]
+    [ErrorCodes]
 	public static class ValidationErrorCodes
 	{
 		public const string CannotBeNullOrEmpty = "CannotBeNullOrEmpty";
 		public const string MustBeValidEmailAddress = "MustBeValidEmailAddress";
-		public const string MustBeValidFirstName = "MustBeValidFirstName";
-		public const string MustBeValidLastName = "MustBeValidLastName";
+		public const string MustBeValidName = "MustBeValidName";
 		public const string MustBeIntegerNumber = "MustBeIntegerNumber";
 		public const string MustBeValidDateString = "MustBeValidDateString";
 	}

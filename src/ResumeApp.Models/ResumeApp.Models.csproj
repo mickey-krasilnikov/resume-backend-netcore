@@ -7,4 +7,12 @@
 		<AnalysisMode>All</AnalysisMode>
 	</PropertyGroup>
 
+	<ItemGroup>
+	  <None Remove="JsonConverters\" />
+	  <None Remove="Interfaces\" />
+	</ItemGroup>
+	<ItemGroup>
+	  <Folder Include="JsonConverters\" />
+	  <Folder Include="Interfaces\" />
+	</ItemGroup>
 </Project>

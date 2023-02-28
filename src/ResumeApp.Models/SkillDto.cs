@@ -1,8 +1,9 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using ResumeApp.Models.Interfaces;
 
 namespace ResumeApp.Models
 {
-	public class SkillDto : IHasId
+    public class SkillDto : IHasId
 	{
 		public Guid Id { get; set; }
 

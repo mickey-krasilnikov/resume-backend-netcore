@@ -3280,12 +3280,10 @@ namespace ResumeApp.ApiClient
 
         [Newtonsoft.Json.JsonProperty("issueDate", Required = Newtonsoft.Json.Required.Always)]
         [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        [Newtonsoft.Json.JsonConverter(typeof(DateFormatConverter))]
-        public System.DateTimeOffset IssueDate { get; set; }
+        public System.String IssueDate { get; set; }
 
         [Newtonsoft.Json.JsonProperty("expirationDate", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        [Newtonsoft.Json.JsonConverter(typeof(DateFormatConverter))]
-        public System.DateTimeOffset? ExpirationDate { get; set; }
+        public System.String? ExpirationDate { get; set; }
 
     }
 
@@ -3328,12 +3326,10 @@ namespace ResumeApp.ApiClient
 
         [Newtonsoft.Json.JsonProperty("startDate", Required = Newtonsoft.Json.Required.Always)]
         [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        [Newtonsoft.Json.JsonConverter(typeof(DateFormatConverter))]
-        public System.DateTimeOffset StartDate { get; set; }
+        public System.String StartDate { get; set; }
 
         [Newtonsoft.Json.JsonProperty("endDate", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        [Newtonsoft.Json.JsonConverter(typeof(DateFormatConverter))]
-        public System.DateTimeOffset? EndDate { get; set; }
+        public System.String? EndDate { get; set; }
 
     }
 
@@ -3362,12 +3358,10 @@ namespace ResumeApp.ApiClient
 
         [Newtonsoft.Json.JsonProperty("startDate", Required = Newtonsoft.Json.Required.Always)]
         [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        [Newtonsoft.Json.JsonConverter(typeof(DateFormatConverter))]
-        public System.DateTimeOffset StartDate { get; set; }
+        public System.String StartDate { get; set; }
 
         [Newtonsoft.Json.JsonProperty("endDate", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
-        [Newtonsoft.Json.JsonConverter(typeof(DateFormatConverter))]
-        public System.DateTimeOffset? EndDate { get; set; }
+        public System.String? EndDate { get; set; }
 
     }
 
@@ -3416,15 +3410,6 @@ namespace ResumeApp.ApiClient
         [Newtonsoft.Json.JsonProperty("experienceIds", Required = Newtonsoft.Json.Required.Default, NullValueHandling = Newtonsoft.Json.NullValueHandling.Ignore)]
         public System.Collections.Generic.ICollection<System.Guid> ExperienceIds { get; set; }
 
-    }
-
-    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "13.18.2.0 (NJsonSchema v10.8.0.0 (Newtonsoft.Json v13.0.0.0))")]
-    internal class DateFormatConverter : Newtonsoft.Json.Converters.IsoDateTimeConverter
-    {
-        public DateFormatConverter()
-        {
-            DateTimeFormat = "yyyy-MM-dd";
-        }
     }
 
 

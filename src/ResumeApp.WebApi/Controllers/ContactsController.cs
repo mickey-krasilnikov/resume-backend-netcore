@@ -25,7 +25,7 @@ namespace ResumeApp.WebApi.Controllers
 		[HttpOptions]
 		public IActionResult GetOptions()
 		{
-			Response.Headers.Add(HeaderNames.Allow, $"{HttpMethods.Options},{HttpMethods.Get},{HttpMethods.Head},{HttpMethods.Post}");
+			Response.Headers.Add(HeaderNames.Allow, $"{HttpMethods.Options},{HttpMethods.Get},{HttpMethods.Post}");
 			return Ok();
 		}
 
@@ -37,7 +37,18 @@ namespace ResumeApp.WebApi.Controllers
 			return Ok(await _crudService.GetAllItemsAsync());
 		}
 
-		[HttpGet("{id}")]
+		[HttpPost]
+		[ProducesResponseType(StatusCodes.Status201Created)]
+		[ProducesResponseType(StatusCodes.Status400BadRequest)]
+		[ProducesDefaultResponseType]
+		public async Task<ActionResult<ContactDto>> CreateItem([FromBody] ContactDto item)
+		{
+			if (item == null) return BadRequest();
+			var newItem = await _crudService.CreateItemAsync(item);
+			return CreatedAtAction(nameof(GetItemById), new { id = newItem.Id }, newItem);
+        }
+
+        [HttpGet("{id}")]
 		[ProducesResponseType(StatusCodes.Status200OK)]
 		[ProducesResponseType(StatusCodes.Status400BadRequest)]
 		[ProducesResponseType(StatusCodes.Status404NotFound)]
@@ -49,17 +60,6 @@ namespace ResumeApp.WebApi.Controllers
 			return isExists
 				? Ok(await _crudService.GetItemByIdAsync(CertificationId))
 				: NotFound();
-		}
-
-		[HttpPost]
-		[ProducesResponseType(StatusCodes.Status201Created)]
-		[ProducesResponseType(StatusCodes.Status400BadRequest)]
-		[ProducesDefaultResponseType]
-		public async Task<ActionResult<ContactDto>> CreateItem([FromBody] ContactDto item)
-		{
-			if (item == null) return BadRequest();
-			var newItem = await _crudService.CreateItemAsync(item);
-			return CreatedAtAction(nameof(GetItemById), new { id = newItem.Id }, newItem);
 		}
 
 		[HttpPut("{id}")]

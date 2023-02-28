@@ -1339,12 +1339,14 @@
           },
           "issueDate": {
             "type": "string",
-            "format": "date"
+            "format": "date",
+            "example": "2023-01-01"
           },
           "expirationDate": {
             "type": "string",
             "format": "date",
-            "nullable": true
+            "nullable": true,
+            "example": "2023-01-01"
           }
         },
         "additionalProperties": false
@@ -1402,12 +1404,14 @@
           },
           "startDate": {
             "type": "string",
-            "format": "date"
+            "format": "date",
+            "example": "2023-01-01"
           },
           "endDate": {
             "type": "string",
             "format": "date",
-            "nullable": true
+            "nullable": true,
+            "example": "2023-01-01"
           }
         },
         "additionalProperties": false
@@ -1453,12 +1457,14 @@
           },
           "startDate": {
             "type": "string",
-            "format": "date"
+            "format": "date",
+            "example": "2023-01-01"
           },
           "endDate": {
             "type": "string",
             "format": "date",
-            "nullable": true
+            "nullable": true,
+            "example": "2023-01-01"
           }
         },
         "additionalProperties": false

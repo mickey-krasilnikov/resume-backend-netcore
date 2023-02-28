@@ -1,4 +1,4 @@
-﻿namespace ResumeApp.Models
+﻿namespace ResumeApp.Models.Interfaces
 {
 	public interface IHasId
 	{

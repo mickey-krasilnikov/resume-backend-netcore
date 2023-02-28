@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using ResumeApp.ApiClient;
+using ResumeApp.BusinessLogic.Constants;
 using ResumeApp.DataAccess.Sql.Context;
 using ResumeApp.DataAccess.Sql.Entities;
 
@@ -51,8 +52,8 @@ namespace ResumeApp.ContractTests.Controllers
             Assert.Equal(expectedEducation.Degree, education.Single().Degree);
             Assert.Equal(expectedEducation.FieldOfStudy, education.Single().FieldOfStudy);
             Assert.Equal(expectedEducation.Url, education.Single().Url);
-            Assert.Equal(expectedEducation.StartDate, DateOnly.FromDateTime(education.Single().StartDate.DateTime));
-            Assert.Equal(expectedEducation.EndDate, DateOnly.FromDateTime(education.Single().EndDate.Value.DateTime));
+            Assert.Equal(expectedEducation.StartDate.ToString(DateFormats.DateOnlyFormat), education.Single().StartDate);
+            Assert.Equal(expectedEducation.EndDate.Value.ToString(DateFormats.DateOnlyFormat), education.Single().EndDate);
 
         }
 
@@ -87,8 +88,8 @@ namespace ResumeApp.ContractTests.Controllers
             Assert.Equal(expectedEducation.Degree, education.Degree);
             Assert.Equal(expectedEducation.FieldOfStudy, education.FieldOfStudy);
             Assert.Equal(expectedEducation.Url, education.Url);
-            Assert.Equal(expectedEducation.StartDate, DateOnly.FromDateTime(education.StartDate.DateTime));
-            Assert.Equal(expectedEducation.EndDate, DateOnly.FromDateTime(education.EndDate.Value.DateTime));
+            Assert.Equal(expectedEducation.StartDate.ToString(DateFormats.DateOnlyFormat), education.StartDate);
+            Assert.Equal(expectedEducation.EndDate.Value.ToString(DateFormats.DateOnlyFormat), education.EndDate);
         }
 
         [Fact]
@@ -103,8 +104,8 @@ namespace ResumeApp.ContractTests.Controllers
                 Degree = "testDegree",
                 FieldOfStudy = "testFieldOfStudy",
                 Url = new Uri("https://testUrl.com"),
-                StartDate = DateTimeOffset.UtcNow.AddYears(-6),
-                EndDate = DateTimeOffset.UtcNow
+                StartDate = DateTimeOffset.UtcNow.AddYears(-6).ToString(DateFormats.DateOnlyFormat),
+                EndDate = DateTimeOffset.UtcNow.ToString(DateFormats.DateOnlyFormat)
             };
 
             // Act
@@ -126,8 +127,8 @@ namespace ResumeApp.ContractTests.Controllers
             Assert.Equal(educationToPost.Degree, educationAfter.Degree);
             Assert.Equal(educationToPost.FieldOfStudy, educationAfter.FieldOfStudy);
             Assert.Equal(educationToPost.Url, educationAfter.Url);
-            Assert.Equal(DateOnly.FromDateTime(educationToPost.StartDate.DateTime), educationAfter.StartDate);
-            Assert.Equal(DateOnly.FromDateTime(educationToPost.EndDate.Value.DateTime), educationAfter.EndDate.Value);
+            Assert.Equal(educationToPost.StartDate, educationAfter.StartDate.ToString(DateFormats.DateOnlyFormat));
+            Assert.Equal(educationToPost.EndDate, educationAfter.EndDate.Value.ToString(DateFormats.DateOnlyFormat));
         }
 
         [Fact]
@@ -154,8 +155,8 @@ namespace ResumeApp.ContractTests.Controllers
                 Degree = "testDegree2",
                 FieldOfStudy = "testFieldOfStudy2",
                 Url = new Uri("https://testUrl2.com"),
-                StartDate = DateTimeOffset.UtcNow.AddYears(-12),
-                EndDate = DateTimeOffset.UtcNow.AddYears(-6)
+                StartDate = DateTimeOffset.UtcNow.AddYears(-12).ToString(DateFormats.DateOnlyFormat),
+                EndDate = DateTimeOffset.UtcNow.AddYears(-6).ToString(DateFormats.DateOnlyFormat)
             };
 
             // Act
@@ -184,8 +185,8 @@ namespace ResumeApp.ContractTests.Controllers
             Assert.Equal(educationToPut.Degree, educationAfter.Degree);
             Assert.Equal(educationToPut.FieldOfStudy, educationAfter.FieldOfStudy);
             Assert.Equal(educationToPut.Url, educationAfter.Url);
-            Assert.Equal(DateOnly.FromDateTime(educationToPut.StartDate.DateTime), educationAfter.StartDate);
-            Assert.Equal(DateOnly.FromDateTime(educationToPut.EndDate.Value.DateTime), educationAfter.EndDate);
+            Assert.Equal(educationToPut.StartDate, educationAfter.StartDate.ToString(DateFormats.DateOnlyFormat));
+            Assert.Equal(educationToPut.EndDate, educationAfter.EndDate.Value.ToString(DateFormats.DateOnlyFormat));
         }
 
         [Fact]

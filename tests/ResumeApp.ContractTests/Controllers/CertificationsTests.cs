@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using ResumeApp.ApiClient;
+using ResumeApp.BusinessLogic.Constants;
 using ResumeApp.DataAccess.Sql.Context;
 using ResumeApp.DataAccess.Sql.Entities;
 
@@ -48,7 +49,7 @@ namespace ResumeApp.ContractTests.Controllers
             Assert.Equal(expectedCertificate.Name, certificates.Single().Name);
             Assert.Equal(expectedCertificate.Issuer, certificates.Single().Issuer);
             Assert.Equal(expectedCertificate.VerificationUrl, certificates.Single().VerificationUrl);
-            Assert.Equal(expectedCertificate.IssueDate, DateOnly.FromDateTime(certificates.Single().IssueDate.DateTime));
+            Assert.Equal(expectedCertificate.IssueDate.ToString(DateFormats.DateOnlyFormat), certificates.Single().IssueDate);
 
         }
 
@@ -81,7 +82,7 @@ namespace ResumeApp.ContractTests.Controllers
             Assert.Equal(expectedCertificate.Name, certificate.Name);
             Assert.Equal(expectedCertificate.Issuer, certificate.Issuer);
             Assert.Equal(expectedCertificate.VerificationUrl, certificate.VerificationUrl);
-            Assert.Equal(expectedCertificate.IssueDate, DateOnly.FromDateTime(certificate.IssueDate.DateTime));
+            Assert.Equal(expectedCertificate.IssueDate.ToString(DateFormats.DateOnlyFormat), certificate.IssueDate);
         }
 
         [Fact]
@@ -95,7 +96,7 @@ namespace ResumeApp.ContractTests.Controllers
                 Name = "Test certificate",
                 Issuer = "Test issuer",
                 VerificationUrl = new Uri("https://testcertificate.com"),
-                IssueDate = DateTimeOffset.Now
+                IssueDate = DateTimeOffset.Now.ToString(DateFormats.DateOnlyFormat)
             };
 
             // Act
@@ -115,7 +116,7 @@ namespace ResumeApp.ContractTests.Controllers
             Assert.Equal(certificateToPost.Name, certificatesAfter.Name);
             Assert.Equal(certificateToPost.Issuer, certificatesAfter.Issuer);
             Assert.Equal(certificateToPost.VerificationUrl, certificatesAfter.VerificationUrl);
-            Assert.Equal(DateOnly.FromDateTime(certificateToPost.IssueDate.DateTime), certificatesAfter.IssueDate);
+            Assert.Equal(certificateToPost.IssueDate, certificatesAfter.IssueDate.ToString(DateFormats.DateOnlyFormat));
         }
 
         [Fact]
@@ -139,7 +140,7 @@ namespace ResumeApp.ContractTests.Controllers
                 Name = "Test certificate 2",
                 Issuer = "Test issuer 2",
                 VerificationUrl = new Uri("https://testcertificate2.com"),
-                IssueDate = DateTimeOffset.Now
+                IssueDate = DateTimeOffset.Now.ToString(DateFormats.DateOnlyFormat)
             };
 
             // Act
@@ -164,7 +165,7 @@ namespace ResumeApp.ContractTests.Controllers
             Assert.Equal(certificateToPut.Name, certificatesAfter.Name);
             Assert.Equal(certificateToPut.Issuer, certificatesAfter.Issuer);
             Assert.Equal(certificateToPut.VerificationUrl, certificatesAfter.VerificationUrl);
-            Assert.Equal(DateOnly.FromDateTime(certificateToPut.IssueDate.DateTime), certificatesAfter.IssueDate);
+            Assert.Equal(certificateToPut.IssueDate, certificatesAfter.IssueDate.ToString(DateFormats.DateOnlyFormat));
         }
 
 

@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using ResumeApp.ApiClient;
+using ResumeApp.BusinessLogic.Constants;
 using ResumeApp.DataAccess.Sql.Context;
 using ResumeApp.DataAccess.Sql.Entities;
 
@@ -51,8 +52,8 @@ namespace ResumeApp.ContractTests.Controllers
             Assert.Equal(expectedExperience.Company, experiences.Single().Company);
             Assert.Equal(expectedExperience.Location, experiences.Single().Location);
             Assert.Equal(expectedExperience.TaskPerformed, string.Join('\n', experiences.Single().TaskPerformed));
-            Assert.Equal(expectedExperience.StartDate, DateOnly.FromDateTime(experiences.Single().StartDate.DateTime));
-            Assert.Equal(expectedExperience.EndDate, DateOnly.FromDateTime(experiences.Single().EndDate.Value.DateTime));
+            Assert.Equal(expectedExperience.StartDate.ToString(DateFormats.DateOnlyFormat), experiences.Single().StartDate);
+            Assert.Equal(expectedExperience.EndDate.Value.ToString(DateFormats.DateOnlyFormat), experiences.Single().EndDate);
         }
 
         [Fact]
@@ -87,8 +88,8 @@ namespace ResumeApp.ContractTests.Controllers
             Assert.Equal(expectedExperience.Company, experience.Company);
             Assert.Equal(expectedExperience.Location, experience.Location);
             Assert.Equal(expectedExperience.TaskPerformed, string.Join('\n', experience.TaskPerformed));
-            Assert.Equal(expectedExperience.StartDate, DateOnly.FromDateTime(experience.StartDate.DateTime));
-            Assert.Equal(expectedExperience.EndDate.Value, DateOnly.FromDateTime(experience.EndDate.Value.DateTime));
+            Assert.Equal(expectedExperience.StartDate.ToString(DateFormats.DateOnlyFormat), experience.StartDate);
+            Assert.Equal(expectedExperience.EndDate.Value.ToString(DateFormats.DateOnlyFormat), experience.EndDate);
         }
 
         [Fact]
@@ -103,8 +104,8 @@ namespace ResumeApp.ContractTests.Controllers
                 Company = "testCompany",
                 Location = "testLocation",
                 TaskPerformed = new List<string> { "testTaskPerformed1", "testTaskPerformed2" },
-                StartDate = DateTimeOffset.UtcNow.AddYears(-1),
-                EndDate = DateTimeOffset.UtcNow,
+                StartDate = DateTimeOffset.UtcNow.AddYears(-1).ToString(DateFormats.DateOnlyFormat),
+                EndDate = DateTimeOffset.UtcNow.ToString(DateFormats.DateOnlyFormat),
             };
 
             // Act
@@ -126,8 +127,8 @@ namespace ResumeApp.ContractTests.Controllers
             Assert.Equal(experienceToPost.Company, experienceAfter.Company);
             Assert.Equal(experienceToPost.Location, experienceAfter.Location);
             Assert.Equal(string.Join('\n', experienceToPost.TaskPerformed), experienceAfter.TaskPerformed);
-            Assert.Equal(DateOnly.FromDateTime(experienceToPost.StartDate.DateTime), experienceAfter.StartDate);
-            Assert.Equal(DateOnly.FromDateTime(experienceToPost.EndDate.Value.DateTime), experienceAfter.EndDate.Value);
+            Assert.Equal(experienceToPost.StartDate, experienceAfter.StartDate.ToString(DateFormats.DateOnlyFormat));
+            Assert.Equal(experienceToPost.EndDate, experienceAfter.EndDate.Value.ToString(DateFormats.DateOnlyFormat));
         }
 
         [Fact]
@@ -154,8 +155,8 @@ namespace ResumeApp.ContractTests.Controllers
                 Company = "testCompany2",
                 Location = "testLocation2",
                 TaskPerformed = new List<string> { "testTaskPerformed3", "testTaskPerformed4" },
-                StartDate = DateTimeOffset.UtcNow.AddYears(-1),
-                EndDate = DateTimeOffset.UtcNow,
+                StartDate = DateTimeOffset.UtcNow.AddYears(-1).ToString(DateFormats.DateOnlyFormat),
+                EndDate = DateTimeOffset.UtcNow.ToString(DateFormats.DateOnlyFormat),
             };
 
             // Act
@@ -184,8 +185,8 @@ namespace ResumeApp.ContractTests.Controllers
             Assert.Equal(experienceToPut.Company, experienceAfter.Company);
             Assert.Equal(experienceToPut.Location, experienceAfter.Location);
             Assert.Equal(string.Join('\n', experienceToPut.TaskPerformed), experienceAfter.TaskPerformed);
-            Assert.Equal(DateOnly.FromDateTime(experienceToPut.StartDate.DateTime), experienceAfter.StartDate);
-            Assert.Equal(DateOnly.FromDateTime(experienceToPut.EndDate.Value.DateTime), experienceAfter.EndDate.Value);
+            Assert.Equal(experienceToPut.StartDate, experienceAfter.StartDate.ToString(DateFormats.DateOnlyFormat));
+            Assert.Equal(experienceToPut.EndDate, experienceAfter.EndDate.Value.ToString(DateFormats.DateOnlyFormat));
         }
 
         [Fact]

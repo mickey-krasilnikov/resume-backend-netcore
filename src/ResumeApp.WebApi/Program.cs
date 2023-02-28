@@ -5,6 +5,7 @@ using ResumeApp.BusinessLogic.Extensions;
 using System.Reflection;
 using System.Text.Json.Serialization;
 using OwaspHeaders.Core.Extensions;
+using Microsoft.OpenApi.Any;
 
 namespace ResumeApp.WebApi;
 
@@ -32,6 +33,12 @@ public sealed class Program
             .AddEndpointsApiExplorer()
             .AddSwaggerGen(options =>
             {
+                options.MapType<DateOnly>(() => new OpenApiSchema
+                {
+                    Type = "string",
+                    Format = "date",
+                    Example = new OpenApiString("2023-01-01")
+                });
                 options.SwaggerDoc(swaggerConfig.DocName, new OpenApiInfo
                 {
                     Version = swaggerConfig.Version,

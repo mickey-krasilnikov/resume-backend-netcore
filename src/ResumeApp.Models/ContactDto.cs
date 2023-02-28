@@ -1,4 +1,6 @@
-﻿namespace ResumeApp.Models
+﻿using ResumeApp.Models.Interfaces;
+
+namespace ResumeApp.Models
 {
 	public class ContactDto : IHasId
 	{

@@ -1,4 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
+using ResumeApp.Models.Interfaces;
+using ResumeApp.Models.JsonCoverters;
 
 namespace ResumeApp.Models
 {
@@ -15,8 +18,10 @@ namespace ResumeApp.Models
 		public Uri VerificationUrl { get; set; }
 
 		[Required]
-		public DateOnly IssueDate { get; set; }
+        [JsonConverter(typeof(DateOnlyJsonConverter))]
+        public DateOnly IssueDate { get; set; }
 
-		public DateOnly? ExpirationDate { get; set; }
+        [JsonConverter(typeof(DateOnlyJsonConverter))]
+        public DateOnly? ExpirationDate { get; set; }
 	}
 }
