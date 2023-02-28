@@ -25,7 +25,9 @@ namespace ResumeApp.DataAccess.Sql.Repositories
 			Expression<Func<ExperienceSqlEntity, TProjected>> projectionExpression)
 		{
 			return await _context.Experiences
-				.Where(filterExpression)
+                .Include(e => e.SkillExperienceMapping)
+				.ThenInclude(m => m.Skill)
+                .Where(filterExpression)
 				.Select(projectionExpression)
 				.ToListAsync();
 		}
@@ -35,7 +37,9 @@ namespace ResumeApp.DataAccess.Sql.Repositories
 			Expression<Func<ExperienceSqlEntity, TProjected>> projectionExpression)
 		{
 			return await _context.Experiences
-				.Where(r => r.Id == id)
+                .Include(e => e.SkillExperienceMapping)
+                .ThenInclude(m => m.Skill)
+                .Where(r => r.Id == id)
 				.Select(projectionExpression)
 				.FirstOrDefaultAsync();
 		}
@@ -45,14 +49,20 @@ namespace ResumeApp.DataAccess.Sql.Repositories
 			Expression<Func<ExperienceSqlEntity, TProjected>> projectionExpression)
 		{
 			return await _context.Experiences
-				.Where(filterExpression)
+                .Include(e => e.SkillExperienceMapping)
+                .ThenInclude(m => m.Skill)
+                .Where(filterExpression)
 				.Select(projectionExpression)
 				.FirstOrDefaultAsync();
 		}
 
 		public async Task<IReadOnlyList<TProjected>> ProjectAsync<TProjected>(Expression<Func<ExperienceSqlEntity, TProjected>> projectionExpression)
 		{
-			return await _context.Experiences.Select(projectionExpression).ToListAsync();
+			return await _context.Experiences
+				.Include(e => e.SkillExperienceMapping)
+                .ThenInclude(m => m.Skill)
+                .Select(projectionExpression)
+				.ToListAsync();
 		}
 
 		public async Task<ExperienceSqlEntity> InsertOneAsync(ExperienceSqlEntity entity)
@@ -70,28 +80,28 @@ namespace ResumeApp.DataAccess.Sql.Repositories
 
 		public async Task ReplaceOneAsync(ExperienceSqlEntity entity)
         {
-            var entityToUpdate = await _context.Experiences.FirstOrDefaultAsync(c => c.Id == entity.Id);
+            var entityToUpdate = await _context.Experiences.Include(e => e.SkillExperienceMapping).FirstOrDefaultAsync(c => c.Id == entity.Id);
             _context.Experiences.Entry(entityToUpdate).CurrentValues.SetValues(entity);
             await _context.SaveChangesAsync();
 		}
 
 		public async Task DeleteByIdAsync(Guid id)
 		{
-			var certification = await _context.Experiences.FirstOrDefaultAsync(r => r.Id == id);
+			var certification = await _context.Experiences.Include(e => e.SkillExperienceMapping).FirstOrDefaultAsync(r => r.Id == id);
 			_context.Experiences.Remove(certification);
 			await _context.SaveChangesAsync();
 		}
 
 		public async Task DeleteManyAsync(Expression<Func<ExperienceSqlEntity, bool>> filterExpression)
 		{
-			var certifications = await _context.Experiences.Where(filterExpression).ToListAsync();
+			var certifications = await _context.Experiences.Include(e => e.SkillExperienceMapping).Where(filterExpression).ToListAsync();
 			_context.Experiences.RemoveRange(certifications);
 			await _context.SaveChangesAsync();
 		}
 
 		public async Task DeleteOneAsync(Expression<Func<ExperienceSqlEntity, bool>> filterExpression)
 		{
-			var certification = await _context.Experiences.FirstOrDefaultAsync(filterExpression);
+			var certification = await _context.Experiences.Include(e => e.SkillExperienceMapping).FirstOrDefaultAsync(filterExpression);
 			_context.Experiences.Remove(certification);
 			await _context.SaveChangesAsync();
 		}

@@ -18,7 +18,7 @@ namespace ResumeApp.BusinessLogic.Mappers
 				Title = entity.Title,
 				Company = entity.Company,
 				Location = entity.Location,
-				TaskPerformed = entity.TaskPerformed?.Split('\n'),
+				TaskPerformed = entity.TaskPerformed?.Split('\n', StringSplitOptions.RemoveEmptyEntries),
 				SkillIds = entity.SkillExperienceMapping?.Select(m => m.Skill.Id).ToList(),
                 StartDate = entity.StartDate,
 				EndDate = entity.EndDate
@@ -34,7 +34,7 @@ namespace ResumeApp.BusinessLogic.Mappers
 				Title = entity.Title,
 				Company = entity.Company,
                 Location = entity.Location,
-                TaskPerformed = entity.TaskPerformed?.Split('\n'),
+                TaskPerformed = entity.TaskPerformed?.Split('\n', StringSplitOptions.RemoveEmptyEntries),
                 SkillIds = entity.SkillIds,
                 StartDate = entity.StartDate,
 				EndDate = entity.EndDate
