@@ -15,6 +15,7 @@ namespace ResumeApp.Models
 		[Required]
 		public string Company { get; set; }
 
+		[Required]
 		public string Location { get; set; }
 
 		public IReadOnlyList<Guid> SkillIds { get; set; }

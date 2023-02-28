@@ -1352,6 +1352,10 @@
         "additionalProperties": false
       },
       "ContactDto": {
+        "required": [
+          "key",
+          "value"
+        ],
         "type": "object",
         "properties": {
           "id": {
@@ -1359,12 +1363,12 @@
             "format": "uuid"
           },
           "key": {
-            "type": "string",
-            "nullable": true
+            "minLength": 1,
+            "type": "string"
           },
           "value": {
-            "type": "string",
-            "nullable": true
+            "minLength": 1,
+            "type": "string"
           },
           "link": {
             "type": "string",
@@ -1419,6 +1423,7 @@
       "ExperienceDto": {
         "required": [
           "company",
+          "location",
           "startDate",
           "title"
         ],
@@ -1437,8 +1442,8 @@
             "type": "string"
           },
           "location": {
-            "type": "string",
-            "nullable": true
+            "minLength": 1,
+            "type": "string"
           },
           "skillIds": {
             "type": "array",
@@ -1498,7 +1503,8 @@
       },
       "SkillDto": {
         "required": [
-          "name"
+          "name",
+          "skillGroup"
         ],
         "type": "object",
         "properties": {
@@ -1511,8 +1517,8 @@
             "type": "string"
           },
           "skillGroup": {
-            "type": "string",
-            "nullable": true
+            "minLength": 1,
+            "type": "string"
           },
           "experienceIds": {
             "type": "array",
