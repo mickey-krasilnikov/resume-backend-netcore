@@ -14,9 +14,9 @@ namespace ResumeApp.DataAccess.Sql.Entities
 		[DatabaseGenerated(DatabaseGeneratedOption.Identity)]
 		public Guid Id { get; set; }
 
-		public string Name { get; set; }
+        public string Name { get; set; }
 
-		public string SkillGroup { get; set; }
+        public string SkillGroup { get; set; }
 
         public int Priority { get; set; }
 

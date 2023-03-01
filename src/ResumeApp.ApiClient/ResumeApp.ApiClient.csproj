@@ -7,13 +7,10 @@
   </PropertyGroup>
 
 	<ItemGroup>
-		<OpenApiReference Include="..\ResumeApp.WebApi\openapi.json">
-            <CodeGenerator>NSwagCSharp</CodeGenerator>
-            <Namespace>ResumeApp.ApiClient</Namespace>
+		<OpenApiReference Include="..\ResumeApp.WebApi\openapi.json" Options="/UseBaseUrl:false /GenerateClientInterfaces:true /ParameterDateFormat:yyyy-MM-dd /ClassStyle:Poco /DateType:System.String" CodeGenerator="NSwagCSharp" Namespace="ResumeApp.ApiClient">
             <Link>OpenAPIs\openapi.json</Link>
 			<ClassName>ResumeApiClient</ClassName>
 			<OutputPath>..\ResumeApiClient.g.cs</OutputPath>
-            <Options>/UseBaseUrl:false /GenerateClientInterfaces:true /ParameterDateFormat:yyyy-MM-dd /ClassStyle:Poco /DateType:System.String</Options>
 		</OpenApiReference>
 	</ItemGroup>
 

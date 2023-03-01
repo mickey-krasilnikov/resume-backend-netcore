@@ -21,6 +21,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{123F1DC3-1A72-46EF-82A7-A831EBC5A7E4}"
 	ProjectSection(SolutionItems) = preProject
 		.editorconfig = .editorconfig
+		.config\dotnet-tools.json = .config\dotnet-tools.json
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ResumeApp.ApiClient", "src\ResumeApp.ApiClient\ResumeApp.ApiClient.csproj", "{548651A7-3A07-40BE-8D9B-2487BE63A448}"

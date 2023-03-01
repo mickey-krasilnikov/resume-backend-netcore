@@ -1423,7 +1423,6 @@
       "ExperienceDto": {
         "required": [
           "company",
-          "location",
           "startDate",
           "title"
         ],
@@ -1442,8 +1441,8 @@
             "type": "string"
           },
           "location": {
-            "minLength": 1,
-            "type": "string"
+            "type": "string",
+            "nullable": true
           },
           "skillIds": {
             "type": "array",

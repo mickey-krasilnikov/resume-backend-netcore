@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Text;
 using ResumeApp.DataAccess.Sql.Entities;
 
@@ -177,19 +178,18 @@ namespace ResumeApp.DataAccess.Sql.Context.InitialData
             var backendDotNet = new SkillSqlEntity { Id = Guid.NewGuid(), SkillGroup = "Backend", Name = ".NET", Priority = 203, IsHighlighted = true };
             var backendAspNetCoreWebApi = new SkillSqlEntity { Id = Guid.NewGuid(), SkillGroup = "Backend", Name = "ASP.NET Core Web API", Priority = 204, IsHighlighted = true };
             var backendAspNetWebApi = new SkillSqlEntity { Id = Guid.NewGuid(), SkillGroup = "Backend", Name = "ASP.NET Web API", Priority = 205, IsHighlighted = true };
-            var backendJavaScript = new SkillSqlEntity { Id = Guid.NewGuid(), SkillGroup = "Backend", Name = "JavaScript", Priority = 206, IsHighlighted = true };
-            var backendTypeScript = new SkillSqlEntity { Id = Guid.NewGuid(), SkillGroup = "Backend", Name = "TypeScript", Priority = 207, IsHighlighted = true };
-            var backendExpressWebFramework = new SkillSqlEntity { Id = Guid.NewGuid(), SkillGroup = "Backend", Name = "Express Web Framework", Priority = 208, IsHighlighted = true };
-            var backendGoLang = new SkillSqlEntity { Id = Guid.NewGuid(), SkillGroup = "Backend", Name = "GoLang", Priority = 209, IsHighlighted = true };
-            var backendGinWebFramework = new SkillSqlEntity { Id = Guid.NewGuid(), SkillGroup = "Backend", Name = "Gin Web Framework", Priority = 210, IsHighlighted = true };
-            var backendPython3 = new SkillSqlEntity { Id = Guid.NewGuid(), SkillGroup = "Backend", Name = "Python3", Priority = 211, IsHighlighted = true };
-            var backendFlaskWebFramework = new SkillSqlEntity { Id = Guid.NewGuid(), SkillGroup = "Backend", Name = "Flask Web Framework", Priority = 212, IsHighlighted = true };
-            var backendWcf = new SkillSqlEntity { Id = Guid.NewGuid(), SkillGroup = "Backend", Name = "WCF", Priority = 213, IsHighlighted = false };
-            var backendEf = new SkillSqlEntity { Id = Guid.NewGuid(), SkillGroup = "Backend", Name = "Entity Framework", Priority = 214, IsHighlighted = false };
-            var backendEfCore = new SkillSqlEntity { Id = Guid.NewGuid(), SkillGroup = "Backend", Name = "Entity Framework Core", Priority = 215, IsHighlighted = false };
-            var backendXUnit = new SkillSqlEntity { Id = Guid.NewGuid(), SkillGroup = "Backend", Name = "xUnit", Priority = 216, IsHighlighted = false };
-            var backendNUnit = new SkillSqlEntity { Id = Guid.NewGuid(), SkillGroup = "Backend", Name = "NUnit", Priority = 217, IsHighlighted = false };
-            var backendMsTest = new SkillSqlEntity { Id = Guid.NewGuid(), SkillGroup = "Backend", Name = "MSTest", Priority = 218, IsHighlighted = false };
+            var backendNodejs = new SkillSqlEntity { Id = Guid.NewGuid(), SkillGroup = "Backend", Name = "Node.js", Priority = 206, IsHighlighted = true };
+            var backendExpressWebFramework = new SkillSqlEntity { Id = Guid.NewGuid(), SkillGroup = "Backend", Name = "Express.js Web Framework", Priority = 207, IsHighlighted = true };
+            var backendGoLang = new SkillSqlEntity { Id = Guid.NewGuid(), SkillGroup = "Backend", Name = "GoLang", Priority = 208, IsHighlighted = true };
+            var backendGinWebFramework = new SkillSqlEntity { Id = Guid.NewGuid(), SkillGroup = "Backend", Name = "Gin Web Framework", Priority = 209, IsHighlighted = true };
+            var backendPython3 = new SkillSqlEntity { Id = Guid.NewGuid(), SkillGroup = "Backend", Name = "Python3", Priority = 210, IsHighlighted = true };
+            var backendFlaskWebFramework = new SkillSqlEntity { Id = Guid.NewGuid(), SkillGroup = "Backend", Name = "Flask Web Framework", Priority = 211, IsHighlighted = true };
+            var backendWcf = new SkillSqlEntity { Id = Guid.NewGuid(), SkillGroup = "Backend", Name = "WCF", Priority = 212, IsHighlighted = false };
+            var backendEf = new SkillSqlEntity { Id = Guid.NewGuid(), SkillGroup = "Backend", Name = "Entity Framework", Priority = 213, IsHighlighted = false };
+            var backendEfCore = new SkillSqlEntity { Id = Guid.NewGuid(), SkillGroup = "Backend", Name = "Entity Framework Core", Priority = 214, IsHighlighted = false };
+            var backendXUnit = new SkillSqlEntity { Id = Guid.NewGuid(), SkillGroup = "Backend", Name = "xUnit", Priority = 215, IsHighlighted = false };
+            var backendNUnit = new SkillSqlEntity { Id = Guid.NewGuid(), SkillGroup = "Backend", Name = "NUnit", Priority = 216, IsHighlighted = false };
+            var backendMsTest = new SkillSqlEntity { Id = Guid.NewGuid(), SkillGroup = "Backend", Name = "MSTest", Priority = 217, IsHighlighted = false };
 
             var frontendAngular8Plus = new SkillSqlEntity { Id = Guid.NewGuid(), SkillGroup = "Frontend", Name = "Angular 8+", Priority = 301, IsHighlighted = true };
             var frontendVueJs = new SkillSqlEntity { Id = Guid.NewGuid(), SkillGroup = "Frontend", Name = "Vue.js", Priority = 302, IsHighlighted = true };
@@ -230,8 +230,7 @@ namespace ResumeApp.DataAccess.Sql.Context.InitialData
                 backendDotNetCore,
                 backendAspNetCoreWebApi,
                 backendAspNetWebApi,
-                backendJavaScript,
-                backendTypeScript,
+                backendNodejs,
                 backendExpressWebFramework,
                 backendGoLang,
                 backendGinWebFramework,
@@ -263,6 +262,7 @@ namespace ResumeApp.DataAccess.Sql.Context.InitialData
                 toolsDocker,
                 toolsKubernetes,
                 toolsAzureDevOps,
+                toolsAwsDevOps,
                 toolsGithubActions,
                 toolsJenkins,
                 toolsTeamCity,
@@ -278,10 +278,10 @@ namespace ResumeApp.DataAccess.Sql.Context.InitialData
                 Company = "EPAM Systems",
                 Location = "San Jose, CA, USA",
                 TaskPerformed = new StringBuilder()
-                        .AppendLine("Developed cloud-native Execution Compliance and Trade Surveillance System.")
-                        .AppendLine("Designed and implemented a web dashboard for monitoring and analyzing using Vue.js.")
-                        .AppendLine("Developed backend services following a RESTful approach using.NET Core.")
-                        .AppendLine("Implemented event-driven workflow of loading and parsing large data files with Amazon SQS and AWS Lambdas written in Python.")
+                        .AppendLine("Created Execution Compliance and Trade Surveillance System for analysis of trading activities to ensure regulatory compliance.")
+                        .AppendLine("Engineered a Vue.js-based web dashboard for monitoring, analyzing, and visualizing data.")
+                        .AppendLine("Designed and developed high-performance .NET Core backend services, resulting in a scalable and maintainable architecture.")
+                        .AppendLine("Implemented an event-driven workflow that utilized Amazon SQS and AWS Lambdas, written in Python, to efficiently load and parse large data files, reducing processing times and increasing overall system throughput.")
                         .ToString(),
                 StartDate = new DateOnly(2021, 10, 1)
             };
@@ -293,9 +293,10 @@ namespace ResumeApp.DataAccess.Sql.Context.InitialData
                 Location = "Wroclaw, Poland",
                 TaskPerformed = new StringBuilder()
                         .AppendLine("Designed and developed a cloud-native microservice-based system for managing insurance claims, underwriting, and reporting.")
-                        .AppendLine("Developed a web self-service portal using Angular, and RESTful Web APIs using .NET Core.")
-                        .AppendLine("Implemented performance-critical internal services using GoLang with Gin web framework.")
-                        .AppendLine("Achieved and maintained 80% code coverage by unit and contract tests, and established automated quality gates in CI/CD.")
+                        .AppendLine("Created an intuitive self-service portal using Angular, improving customer satisfaction while reducing customer support inquiries.")
+                        .AppendLine("Developed highly scalable and reliable RESTful microservices in .NET Core, resulting in improved efficiency and cost savings.")
+                        .AppendLine("Implemented performance-critical internal services using GoLang, resulting in faster and more accurate claims processing.")
+                        .AppendLine("Ensured high software quality with 80% code coverage and automated quality gates in CI/CD, reducing maintenance costs.")
                         .ToString(),
                 StartDate = new DateOnly(2019, 4, 1),
                 EndDate = new DateOnly(2021, 10, 1)
@@ -307,10 +308,10 @@ namespace ResumeApp.DataAccess.Sql.Context.InitialData
                 Company = "Credit Suisse",
                 Location = "Wroclaw, Poland",
                 TaskPerformed = new StringBuilder()
-                        .AppendLine("Developed a risk management desktop application for the Credit Suisse front office using WPF and C#.")
-                        .AppendLine("Converted an existing backend monolithic architecture into microservices and implemented new RESTful Web APIs using .NET Core.")
-                        .AppendLine("Maintained and improved the performance of the in-house distributed cache written in C#.")
-                        .AppendLine("Supported worldwide users as a part of the SL3 team.")
+                        .AppendLine("Created a high-performing desktop application for Credit Suisse's front office to manage market risks in real time using WPF and C#.")
+                        .AppendLine("Restructured an existing monolithic architecture into microservices, providing more flexibility and scalability while improving performance.")
+                        .AppendLine("Implemented automated testing, reducing the likelihood of bugs and errors and increasing the overall reliability of the system.")
+                        .AppendLine("Optimized the performance of the in-house distributed cache, leading to faster processing times and greater efficiency in C#.")
                         .ToString(),
                 StartDate = new DateOnly(2015, 8, 1),
                 EndDate = new DateOnly(2019, 3, 1)
@@ -322,9 +323,9 @@ namespace ResumeApp.DataAccess.Sql.Context.InitialData
                 Company = "Yandex",
                 Location = "Moscow, Russia",
                 TaskPerformed = new StringBuilder()
-                        .AppendLine("Developed a payment system that allows employees to pay for lunch at nearby cafes and restaurants with the office access card (RFID tag)")
-                        .AppendLine("Developed a personal page for users, a desktop application for administrators, and payment service middleware.")
-                        .AppendLine("Participated in the software integration process.")
+                        .AppendLine("Developed a payment system that streamlined the process of paying for lunch at nearby cafes and restaurants using the office access card (RFID tag), resulting in improved efficiency and convenience for employees.")
+                        .AppendLine("Designed and developed a user-friendly personal page for employees, enabling them to view their transaction history and account balance.")
+                        .AppendLine("Created a desktop application for administrators that simplified the process of managing employee accounts and generating reports.")
                         .ToString(),
                 StartDate = new DateOnly(2014, 8, 1),
                 EndDate = new DateOnly(2015, 8, 1)
@@ -336,9 +337,9 @@ namespace ResumeApp.DataAccess.Sql.Context.InitialData
                 Company = "Gollard",
                 Location = "Moscow, Russia",
                 TaskPerformed = new StringBuilder()
-                        .AppendLine("Developed a desktop GIS application for an energy distribution company that deals with electrical grids, stations, and facilities.")
-                        .AppendLine("Implemented real-time tracking of service transport location and engine state.")
-                        .AppendLine("Developed an alerting system that uses biometric data from cameras and events from sensors.")
+                        .AppendLine("Created a GIS desktop app for energy distribution company handling grids, stations, and facilities, improving overall operational efficiency.")
+                        .AppendLine("Enabled real-time tracking of service transport location and engine state, enhancing the company's logistical capabilities.")
+                        .AppendLine("Implemented an alerting system that utilizes biometric camera data and sensor events, increasing the company's security posture.")
                         .ToString(),
                 StartDate = new DateOnly(2013, 6, 1),
                 EndDate = new DateOnly(2014, 7, 1)
@@ -350,9 +351,9 @@ namespace ResumeApp.DataAccess.Sql.Context.InitialData
                 Company = "SGC",
                 Location = "Moscow, Russia",
                 TaskPerformed = new StringBuilder()
-                        .AppendLine("Developed software for composing estimates to determine the cost of construction.")
-                        .AppendLine("Added functionality for converting files from other well-known systems for composing estimates available on the market.")
-                        .AppendLine("Implemented logic that allows exporting the final result to Excel, Word, etc.")
+                        .AppendLine("Developed software that composes accurate construction cost estimates, which resulted in a 25% reduction in estimate preparation time.")
+                        .AppendLine("Improved software flexibility and saved valuable time by adding the ability to convert estimates from other well-known systems.")
+                        .AppendLine("Streamlined report creation process by enabling final estimate result export to various formats, providing customization options for users.")
                         .ToString(),
                 StartDate = new DateOnly(2012, 7, 1),
                 EndDate = new DateOnly(2013, 6, 1)
@@ -364,9 +365,9 @@ namespace ResumeApp.DataAccess.Sql.Context.InitialData
                 Company = "Research and Production Center 'Start'",
                 Location = "Penza, Russia",
                 TaskPerformed = new StringBuilder()
-                        .AppendLine("Developed in-house CAD for designing microboards.")
-                        .AppendLine("Implemented functionality for printing photomasks of microboards using special equipment.")
-                        .AppendLine("Added the possibility to import AutoCAD files.")
+                        .AppendLine("Developed an in-house CAD tool for designing microboards, including the ability to import AutoCAD files.")
+                        .AppendLine("Implemented a feature that enables the printing of photomasks for microboards using specialized equipment.")
+                        .AppendLine("Optimized the CAD tool for faster and more efficient microboard design, resulting in a 30% reduction in design time.")
                         .ToString(),
                 StartDate = new DateOnly(2010, 8, 1),
                 EndDate = new DateOnly(2012, 6, 1)
@@ -440,6 +441,7 @@ namespace ResumeApp.DataAccess.Sql.Context.InitialData
                 new SkillExperienceMappingSqlEntity { ExperienceId = yandex.Id, SkillId = backendAspNetWebApi.Id },
                 new SkillExperienceMappingSqlEntity { ExperienceId = yandex.Id, SkillId = backendEf.Id },
                 new SkillExperienceMappingSqlEntity { ExperienceId = yandex.Id, SkillId = backendNUnit.Id },
+                new SkillExperienceMappingSqlEntity { ExperienceId = yandex.Id, SkillId = frontendAspNet.Id },
                 new SkillExperienceMappingSqlEntity { ExperienceId = yandex.Id, SkillId = frontendJavaScript.Id },
                 new SkillExperienceMappingSqlEntity { ExperienceId = yandex.Id, SkillId = frontendHtml.Id },
                 new SkillExperienceMappingSqlEntity { ExperienceId = yandex.Id, SkillId = frontendCss.Id },
