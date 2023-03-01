@@ -1,6 +1,7 @@
 ﻿using ResumeApp.DataAccess.Mongo.Entities;
 using ResumeApp.DataAccess.Sql.Entities;
 using ResumeApp.Models;
+using SharpCompress.Common;
 using System.Runtime.CompilerServices;
 
 [assembly: InternalsVisibleTo("ResumeApp.UnitTests")]
@@ -17,6 +18,8 @@ namespace ResumeApp.BusinessLogic.Mappers
 				Id = entity.Id,
 				Name = entity.Name,				
 				SkillGroup = entity.SkillGroup,
+				Priority = entity.Priority,
+				IsHighlighted = entity.IsHighlighted,
 				ExperienceIds = entity.ExperienceIds
 			};
 		}
@@ -30,7 +33,9 @@ namespace ResumeApp.BusinessLogic.Mappers
 				Id = entity.Id,
 				Name = entity.Name,
 				SkillGroup = entity.SkillGroup,
-				ExperienceIds = entity.SkillExperienceMapping?.Select(m => m.ExperienceId).ToList()
+                Priority = entity.Priority,
+                IsHighlighted = entity.IsHighlighted,
+                ExperienceIds = entity.SkillExperienceMapping?.Select(m => m.ExperienceId).ToList()
             };
 		}
 
@@ -42,7 +47,9 @@ namespace ResumeApp.BusinessLogic.Mappers
 				Id = dto.Id,
 				Name = dto.Name,
 				SkillGroup = dto.SkillGroup,
-				ExperienceIds = dto.ExperienceIds?.ToArray()
+                Priority = dto.Priority,
+                IsHighlighted = dto.IsHighlighted,
+                ExperienceIds = dto.ExperienceIds?.ToArray()
 			};
 		}
 
@@ -59,7 +66,9 @@ namespace ResumeApp.BusinessLogic.Mappers
 				Id = dto.Id,
 				Name = dto.Name,
 				SkillGroup = dto.SkillGroup,
-				SkillExperienceMapping = skillExperienceMappings
+                Priority = dto.Priority,
+                IsHighlighted = dto.IsHighlighted,
+                SkillExperienceMapping = skillExperienceMappings
             };
 		}
 	}
