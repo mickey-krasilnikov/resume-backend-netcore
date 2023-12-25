@@ -1,113 +1,58 @@
-# Resume Web API
-[![Build and Deploy to Azure Web App](https://github.com/mickey-krasilnikov/resume-backend-netcore/actions/workflows/main_app-resumeapp-api.yml/badge.svg)](https://github.com/mickey-krasilnikov/resume-backend-netcore/actions/workflows/main_app-resumeapp-api.yml)
-![Code Coverage](https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/mickey-krasilnikov/8f7365cb925afff5db063ecee4688a55/raw/code-coverage.json)
-[![License: WTFPL](https://img.shields.io/badge/License-WTFPL-brightgreen.svg)](http://www.wtfpl.net/about/)
+﻿# ResumeApp
 
-The Resume App RESTful Web API is a cross-platform web API written in .NET 7 that serves as the backend for a resume application. It enables to manage resume by allowing to create, read, update, and delete the various parts of the resume, including Certifications, Contacts, Education, Experience, and Skills.
+The project was generated using the [Clean.Architecture.Solution.Template](https://github.com/jasontaylordev/ResumeApp) version 8.0.0.
 
-## Endpoints
+## Build
 
-### Health
+Run `dotnet build -tl` to build the solution.
 
-- `GET,HEAD /api/resumeservice/Health`
+## Run
 
-### Certification
+To run the web application:
 
-- `OPTIONS,GET,POST /api/resumeservice/Certification`
-- `GET,PUT,DELETE /api/resumeservice/Certification/{id}`
-
-### Contacts
-
-- `OPTIONS,GET,POST /api/resumeservice/Contacts`
-- `GET,PUT,DELETE /api/resumeservice/Contacts/{id}`
-
-### Education
-
-- `OPTIONS,GET,POST /api/resumeservice/Education`
-- `GET,PUT,DELETE /api/resumeservice/Education/{id}`
-
-### Experience
-
-- `OPTIONS,GET,POST /api/resumeservice/Experience`
-- `GET,PUT,DELETE /api/resumeservice/Experience/{id}`
-
-### Skills
-
-- `OPTIONS,GET,POST /api/resumeservice/Skills`
-- `GET,PUT,DELETE /api/resumeservice/Skills/{id}`
-
-## Configuration
-
-To run the API locally, you can use one of two launch profiles:
-
-1. Cross-platform Kestrel server - This runs on HTTP on port 55360 and HTTPS on an 55361 port.
-2. IIS Express - This runs on HTTP on port 46397 and HTTPS on port 44369.
-
-To run the API locally, follow these steps:
-
-1. Open the solution file in Visual Studio.
-2. Configure DbConnectionOptions in WebApi project in `appsettings.json`. 
-Default value: `Sql`; Possible values: `Sql`, `Mongo`
-Example: 
+```bash
+cd .\src\Web\
+dotnet watch run
 ```
-"DbConnectionOptions": {
-  "UseDbType": "Sql"
-}
+
+Navigate to https://localhost:5001. The application will automatically reload if you change any of the source files.
+
+## Code Styles & Formatting
+
+The template includes [EditorConfig](https://editorconfig.org/) support to help maintain consistent coding styles for multiple developers working on the same project across various editors and IDEs. The **.editorconfig** file defines the coding styles applicable to this solution.
+
+## Code Scaffolding
+
+The template includes support to scaffold new commands and queries.
+
+Start in the `.\src\Application\` folder.
+
+Create a new command:
+
 ```
-3. Configure connection string depends on selected `DbConnectionOptions.UseDbType` DbType from previous step. The best way to do this is overwrite it in user secrets, to avoid commiting connection string to git repo. Or configure it in environment specific `appsettings.json` (e.g.  `appsettings.Development.json`)
+dotnet new ca-usecase --name CreateTodoList --feature-name TodoLists --usecase-type command --return-type int
 ```
-"ConnectionStrings": {
-  "Mongo": "OVERWRITTEN_IN_USER_SECRETS",
-  "Sql": "OVERWRITTEN_IN_USER_SECRETS"
-},
+
+Create a new query:
+
 ```
-4. Select WebApi project as Startup project. Choose the launch profile you want to use by clicking the "Launch" dropdown in the toolbar and selecting the appropriate profile.
-5. Click the "Play" button in the toolbar to start the server.
-
-## Documentation
-
-The API includes Swagger UI and OpenAPI v3 documentation. You can access the Swagger page using the path `/swagger`, and the OpenAPI v3 specification using the path `/swagger/v1/swagger.json`. The OpenAPI specification is generated automatically on every build in debug mode as a post-build event using the `dotnet swagger tofile` command.
-
-## API Client Generation
-
-The API client is automatically generated on every build using the NSwagCSharp code generator based on the OpenAPI specification. To generate the client code manually, you can use the following command:
+dotnet new ca-usecase -n GetTodos -fn TodoLists -ut query -rt TodosVm
 ```
-nswag openapi2csclient /input:ResumeAppOpenApiSpecification.json /classname:ResumeApiClient /output:ResumeApiClient.cs
+
+If you encounter the error *"No templates or subcommands found matching: 'ca-usecase'."*, install the template and try again:
+
+```bash
+dotnet new install Clean.Architecture.Solution.Template::8.0.0
 ```
-This command generates the client code from the OpenAPI specification file `ResumeAppOpenApiSpecification.json`, creates a class called `ResumeApiClient`, and outputs the code to a file called `ResumeApiClient.cs`.
 
-## Testing
+## Test
 
-The code is covered by unit and contract tests using the xUnit framework. To run tests and generate code coverage information, use the following command:
+The solution contains unit, integration, and functional tests.
+
+To run the tests:
+```bash
+dotnet test
 ```
-dotnet test /p:CollectCoverage=true
-```
-This command runs the unit and contract tests and generates code coverage information. You can specify additional parameters, such as the output format and location, by adding them to the command.
 
-You can specify additional parameters by adding them to the `dotnet test` command. Some common parameters include:
-
-- `/p:Exclude=[filter]`: Excludes tests that match the specified filter.
-- `/p:Include=[filter]`: Includes only tests that match the specified filter.
-- `/p:CoverletOutputFormat=[format]`: Specifies the output format for code coverage information.
-- `/p:CoverletOutput=[path]`: Specifies the path to the directory where the code coverage results are stored.
-- `/p:CoverletOutputFormat=opencover`: Specifies the output format as OpenCover, which can be used with various third-party tools to generate coverage reports.
-
-For more information about `dotnet test` and its parameters, see the [official documentation](https://docs.microsoft.com/en-us/dotnet/core/tools/dotnet-test).
-
-## Technologies Used
-
-- .Net 7
-- EntityFrameworkCore
-- xUnit
-- Moq (for Mock objects in Unit and Component tests)
-- coverlet (for generating code coverage report)
-- Swashbuckle.AspNetCore (for Swagger, SwaggerUI and OpenAPI v3 spec generation)
-- NSwagCSharp (for generating API Client)
-- OwaspHeaders.Core (for security headers)
-
-## License
-
-This project is licensed under the [WTFPL License](http://www.wtfpl.net/about/).
-
-
-
+## Help
+To learn more about the template go to the [project website](https://github.com/JasonTaylorDev/ResumeApp). Here you can find additional guidance, request new features, report a bug, and discuss the template with other users.
