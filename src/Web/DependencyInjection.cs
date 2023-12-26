@@ -35,12 +35,10 @@ public static class DependencyInjection
             configure.Title = "ResumeApp API";
 
             // Add the fluent validations schema processor
-            var fluentValidationSchemaProcessor = 
-                sp.CreateScope().ServiceProvider.GetRequiredService<FluentValidationSchemaProcessor>();
-
-            // BUG: SchemaProcessors is missing in NSwag 14 (https://github.com/RicoSuter/NSwag/issues/4524#issuecomment-1811897079)
-            // configure.SchemaProcessors.Add(fluentValidationSchemaProcessor);
-
+            var fluentValidationSchemaProcessor = sp.CreateScope().ServiceProvider.GetRequiredService<FluentValidationSchemaProcessor>();
+            configure.SchemaSettings.SchemaProcessors.Add(fluentValidationSchemaProcessor);
+            configure.SchemaSettings.UseXmlDocumentation = true;
+            
             // Add JWT
             configure.AddSecurity("JWT", Enumerable.Empty<string>(), new OpenApiSecurityScheme
             {

@@ -312,159 +312,6 @@
         ]
       }
     },
-    "/api/Educations": {
-      "get": {
-        "tags": [
-          "Educations"
-        ],
-        "operationId": "GetEducationsWithPagination",
-        "parameters": [
-          {
-            "name": "PageNumber",
-            "in": "query",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            },
-            "x-position": 1
-          },
-          {
-            "name": "PageSize",
-            "in": "query",
-            "required": true,
-            "schema": {
-              "type": "integer",
-              "format": "int32"
-            },
-            "x-position": 2
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/PaginatedListOfEducationDto"
-                }
-              }
-            }
-          }
-        },
-        "security": [
-          {
-            "JWT": []
-          }
-        ]
-      },
-      "post": {
-        "tags": [
-          "Educations"
-        ],
-        "operationId": "CreateEducation",
-        "requestBody": {
-          "x-name": "command",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/CreateEducationCommand"
-              }
-            }
-          },
-          "required": true,
-          "x-position": 1
-        },
-        "responses": {
-          "200": {
-            "description": "",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "string",
-                  "format": "guid"
-                }
-              }
-            }
-          }
-        },
-        "security": [
-          {
-            "JWT": []
-          }
-        ]
-      }
-    },
-    "/api/Educations/{id}": {
-      "put": {
-        "tags": [
-          "Educations"
-        ],
-        "operationId": "UpdateEducation",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "format": "guid"
-            },
-            "x-position": 1
-          }
-        ],
-        "requestBody": {
-          "x-name": "command",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/UpdateEducationCommand"
-              }
-            }
-          },
-          "required": true,
-          "x-position": 2
-        },
-        "responses": {
-          "200": {
-            "description": ""
-          }
-        },
-        "security": [
-          {
-            "JWT": []
-          }
-        ]
-      },
-      "delete": {
-        "tags": [
-          "Educations"
-        ],
-        "operationId": "DeleteEducation",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "format": "guid"
-            },
-            "x-position": 1
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": ""
-          }
-        },
-        "security": [
-          {
-            "JWT": []
-          }
-        ]
-      }
-    },
     "/api/Experiences": {
       "get": {
         "tags": [
@@ -1263,12 +1110,20 @@
       "CreateCertificateCommand": {
         "type": "object",
         "additionalProperties": false,
+        "required": [
+          "name",
+          "issuer"
+        ],
         "properties": {
           "name": {
-            "type": "string"
+            "type": "string",
+            "maxLength": 200,
+            "minLength": 0
           },
           "issuer": {
-            "type": "string"
+            "type": "string",
+            "maxLength": 200,
+            "minLength": 0
           },
           "verificationUrl": {
             "type": "string",
@@ -1289,16 +1144,24 @@
       "UpdateCertificateCommand": {
         "type": "object",
         "additionalProperties": false,
+        "required": [
+          "name",
+          "issuer"
+        ],
         "properties": {
           "id": {
             "type": "string",
             "format": "guid"
           },
           "name": {
-            "type": "string"
+            "type": "string",
+            "maxLength": 200,
+            "minLength": 0
           },
           "issuer": {
-            "type": "string"
+            "type": "string",
+            "maxLength": 200,
+            "minLength": 0
           },
           "verificationUrl": {
             "type": "string",
@@ -1389,24 +1252,41 @@
       "CreateContactCommand": {
         "type": "object",
         "additionalProperties": false,
+        "required": [
+          "type",
+          "key",
+          "value",
+          "link"
+        ],
         "properties": {
           "type": {
             "$ref": "#/components/schemas/ContactType"
           },
           "key": {
-            "type": "string"
+            "type": "string",
+            "maxLength": 200,
+            "minLength": 0
           },
           "value": {
-            "type": "string"
+            "type": "string",
+            "maxLength": 200,
+            "minLength": 0
           },
           "link": {
-            "type": "string"
+            "type": "string",
+            "maxLength": 200,
+            "minLength": 0
           }
         }
       },
       "UpdateContactCommand": {
         "type": "object",
         "additionalProperties": false,
+        "required": [
+          "key",
+          "value",
+          "link"
+        ],
         "properties": {
           "id": {
             "type": "string",
@@ -1416,138 +1296,19 @@
             "$ref": "#/components/schemas/ContactType"
           },
           "key": {
-            "type": "string"
+            "type": "string",
+            "maxLength": 200,
+            "minLength": 0
           },
           "value": {
-            "type": "string"
+            "type": "string",
+            "maxLength": 200,
+            "minLength": 0
           },
           "link": {
-            "type": "string"
-          }
-        }
-      },
-      "PaginatedListOfEducationDto": {
-        "type": "object",
-        "additionalProperties": false,
-        "properties": {
-          "items": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/EducationDto"
-            }
-          },
-          "pageNumber": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "totalPages": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "totalCount": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "hasPreviousPage": {
-            "type": "boolean"
-          },
-          "hasNextPage": {
-            "type": "boolean"
-          }
-        }
-      },
-      "EducationDto": {
-        "type": "object",
-        "additionalProperties": false,
-        "properties": {
-          "id": {
             "type": "string",
-            "format": "guid"
-          },
-          "name": {
-            "type": "string"
-          },
-          "degree": {
-            "type": "string"
-          },
-          "fieldOfStudy": {
-            "type": "string"
-          },
-          "url": {
-            "type": "string",
-            "format": "uri",
-            "nullable": true
-          },
-          "startDate": {
-            "type": "string",
-            "format": "date"
-          },
-          "endDate": {
-            "type": "string",
-            "format": "date",
-            "nullable": true
-          }
-        }
-      },
-      "CreateEducationCommand": {
-        "type": "object",
-        "additionalProperties": false,
-        "properties": {
-          "name": {
-            "type": "string"
-          },
-          "degree": {
-            "type": "string"
-          },
-          "fieldOfStudy": {
-            "type": "string"
-          },
-          "url": {
-            "type": "string",
-            "format": "uri",
-            "nullable": true
-          },
-          "startDate": {
-            "type": "string",
-            "format": "date"
-          },
-          "endDate": {
-            "type": "string",
-            "format": "date",
-            "nullable": true
-          }
-        }
-      },
-      "UpdateEducationCommand": {
-        "type": "object",
-        "additionalProperties": false,
-        "properties": {
-          "id": {
-            "type": "string",
-            "format": "guid"
-          },
-          "name": {
-            "type": "string"
-          },
-          "degree": {
-            "type": "string"
-          },
-          "fieldOfStudy": {
-            "type": "string"
-          },
-          "url": {
-            "type": "string",
-            "format": "uri",
-            "nullable": true
-          },
-          "startDate": {
-            "type": "string",
-            "format": "date"
-          },
-          "endDate": {
-            "type": "string",
-            "format": "date",
-            "nullable": true
+            "maxLength": 200,
+            "minLength": 0
           }
         }
       },
@@ -1634,15 +1395,27 @@
       "CreateExperienceCommand": {
         "type": "object",
         "additionalProperties": false,
+        "required": [
+          "title",
+          "company",
+          "location",
+          "taskPerformed"
+        ],
         "properties": {
           "title": {
-            "type": "string"
+            "type": "string",
+            "maxLength": 200,
+            "minLength": 0
           },
           "company": {
-            "type": "string"
+            "type": "string",
+            "maxLength": 200,
+            "minLength": 0
           },
           "location": {
-            "type": "string"
+            "type": "string",
+            "maxLength": 200,
+            "minLength": 0
           },
           "taskPerformed": {
             "type": "string"
@@ -1661,19 +1434,31 @@
       "UpdateExperienceCommand": {
         "type": "object",
         "additionalProperties": false,
+        "required": [
+          "title",
+          "company",
+          "location",
+          "taskPerformed"
+        ],
         "properties": {
           "id": {
             "type": "string",
             "format": "guid"
           },
           "title": {
-            "type": "string"
+            "type": "string",
+            "maxLength": 200,
+            "minLength": 0
           },
           "company": {
-            "type": "string"
+            "type": "string",
+            "maxLength": 200,
+            "minLength": 0
           },
           "location": {
-            "type": "string"
+            "type": "string",
+            "maxLength": 200,
+            "minLength": 0
           },
           "taskPerformed": {
             "type": "string"
@@ -1759,12 +1544,20 @@
       "CreateSkillCommand": {
         "type": "object",
         "additionalProperties": false,
+        "required": [
+          "name",
+          "skillGroup"
+        ],
         "properties": {
           "name": {
-            "type": "string"
+            "type": "string",
+            "maxLength": 200,
+            "minLength": 0
           },
           "skillGroup": {
-            "type": "string"
+            "type": "string",
+            "maxLength": 200,
+            "minLength": 0
           },
           "priority": {
             "type": "integer",
@@ -1778,16 +1571,24 @@
       "UpdateSkillCommand": {
         "type": "object",
         "additionalProperties": false,
+        "required": [
+          "name",
+          "skillGroup"
+        ],
         "properties": {
           "id": {
             "type": "string",
             "format": "guid"
           },
           "name": {
-            "type": "string"
+            "type": "string",
+            "maxLength": 200,
+            "minLength": 0
           },
           "skillGroup": {
-            "type": "string"
+            "type": "string",
+            "maxLength": 200,
+            "minLength": 0
           },
           "priority": {
             "type": "integer",

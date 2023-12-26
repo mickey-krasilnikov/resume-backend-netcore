@@ -81,7 +81,6 @@ public class ApplicationDbContextInitializer(
         // Seed, if necessary
         if (!context.Certificates.Any() &&
             !context.Contacts.Any() &&
-            !context.Educations.Any() &&
             !context.Skills.Any() &&
             !context.Experiences.Any())
         {
@@ -142,33 +141,12 @@ public class ApplicationDbContextInitializer(
                 });
 
             context.Contacts.AddRange(
-                new Contact { Id = Guid.NewGuid(), Key = "phone", Value = "+14084803600", Link = "tel:+14084803600" },
-                new Contact { Id = Guid.NewGuid(), Key = "telegram", Value = "Telegram", Link = "https://t.me/+14084803600" },
-                new Contact { Id = Guid.NewGuid(), Key = "whatsapp", Value = "Whatsapp", Link = "https://wa.me/+14084803600" },
-                new Contact { Id = Guid.NewGuid(), Key = "email", Value = "Mickey.Krasilnikov@gmail.com", Link = "mailto:your_email" },
-                new Contact { Id = Guid.NewGuid(), Key = "location", Value = "Irvine, CA, 94085", Link = "https://www.google.com/maps/place/Sunyvale%20CA%2094085/" },
+                new Contact { Id = Guid.NewGuid(), Key = "location", Value = "Irvine, CA, 92614", Link = "https://www.google.com/maps/place/Irvine%20CA%2092614/" },
                 new Contact { Id = Guid.NewGuid(), Key = "github", Value = "@mickey-krasilnikov", Link = "https://github.com/mickey-krasilnikov" },
                 new Contact { Id = Guid.NewGuid(), Key = "linkedIn", Value = "@mickeykrasilnikov", Link = "https://www.linkedin.com/in/mickeykrasilnikov" },
-                new Contact
-                {
-                    Id = Guid.NewGuid(), Key = "accredible", Value = "@mikhailkrasilnikov328966", Link = "https://www.credential.net/profile/mikhailkrasilnikov328966/wallet"
-                },
                 new Contact { Id = Guid.NewGuid(), Key = "credly", Value = "@mickey-krasilnikov", Link = "https://www.credly.com/users/mickey-krasilnikov/badges" },
                 new Contact { Id = Guid.NewGuid(), Key = "instagram", Value = "@mickey.krasilnikov", Link = "https://www.instagram.com/mickey.krasilnikov" },
-                new Contact { Id = Guid.NewGuid(), Key = "facebook", Value = "@mickey.krasilnikov", Link = "https://www.facebook.com/mickey.krasilnikov" },
-                new Contact { Id = Guid.NewGuid(), Key = "twitter", Value = "@mickey_kras", Link = "https://twitter.com/mickey_kras" });
-
-            context.Educations.AddRange(
-                new Education
-                {
-                    Id = Guid.NewGuid(),
-                    Name = "Penza State University",
-                    Degree = "Bachelor's degree",
-                    FieldOfStudy = "Design and technology of radio electronic devices",
-                    StartDate = new DateOnly(2006, 9, 1),
-                    EndDate = new DateOnly(2013, 06, 19),
-                    Url = new Uri("https://international.pnzgu.ru/")
-                });
+                new Contact { Id = Guid.NewGuid(), Key = "facebook", Value = "@mickey.krasilnikov", Link = "https://www.facebook.com/mickey.krasilnikov" });
 
             var cloudsAzure = new Skill
             {
@@ -794,7 +772,7 @@ public class ApplicationDbContextInitializer(
             };
 
             context.Experiences.AddRange(epamUs, epamPoland, creditSuisse, yandex, gollard, sgc, poStart);
-            
+
             await context.SaveChangesAsync();
         }
     }

@@ -3,7 +3,10 @@
 
 @Email=administrator@localhost
 @Password=Administrator1!
-@BearerToken=<YourAccessToken>
+@BearerToken=CfDJ8Os3iwOD65pHnmoi88wae-W4W2w8F0tPQrsoHlkqU8SFG3z0kk3DNi3pg0YxpPYJPitN2F7zxTMNx0wMx2K-4e3LemYVmFwNl0SzHPSTO_rTJrD6BiPEtUdhL0VUtdPwGt6yoglQuzj8QUFZUPRNkI13P3r7tIm8M5v3QY6ZMrqY36f9z2R-wGUkUu0aj6okfdR7dWrqpAy9fUxfNreKeliXnZzvEJb49Yt7TPxMQ8JJ7oPkqkgU7mB_FyCprBEtkolPoP-FYjyJwZr2wycDO4jUGC3Cl_AnzJswL4dZ1oi7N3H429I6H7QhUbUeHpxOEH2BVyI4st1WXFg1nmSGxgr5NPve-eJCLqAZvFz30qRWTnOOCYUKcuDP4qkELyLNJv8Ne-5dpZQmmhE1gFF_-rvjnZA-tVxq-kYz8vn-f9bJ5ODsTynwvLUlv2hxwDnY4iXatRSAnZbasZBSfn6KYDylJ6lIwKkJhiXGXvew7Oh70OHvLzqfRx6FXoIMNudcxlsPSveSc2Cn9Es46zPkeEqGUMA2bAJCv8mA-Q8z7OYUMwSDOVngVFB2AxSWFJ1wpognLXw-ercgikhwnpgACeyMGUOJofKeQf4oTR_uYDEwb9urVaBM_4eNfnr4G6J_tnVMCX5XGnFoMTjjRqfFsH27wngLPa6Zm4FcqUNfRSV1b2irsR6-c5Qzw4fVVEKMAb6CnVuPNzTKPYboyl5kWepqsJdB0gr-bz2QOBS2s38xXiux7fElTGL0SQAGj25Vpsv9bSWZLRZOdbhPUF1QrvvwpUmwUwPrNkqZ15l85dDk6o24yZDHHMm10pXvaV-Lsg
+
+@PageNumber = 1
+@PageSize = 100
 
 # POST Users Register
 POST {{Web_HostAddress}}/api/Users/Register
@@ -33,7 +36,234 @@ Authorization: Bearer {{BearerToken}}
 Content-Type: application/json
 
 {
-  "refreshToken": "<YourRefreshToken>"
+"refreshToken": "<YourRefreshToken>"
 }
 
 ###
+
+# GET Certificates
+GET {{Web_HostAddress}}/api/Certificates?PageNumber={{PageNumber}}&PageSize={{PageSize}}
+Authorization: Bearer {{BearerToken}}
+
+###
+
+# POST Create Certificate
+POST {{Web_HostAddress}}/api/Certificates
+Authorization: Bearer {{BearerToken}}
+Content-Type: application/json
+
+{
+"name": "LucasFlicks Cloud Architect",
+"issuer": "LucasFlicks",
+"verificationUrl": "https://theuselessweb.site/nooooooooooooooo/",
+"issueDate": "1977-05-25",
+"expirationDate": "2005-05-19"
+}
+
+###
+
+# PUT Update Certificate
+@certificateId = <YourCertificateId>
+PUT {{Web_HostAddress}}/api/Certificates/{{certificateId}}
+Authorization: Bearer {{BearerToken}}
+Content-Type: application/json
+
+{
+"id": "2cc4946a-efe1-4edd-995a-b97be52ed193",
+"name": "LucasFlicks & Diznee Cloud Architect",
+"issuer": "LucasFlicks",
+"verificationUrl": "https://theuselessweb.site/nooooooooooooooo/",
+"issueDate": "1977-05-25",
+"expirationDate": "2019-12-20"
+}
+
+###
+
+# DELETE Certificate
+DELETE {{Web_HostAddress}}/api/Certificates/{{certificateId}}
+Authorization: Bearer {{BearerToken}}
+
+###
+
+# GET Contacts
+GET {{Web_HostAddress}}/api/Contacts?PageNumber={{PageNumber}}&PageSize={{PageSize}}
+Authorization: Bearer {{BearerToken}}
+
+###
+
+# POST Create Contact
+POST {{Web_HostAddress}}/api/Contacts
+Authorization: Bearer {{BearerToken}}
+Content-Type: application/json
+
+{
+"type": "integer",
+"key": "string",
+"value": "string",
+"link": "string"
+}
+
+###
+
+# PUT Update Contact
+PUT {{Web_HostAddress}}/api/Contacts/{id}
+Authorization: Bearer {{BearerToken}}
+Content-Type: application/json
+
+{
+"id": "guid",
+"type": "integer",
+"key": "string",
+"value": "string",
+"link": "string"
+}
+
+###
+
+# DELETE Contact
+DELETE {{Web_HostAddress}}/api/Contacts/{id}
+Authorization: Bearer {{BearerToken}}
+
+###
+
+# GET Educations
+GET {{Web_HostAddress}}/api/Educations?PageNumber={{PageNumber}}&PageSize={{PageSize}}
+Authorization: Bearer {{BearerToken}}
+
+###
+
+# POST Create Education
+POST {{Web_HostAddress}}/api/Educations
+Authorization: Bearer {{BearerToken}}
+Content-Type: application/json
+
+{
+"name": "string",
+"degree": "string",
+"fieldOfStudy": "string",
+"url": "string",
+"startDate": "string",
+"endDate": "string"
+}
+
+###
+
+# PUT Update Education
+PUT {{Web_HostAddress}}/api/Educations/{id}
+Authorization: Bearer {{BearerToken}}
+Content-Type: application/json
+
+{
+"id": "guid",
+"name": "string",
+"degree": "string",
+"fieldOfStudy": "string",
+"url": "string",
+"startDate": "string",
+"endDate": "string"
+}
+
+###
+
+# DELETE Education
+DELETE {{Web_HostAddress}}/api/Educations/{id}
+Authorization: Bearer {{BearerToken}}
+
+###
+
+# GET Experiences
+GET {{Web_HostAddress}}/api/Experiences?PageNumber={{PageNumber}}&PageSize={{PageSize}}
+Authorization: Bearer {{BearerToken}}
+
+###
+
+# POST Create Experience
+POST {{Web_HostAddress}}/api/Experiences
+Authorization: Bearer {{BearerToken}}
+Content-Type: application/json
+
+{
+"title": "string",
+"company": "string",
+"location": "string",
+"taskPerformed": "string",
+"startDate": "string",
+"endDate": "string"
+}
+
+###
+
+# PUT Update Experience
+PUT {{Web_HostAddress}}/api/Experiences/{id}
+Authorization: Bearer {{BearerToken}}
+Content-Type: application/json
+
+{
+"id": "guid",
+"title": "string",
+"company": "string",
+"location": "string",
+"taskPerformed": "string",
+"startDate": "string",
+"endDate": "string"
+}
+
+###
+
+# DELETE Experience
+DELETE {{Web_HostAddress}}/api/Experiences/{id}
+Authorization: Bearer {{BearerToken}}
+
+###
+
+# PUT Add Skill to Experience
+PUT {{Web_HostAddress}}/api/Experiences/{id}/AddSkill
+Authorization: Bearer {{BearerToken}}
+Content-Type: application/json
+
+{
+"skillId": "guid",
+"experienceId": "guid"
+}
+
+###
+
+# GET Skills
+GET {{Web_HostAddress}}/api/Skills?PageNumber={{PageNumber}}&PageSize={{PageSize}}
+Authorization: Bearer {{BearerToken}}
+
+###
+
+# POST Create Skill
+POST {{Web_HostAddress}}/api/Skills
+Authorization: Bearer {{BearerToken}}
+Content-Type: application/json
+
+{
+"name": "string",
+"skillGroup": "string",
+"priority": "integer",
+"isHighlighted": "boolean"
+}
+
+###
+
+# PUT Update Skill
+PUT {{Web_HostAddress}}/api/Skills/{id}
+Authorization: Bearer {{BearerToken}}
+Content-Type: application/json
+
+{
+"id": "guid",
+"name": "string",
+"skillGroup": "string",
+"priority": "integer",
+"isHighlighted": "boolean"
+}
+
+###
+
+# DELETE Skill
+DELETE {{Web_HostAddress}}/api/Skills/{id}
+Authorization: Bearer {{BearerToken}}
+
