@@ -52,6 +52,11 @@ public partial class Testing
     {
         return await RunAsUserAsync("administrator@local", "Administrator1234!", [Roles.Administrator]);
     }
+    
+    public static async Task<string> RunAsAnonymousUserAsync()
+    {
+        return await Task.FromResult("anonymous@local");
+    }
 
     public static async Task<string> RunAsUserAsync(string userName, string password, string[] roles)
     {

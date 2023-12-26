@@ -1,8 +1,10 @@
 ﻿using ResumeApp.Application.Common.Interfaces;
+using ResumeApp.Application.Common.Security;
 using ResumeApp.Domain.Entities;
 
 namespace ResumeApp.Application.Certificates.Commands.CreateCertificate;
 
+[Authorize]
 public record CreateCertificateCommand(
     string Name,
     string Issuer,

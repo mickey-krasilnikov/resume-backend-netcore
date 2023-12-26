@@ -1,7 +1,9 @@
 ﻿using ResumeApp.Application.Common.Interfaces;
+using ResumeApp.Application.Common.Security;
 
 namespace ResumeApp.Application.Certificates.Commands.DeleteCertificate;
 
+[Authorize]
 public record DeleteCertificateCommand(Guid Id) : IRequest;
 
 public class DeleteCertificateCommandHandler(IApplicationDbContext context) : IRequestHandler<DeleteCertificateCommand>
