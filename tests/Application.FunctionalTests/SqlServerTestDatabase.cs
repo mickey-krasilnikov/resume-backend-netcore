@@ -9,7 +9,7 @@ namespace ResumeApp.Application.FunctionalTests;
 
 public class SqlServerTestDatabase : ITestDatabase
 {
-    private readonly string _connectionString = null!;
+    private readonly string _connectionString;
     private SqlConnection _connection = null!;
     private Respawner _respawner = null!;
 
@@ -21,23 +21,18 @@ public class SqlServerTestDatabase : ITestDatabase
             .Build();
 
         var connectionString = configuration.GetConnectionString("DefaultConnection");
-
         Guard.Against.Null(connectionString);
-
         _connectionString = connectionString;
     }
 
     public async Task InitialiseAsync()
     {
         _connection = new SqlConnection(_connectionString);
-
-        var options = new DbContextOptionsBuilder<ApplicationDbContext>()
-            .UseSqlServer(_connectionString)
-            .Options;
-
+        
+        var options = new DbContextOptionsBuilder<ApplicationDbContext>().UseSqlServer(_connectionString).Options;
         var context = new ApplicationDbContext(options);
-
-        context.Database.Migrate();
+        
+        await context.Database.MigrateAsync();
 
         _respawner = await Respawner.CreateAsync(_connectionString, new RespawnerOptions
         {

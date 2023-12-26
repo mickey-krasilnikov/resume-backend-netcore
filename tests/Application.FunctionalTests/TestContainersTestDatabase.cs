@@ -7,7 +7,7 @@ using Testcontainers.MsSql;
 
 namespace ResumeApp.Application.FunctionalTests;
 
-public class TestcontainersTestDatabase : ITestDatabase
+public class TestContainersTestDatabase : ITestDatabase
 {
     private readonly MsSqlContainer _container = new MsSqlBuilder()
         .WithAutoRemove(true)

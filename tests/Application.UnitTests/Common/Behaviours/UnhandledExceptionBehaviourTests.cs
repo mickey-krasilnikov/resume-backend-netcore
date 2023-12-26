@@ -4,6 +4,7 @@ using Moq;
 using NUnit.Framework;
 using ResumeApp.Application.Common.Behaviours;
 using ResumeApp.Application.Contacts.Commands.CreateContact;
+using ResumeApp.Application.Skills.Commands.CreateSkill;
 using ResumeApp.Domain.Enums;
 
 namespace ResumeApp.Application.UnitTests.Common.Behaviours;
@@ -11,20 +12,20 @@ namespace ResumeApp.Application.UnitTests.Common.Behaviours;
 [TestFixture]
 public class UnhandledExceptionBehaviourTests
 {
-    private Mock<ILogger<CreateContactCommand>> _logger = null!;
-    private UnhandledExceptionBehaviour<CreateContactCommand, Guid> _unhandledExceptionBehaviour = null!;
+    private Mock<ILogger<CreateSkillCommand>> _logger = null!;
+    private UnhandledExceptionBehaviour<CreateSkillCommand, Guid> _unhandledExceptionBehaviour = null!;
 
     [SetUp]
     public void SetUp()
     {
-        _logger = new Mock<ILogger<CreateContactCommand>>();
-        _unhandledExceptionBehaviour = new UnhandledExceptionBehaviour<CreateContactCommand, Guid>(_logger.Object);
+        _logger = new Mock<ILogger<CreateSkillCommand>>();
+        _unhandledExceptionBehaviour = new UnhandledExceptionBehaviour<CreateSkillCommand, Guid>(_logger.Object);
     }
 
     [Test]
     public void ShouldNotLogErrorForSuccessfulRequest()
     {
-        var request = new CreateContactCommand(ContactType.GitHub, "github", "@github-user", "https://theuselessweb.site/nooooooooooooooo/");
+        var request = new CreateSkillCommand("Test Skill", "Test Skill Group", 1, true);
         var next = new RequestHandlerDelegate<Guid>(() => Task.FromResult(new Guid()));
 
         Assert.DoesNotThrowAsync(() => _unhandledExceptionBehaviour.Handle(request, next, new CancellationToken()));
@@ -41,13 +42,13 @@ public class UnhandledExceptionBehaviourTests
     [Test]
     public void ShouldLogErrorAndRethrowExceptionForFailedRequest()
     {
-        var request = new CreateContactCommand(ContactType.GitHub, "github", "@github-user", "https://theuselessweb.site/nooooooooooooooo/");
+        var request = new CreateSkillCommand("Test Skill", "Test Skill Group", 1, true);
         var exception = new Exception("Test exception");
         var next = new RequestHandlerDelegate<Guid>(() => throw exception);
 
         var ex = Assert.ThrowsAsync<Exception>(() => _unhandledExceptionBehaviour.Handle(request, next, new CancellationToken()));
         Assert.That(ex, Is.EqualTo(exception));
-        
+
         _logger.Verify(
             x => x.Log(
                 LogLevel.Error,
