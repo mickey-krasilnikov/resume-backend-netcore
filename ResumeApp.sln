@@ -31,6 +31,30 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Application.FunctionalTests
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infrastructure.IntegrationTests", "tests\Infrastructure.IntegrationTests\Infrastructure.IntegrationTests.csproj", "{01FA6786-921D-4CE8-8C50-4FDA66C9477D}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{599FC152-9185-4C41-913E-2986AAFBBC4B}"
+	ProjectSection(SolutionItems) = preProject
+		.github\workflows\build.yml = .github\workflows\build.yml
+		.github\workflows\cicd.yml = .github\workflows\cicd.yml
+		.github\workflows\deploy.yml = .github\workflows\deploy.yml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "github", "github", "{11D76A76-9EFA-4CCA-8914-081031DF024F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "scripts", "scripts", "{003F220A-995C-4084-9FF2-3E9FF4EEC5CE}"
+	ProjectSection(SolutionItems) = preProject
+		.scripts\setup.ps1 = .scripts\setup.ps1
+		.scripts\environments.json = .scripts\environments.json
+		.scripts\checks.ps1 = .scripts\checks.ps1
+		.scripts\cleanup.ps1 = .scripts\cleanup.ps1
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "azure", "azure", "{2A54065B-3A58-4AA5-B932-26333E65E9F8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "bicep", "bicep", "{1BA1DB5D-BDD5-4C99-B9A8-727AAA7B38AF}"
+	ProjectSection(SolutionItems) = preProject
+		.azure\bicep\main.bicep = .azure\bicep\main.bicep
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -77,6 +101,11 @@ Global
 		{4E4EE20C-F06A-4A1B-851F-C5577796941C} = {6ED356A7-8B47-4613-AD01-C85CF28491BD}
 		{EA6127A5-94C9-4C31-AD11-E6811B92B520} = {664D406C-2F83-48F0-BFC3-408D5CB53C65}
 		{01FA6786-921D-4CE8-8C50-4FDA66C9477D} = {664D406C-2F83-48F0-BFC3-408D5CB53C65}
+		{11D76A76-9EFA-4CCA-8914-081031DF024F} = {E2DA20AA-28D1-455C-BF50-C49A8F831633}
+		{599FC152-9185-4C41-913E-2986AAFBBC4B} = {11D76A76-9EFA-4CCA-8914-081031DF024F}
+		{003F220A-995C-4084-9FF2-3E9FF4EEC5CE} = {E2DA20AA-28D1-455C-BF50-C49A8F831633}
+		{2A54065B-3A58-4AA5-B932-26333E65E9F8} = {E2DA20AA-28D1-455C-BF50-C49A8F831633}
+		{1BA1DB5D-BDD5-4C99-B9A8-727AAA7B38AF} = {2A54065B-3A58-4AA5-B932-26333E65E9F8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {3CB609D9-5D54-4C11-A371-DAAC8B74E430}
