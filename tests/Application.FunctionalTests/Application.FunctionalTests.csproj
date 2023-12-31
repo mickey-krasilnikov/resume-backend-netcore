@@ -30,11 +30,16 @@
         <PackageReference Include="FluentAssertions" />
         <PackageReference Include="Moq" />
         <PackageReference Include="Respawn" />
+        <PackageReference Include="SpecFlow.NUnit" />
         <PackageReference Include="Testcontainers.MsSql" />
     </ItemGroup>
     
     <ItemGroup>
         <ProjectReference Include="..\..\src\Web\Web.csproj" />
+    </ItemGroup>
+    
+    <ItemGroup>
+      <Folder Include="Support\Database\" />
     </ItemGroup>
 
 </Project>

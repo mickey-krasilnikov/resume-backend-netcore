@@ -15,8 +15,6 @@ public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options
     
     public DbSet<Contact> Contacts  => Set<Contact>();
     
-    public DbSet<Education> Educations => Set<Education>();
-    
     public DbSet<Experience> Experiences  => Set<Experience>();
     
     public DbSet<Skill> Skills  => Set<Skill>();

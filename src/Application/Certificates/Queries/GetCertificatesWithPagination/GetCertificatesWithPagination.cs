@@ -1,6 +1,7 @@
 ﻿using ResumeApp.Application.Common.Interfaces;
 using ResumeApp.Application.Common.Mappings;
 using ResumeApp.Application.Common.Models;
+using ResumeApp.Application.Common.Security;
 
 namespace ResumeApp.Application.Certificates.Queries.GetCertificatesWithPagination;
 

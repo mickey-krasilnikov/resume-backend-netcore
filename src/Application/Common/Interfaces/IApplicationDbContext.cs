@@ -8,8 +8,6 @@ public interface IApplicationDbContext
     
     DbSet<Contact> Contacts  { get; }
     
-    DbSet<Education> Educations { get; }
-    
     DbSet<Experience> Experiences { get; }
     
     DbSet<Skill> Skills { get; }

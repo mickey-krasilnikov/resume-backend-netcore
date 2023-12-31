@@ -5,7 +5,6 @@ using ResumeApp.Application.Common.Interfaces;
 using NUnit.Framework;
 using ResumeApp.Application.Certificates.Queries.GetCertificatesWithPagination;
 using ResumeApp.Application.Contacts.Queries.GetContactsWithPagination;
-using ResumeApp.Application.Educations.Queries.GetEducationsWithPagination;
 using ResumeApp.Application.Experiences.Queries.GetExperiencesWithPagination;
 using ResumeApp.Application.Skills.Queries.GetSkillsWithPagination;
 using ResumeApp.Domain.Entities;
@@ -19,9 +18,7 @@ public class MappingTests
 
     public MappingTests()
     {
-        _configuration = new MapperConfiguration(config => 
-            config.AddMaps(Assembly.GetAssembly(typeof(IApplicationDbContext))));
-
+        _configuration = new MapperConfiguration(config => config.AddMaps(Assembly.GetAssembly(typeof(IApplicationDbContext))));
         _mapper = _configuration.CreateMapper();
     }
 
@@ -34,25 +31,31 @@ public class MappingTests
     [Test]
     [TestCase(typeof(Certificate), typeof(CertificateDto))]
     [TestCase(typeof(Contact), typeof(ContactDto))]
-    [TestCase(typeof(Education), typeof(EducationDto))]
     [TestCase(typeof(Experience), typeof(ExperienceDto))]
     [TestCase(typeof(Skill), typeof(SkillDto))]
     public void ShouldSupportMappingFromSourceToDestination(Type source, Type destination)
     {
         var instance = GetInstanceOf(source);
-
         _mapper.Map(instance, source, destination);
     }
 
-    private object GetInstanceOf(Type type)
+    private static object GetInstanceOf(Type type)
     {
-        if (type.GetConstructor(Type.EmptyTypes) != null)
+        // If a parameterless constructor exists, use it
+        var ctor = type.GetConstructor(Type.EmptyTypes);
+        if (ctor != null)
             return Activator.CreateInstance(type)!;
 
-        // Type without parameterless constructor
-        // TODO: Figure out an alternative approach to the now obsolete `FormatterServices.GetUninitializedObject` method.
-#pragma warning disable SYSLIB0050 // Type or member is obsolete
-        return FormatterServices.GetUninitializedObject(type);
-#pragma warning restore SYSLIB0050 // Type or member is obsolete
+        // Find a constructor with the fewest parameters and invoke it with default values
+        var constructors = type.GetConstructors();
+        if (constructors.Length == 0)
+            throw new InvalidOperationException($"No constructors found for {type}.");
+
+        ctor = constructors.OrderBy(c => c.GetParameters().Length).First();
+        var parameters = ctor.GetParameters()
+            .Select(p => p.ParameterType.IsValueType ? Activator.CreateInstance(p.ParameterType) : null)
+            .ToArray();
+
+        return ctor.Invoke(parameters);
     }
 }

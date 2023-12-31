@@ -1,7 +1,9 @@
 ﻿using ResumeApp.Application.Common.Interfaces;
+using ResumeApp.Application.Common.Security;
 
 namespace ResumeApp.Application.Certificates.Commands.UpdateCertificate;
 
+[Authorize]
 public record UpdateCertificateCommand(
     Guid Id,
     string Name,
